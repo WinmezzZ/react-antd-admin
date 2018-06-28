@@ -3,6 +3,8 @@ import { observer, inject } from 'mobx-react';
 import { Layout } from 'antd';
 import Sider from '@/component/sider';
 import Header from '@/component/header';
+import Breadcrumb from '@/component/breadcrumb';
+import Route from '@/route'
 import './index.less';
 
 @inject('tool','size')
@@ -10,16 +12,16 @@ import './index.less';
 export default class App extends React.Component {
   render() {
     const { tool, size } = this.props;
-    const overlay = size.mobile && !tool.collapsed;
+    const overlay = size.mobile && !tool.collapsed; // 手机状态下且菜单展开时出现遮罩层
     return (
-      <Layout className="layout-top" style={{width: overlay && 'calc( 100vw + 200px )'}}>
+      <Layout className="layout-top" style={{width: overlay && 'calc( 100vw + 200px )'}}> 
+        {/* 因为layout默认宽度为100%，为了在手机端菜单展开时右边内容显示正常需增加一个菜单的宽度 */}
         <Sider/>
         <Layout className="layout-right-main">
             <Header/>
             <Layout.Content style={{ margin: '0 16px' }}>
-                <div style={{height: 1000}}>
-                  <h1>admin</h1>
-                </div>
+                <Breadcrumb/>
+                <Route/>
             </Layout.Content>
             <Layout.Footer style={{ textAlign: 'center' }}>
               React-Admin ©2018 Created by winme0308@gmail.com

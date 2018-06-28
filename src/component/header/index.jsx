@@ -4,7 +4,8 @@ import { Layout, Icon, Affix, Badge } from 'antd';
 import './index.less';
 import Solution from './solution';
 import Message from './message';
-import User from './user'
+import Mail from './mail';
+import User from './user';
 
 @inject('tool', 'tip', 'size')
 @observer
@@ -32,6 +33,7 @@ export default class App extends React.Component {
           </Affix> 
         }
         <div className="dropmenu-list">
+          <Mail/>
           <Solution/>
           <Message/>
           <User/>

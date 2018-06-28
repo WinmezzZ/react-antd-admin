@@ -21,22 +21,20 @@ export default class App extends React.Component {
       menuList: res.data
     })
   }
-  menuClickHandle = (e) => {
+  menuClickHandle = (e) => {// 点击子菜单设置选中
     this.setState({
   		selectedKeys: [e.key]
     });
     this.props.history.replace(e.key);
     const { size, tool } = this.props
-    if (size.mobile) {
-      tool.toggleCollapse(true)
-    }
+    size.mobile && tool.toggleCollapse(true)
   }
-  onOpenChange = (v) => {
+  onOpenChange = (v) => {// 展开父菜单设置展开
     this.setState({
       openKeys: [v.pop()],
     })
   }
-  setMenuOpen = () => {
+  setMenuOpen = () => {// 根据路由设置默认展开项和选中项
     const { pathname } = this.props.location;
     this.setState({
       openKeys: [pathname.substr(0, pathname.lastIndexOf('/'))],
