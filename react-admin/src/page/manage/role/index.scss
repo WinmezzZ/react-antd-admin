@@ -1,0 +1,37 @@
+@import '../../../style/variables.scss';
+.form {
+  > ul {
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    // input {
+    //   border: 0;
+    //   outline: none;
+    //   transition: none;
+    //   border-radius: 0;
+    // }
+    li {
+      display: inline-block;
+      line-height: 36px;
+      border-right: 1px solid #ccc;
+      padding-top: 15px;
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}
+.tree > li {
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+  white-space: pre-wrap;
+  color: #666;
+  .ant-tree-child-tree li {
+    padding: 4px 14px;
+    display: inline-block;
+  } li span.ant-tree-switcher {
+    width: 0;
+  }
+}
+.ant-tree > li:not(:last-child) {
+  border-bottom: 0;
+}

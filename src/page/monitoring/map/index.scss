@@ -1,0 +1,41 @@
+.station-record {
+	padding: 32px;
+	background-color: #fff;
+	margin-bottom: 24px;
+	border-left-width: 8px;
+	border-left-style: solid;
+	font-size: 12px;
+  span {
+		display: inline;
+		font-size: 24px;
+		padding: 0 10px;
+	}
+	&:nth-child(1) {
+		border-left-color: #252F3B;
+		color: #252F3B;
+	}
+	&:nth-child(2) {
+		border-left-color: #3CC2E9;
+		color: #3CC2E9;
+	}
+	&:nth-child(3) {
+		border-left-color: #5CBD92;
+		color: #5CBD92;
+	}
+	&:nth-child(4) {
+		border-left-color: #364557;
+		color: #364557;
+	}
+	&:nth-child(5) {
+		border-left-color: #F3AD3B;
+		color: #F3AD3B;
+	}
+	&:nth-child(6) {
+		border-left-color: #ED5565;
+		color: #ED5565;
+	}
+}
+.map-box {
+	padding: 10px;
+	background-color: #fff;
+}

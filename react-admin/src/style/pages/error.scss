@@ -1,0 +1,21 @@
+.search-btn {
+  button {
+    border-color: rgb(126, 199, 164);
+    
+    &:hover {
+      border-color: rgb(126, 199, 164);
+      color: #fff;
+      background-color: #00C1DE;
+    }
+  }
+  .f{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-left: 5px;
+    border-right: 0;
+  }
+  .s {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

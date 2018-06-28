@@ -1,0 +1,22 @@
+.app-layout {
+	background-color: #fff;
+	.app-layout-main {
+		> .ant-layout {
+			background-color: #F8F8F8;
+			> .ant-layout {
+				margin-top: 10px;
+				background-color: #fff;
+				.ant-layout-sider {
+					background-color: #fff;
+					//width: 180px;
+					padding: 22px 10px;
+					border-right: 1px solid #ccc;
+					overflow: auto;
+				}
+				.ant-layout-content {
+					padding: 26px 30px;
+				}
+			}
+		}
+	}
+}

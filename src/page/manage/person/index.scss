@@ -1,0 +1,15 @@
+@import '~@/style/variables.scss';
+
+.server-statu {
+  padding: 4px 8px;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.normal {
+  background-color: $theme-color;
+}
+.rest {
+  background-color: #d9534f;
+}
