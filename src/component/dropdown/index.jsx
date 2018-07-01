@@ -35,7 +35,6 @@ export default class componentName extends React.Component {
         overlay={overlay}>
         <span>
           <Icon type={this.props.icon}/>
-          <Icon type="down"/>
         </span>
       </Dropdown>
     )

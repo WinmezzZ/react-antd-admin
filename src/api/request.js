@@ -1,6 +1,6 @@
 import axios from './axios'
 import qs from 'qs'
-export const baseUrl = 'http://118.25.92.204:1997';
+export const baseUrl = 'https://winmee.cn';
 
 export default async(url, params = {}, method = 'POST', isUpload = false) => {
 	if(!url.includes('mock')) {

@@ -107,5 +107,14 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "proxy": {
+    "/posts/": {
+      "target": "https://jsonplaceholder.typicode.com",
+      "changeOrigin": true,
+      "pathRewrite":{
+        "^/posts/":""
+      }
+    }
   }
 }

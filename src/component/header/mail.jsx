@@ -3,18 +3,9 @@ import { List } from 'antd';
 import Dropdown from '@/component/dropdown'
 
 const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
+  { name: '曾小贤', message: '好男人就是我，我就是好男人，曾 小 贤~' },
+  { name: '孙悟空', message: '呔！猪精，哪里逃？吃俺老孙一棒！' },
+  { name: '白展堂', message: '葵花点穴手！' }
 ];
 
 export default class App extends React.Component {
@@ -32,8 +23,8 @@ export default class App extends React.Component {
             renderItem={item => (
               <List.Item>
                 <List.Item.Meta
-                  title={<a href="https://ant.design">{item.title}</a>}
-                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                  title={<a>{item.name}</a>}
+                  description={item.message}
                 />
               </List.Item>
             )}

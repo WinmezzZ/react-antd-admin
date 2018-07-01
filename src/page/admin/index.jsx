@@ -23,9 +23,6 @@ export default class App extends React.Component {
                 <Breadcrumb/>
                 <Route/>
             </Layout.Content>
-            <Layout.Footer style={{ textAlign: 'center' }}>
-              React-Admin ©2018 Created by winme0308@gmail.com
-            </Layout.Footer>
             { overlay && <div className="overlay" onClick={() => tool.toggleCollapse(true)}/> }
         </Layout>
     </Layout>

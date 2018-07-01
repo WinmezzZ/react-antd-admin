@@ -4,7 +4,7 @@ const data = [
   {
     icon: 'home',
     name: '首页',
-    route: '/admin/admin/index'
+    route: '/admin/index'
   },
   {
     icon: 'form',

@@ -4,7 +4,8 @@ import { observer, inject } from 'mobx-react';
 
 // 引入异步组件，用于JS分包
 import Bundle from '@/component/asyncComponent';
-const Login = Bundle(() => import(/* webpackChunkName: "login" */ './page/login')); 
+const Login = Bundle(() => import(/* webpackChunkName: "login" */ './page/login'));
+const Register = Bundle(() => import(/* webpackChunkName: "register" */ './page/register'));
 const Admin = Bundle(() => import(/* webpackChunkName: "admin" */  './page/admin'));
 
 @inject('size', 'tool')
@@ -32,9 +33,10 @@ export default class App extends React.Component {
     return ( 
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" render={() => <Redirect to="/login" push />} />     
-          <Route path="/login" component={Login} />   
-          <Route path="/admin" component={Admin} />
+          <Route path="/login" component={Login}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/admin" component={Admin}/>
+          <Route exact path="/" render={() => <Redirect to="/login" push />} />
         </Switch>
       </BrowserRouter>
     )

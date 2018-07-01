@@ -1,6 +1,6 @@
 import React from 'react';
-// import { login } from '@/api'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { login } from '@/api'
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import './index.less';
 const FormItem = Form.Item;
 
@@ -9,13 +9,16 @@ class App extends React.Component {
     e.preventDefault();
     this.props.form.validateFields(async(err, values) => {
       if (err) return;
-      // const res = await login(values);
-      // if (res.code === 1) {
-      //   message.error(res.msg);
-      // } else if (res.code === 0) {
-      //   this.props.history.push('/admin');
-      // }
+      const res = await login(values);
+      if (res.code === 1) {
+        message.error(res.msg);
+      } else if (res.code === 0) {
+        this.props.history.push('/admin/index');
+      }
     });
+  }
+  handleRegister = () => {
+    this.props.history.push('/register');
   }
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -45,7 +48,7 @@ class App extends React.Component {
             <Button type="primary" htmlType="submit" className="login-form-button">
              登录
             </Button>
-            <a href="">去注册</a>
+            <a onClick={this.handleRegister}>去注册</a>
           </FormItem>
         </Form>
       </div>
