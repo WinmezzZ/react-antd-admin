@@ -1,5 +1,5 @@
 import React from 'react';
-import { Progress } from 'antd';
+import { Progress } from 'ant';
 import Dropdown from '@/component/dropdown'
 
 export default class App extends React.Component {

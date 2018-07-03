@@ -1,7 +1,8 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
+import Bundle from '@/component/loadable';
 
-import Bundle from '@/component/asyncComponent';
+// import Bundle from '@/component/asyncComponent';
 const Index = Bundle(() => import(/* webpackChunkName: "index" */ '@/page/index'));
 const Button = Bundle(() => import(/* webpackChunkName: "button" */ '@/page/form/button'));
 const Checkbox = Bundle(() => import(/* webpackChunkName: "index" */ '@/page/form/checkbox'));

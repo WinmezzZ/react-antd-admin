@@ -1,6 +1,6 @@
 import React from 'react';
 import { register } from '@/api';
-import { Form, Icon, Input, Button, message } from 'antd';
+import { Form, Icon, Input, Button, message } from 'ant';
 import '../login/index.less';
 const FormItem = Form.Item;
 

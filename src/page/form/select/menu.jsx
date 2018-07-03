@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select } from 'antd';
+import { Select } from 'ant';
 
 const { Option, OptGroup } = Select;
 

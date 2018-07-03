@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import { Layout } from 'antd';
+import { Layout } from 'ant';
 import Sider from '@/component/sider';
 import Header from '@/component/header';
 import Breadcrumb from '@/component/breadcrumb';

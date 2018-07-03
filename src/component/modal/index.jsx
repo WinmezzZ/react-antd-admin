@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import './index.scss'
-import { Modal } from 'antd'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './index.scss';
+import { Modal } from 'ant';
 
 class CustomModal extends Component {
   render() {

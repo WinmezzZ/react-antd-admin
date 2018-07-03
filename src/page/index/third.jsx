@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, List, Pagination, Calendar } from 'antd';
+import { Row, Col, Card, List, Pagination, Calendar } from 'ant';
 
 const list = [
   { name: '曾小贤', message: '好男人就是我，我就是好男人，曾 小 贤~' },

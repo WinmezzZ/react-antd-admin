@@ -1,5 +1,5 @@
 import React from 'react'
-import { Breadcrumb, Icon } from 'antd'
+import { Breadcrumb, Icon } from 'ant'
 
 export default class App extends React.Component {
   render() {

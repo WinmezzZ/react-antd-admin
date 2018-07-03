@@ -5,16 +5,16 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import store from './store';
 
-//antd中文
+// antd中文
 import 'antd/dist/antd.less';
-import { LocaleProvider } from 'antd';
-import zhCN from 'antd/lib/locale-provider/zh_CN';
+import { LocaleProvider } from 'ant';
+import { zhCN } from 'ant';
 import App from './App.jsx';
 
 // sw
 import registerServiceWorker from './registerServiceWorker';
 
-//mock数据
+// mock数据
 import './mock';
 
 // 全局样式

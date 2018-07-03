@@ -1,5 +1,5 @@
 import React from 'react';
-import { DatePicker } from 'antd';
+import { DatePicker } from 'ant';
 
 export default class DateRange extends React.Component {
   state = {

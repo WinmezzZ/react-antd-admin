@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Button } from 'antd';
+import { Checkbox, Button } from 'ant';
 
 export default class App extends React.Component {
   state = {

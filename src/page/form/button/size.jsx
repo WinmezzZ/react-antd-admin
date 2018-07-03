@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Radio, Icon } from 'antd';
+import { Button, Radio, Icon } from 'ant';
 
 export default class App extends React.Component {
   state = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Upload, Icon, message } from 'antd';
+import { Upload, Icon, message } from 'ant';
 
 function getBase64(img, callback) {
   const reader = new FileReader();

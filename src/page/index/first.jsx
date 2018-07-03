@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, Icon } from 'antd';
+import { Row, Col, Card, Icon } from 'ant';
 
 export default class App extends React.Component {
 	render() {

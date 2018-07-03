@@ -1,5 +1,5 @@
 import React from 'react';
-import { Upload, Icon, message } from 'antd';
+import { Upload, Icon, message } from 'ant';
 
 const Dragger = Upload.Dragger;
 

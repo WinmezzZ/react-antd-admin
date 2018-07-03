@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { Link } from 'react-router-dom';
-import { Dropdown, Icon } from 'antd';
+import { Dropdown, Icon } from 'ant';
 import './index.less';
 
 @inject('size')

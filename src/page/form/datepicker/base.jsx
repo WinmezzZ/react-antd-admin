@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { DatePicker } from 'antd';
+import { DatePicker } from 'ant';
 
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 

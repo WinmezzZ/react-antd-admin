@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
-import { Dropdown, Menu, Icon } from 'antd';
+import { Dropdown, Menu, Icon } from 'ant';
 
 @inject('size')
 @withRouter

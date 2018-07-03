@@ -1,5 +1,5 @@
 import React from 'react';
-import { TimePicker } from 'antd';
+import { TimePicker } from 'ant';
 import moment from 'moment';
 
 function onChange(time, timeString) {

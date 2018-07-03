@@ -1,8 +1,8 @@
 import React from 'react';
-import { Row, Col, Card } from 'antd';
+import { Row, Col, Card } from 'ant';
 import Base from './base';
 import Size from './size';
-import Group from './group';
+// import Group from './group';
 import Style from './style';
 
 export default class App extends React.Component {
@@ -14,11 +14,11 @@ export default class App extends React.Component {
             <Base/>
           </Card>
         </Col>
-        <Col md={12}>
+        {/* <Col md={12}>
           <Card title="单选组合">
             <Group/>
           </Card>
-        </Col>
+        </Col> */}
         <Col md={12}>
           <Card title="按钮样式">
             <Style/>

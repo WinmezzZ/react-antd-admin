@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Button } from 'antd';
+import { Switch, Button } from 'ant';
 
 export default class App extends React.Component {
   state = {

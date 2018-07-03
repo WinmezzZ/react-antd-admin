@@ -1,9 +1,14 @@
 import React from 'react';
-import { BrowserRouter , Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter , Switch, Route, Redirect } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 
 // 引入异步组件，用于JS分包
-import Bundle from '@/component/asyncComponent';
+// import Bundle from '@/component/asyncComponent';
+// const Login = Bundle(() => import(/* webpackChunkName: "login" */ './page/login'));
+// const Register = Bundle(() => import(/* webpackChunkName: "register" */ './page/register'));
+// const Admin = Bundle(() => import(/* webpackChunkName: "admin" */  './page/admin'));
+
+import Bundle from '@/component/loadable';
 const Login = Bundle(() => import(/* webpackChunkName: "login" */ './page/login'));
 const Register = Bundle(() => import(/* webpackChunkName: "register" */ './page/register'));
 const Admin = Bundle(() => import(/* webpackChunkName: "admin" */  './page/admin'));
@@ -31,14 +36,14 @@ export default class App extends React.Component {
   }
   render() {
     return ( 
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
           <Route path="/admin" component={Admin}/>
           <Route exact path="/" render={() => <Redirect to="/login" push />} />
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     )
   }
 }
