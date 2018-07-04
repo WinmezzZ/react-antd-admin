@@ -1,6 +1,6 @@
 # React后台管理系统
 
-### 在线预览地址：[http://winmee.cn](http://winmee.cn)
+### 在线预览地址：[https://winmee.cn](https://winmee.cn)
 
 ### 引言
 
@@ -16,20 +16,46 @@
 
 2. 该项目使用了响应式布局，并支持手机端浏览器。
 
+### 安装运行
+##### 1.下载源码
+```js
+git clone https://github.com/WinmezzZ/react-admin
+```
+##### 2.进入目录
+```js
+cd react-admin
+```
+##### 3.安装npm淘宝源cnpm(npm下载比较慢)
+```js
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+##### 4.安装依赖包
+```js
+cnpm install
+```
+##### 3.启动项目
+```js
+npm start
+```
+##### 4.打包项目
+```js
+npm run build
+```
+
 ### 技术栈
 
 | Library | Version | Introduce | 
 | - | :-: | -: | 
-| React, ReactDOM | 16.3 | React基本库 | 
+| React, ReactDOM | 16.3.0 | React基本库 | 
 | React-router-dom | 4.2.2 | React路由库 | 
 | Axios | 3.3.3 | Http库 |
 | Mobx | 5.0.3 | 全局状态管理库 |
 | Ant Design | 3.3.3 | UI组件库 |
 | ReCharts | 1.0.0-beta.10 | 图表库 |
 | MockJS | 1.0.1-beta3 | 测试数据 |
-| less | 3.0.4 | CSS预处理器 |
+| Less | 3.0.4 | CSS预处理器 |
 
-### 代码目录
+### 项目目录
 
 ```js
 +-- build/                                  ---打包的文件目录
@@ -47,8 +73,8 @@
 |   +-- util                                ---辅助函数
 |   --- App.js                              ---主路由
 |   --- index.js                            ---项目入口文件
-|   +-- registerServiceWorker.js            ---service worker离线缓存
---- theme                                   ---antd自定义主题样式
+|   --- registerServiceWorker.js            ---service worker离线缓存
++-- theme/                                  ---antd自定义主题样式
 --- .gitignore                              ---git提交忽略配置
 --- package.json                            ---插件目录
 --- README.md                               ---项目说明书
