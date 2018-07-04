@@ -4,7 +4,7 @@ import { Layout } from 'ant';
 import Sider from '@/component/sider';
 import Header from '@/component/header';
 import Breadcrumb from '@/component/breadcrumb';
-import Route from '@/route'
+import Route from '@/route';
 import './index.less';
 
 @inject('tool','size')
