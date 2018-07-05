@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './index.scss';
+import './index.less';
 import { Modal } from 'ant';
 
 class CustomModal extends Component {

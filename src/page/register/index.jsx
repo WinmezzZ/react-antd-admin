@@ -4,7 +4,8 @@ import { Form, Icon, Input, Button, message } from 'ant';
 import '../login/index.less';
 const FormItem = Form.Item;
 
-class App extends React.Component {
+@Form.create()
+export default class App extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields(async(err, values) => {
@@ -55,5 +56,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default Form.create()(App)

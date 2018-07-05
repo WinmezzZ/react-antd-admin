@@ -8,6 +8,7 @@ import { observer, inject } from 'mobx-react';
 // const Register = Bundle(() => import(/* webpackChunkName: "register" */ './page/register'));
 // const Admin = Bundle(() => import(/* webpackChunkName: "admin" */  './page/admin'));
 
+// 引入异步组件
 import Bundle from '@/component/loadable';
 const Login = Bundle(() => import(/* webpackChunkName: "login" */ './page/login'));
 const Register = Bundle(() => import(/* webpackChunkName: "register" */ './page/register'));
@@ -27,9 +28,9 @@ export default class App extends React.Component {
     tool.toggleCollapse(size.mobile);
   }
   componentDidMount() {
-    // 初始化设resize函数
+    // 初始化store的size
     this.resize();
-    // 监听resize
+    // 监听size
     window.onresize = () => {
       this.resize();
     }
@@ -41,7 +42,7 @@ export default class App extends React.Component {
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
           <Route path="/admin" component={Admin}/>
-          <Route exact path="/" render={() => <Redirect to="/login" push />} />
+          <Route exact path="/" render={() => <Redirect to="/login" replace/>} />
         </Switch>
       </HashRouter>
     )
