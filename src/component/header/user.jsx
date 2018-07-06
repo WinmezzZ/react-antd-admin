@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
-import { Dropdown, Menu, Icon } from 'ant';
+import { Dropdown, Menu, Icon, Modal } from 'ant';
 
 @inject('size')
 @withRouter
@@ -10,10 +10,16 @@ export default class App extends React.Component {
   menuClick = ({ key }) => {
     switch(key) {
       case '3':
-        this.props.history.push('/login');
+        Modal.confirm({
+          title: '提示',
+          content: '您确定要退出到登录页吗？',
+          onOk: () => {
+            this.props.history.replace('/login');
+          }
+        })
         return
       default :
-        return
+      return
     }
   }
   render() {
