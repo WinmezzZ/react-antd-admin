@@ -32,6 +32,7 @@ import Avatar from 'antd/lib/avatar';
 import Modal from 'antd/lib/modal';
 import InputNumber from 'antd/lib/input-number';
 import AutoComplete from 'antd/lib/auto-complete';
+import BackTop from 'antd/lib/back-top';
 
 export {
   LocaleProvider,
@@ -68,4 +69,5 @@ export {
   Modal,
   InputNumber,
   AutoComplete,
+  BackTop,
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
-import { Layout } from 'ant';
+import { Layout, BackTop } from 'ant';
 import Sider from '@/component/sider';
 import Header from '@/component/header';
 import Breadcrumb from '@/component/breadcrumb';
@@ -28,7 +28,7 @@ export default class App extends React.Component {
   getTitle = (pathname) => {
     const parent = data.find(item => pathname.includes(item.route)) // 记录一级菜单
     const children = parent.children && parent.children.find(item => pathname === item.route) // 记录二级菜单
-    document.title = children.name || parent.name; // 将菜单名赋值给title
+    document.title = (children && children.name) || parent.name; // 将菜单名赋值给title
   }
   render() {
     const { tool, size } = this.props;
@@ -42,6 +42,7 @@ export default class App extends React.Component {
             <Layout.Content style={{ margin: '0 16px' }}>
                 <Breadcrumb/>
                 <Route/>
+                <BackTop target={() => document.getElementsByClassName('layout-right-main')[0]}/>
             </Layout.Content>
             { overlay && <div className="overlay" onClick={() => tool.toggleCollapse(true)}/> }
         </Layout>

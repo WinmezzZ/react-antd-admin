@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 @Form.create()
 export default class App extends React.Component {
   componentDidMount() {
-    document.title = 'react-admin 注册'
+    document.title = '注册'
   }
   handleSubmit = (e) => {
     e.preventDefault();

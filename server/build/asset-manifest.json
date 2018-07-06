@@ -1,0 +1,16 @@
+{
+  "admin.js": "static/js/admin.02f46fcb.chunk.js",
+  "button.js": "static/js/button.e7b09d80.chunk.js",
+  "datepicker.js": "static/js/datepicker.6dd203d6.chunk.js",
+  "index.js": "static/js/index.848e57b5.chunk.js",
+  "input.js": "static/js/input.ec082be8.chunk.js",
+  "login.js": "static/js/login.c68caa6d.chunk.js",
+  "main.js": "static/js/main.6d7b9c01.js",
+  "manifest.js": "static/js/manifest.1792c689.js",
+  "radio.js": "static/js/radio.024af887.chunk.js",
+  "register.js": "static/js/register.e14f5386.chunk.js",
+  "select.js": "static/js/select.5843f00f.chunk.js",
+  "switch.js": "static/js/switch.da03481a.chunk.js",
+  "upload.js": "static/js/upload.f812156c.chunk.js",
+  "vendor.js": "static/js/vendor.9b37a57b.js"
+}
