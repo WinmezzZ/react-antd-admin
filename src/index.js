@@ -25,10 +25,6 @@ import './mock';
 // 全局样式
 import './style/index.less';
 
-// 取消移动端300毫秒点击延迟
-import fastclick from 'fastclick'
-fastclick.attach(document.body)
-
 ReactDOM.render(
   <LocaleProvider locale={zhCN}>
     <Provider { ...store }>
