@@ -6,6 +6,9 @@ const FormItem = Form.Item;
 
 @Form.create()
 export default class App extends React.Component {
+  componentDidMount() {
+    document.title = 'react-admin 登陆'
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields(async(err, values) => {

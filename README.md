@@ -88,15 +88,11 @@ npm run build
     - 目前只有登陆注册已接通后端接口，其他请求数据皆为mockjs仿造
     - 对axios进行了封装，可全局拦截请求和响应，设置额外参数，设置header,cookie信息等
     - 集中管理api方法，通过参数设置请求地址,请求方式，请求参数，是否上传文件等
+    - 使用webpack-dev-server的proxy代理进行跨域，配置在package.json的proxy参数中
 - 全局状态
     - 屏幕尺寸，设备类型(项目首次加载设置，监听屏幕宽度变化设置)
     - 菜单展开收起状态(点击子菜单或遮罩层收起，点击顶部折叠图标展开)
     - 聊天未接收消息数量(接收到服务端socket消息设置)
-- 动态数据
-    - 菜单状态(页面手动刷新时根据路由设置展开的父菜单和选中的子菜单)
-    - 页面title(路由变化时设置对应title)
-    - 面包屑导航(路由变化时设置对应一级和二级name)
-    - 页面title和面包屑数据来源于menu信息
 - 路由
     - 路由地址配置在接口返回信息中，menu组件请求到菜单信息，将route参数作为key，点击子菜单时跳转到对应的key(route)
     - 主路由在App.jsx中，子路由在route/index.jsx中(react路由4.0特性需分开配置)
@@ -104,7 +100,7 @@ npm run build
     - 该网站使用antd作为ui组件库
     - 官方推荐的babel-import-plugin方法可以实现按需加载，但配合异步路由和抽取commonjs可能会引发打包时单组件体积巨大的问题，目前实现方法为将所需组件全部引入到本地component组件中，其他组件内部从本地component中引入而不是antd
     - 自定义主题在根目录theme文件中，配置文件在webpack.config.js的less模块中，可使用全局搜索查找
-- 组件
+- 自定义组件
     - 复用组件都被封装在component目录中
     - 不复用组件如header，sider，breadcrumb等
     - 响应式组件，手机端和网页端样式差异很大需设计两套对应样式

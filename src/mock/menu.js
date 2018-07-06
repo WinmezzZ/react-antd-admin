@@ -1,6 +1,6 @@
 import * as Mock from 'mockjs'
 
-const data = [
+export const data = [
   {
     icon: 'home',
     name: '首页',

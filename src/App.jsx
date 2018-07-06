@@ -39,10 +39,11 @@ export default class App extends React.Component {
     return ( 
       <HashRouter>
         <Switch>
-          <Route path="/login" component={Login}/>
-          <Route path="/register" component={Register}/>
+          <Route exact path="/login" component={Login}/>  
+          <Route exact path="/register" component={Register}/>
           <Route path="/admin" component={Admin}/>
           <Route exact path="/" render={() => <Redirect to="/login" replace/>} />
+          {/* exact 属性作用为路由必须完全匹配,避免重复渲染，父路由下若有子路由必须去除exact属性，否则子路由无法展示 */}
         </Switch>
       </HashRouter>
     )
