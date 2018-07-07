@@ -1,5 +1,5 @@
 import React from 'react';
-import { Radio } from 'antd';
+import { Radio } from 'ant';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;

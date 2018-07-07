@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Button } from 'ant';
 
 export default class App extends React.Component {
   state = {

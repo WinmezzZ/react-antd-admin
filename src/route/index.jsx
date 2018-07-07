@@ -1,7 +1,8 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
+import Bundle from '@/component/loadable';
 
-import Bundle from '@/component/asyncComponent';
+// import Bundle from '@/component/asyncComponent';
 const Index = Bundle(() => import(/* webpackChunkName: "index" */ '@/page/index'));
 const Button = Bundle(() => import(/* webpackChunkName: "button" */ '@/page/form/button'));
 const Checkbox = Bundle(() => import(/* webpackChunkName: "index" */ '@/page/form/checkbox'));
@@ -22,9 +23,10 @@ export default class Routes extends React.Component {
 				<Route exact path="/admin/form/datepicker" component={Datepicker}/>
 				<Route exact path="/admin/form/input" component={Input}/>
 				<Route exact path="/admin/form/radio" component={Radio}/>
-				<Route exact path="/admin/form/select" component={Select}/>
+				<Route exact path="/admin/form/select" component={Select}/> 
 				<Route exact path="/admin/form/switch" component={Switch}/>
 				<Route exact path="/admin/form/upload" component={Upload}/>
+				{/* react 4.0路由特性: 子路由地址前缀必须带上父路由地址 */}
 		  </div>
 		)
 	}

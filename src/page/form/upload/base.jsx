@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Upload, message, Button, Icon } from 'antd';
+import { Upload, message, Button, Icon } from 'ant';
 
 const props = {
   name: 'file',

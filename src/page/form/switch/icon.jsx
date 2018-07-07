@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Icon } from 'antd';
+import { Switch, Icon } from 'ant';
 
 export default class App extends React.Component {
   render() {

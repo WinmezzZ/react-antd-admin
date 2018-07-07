@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Avatar } from 'antd';
+import { List, Avatar } from 'ant';
 import Dropdown from '@/component/dropdown'
 
 const data = [

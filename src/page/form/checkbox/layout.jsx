@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Row, Col } from 'antd';
+import { Checkbox, Row, Col } from 'ant';
 
 export default class App extends React.Component {
   onChange = (checkedValues) => {

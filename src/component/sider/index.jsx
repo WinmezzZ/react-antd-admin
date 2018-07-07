@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
-import { Layout } from 'antd';
+import { Layout } from 'ant';
 import Menu from './menu';
 import { getMenu } from '@/api';
 import './index.less';

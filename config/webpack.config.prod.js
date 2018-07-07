@@ -56,9 +56,9 @@ module.exports = {
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
   // You can exclude the *.map files from the build during deployment.
-  devtool: shouldUseSourceMap ? 'source-map' : false,
+  devtool: false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: [require.resolve('./polyfills'), require.resolve('babel-polyfill'), paths.appIndexJs],
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -96,7 +96,8 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
-      '@': path.resolve(__dirname, '../src')
+      '@': path.resolve(__dirname, '../src'),
+      'ant': path.resolve(__dirname, '../src/component/antd'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -391,7 +392,8 @@ module.exports = {
       async: 'vendor-async',
       children: true,
       minChunks: 3
-    })
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

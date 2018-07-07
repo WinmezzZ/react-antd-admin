@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card } from 'antd';
+import { Row, Col, Card } from 'ant';
 import Base from './base';
 import Layout from './layout';
 import Controlled from './controlled';

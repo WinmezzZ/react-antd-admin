@@ -1,28 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// store
+// 在跟组件通过Provider中间件注入store
 import { Provider } from 'mobx-react';
 import store from './store';
 
-//antd中文
+// antd样式
 import 'antd/dist/antd.less';
-import { LocaleProvider } from 'antd';
-import zhCN from 'antd/lib/locale-provider/zh_CN';
+// antd国际化(中文)
+import { LocaleProvider } from 'ant';
+import { zhCN } from 'ant';
+// 日期组件中文
+import 'moment/locale/zh-cn';
+
+// 引入主路由
 import App from './App.jsx';
 
 // sw
 import registerServiceWorker from './registerServiceWorker';
 
-//mock数据
+// mock数据
 import './mock';
 
 // 全局样式
 import './style/index.less';
-
-// 取消移动端300毫秒点击延迟插件
-import fastclick from 'fastclick'
-fastclick.attach(document.body)
 
 ReactDOM.render(
   <LocaleProvider locale={zhCN}>
@@ -32,10 +33,11 @@ ReactDOM.render(
   </LocaleProvider>,
   document.getElementById('root')
 )
+  
+registerServiceWorker();
 
 // 开发环境热更新
 if (module.hot) {  
   module.hot.accept()  
-}  
-registerServiceWorker();
+}
 

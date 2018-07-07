@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Checkbox } from 'antd';
+import { Checkbox } from 'ant';
 
 export default class App extends React.Component {
   render() {

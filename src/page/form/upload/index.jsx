@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card } from 'antd';
+import { Row, Col, Card } from 'ant';
 import Base from './base';
 import Avator from './avator';
 import FileList from './fileList';

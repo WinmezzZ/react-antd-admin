@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import { Layout, Icon, Affix, Badge } from 'antd';
+import { Layout, Icon, Affix, Badge } from 'ant';
 import './index.less';
 import Solution from './solution';
 import Message from './message';

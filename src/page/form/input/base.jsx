@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Input } from 'antd';
+import { Input } from 'ant';
 
 export default class App extends React.Component {
   render() {

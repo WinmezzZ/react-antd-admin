@@ -1,10 +1,14 @@
 import React from 'react';
 import { login } from '@/api'
-import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message } from 'ant';
 import './index.less';
 const FormItem = Form.Item;
 
-class App extends React.Component {
+@Form.create()
+export default class App extends React.Component {
+  componentDidMount() {
+    document.title = '登陆'
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields(async(err, values) => {
@@ -55,5 +59,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default Form.create()(App)
