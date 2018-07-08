@@ -48,7 +48,7 @@ export default class App extends React.Component {
               <p>React-Admin ©2018 Created by Winme</p>
               <p>
                 github:<a href="https://github.com/WinmezzZ/react-admin">文档地址</a>&nbsp;
-                gmail:<a>winme0308@gmail.com</a>&nbsp;
+                gmail:<a>winme0308@gmail.com</a>
               </p>
             </Layout.Footer>
             { overlay && <div className="overlay" onClick={() => tool.toggleCollapse(true)}/> }
