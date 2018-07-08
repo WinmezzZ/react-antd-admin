@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Breadcrumb, Icon } from 'ant';
 import { data } from '@/mock/menu';
+import './index.less';
 
 @withRouter
 export default class App extends React.Component {
@@ -16,16 +17,17 @@ export default class App extends React.Component {
     if (pathname1.includes('admin') && (pathname1 !== pathname2)) { //admin下切换菜单
       const parent = data.find(item => pathname1.includes(item.route)) // 记录一级菜单
       const children = parent.children && parent.children.find(item => pathname1 === item.route) // 记录二级菜单
+      const index = parent.route === '/admin/index'; // 当前为首页
       this.setState({ // 将菜单名赋值
-        second: parent.name,
-        third: children.name
+        second: index ? undefined : parent.name,
+        third: index ? undefined : children.name
       })
     }
   }
   render() {
     const { second, third } = this.state
     return (
-      <Breadcrumb style={{margin: '12px 0'}}>
+      <Breadcrumb className="breadcrumb">
         <Breadcrumb.Item>
           <Icon type="home" />
         </Breadcrumb.Item>

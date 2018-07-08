@@ -58,7 +58,7 @@ export default class App extends React.Component {
       <Row gutter={10}>
         <Col>
           <Card title="昨天与今天访问量对比">
-            <ResponsiveContainer width="100%" height={200}>
+            <ResponsiveContainer width="100%" height={300}>
               <LineChart data={data}>
                 <CartesianGrid strokeDasharray="3 3"/>
                 <XAxis dataKey="name"/>

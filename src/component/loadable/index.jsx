@@ -1,10 +1,10 @@
+import React from 'react';
 import Loadable from 'react-loadable';
-import Loading from './loading';
 
 export default function withLoadable (comp) {
   return Loadable({
     loader: comp,
-    loading: Loading,
-    delay: 300
+    loading: () => <h1 style={{textAlign: 'center', marginTop: 300}}>Loading...</h1>,
+    delay: 200
   })
 }

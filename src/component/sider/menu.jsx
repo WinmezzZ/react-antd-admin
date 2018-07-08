@@ -18,7 +18,10 @@ export default ({data, ...props}) =>
           item.children && item.children.map((each) => 
             <Menu.Item
               key={ each.route }>
-              <span>{ each.name }</span>
+              <span>
+                { each.icon && <Icon type={each.icon} />}
+                { each.name }
+              </span>
             </Menu.Item>
           )
         }
