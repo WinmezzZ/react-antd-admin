@@ -1,6 +1,7 @@
 import React from 'react';
 import { login } from '@/api'
 import { Form, Icon, Input, Button, Checkbox, message } from 'ant';
+import { setStore } from '@/utils';
 import './index.less';
 const FormItem = Form.Item;
 
@@ -17,6 +18,7 @@ export default class App extends React.Component {
       if (res.code === 1) {
         message.error(res.msg);
       } else if (res.code === 0) {
+        setStore('isLogin', true);
         this.props.history.push('/admin/index');
       }
     });

@@ -1,31 +1,28 @@
 import React from 'react'
 import { Route } from 'react-router-dom';
+// import AuthRouter from '@/component/authRouter';
 import Bundle from '@/component/loadable';
 
-// import Bundle from '@/component/asyncComponent';
+// import Bundle from '@/component/asyncComponent';  异步路由加载
 const Index = Bundle(() => import(/* webpackChunkName: "index" */ '@/page/index'));
-const Button = Bundle(() => import(/* webpackChunkName: "button" */ '@/page/form/button'));
-const Checkbox = Bundle(() => import(/* webpackChunkName: "index" */ '@/page/form/checkbox'));
-const Datepicker = Bundle(() => import(/* webpackChunkName: "datepicker" */ '@/page/form/datepicker'));
-const Input = Bundle(() => import(/* webpackChunkName: "input" */ '@/page/form/input'));
-const Radio = Bundle(() => import(/* webpackChunkName: "radio" */ '@/page/form/radio'));
-const Select = Bundle(() => import(/* webpackChunkName: "select" */ '@/page/form/select'));
-const Switch = Bundle(() => import(/* webpackChunkName: "switch" */ '@/page/form/switch'));
-const Upload = Bundle(() => import(/* webpackChunkName: "upload" */ '@/page/form/upload'));
+const Form = Bundle(() => import(/* webpackChunkName: "form" */ '@/page/component/form'));
+const Table = Bundle(() => import(/* webpackChunkName: "table" */ '@/page/component/table'));
+const Layout = Bundle(() => import(/* webpackChunkName: "layout" */ '@/page/component/layout'));
+const Tooltip = Bundle(() => import(/* webpackChunkName: "tooltip" */ '@/page/component/tooltip'));
+const Auth = Bundle(() => import(/* webpackChunkName: "auth" */ '@/page/business/auth'));
+const Cropper = Bundle(() => import(/* webpackChunkName: "cropper" */ '@/page/other/cropper'));
 
 export default class Routes extends React.Component {
 	render() {
 		return (
 			<div>
 				<Route exact path="/admin/index" component={Index}/>
-				<Route exact path="/admin/form/button" component={Button}/>
-				<Route exact path="/admin/form/checkbox" component={Checkbox}/>
-				<Route exact path="/admin/form/datepicker" component={Datepicker}/>
-				<Route exact path="/admin/form/input" component={Input}/>
-				<Route exact path="/admin/form/radio" component={Radio}/>
-				<Route exact path="/admin/form/select" component={Select}/> 
-				<Route exact path="/admin/form/switch" component={Switch}/>
-				<Route exact path="/admin/form/upload" component={Upload}/>
+				<Route exact path="/admin/component/form" component={Form}/>
+				<Route exact path="/admin/component/table" component={Table}/>
+				<Route exact path="/admin/component/layout" component={Layout}/>
+				<Route exact path="/admin/component/tooltip" component={Tooltip}/>
+				<Route exact path="/admin/business/auth" component={Auth}/>
+				<Route exact path="/admin/other/cropper" component={Cropper}/>
 				{/* react 4.0路由特性: 子路由地址前缀必须带上父路由地址 */}
 		  </div>
 		)

@@ -33,6 +33,13 @@ import Modal from 'antd/lib/modal';
 import InputNumber from 'antd/lib/input-number';
 import AutoComplete from 'antd/lib/auto-complete';
 import BackTop from 'antd/lib/back-top';
+import Tooltip from 'antd/lib/tooltip';
+import Tabs from 'antd/lib/tabs';
+import Table from 'antd/lib/table';
+import Divider from 'antd/lib/divider';
+import Popconfirm from 'antd/lib/popconfirm';
+import Alert from 'antd/lib/alert';
+import notification from 'antd/lib/notification';
 
 export {
   LocaleProvider,
@@ -70,4 +77,11 @@ export {
   InputNumber,
   AutoComplete,
   BackTop,
+  Tooltip,
+  Tabs,
+  Table,
+  Divider,
+  Popconfirm,
+  Alert,
+  notification
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 import { Dropdown, Menu, Icon, Modal } from 'ant';
+import { setStore } from '@/utils';
 
 @inject('size')
 @withRouter
@@ -14,6 +15,7 @@ export default class App extends React.Component {
           title: '提示',
           content: '您确定要退出到登录页吗？',
           onOk: () => {
+            setStore('isLogin', false);
             this.props.history.replace('/login');
           }
         })
