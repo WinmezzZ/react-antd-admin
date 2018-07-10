@@ -115,3 +115,8 @@ npm run build
 - 使用webpack.commonChunksPlugin插件进行公共代码抽离 
 - 前后端同时配合采用gzip进行压缩 
 
+#### 部署时
+- server下build文件夹为前端打包代码，可直接放在服务器目录下进行配置
+- 或者您也可以使用已配置好的服务端代码，server为整个服务端代码目录，app.js为入口文件
+- 服务器使用nodejs的express框架搭建，并且需要在服务器安装mongodb进行数据库的连接
+

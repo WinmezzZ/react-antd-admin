@@ -120,6 +120,13 @@
       "pathRewrite": {
         "^/posts/": ""
       }
+    },
+    "/api": {
+      "target": "https://winmee.cn",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
     }
   }
 }

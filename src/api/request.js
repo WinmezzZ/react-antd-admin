@@ -1,11 +1,7 @@
 import axios from './axios'
 import qs from 'qs'
-export const baseUrl = 'https://winmee.cn';
 
 export default async(url, params = {}, method = 'POST', isUpload = false) => {
-	if(!url.includes('mock')) {
-		url = baseUrl + url;
-	}
 	method = method.toUpperCase();
 	if (method === 'GET') {
 		let dataStr = '';
