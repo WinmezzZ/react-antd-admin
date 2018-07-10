@@ -4,17 +4,17 @@
 
 ### 引言
 
-一个现代化的企业级后台管理系统 
+一个现代化的企业级后台管理系统 (包含前后端)，前后端属于分离结构，如果你对部署感兴趣，下面也有具体介绍。
 
 ### 提示
 
 1. 进入主页需注册登录，或者您也可以使用公用账号进行登陆 
 
- 用户名：admin 
+ - 用户名：admin 
  
- 密码：123456
+ - 密码：123456
 
-2. 该项目使用了响应式布局，并支持手机端浏览器。
+2. 已适配移动端浏览
 
 ### 安装运行
 ##### 1.下载源码
@@ -46,14 +46,17 @@ npm run build
 
 | Library | Version | Introduce | 
 | - | :-: | -: | 
-| React, ReactDOM | 16.3.0 | React基本库 | 
-| React-router-dom | 4.2.2 | React路由库 | 
-| Axios | 3.3.3 | Http库 |
-| Mobx | 5.0.3 | 全局状态管理库 |
-| Ant Design | 3.3.3 | UI组件库 |
-| ReCharts | 1.0.0-beta.10 | 图表库 |
-| MockJS | 1.0.1-beta3 | 测试数据 |
-| Less | 3.0.4 | CSS预处理器 |
+| react, react-dom | 16.3.0 | React基本库 | 
+| react-router-dom | 4.2.2 | React路由库 | 
+| axios | 3.3.3 | Http库 |
+| mobx | 5.0.3 | 全局状态管理库 |
+| ant-design | 3.3.3 | UI组件库 |
+| recharts | 1.0.0-beta.10 | 图表库 |
+| mockjs | 1.0.1-beta3 | 测试数据 |
+| less | 3.0.4 | CSS预处理器 |
+| socket-io | 2.1.1 | 即时通讯 |
+| express | 4.16.3 | 基于Node.js服务端的框架 |
+| mongoose | 5.1.6 | node下操作mongodb的对象模型工具 |
 
 ### 项目目录
 
@@ -108,7 +111,7 @@ npm run build
     - layout容器灵活布局，无需设置太多的宽高
     - 整个网站采用响应式布局，同时兼容到移动端
     - 该项目以网页端为开发核心，适配手机端只是锦上添花，可能无法兼容到所有机型，如遇问题，请联系作者
-- socket(待实现，桥接已完成)
+- socket(待实现，连接交互已完成)
 
 #### 打包时
 - 使用了react-loadable插件启用异步组件，实现模块按需加载 

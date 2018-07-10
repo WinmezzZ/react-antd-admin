@@ -1,0 +1,15 @@
+{
+  "admin.js": "static/js/admin.e9a8fd44.chunk.js",
+  "auth.js": "static/js/auth.3269b4fa.chunk.js",
+  "cropper.js": "static/js/cropper.c278792a.chunk.js",
+  "form.js": "static/js/form.f3fc4338.chunk.js",
+  "index.js": "static/js/index.d926d599.chunk.js",
+  "layout.js": "static/js/layout.b91f4d5c.chunk.js",
+  "login.js": "static/js/login.e2a1f4c2.chunk.js",
+  "main.js": "static/js/main.f3a43f87.js",
+  "manifest.js": "static/js/manifest.5f9fc939.js",
+  "register.js": "static/js/register.8e247dca.chunk.js",
+  "table.js": "static/js/table.dfd2bcce.chunk.js",
+  "tooltip.js": "static/js/tooltip.63d60b73.chunk.js",
+  "vendor.js": "static/js/vendor.8e116f72.js"
+}
