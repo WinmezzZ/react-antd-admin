@@ -10,6 +10,7 @@ const Table = Bundle(() => import(/* webpackChunkName: "table" */ '@/page/compon
 const Layout = Bundle(() => import(/* webpackChunkName: "layout" */ '@/page/component/layout'));
 const Tooltip = Bundle(() => import(/* webpackChunkName: "tooltip" */ '@/page/component/tooltip'));
 const Auth = Bundle(() => import(/* webpackChunkName: "auth" */ '@/page/business/auth'));
+const Operation = Bundle(() => import(/* webpackChunkName: "operation" */ '@/page/business/operation'));
 const Cropper = Bundle(() => import(/* webpackChunkName: "cropper" */ '@/page/other/cropper'));
 
 export default class Routes extends React.Component {
@@ -22,6 +23,7 @@ export default class Routes extends React.Component {
 				<Route exact path="/admin/component/layout" component={Layout}/>
 				<Route exact path="/admin/component/tooltip" component={Tooltip}/>
 				<Route exact path="/admin/business/auth" component={Auth}/>
+				<Route exact path="/admin/business/operation" component={Operation}/>
 				<Route exact path="/admin/other/cropper" component={Cropper}/>
 				{/* react 4.0路由特性: 子路由地址前缀必须带上父路由地址 */}
 		  </div>

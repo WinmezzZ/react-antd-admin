@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Radio, DatePicker, Select, Button, message, Switch, Upload, Icon } from 'ant';
+import { Form, Input, Radio, DatePicker, Select, Button, message, Switch } from 'ant';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -19,19 +19,6 @@ export default class App extends React.Component {
         console.log('Received values of form: ', values);
       }
     });
-  }
-
-  handleChange = (info) => {
-    if (info.file.status === 'uploading') {
-      this.setState({ loading: true });
-      return;
-    }
-    if (info.file.status === 'done') {
-      getBase64(info.file.originFileObj, imageUrl => this.setState({
-        imageUrl,
-        loading: false,
-      }));
-    }
   }
 
   render() {
@@ -59,13 +46,6 @@ export default class App extends React.Component {
         },
       },
     };
-    const uploadButton = (
-      <div>
-        <Icon type={this.state.loading ? 'loading' : 'plus'} />
-        <div className="ant-upload-text">上传</div>
-      </div>
-    );
-    const imageUrl = this.state.imageUrl;
 
     return (
       <Form onSubmit={this.handleSubmit} style={{ width: '100%', maxWidth: 400, margin: '0 auto'}}>
@@ -149,7 +129,7 @@ export default class App extends React.Component {
           {...formItemLayout}
           label="手机号"
         >
-          {getFieldDecorator('phone1', {
+          {getFieldDecorator('phone', {
             rules: [{ required: true, message: '请输入手机号！' }],
           })(
             <Input style={{ width: '100%' }} />
@@ -191,47 +171,10 @@ export default class App extends React.Component {
             <Switch checkedChildren="在" unCheckedChildren="离" defaultChecked/>
           )}
         </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label="照片">
-          {getFieldDecorator('photo', {
-            rules: [{ required: true, message: '请选择照片！' }],
-          })(
-            <Upload
-              name="avatar"
-              listType="picture-card"
-              className="avatar-uploader"
-              showUploadList={false}
-              action="//jsonplaceholder.typicode.com/posts/"
-              beforeUpload={beforeUpload}
-              onChange={this.handleChange}
-            >
-              {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
-            </Upload>
-          )}
-        </FormItem>
         <FormItem {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">提交</Button>
         </FormItem>
       </Form>
     );
   }
-}
-
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
-
-function beforeUpload(file) {
-  const isJPG = file.type === 'image/jpeg';
-  if (!isJPG) {
-    message.error('You can only upload JPG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJPG && isLt2M;
 }

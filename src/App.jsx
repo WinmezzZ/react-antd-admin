@@ -2,13 +2,7 @@ import React from 'react';
 import { HashRouter , Switch, Route, Redirect } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 
-// 引入异步组件，用于JS分包
-// import Bundle from '@/component/asyncComponent';
-// const Login = Bundle(() => import(/* webpackChunkName: "login" */ './page/login'));
-// const Register = Bundle(() => import(/* webpackChunkName: "register" */ './page/register'));
-// const Admin = Bundle(() => import(/* webpackChunkName: "admin" */  './page/admin'));
-
-// 引入异步组件
+// 异步引入组件
 import Bundle from '@/component/loadable';
 const Login = Bundle(() => import(/* webpackChunkName: "login" */ './page/login'));
 const Register = Bundle(() => import(/* webpackChunkName: "register" */ './page/register'));

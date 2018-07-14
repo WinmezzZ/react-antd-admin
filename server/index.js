@@ -23,7 +23,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 //静态文件托管
 app.use(express.static('./build'));
-app.use(express.static('./build'))
 
 //API
 const { User } = require('./model/config');
