@@ -25,7 +25,7 @@ export default class App extends React.Component {
     this.setState({
   		selectedKeys: [e.key]
     });
-    this.props.history.replace(e.key);
+    this.props.history.push(e.key);
     const { size, tool } = this.props
     size.mobile && tool.toggleCollapse(true)
   }

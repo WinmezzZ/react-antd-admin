@@ -18,9 +18,10 @@ export default class App extends React.Component {
     const parent = data.find(item => pathname.includes(item.route)) // 记录一级菜单
     const children = parent.children && parent.children.find(item => pathname === item.route) // 记录二级菜单
     const index = parent.route === '/admin/index'; // 当前为首页
+    if (!parent|| !children) return; // 防止手动输入不存在地址
     this.setState({ // 将菜单名赋值
-      second: index ? undefined : parent.name,
-      third: index ? undefined : children.name
+      second: index ? '' : parent.name,
+      third: index ? '' : children.name
     })
   }
   componentWillReceiveProps(nextProps) {

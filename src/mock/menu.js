@@ -44,7 +44,7 @@ export const data = [
       },
       {
         name: '404',
-        route: '/admin/business/notFound'
+        route: '/abcd'
       },
       {
         name: '数据操作',

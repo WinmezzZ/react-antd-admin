@@ -8,7 +8,8 @@ const FormItem = Form.Item;
 @Form.create()
 export default class App extends React.Component {
   componentDidMount() {
-    document.title = '登陆'
+    document.title = '登录';
+    console.log(this.props)
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -19,17 +20,19 @@ export default class App extends React.Component {
         message.error(res.msg);
       } else if (res.code === 0) {
         setStore('isLogin', true);
-        this.props.history.push('/admin/index');
+        const { history, onLogin } = this.props;
+        onLogin ? onLogin() : history.push('/admin/index');
       }
     });
   }
   handleRegister = () => {
-    this.props.history.push('/register');
+    const { history } = this.props;
+    history.push('/register');
   }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div className="login-page">
+      <div className="login-page" style={{backgroundColor: this.props.bgc}}>
         <Form onSubmit={this.handleSubmit} className="login-form">
           <div className="login-logo">
             <span>react-admin</span>

@@ -7,6 +7,7 @@ import Bundle from '@/component/loadable';
 const Login = Bundle(() => import(/* webpackChunkName: "login" */ './page/login'));
 const Register = Bundle(() => import(/* webpackChunkName: "register" */ './page/register'));
 const Admin = Bundle(() => import(/* webpackChunkName: "admin" */  './page/admin'));
+const NotFound = Bundle(() => import(/* webpackChunkName: "notFound" */  './page/notFound'));
 
 @inject('size', 'tool')
 @observer
@@ -37,6 +38,7 @@ export default class App extends React.Component {
           <Route exact path="/register" component={Register}/>
           <Route path="/admin" component={Admin}/>
           <Route exact path="/" render={() => <Redirect to="/login" replace/>} />
+          <Route component={NotFound}/>
           {/* exact 属性作用为路由必须完全匹配,避免重复渲染，父路由下若有子路由必须去除exact属性，否则子路由无法展示 */}
         </Switch>
       </HashRouter>

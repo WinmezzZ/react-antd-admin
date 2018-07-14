@@ -17,16 +17,16 @@ export const getCookie =(cname) => {
   return ""; 
 } 
 
-export const setStore = (name, content) => {
-	if (typeof content !== 'string') {
+export const setStore = (name, content, reference = false) => {
+	if (reference) {
 		content = JSON.stringify(content);
 	}
 	window.sessionStorage.setItem(name, content);
 }
 
-export const getStore = (name, isObject = false) => {
+export const getStore = (name, notString = true) => {
   let content;
-  if (isObject) {
+  if (notString) {
     content = JSON.parse(window.sessionStorage.getItem(name));
   }else {
     content = window.sessionStorage.getItem(name);

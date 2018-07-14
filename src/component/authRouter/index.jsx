@@ -1,57 +1,50 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from 'react-router-dom'
+import React from 'react';
+import { Route, withRouter } from 'react-router-dom';
+import Login from '@/page/login';
+import { getStore } from '@/utils';
+import { Modal } from 'ant';
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
+@withRouter
+export default class App extends React.Component {
+  state = {
+    isLogin: getStore('isLogin'),
+    visible: true
   }
-}
-
-const Public = () => <h3>Public</h3>
-const Protected = () => <h3>Protected</h3>
-
-class Login extends React.Component {
+  componentWillReceiveProps(prevProps) {
+    // 默认打开登录遮罩层
+    const newPath = prevProps.location.pathname !== this.props.location.pathname;
+    newPath && this.setState({
+      visible: true
+    })
+  }
+  login = () => {
+    this.setState({
+      isLogin: true
+    })
+  }
   render() {
+    const { component, ...rest } = this.props;
+    const Component = component;
     return (
-      <div>
-        Login
-      </div>
+      <Route {...rest} render={props => (
+        this.state.isLogin ? (
+          <Component {...props}/>
+        ) : (
+          <div>
+            <h3>您必须登录过后才能看到此页，请登录！</h3>
+            <a onClick={() => this.setState({visible: true})}>登录</a>
+            <Modal
+              title="登录"
+              width="400px"
+              visible={this.state.visible}
+              footer={null}
+              onCancel={() => {this.setState({visible: false})}}
+            >
+              <Login onLogin={() => this.login()} bgc="#fff"/>
+            </Modal>
+          </div>
+        )
+      )}/>
     )
   }
-}
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to='/login' />
-  )} />
-)
-
-export default function AuthExample () {
-  return (
-    <Router>
-      <div>
-        <ul>
-          <li><Link to="/public">Public Page</Link></li>
-          <li><Link to="/protected">Protected Page</Link></li>
-        </ul>
-        <Route path="/public" component={Public}/>
-        <Route path="/login" component={Login}/>
-        <PrivateRoute path='/protected' component={Protected} />
-      </div>
-    </Router>
-  )
 }
