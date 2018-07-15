@@ -12,7 +12,7 @@ const Tooltip = Bundle(() => import(/* webpackChunkName: "tooltip" */ '@/page/co
 const Auth = Bundle(() => import(/* webpackChunkName: "auth" */ '@/page/business/auth'));
 const Operation = Bundle(() => import(/* webpackChunkName: "operation" */ '@/page/business/operation'));
 const Cropper = Bundle(() => import(/* webpackChunkName: "cropper" */ '@/page/other/cropper'));
-// const NotFound = Bundle(() => import(/* webpackChunkName: "notFound" */  '@/page/notFound'));
+const Editor = Bundle(() => import(/* webpackChunkName: "editor" */  '@/page/other/editor'));
 
 export default class Routes extends React.Component {
 	render() {
@@ -26,6 +26,7 @@ export default class Routes extends React.Component {
 				<AuthRouter exact path="/admin/business/auth" component={Auth}/>
 				<Route exact path="/admin/business/operation" component={Operation}/>
 				<Route exact path="/admin/other/cropper" component={Cropper}/>
+				<Route exact path="/admin/other/editor" component={Editor}/>
 				{/* react 4.0路由特性: 子路由地址前缀必须带上父路由地址 */}
 		  </div>
 		)

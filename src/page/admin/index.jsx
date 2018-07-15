@@ -39,7 +39,7 @@ export default class App extends React.Component {
         <Sider/>
         <Layout className="layout-right-main">
             <Header/>
-            <Layout.Content style={{ margin: '0 16px' }}>
+            <Layout.Content style={{ padding: '0 16px 16px 16px' }}>
                 <Breadcrumb/>
                 <Route/>
                 <BackTop target={() => document.getElementsByClassName('layout-right-main')[0]}/>
