@@ -129,10 +129,7 @@
     },
     "/api": {
       "target": "https://winmee.cn",
-      "changeOrigin": true,
-      "pathRewrite": {
-        "^/api": "^/"
-      }
+      "changeOrigin": true
     }
   }
 }

@@ -104,7 +104,7 @@ export default class App extends React.Component {
           <Table.Column title="部门" dataIndex="apartment"/>
           <Table.Column title="职位" dataIndex="role"/>
           <Table.Column title="在职状态" dataIndex="statu" render={(text,record) => 
-            <span>{text === true ? '在职' : '离职'}</span>
+            <span style={{color: text ? '#13ce66' : '#ff4949' }}>{text ? '在职' : '离职'}</span>
           }/>
           <Table.Column title="操作" width="120px" render={(text, record) => (
             <span>

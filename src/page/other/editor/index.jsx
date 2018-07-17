@@ -35,7 +35,7 @@ export default class App extends React.Component {
         />
         <Row gutter={10} className="textarea">
           <Col md={12}>
-            <Card title="同步转换为html">
+            <Card title="html">
               <textarea
                 rows={5}
                 disabled
@@ -44,7 +44,7 @@ export default class App extends React.Component {
             </Card>
           </Col>
           <Col md={12}>
-            <Card title="同步转换为json">
+            <Card title="json">
               <textarea
                 rows={5}
                 disabled

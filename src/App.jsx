@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter , Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter , Switch, Route, Redirect } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 
 // 异步引入组件
@@ -32,7 +32,7 @@ export default class App extends React.Component {
   }
   render() {
     return ( 
-      <HashRouter>
+      <BrowserRouter>
         <Switch>
           <Route exact path="/login" component={Login}/>  
           <Route exact path="/register" component={Register}/>
@@ -41,7 +41,7 @@ export default class App extends React.Component {
           <Route component={NotFound}/>
           {/* exact 属性作用为路由必须完全匹配,避免重复渲染，父路由下若有子路由必须去除exact属性，否则子路由无法展示 */}
         </Switch>
-      </HashRouter>
+      </BrowserRouter>
     )
   }
 }

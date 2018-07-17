@@ -4,15 +4,9 @@ import qs from 'qs'
 export default async(url, params = {}, method = 'POST', isUpload = false) => {
 	method = method.toUpperCase();
 	if (method === 'GET') {
-		let dataStr = '';
-		Object.keys(params).forEach(key => {
-			dataStr += key + '=' + params[key] + '&';
+		const res = await axios.get(url, {
+			params
 		});
-		if (dataStr !== '') {
-			dataStr = dataStr.substr(0, dataStr.lastIndexOf('&'));
-			url = url + '?' + dataStr;
-		}
-		const res = await axios.get(url);
 		return res.data
 	}else if(method === 'POST') {
 		const normal = { 
