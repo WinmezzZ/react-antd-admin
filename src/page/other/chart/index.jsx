@@ -9,6 +9,11 @@ export default class App extends React.Component {
   render() {
     return (
       <Row gutter={10}>
+        <style>{`
+          .ant-card-body {
+            padding: 24px 4px;
+          }
+        `}</style>
         <Col md={12}>
           <Card title="线形图">
             <Line/>

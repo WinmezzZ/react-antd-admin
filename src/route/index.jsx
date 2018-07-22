@@ -31,6 +31,7 @@ export default class Routes extends React.Component {
 				<Route exact path="/admin/other/editor" component={Editor}/>
 				<Route exact path="/admin/other/map" component={Map}/>
 				<Route exact path="/admin/other/chart" component={Chart}/>
+				<Route exact path="/admin/tool/chat" render={() => <h1>待开发</h1>}/>
 				{/* react 4.0路由特性: 子路由地址前缀必须带上父路由地址 */}
 		  </div>
 		)
