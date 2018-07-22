@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const db = mongoose.connect('mongodb://118.25.92.204/admin', function (err) {
+const db = mongoose.connect('mongodb://localhost/admin', function (err) {
    if (!err) console.log("数据库连接成功");
 });
 
