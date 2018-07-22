@@ -1,28 +1,18 @@
-import React from 'react';
-import { Modal, Upload, Icon, message } from 'ant';
+import React, { Component } from 'react';
+import { Upload, Icon, message } from 'ant';
+import Modal from '@/component/modal';
+import Cropper from 'react-cropper';
+import 'cropperjs/dist/cropper.css';
 
-import Cropper, { makeAspectCrop } from 'react-image-crop';
-import 'react-image-crop/dist/ReactCrop.css';
-// 详情请参见 https://github.com/DominicTobias/react-image-crop
-
-export default class App extends React.Component {
+export default class App extends Component {
   state = {
-    src: '',
-    visible: false,
+    src: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    visible: false
   }
-  file = ''
-  pixelCrop = {}
-  onImageLoaded = (image) => {
-    this.setState({
-      crop: makeAspectCrop({
-        x: 0,
-        y: 0,
-        aspect: 1 / 1,
-        width: 100,
-      }, image.width / image.height),
-    });
+  onPreview = () => {
+    this.setState({visible: true})
   }
-  handleChange = (data) => {
+  onChange = (data) => {
     const { file } = data;
     const fd = new FileReader()
       fd.onloadend = () => {
@@ -34,24 +24,18 @@ export default class App extends React.Component {
     };
     fd.readAsDataURL(file)
   }
-  onChange = (crop)=> {
-    this.setState({crop});
- }
-  onComplete = (crop, pixelCrop) => {
-    this.pixelCrop = pixelCrop
-  }
+
   cropClose = (down = false) => {
-    this.setState(() => {
-      const data = { visible: false }
-      if (down) { 
-        const { file, pixelCrop } = this;
-        console.log(file, pixelCrop)
-        const src = getCroppedImg(file, pixelCrop, file.name)
-        data.src = src
-      }
-      return data
-    })
+    if (typeof this.cropper.getCroppedCanvas() === 'undefined') {
+      return;
+    }
+    const cropper = this.cropper.getCroppedCanvas().toDataURL();
+    this.setState({
+      src: down ? cropper : this.state.src,
+      visible: false
+    });
   }
+
   render() {
     const { src, visible } = this.state;
     const uploadButton = (
@@ -63,13 +47,13 @@ export default class App extends React.Component {
     return (
       <div>
         <Upload
-          name="avatar"
           listType="picture-card"
-          className="avatar-uploader"
+          style={{width: 300}}
           showUploadList={false}
           action=""
           beforeUpload={beforeUpload}
-          onChange={this.handleChange}
+          onPreview={this.onPreview}
+          onChange={this.onChange}
         >
           {src ? <img src={src} alt="avatar" width="100%"/> : uploadButton}
         </Upload>
@@ -79,13 +63,14 @@ export default class App extends React.Component {
           visible={visible}
           onOk={() => this.cropClose(true)}
           onCancel={() => this.cropClose()}>
-            <Cropper
-              src={src}
-              crop={this.state.crop}
-              onImageLoaded={this.onImageLoaded}
-              onChange={this.onChange}
-              onComplete={this.onComplete}
-              />
+          <Cropper
+            style={{ height: 400, width: '100%' }}
+            aspectRatio={1 / 1}
+            preview=".img-preview"
+            guides={false}
+            src={this.state.src}
+            ref={cropper => { this.cropper = cropper; }}
+          />
         </Modal>
       </div>
     );
@@ -105,45 +90,3 @@ function beforeUpload(file) {
   // return isJPG && isLt2M; return false取消默认上传
   return false
 }
-
-// crop
-/**
- * @param {File} image - Image File Object
- * @param {Object} pixelCrop - pixelCrop Object provided by react-image-crop
- * @param {String} fileName - Name of the returned file in Promise
- */
-function getCroppedImg(image, pixelCrop, fileName) {
-  const canvas = document.createElement('canvas');
-  canvas.width = pixelCrop.width;
-  canvas.height = pixelCrop.height;
-  const ctx = canvas.getContext('2d');
-  console.dir(ctx)
-
-  ctx.drawImage(
-    image,
-    pixelCrop.x,
-    pixelCrop.y,
-    pixelCrop.width,
-    pixelCrop.height,
-    0,
-    0,
-    pixelCrop.width,
-    pixelCrop.height
-  );
-
-  // As Base64 string
-  // const base64Image = canvas.toDataURL('image/jpeg');
-
-  // As a blob
-  return new Promise((resolve, reject) => {
-    try {
-      canvas.toBlob(file => {
-        file.name = fileName;
-        resolve(file);
-      }, 'image/jpeg');
-    } catch(err) {
-      reject('canvas to blob error!')
-    }
-  });
-}
-
