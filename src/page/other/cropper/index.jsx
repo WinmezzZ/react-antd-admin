@@ -6,7 +6,7 @@ import 'cropperjs/dist/cropper.css';
 
 export default class App extends Component {
   state = {
-    src: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    src: '',
     visible: false
   }
   onPreview = () => {
@@ -41,14 +41,13 @@ export default class App extends Component {
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
-        <div className="ant-upload-text">Upload</div>
+        <div className="ant-upload-text">选择图片</div>
       </div>
     );
     return (
       <div>
         <Upload
           listType="picture-card"
-          style={{width: 300}}
           showUploadList={false}
           action=""
           beforeUpload={beforeUpload}
@@ -65,13 +64,19 @@ export default class App extends Component {
           onCancel={() => this.cropClose()}>
           <Cropper
             style={{ height: 400, width: '100%' }}
-            aspectRatio={1 / 1}
+            // aspectRatio={1 / 1}
             preview=".img-preview"
             guides={false}
             src={this.state.src}
             ref={cropper => { this.cropper = cropper; }}
           />
         </Modal>
+        <style>{`
+          .ant-upload-select-picture-card {
+            width: 200px!important;
+            height: 200px!important;
+          }
+        `}</style>
       </div>
     );
   }
