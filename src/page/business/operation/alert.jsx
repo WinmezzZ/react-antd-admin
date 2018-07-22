@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { addPerson, updatePerson } from '@/api';
-import { Row, Col, Form, Input, Radio, Select, Switch, DatePicker, message, Modal } from 'ant';
+import { Row, Col, Form, Input, Radio, Select, Switch, DatePicker, message } from 'ant';
+import Modal from '@/component/modal';
 import moment from 'moment';
 
 const FormItem = Form.Item;
