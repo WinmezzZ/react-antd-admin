@@ -9,7 +9,7 @@ export default class App extends React.Component {
         icon="solution"
         title="工作进度"
         linkName="查看全部任务进度"
-        linkUrl="/admin">
+        linkUrl="/admin/index">
         <div>
           <span>任务1 (进行中)</span>
           <Progress percent={30} />

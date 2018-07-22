@@ -15,7 +15,7 @@ export default class App extends React.Component {
         icon="mail"
         title="收件箱"
         linkName="查看全部邮件"
-        linkUrl="/admin">
+        linkUrl="/admin/index">
         <div>
           <List
             itemLayout="horizontal"

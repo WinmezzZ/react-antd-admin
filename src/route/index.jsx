@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import AuthRouter from '@/component/authRouter';
 import Bundle from '@/component/loadable';
 
-// import Bundle from '@/component/asyncComponent';  异步路由加载
 const Index = Bundle(() => import(/* webpackChunkName: "index" */ '@/page/index'));
 const Form = Bundle(() => import(/* webpackChunkName: "form" */ '@/page/component/form'));
 const Table = Bundle(() => import(/* webpackChunkName: "table" */ '@/page/component/table'));
@@ -13,6 +12,8 @@ const Auth = Bundle(() => import(/* webpackChunkName: "auth" */ '@/page/business
 const Operation = Bundle(() => import(/* webpackChunkName: "operation" */ '@/page/business/operation'));
 const Cropper = Bundle(() => import(/* webpackChunkName: "cropper" */ '@/page/other/cropper'));
 const Editor = Bundle(() => import(/* webpackChunkName: "editor" */  '@/page/other/editor'));
+const Map = Bundle(() => import(/* webpackChunkName: "map" */  '@/page/other/map'));
+const Chart = Bundle(() => import(/* webpackChunkName: "chart" */  '@/page/other/chart'));
 
 export default class Routes extends React.Component {
 	render() {
@@ -27,6 +28,8 @@ export default class Routes extends React.Component {
 				<Route exact path="/admin/business/operation" component={Operation}/>
 				<Route exact path="/admin/other/cropper" component={Cropper}/>
 				<Route exact path="/admin/other/editor" component={Editor}/>
+				<Route exact path="/admin/other/map" component={Map}/>
+				<Route exact path="/admin/other/chart" component={Chart}/>
 				{/* react 4.0路由特性: 子路由地址前缀必须带上父路由地址 */}
 		  </div>
 		)

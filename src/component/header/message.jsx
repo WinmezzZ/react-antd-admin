@@ -15,7 +15,7 @@ export default class App extends React.Component {
         icon="message"
         title="消息列表"
         linkName="查看全部消息"
-        linkUrl="/admin">
+        linkUrl="/admin/index">
         <div>
           <List
             itemLayout="horizontal"

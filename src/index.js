@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// 兼容ie
+import 'babel-polyfill';
+
 // 在跟组件通过Provider中间件注入store
 import { Provider } from 'mobx-react';
 import store from './store';
@@ -37,7 +40,6 @@ ReactDOM.render(
 registerServiceWorker();
 
 // 开发环境热更新
-if (module.hot) {  
-  module.hot.accept()  
+if(module.hot) {
+  module.hot.accept();
 }
-
