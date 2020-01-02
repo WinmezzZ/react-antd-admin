@@ -1,115 +1,44 @@
-# React后台管理系统
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### 在线预览地址：[https://winmee.cn](https://winmee.cn)
+## Available Scripts
 
-### 引言
+In the project directory, you can run:
 
-一个现代化的企业级后台管理系统模板 (包含前端和后端)，项目属于前后端分离结构，如果你对部署感兴趣，下面也有具体介绍。
+### `yarn start`
 
-### 预览须知
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-1. 进入主页需注册登录，或者您也可以使用公用账号进行登陆 
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
- - 用户名：admin    密码：123456
+### `yarn test`
 
-2. 已适配移动端浏览
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### 项目目录
+### `yarn build`
 
-```js
-+-- build/                                  ---打包的文件目录
-+-- config/                                 ---配置文件目录
-+-- node_modules/                           ---npm下载文件目录
-+-- public/                                 ---公共静态资源
-+-- script/                                 ---启动时打包时设置
-+-- server/                                 ---服务端代码
-+-- src/                                    ---核心代码目录
-|   +-- api                                 ---axios封装，请求拦截，请求接口集中管理
-|   +-- component                           ---自定义公用组件
-|   +-- mock                                ---测试数据接口
-|   +-- page                                ---页面
-|   +-- route                               ---子路由
-|   +-- store                               ---全局数据管理
-|   +-- style                               ---公共样式 
-|   +-- util                                ---辅助函数
-|   --- App.js                              ---主路由
-|   --- index.js                            ---项目入口文件
-|   --- registerServiceWorker.js            ---service worker离线缓存
-+-- theme/                                  ---antd自定义主题样式
---- .gitignore                              ---git提交忽略配置
---- package.json                            ---插件目录
---- README.md                               ---项目说明
-```
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### 项目介绍
-#### 开发环境
-- 数据
-    - 登录注册和数据操作模块都已连入服务端并接入数据库
-    - 菜单为本地mock数据
-    - 其他皆为纯静态静态数据
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-- 网络请求
-    - 二次封装axios，配置请求与响应拦截器，集中管理请求接口，便于维护和调用。
-    - 通过webpack-dev-server proxy参数进行前端代理跨域。
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- 响应式布局
-    - 适配所有分辨率PC显示器，并兼容移动端最低至300px宽。
-    - 响应式弹窗，PC端显示为弹窗，移动端显示为全屏弹窗（二级页效果）。
-    - 响应式菜单，PC端为左侧导航菜单，移动端默认隐藏，显示为顶部悬浮bars图标，点击从左侧划出菜单，触发菜单再次折叠收起。
+### `yarn eject`
 
-- 动态菜单，动态页面title，动态面包屑导航
-    - 菜单展开状态，页面title和面包屑导航由路由初始化，页面刷新时状态不变。
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-- 局部热更新（react-hot-loader）
-    - 开发期间只更新修改部分，页面不刷新，数据不初始化，便于调试。
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-- 权限路由
-    - 封装router组件，需要登录显示的页面就引入，未登录显示空页面并弹出登录框，登录后正常展示页面（可将登录条件改为角色之类）。
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- 第三方组件
-    - 对第三方组件进行引用并适当修改成业务所需。
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-- 业务应用之增删改查
-    - 分页表格展示请求列表。
-    - 添加编辑修改弹窗三合一，极致组件化应用。
+## Learn More
 
-- 线上优化
-    - 路由代码分割，异步按需加载，利于首屏渲染。
-    - 页面加载时展示等待中动画，增强客户体验。
-    - 公共代码抽离，去重复代码，减少每个页面体积。
-    - 前后端同时配合采用gzip进行压缩（压缩率约60%）。
-- 打包
-    - server下build文件夹为前端打包代码，可直接托管至服务器
-    - 您也可以使用该项目已配置好的服务端代码，server为整个服务端代码目录，app.js为入口文件
-    - 服务器使用nodejs的express框架搭建，并且需要在部署环境本地安装mongodb进行数据库的创建
-- tip
-    - 为了开发效率，项目中使用了大量的ES6/7/8语法，相关请自行翻阅文档或搜索。
-    - 此项目重心在基础架构，且大面积写入了注释，模块内容以参考为主。
-    - 该项目以网页端为开发核心，适配手机端只属于锦上添花，可能无法兼容到所有机型，如遇问题或有更好的建议请联系作者(qq: 1749369321, mail: winme0308@gmail.com)
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### 安装运行
-##### 1.下载源码
-```js
-git clone https://github.com/WinmezzZ/react-admin
-```
-##### 2.进入目录
-```js
-cd react-admin
-```
-##### 3.安装npm淘宝源cnpm(npm下载比较慢)
-```js
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-```
-##### 4.安装依赖包
-```js
-cnpm install
-```
-##### 3.启动项目
-```js
-npm start
-```
-##### 4.打包项目
-```js
-npm run build
-```
-
+To learn React, check out the [React documentation](https://reactjs.org/).

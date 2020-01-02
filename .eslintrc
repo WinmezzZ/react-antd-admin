@@ -1,0 +1,11 @@
+{
+  "extends": "react-app",
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "quotes": [1, "single"],
+    "jsx-quotes": [1, "prefer-double"],
+    "semi": [1, "never"],
+    "no-unused-vars": "error"
+  },
+  "ignorePatterns": ["*/**.ts"]
+}
