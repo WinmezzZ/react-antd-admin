@@ -1,20 +1,31 @@
-import React, { ReactElement, FC } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.less'
+import 'antd/dist/antd.less'
+import './styles/index.less'
+import configureStore from './stores'
+import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
 import App from './App'
+import './mock'
 
-const render = (component: ReactElement) => {
-  ReactDOM.render(component, document.getElementById('root'))
+const store = configureStore()
+
+const render = (Router: any) => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Router />
+    </Provider>,
+    document.getElementById('root')
+  )
 }
 
-render(<App />)
+render(App)
 
 // hmr enable
 if (module.hot && process.env.NODE_ENV === 'development') {
   module.hot.accept('./App', () => {
-    const Router: FC = require('./App').default
-    render(<Router />)
+    const Router = require('./App').default
+    render(Router)
   })
 }
 

@@ -1,28 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
-import './App.less'
-import { LayoutPage } from './pages/layout'
+import LayoutPage from './pages/layout'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import LoginPage from './pages/login'
 
-type Props = {
-  title?: string
-  content?: string
-}
-
-const Ap = styled.div`
-  justify-content: center;
-  display: block;
-`
-const P = styled(LayoutPage)`
-  color: inherit;
-`
-
-const App: React.FC<Props> = props => {
+const App: React.FC = () => {
   return (
-    <Ap className="App" style={{ height: '100%' }}>
-      <React.Suspense fallback={<div>1</div>}>
-        <P />
-      </React.Suspense>
-    </Ap>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/login" component={LoginPage} />
+        <Route path="/" component={LayoutPage} />
+      </Switch>
+    </BrowserRouter>
   )
 }
 

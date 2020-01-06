@@ -3,7 +3,8 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.preferences.importModuleSpecifier": "auto",
   "emmet.showAbbreviationSuggestions": false,
-  "emmet.showExpandedAbbreviation": "never",
+  // "emmet.showExpandedAbbreviation": "never",
   "eslint.validate": ["typescript", "typescriptreact"],
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 120
 }

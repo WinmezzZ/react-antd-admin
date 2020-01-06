@@ -1,53 +1,72 @@
-import React, { FC, useState } from 'react'
-import { Layout, Menu, Icon } from 'antd'
+import React, { FC, useEffect } from 'react'
+import { Layout, Drawer } from 'antd'
+import { useSelector, useDispatch } from 'react-redux'
+import './index.less'
+import { AppState } from '~/stores'
+import { Device, setGloabalItem } from '~/actions/global.action'
+import MenuComponent from './menu'
+import HeaderComponent from './header'
+import ReactSvg from '~/assets/logo/react.svg'
+import AntdSvg from '~/assets/logo/antd.svg'
 
-const { Header, Sider, Content } = Layout
+const { Sider, Content } = Layout
+const WIDTH = 992
 
-export const LayoutPage: FC = () => {
-  const [collapsed, setCollapsed] = useState(false)
+const LayoutPage: FC = () => {
+  const { device, collapsed } = useSelector((state: AppState) => state.globalReducer)
+  const isMobile = device === 'MOBILE'
+  const dispatch = useDispatch()
 
   const toggle = () => {
-    setCollapsed(collapsed => !collapsed)
+    dispatch(
+      setGloabalItem({
+        collapsed: !collapsed
+      })
+    )
   }
 
+  useEffect(() => {
+    window.onresize = () => {
+      const device: Device = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent) ? 'MOBILE' : 'DESKTOP'
+      const rect = document.body.getBoundingClientRect()
+      const needCollapse = rect.width < WIDTH
+      dispatch(
+        setGloabalItem({
+          device,
+          collapsed: device === 'MOBILE' || needCollapse
+        })
+      )
+    }
+  })
+
   return (
-    <Layout style={{ height: '100%' }}>
-      <Header style={{ background: '#fff', padding: 0 }}>
-        <Icon
-          className="trigger"
-          type={collapsed ? 'menu-unfold' : 'menu-fold'}
-          onClick={toggle}
-        />
-      </Header>
-      <Layout>
-        <Sider onCollapse={toggle} collapsible collapsed={collapsed}>
-          <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Icon type="user" />
-              <span>nav 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="video-camera" />
-              <span>nav 2</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="upload" />
-              <span>nav 3</span>
-            </Menu.Item>
-          </Menu>
+    <Layout className="layout-page">
+      {!isMobile ? (
+        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="md">
+          <div className="logo">
+            <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }}></img>
+            <img src={AntdSvg} alt=""></img>
+          </div>
+          <MenuComponent />
         </Sider>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            background: '#fff',
-            minHeight: 280
-          }}
+      ) : (
+        <Drawer
+          width="200"
+          placement="left"
+          bodyStyle={{ padding: 0, backgroundColor: '#141414', height: '100%' }}
+          closable={false}
+          onClose={toggle}
+          visible={!collapsed}
         >
-          Content
-        </Content>
+          <MenuComponent />
+        </Drawer>
+      )}
+      <Layout>
+        <HeaderComponent collapsed={collapsed} toggle={toggle} />
+        <Content>Content</Content>
       </Layout>
     </Layout>
   )
 }
+
+export default LayoutPage

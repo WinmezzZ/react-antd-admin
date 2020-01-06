@@ -1,0 +1,36 @@
+.layout-page {
+  &-header {
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    height: 64px;
+    border-right: 1px solid #262626;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .user-action {
+    cursor: pointer;
+  }
+}
+.ant-menu.ant-menu-inline.ant-menu-root {
+  padding-top: 15px !important;
+  &:not(.ant-menu-horizontal) .ant-menu-item {
+    background-color: @dark-color;
+    &-selected {
+      color: @primary-color;
+    }
+    &::after {
+      display: none;
+    }
+  }
+}

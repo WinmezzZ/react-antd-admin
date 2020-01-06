@@ -1,21 +1,11 @@
-const {
-  override,
-  addLessLoader,
-  addWebpackAlias,
-  useEslintRc,
-  fixBabelImports
-} = require('customize-cra')
-var path = require('path')
-var AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
+const { override, addLessLoader, addWebpackAlias, useEslintRc, fixBabelImports } = require('customize-cra')
+const path = require('path')
+const darkTheme = require('@ant-design/dark-theme').default
+
+const resolve = dir => path.join(__dirname, '.', dir)
 
 const rewiredSourceMap = () => config => {
-  config.devtool =
-    config.mode === 'development' ? 'cheap-module-source-map' : false
-  return config
-}
-
-const rewiredDayJs = () => config => {
-  config.plugins = [...config.plugins, new AntdDayjsWebpackPlugin()]
+  config.devtool = config.mode === 'development' ? 'cheap-module-source-map' : false
   return config
 }
 
@@ -23,16 +13,19 @@ module.exports = override(
   useEslintRc(),
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: { '@primary-color': '#1DA57A' }
+    modifyVars: {
+      ...darkTheme,
+      '@primary-color': '#13c2c2',
+      '@dark-color': '#141414'
+    }
   }),
   addWebpackAlias({
-    '~': path.resolve(__dirname, '..', 'src')
+    '~': resolve('src')
   }),
   fixBabelImports('import', {
     libraryName: 'antd',
     libraryDirectory: 'es',
     style: true
   }),
-  rewiredSourceMap(),
-  rewiredDayJs()
+  rewiredSourceMap()
 )

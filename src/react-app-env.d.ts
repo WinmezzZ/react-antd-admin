@@ -5,3 +5,9 @@ declare interface NodeModule {
     accept: (url: string, callback: Function) => void
   }
 }
+
+declare namespace NodeJS {
+  interface ProcessEnv {
+    PORT: string
+  }
+}
