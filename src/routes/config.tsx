@@ -9,11 +9,13 @@ export type RouteConfig = {
   /**
    * Required React.FunctionalComponent and React.Lazy component, see the detail in src/App.vue.
    */
-  component: LazyExoticComponent<FC<{}>>
+  component: LazyExoticComponent<FC<{ meta: any }>>
 
   exact?: boolean
 
   strict?: boolean
+
+  meta?: any
 
   /**
    * If it has child routes
@@ -30,13 +32,15 @@ export default function renderRoutes(routeTree: RouteConfig[]) {
   return (
     <Switch>
       {routeTree.map((route, i) => {
-        const { path, component: Component, routes, exact } = route
+        const { path, component: Component, exact, meta } = route
         return (
           <Route
             path={path}
             exact={exact}
+            key={i}
             render={props => {
-              return <Component {...props} routes={routes} key={i} {...route} />
+              meta.title && (document.title = meta.title)
+              return <Component {...props} meta={meta} key={i} />
             }}
           />
         )

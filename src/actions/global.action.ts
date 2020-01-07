@@ -26,7 +26,7 @@ interface SetGloabalItem extends Action<SETGLOBALITEM> {
   payload: Partial<GlobalState>
 }
 
-export const setGloabalItem = (payload: Partial<GlobalState>): SetGloabalItem => ({
+export const setGlobalItem = (payload: Partial<GlobalState>): SetGloabalItem => ({
   type: 'SETGLOBALITEM',
   payload
 })

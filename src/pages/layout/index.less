@@ -24,10 +24,21 @@
 }
 .ant-menu.ant-menu-inline.ant-menu-root {
   padding-top: 15px !important;
-  &:not(.ant-menu-horizontal) .ant-menu-item {
+  &:not(.ant-menu-horizontal) .ant-menu-item,
+  &:not(.ant-menu-horizontal) .ant-menu-submenu {
     background-color: @dark-color;
+    svg path {
+      fill: fade(#fff, 65%);
+      transition: fill 0.3s;
+    }
     &-selected {
       color: @primary-color;
+      svg path {
+        fill: @primary-color;
+      }
+      &-active {
+        color: @primary-color;
+      }
     }
     &::after {
       display: none;

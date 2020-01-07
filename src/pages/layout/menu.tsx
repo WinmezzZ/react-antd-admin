@@ -3,15 +3,19 @@ import React from 'react'
 import { Menu } from 'antd'
 import { getMenuList } from '../../api/layout.api'
 import { MenuList } from '../../interface/layout/menu.interface'
+import { CustomIcon } from './customIcon'
+import { ClickParam } from 'antd/lib/menu'
+import { useHistory, useLocation } from 'react-router-dom'
 
 const { SubMenu, Item } = Menu
 
 const MenuComponent: FC = () => {
   const [menuList, setMenuList] = useState<MenuList>([])
+  const router = useHistory()
+  const location = useLocation()
 
   const fetchMenuList = async () => {
     const { status, result } = await getMenuList()
-    console.log(status)
     if (status) {
       setMenuList(result)
     }
@@ -19,27 +23,36 @@ const MenuComponent: FC = () => {
 
   const getTitie = (menu: MenuList[0]) => {
     return (
-      <span>
-        <embed className="anticon" type="image/svg+xml" src={require(`~/assets/menu/${menu.icon}.svg`)} />
+      <span style={{ display: 'flex', alignItems: 'center' }}>
+        <CustomIcon type={menu.icon!} />
         <span>{menu.label}</span>
       </span>
     )
   }
 
+  const onMenuClick = ({ keyPath }: ClickParam) => {
+    router.push(keyPath[0])
+  }
+
+  useEffect(() => {
+    console.log(location, router)
+  }, [location, router])
+
   useEffect(() => {
     fetchMenuList()
   }, [])
+
   return (
-    <Menu mode="inline" defaultSelectedKeys={['1']}>
-      {menuList.map(menu =>
+    <Menu mode="inline" selectedKeys={[location.pathname]} onClick={onMenuClick}>
+      {menuList?.map(menu =>
         menu.children ? (
-          <SubMenu key={menu.key} title={getTitie(menu)}>
+          <SubMenu key={menu.path} title={getTitie(menu)}>
             {menu.children.map(child => (
-              <Item key={child.key}>{child.label}</Item>
+              <Item key={child.path}>{child.label}</Item>
             ))}
           </SubMenu>
         ) : (
-          <Item key={menu.key}>{getTitie(menu)}</Item>
+          <Item key={menu.path}>{getTitie(menu)}</Item>
         )
       )}
     </Menu>

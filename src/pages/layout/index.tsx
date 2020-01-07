@@ -1,13 +1,14 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, Suspense } from 'react'
 import { Layout, Drawer } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import './index.less'
 import { AppState } from '~/stores'
-import { Device, setGloabalItem } from '~/actions/global.action'
+import { Device, setGlobalItem } from '~/actions/global.action'
 import MenuComponent from './menu'
 import HeaderComponent from './header'
 import ReactSvg from '~/assets/logo/react.svg'
 import AntdSvg from '~/assets/logo/antd.svg'
+import MainRoutes from '~/routes'
 
 const { Sider, Content } = Layout
 const WIDTH = 992
@@ -19,7 +20,7 @@ const LayoutPage: FC = () => {
 
   const toggle = () => {
     dispatch(
-      setGloabalItem({
+      setGlobalItem({
         collapsed: !collapsed
       })
     )
@@ -31,7 +32,7 @@ const LayoutPage: FC = () => {
       const rect = document.body.getBoundingClientRect()
       const needCollapse = rect.width < WIDTH
       dispatch(
-        setGloabalItem({
+        setGlobalItem({
           device,
           collapsed: device === 'MOBILE' || needCollapse
         })
@@ -63,7 +64,11 @@ const LayoutPage: FC = () => {
       )}
       <Layout>
         <HeaderComponent collapsed={collapsed} toggle={toggle} />
-        <Content>Content</Content>
+        <Content>
+          <Suspense fallback={<h1>Loading profile...</h1>}>
+            <MainRoutes />
+          </Suspense>
+        </Content>
       </Layout>
     </Layout>
   )
