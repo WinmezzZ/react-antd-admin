@@ -23,22 +23,22 @@ const mockMenuList: MenuList = [
     path: '/permission',
     children: [
       {
-        name: 'pagePermisson',
+        name: 'pagePermission',
         label: '页面权限',
         key: '2-0',
-        path: '/permisson/page'
+        path: '/permission/page'
       },
       {
-        name: 'buttonPermisson',
+        name: 'buttonPermission',
         label: '按钮权限',
         key: '2-1',
-        path: '/permisson/button'
+        path: '/permission/button'
       },
       {
-        name: 'dataPermisson',
+        name: 'dataPermission',
         label: '数据权限',
         key: '2-2',
-        path: '/permisson/data'
+        path: '/permission/data'
       }
     ]
   }

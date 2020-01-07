@@ -3,12 +3,13 @@ import { Layout, Drawer } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import './index.less'
 import { AppState } from '~/stores'
-import { Device, setGlobalItem } from '~/actions/global.action'
+import { setGlobalItem } from '~/actions/global.action'
 import MenuComponent from './menu'
 import HeaderComponent from './header'
 import ReactSvg from '~/assets/logo/react.svg'
 import AntdSvg from '~/assets/logo/antd.svg'
 import MainRoutes from '~/routes'
+import { getGlobalState } from '~/uitls/getGloabal'
 
 const { Sider, Content } = Layout
 const WIDTH = 992
@@ -28,13 +29,13 @@ const LayoutPage: FC = () => {
 
   useEffect(() => {
     window.onresize = () => {
-      const device: Device = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent) ? 'MOBILE' : 'DESKTOP'
+      const { device } = getGlobalState()
       const rect = document.body.getBoundingClientRect()
       const needCollapse = rect.width < WIDTH
       dispatch(
         setGlobalItem({
           device,
-          collapsed: device === 'MOBILE' || needCollapse
+          collapsed: needCollapse
         })
       )
     }

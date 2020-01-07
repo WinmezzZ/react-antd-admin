@@ -1,9 +1,10 @@
 import Mock from 'mockjs'
-import mockMenuList from './menu'
 import { Response } from '../api/request'
+import mockMenuList from './menu'
+import mockNoticeList from './notice'
 
 Mock.setup({
-  timeout: 100
+  timeout: 300
 })
 
 // 模拟真实后端接口结构
@@ -16,3 +17,4 @@ function intercepter<T>(data: T): Response<T> {
 }
 
 Mock.mock('/user/menu', 'get', intercepter(mockMenuList))
+Mock.mock('/user/notice', 'get', intercepter(mockNoticeList))

@@ -26,27 +26,27 @@ const MainRoutes: FC = () =>
       }
     },
     {
-      path: '/permisson/page',
+      path: '/permission/page',
       component: PagePage,
       meta: {
         title: '权限-页面权限',
-        parent: '/permisson'
+        parent: '/permission'
       }
     },
     {
-      path: '/permisson/button',
+      path: '/permission/button',
       component: ButtonPage,
       meta: {
         title: '权限-按钮权限',
-        parent: '/permisson'
+        parent: '/permission'
       }
     },
     {
-      path: '/permisson/data',
+      path: '/permission/data',
       component: DataPage,
       meta: {
         title: '权限-数据权限',
-        parent: '/permisson'
+        parent: '/permission'
       }
     }
   ])

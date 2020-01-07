@@ -1,8 +1,8 @@
 import { GlobalState, GlobalActions } from '~/actions/global.action'
+import { getGlobalState } from '~/uitls/getGloabal'
 
 const globalState: GlobalState = {
-  device: /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent) ? 'MOBILE' : 'DESKTOP',
-  collapsed: false
+  ...getGlobalState()
 }
 
 export const globalReducer = (state = globalState, actions: GlobalActions): GlobalState => {

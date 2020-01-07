@@ -1,6 +1,6 @@
 const { override, addLessLoader, addWebpackAlias, useEslintRc, fixBabelImports } = require('customize-cra')
 const path = require('path')
-const darkTheme = require('@ant-design/dark-theme').default
+const darkThemeVars = require('antd/dist/dark-theme')
 
 const resolve = dir => path.join(__dirname, '.', dir)
 
@@ -14,7 +14,8 @@ module.exports = override(
   addLessLoader({
     javascriptEnabled: true,
     modifyVars: {
-      ...darkTheme,
+      hack: `true;@import "${require.resolve('antd/lib/style/color/colorPalette.less')}";`,
+      ...darkThemeVars,
       '@primary-color': '#13c2c2',
       '@dark-color': '#141414'
     }

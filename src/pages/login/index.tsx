@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
-import { FormComponentProps } from 'antd/lib/form'
+// import { LockOutline, UserOutline } from '@ant-design/icons'
+import { Input, Button, Checkbox, Form } from 'antd'
 import './index.less'
 import { useHistory } from 'react-router-dom'
 
@@ -9,45 +9,25 @@ interface FormState {
   password: string
 }
 
-interface Props extends FormComponentProps<FormState> {}
-
-const LoginForm: FC<Props> = ({ form }) => {
+const LoginForm: FC = () => {
   const router = useHistory()
-  const { getFieldDecorator } = form
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    form.validateFields((err, values) => {
-      if (!err) {
-        router.push('/')
-      }
-    })
+
+  const onFinished = () => {
+    router.push('/')
   }
 
   return (
     <div className="login-page">
-      <Form onSubmit={handleSubmit} className="login-page-form">
+      <Form onFinish={onFinished} className="login-page-form" initialValues={{ checked: true }}>
         <h2>REACT ANTD ADMIN</h2>
-        <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: '请输入用户名！' }]
-          })(<Input prefix={<Icon type="user" />} placeholder="用户名" />)}
+        <Form.Item name="username" rules={[{ required: true, message: '请输入用户名！' }]}>
+          <Input placeholder="用户名" />
         </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: '请输入密码！' }]
-          })(
-            <Input
-              prefix={<Icon type="lock" />}
-              type="password"
-              placeholder="密码"
-            />
-          )}
+        <Form.Item name="password" rules={[{ required: true, message: '请输入密码！' }]}>
+          <Input type="password" placeholder="密码" />
         </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true
-          })(<Checkbox>记住用户</Checkbox>)}
+        <Form.Item name="remember" valuePropName="checked">
+          <Checkbox>记住用户</Checkbox>
           <a className="login-form-forgot" href="###">
             忘记密码
           </a>
@@ -60,6 +40,4 @@ const LoginForm: FC<Props> = ({ form }) => {
   )
 }
 
-const LoginPage = Form.create({ name: 'normal_login' })(LoginForm)
-
-export default LoginPage
+export default LoginForm

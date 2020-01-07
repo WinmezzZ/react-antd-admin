@@ -1,6 +1,15 @@
 import React, { FC } from 'react'
-import { Layout, Icon, Dropdown, Menu } from 'antd'
+import {
+  DownOutlined,
+  LogoutOutlined,
+  SettingOutlined,
+  UserOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined
+} from '@ant-design/icons'
+import { Layout, Dropdown, Menu } from 'antd'
 import { useHistory } from 'react-router-dom'
+import HeaderNoticeComponent from './notice'
 
 const { Header } = Layout
 
@@ -28,20 +37,20 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
     <Menu>
       <Menu.Item key="1">
         <span>
-          <Icon type="user" />
+          <UserOutlined />
           <span>个人中心</span>
         </span>
       </Menu.Item>
       <Menu.Item key="2">
         <span>
-          <Icon type="setting" />
+          <SettingOutlined />
           <span>个人设置</span>
         </span>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3">
         <span>
-          <Icon type="logout" />
+          <LogoutOutlined />
           <span onClick={() => onActionClick('logout')}>退出登录</span>
         </span>
       </Menu.Item>
@@ -49,12 +58,15 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
   )
   return (
     <Header className="layout-page-header">
-      <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} onClick={toggle} />
-      <Dropdown overlay={menu}>
-        <span className="user-action">
-          Admin <Icon type="down" />
-        </span>
-      </Dropdown>
+      <span onClick={toggle}>{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</span>
+      <div className="actions">
+        <HeaderNoticeComponent />
+        <Dropdown overlay={menu}>
+          <span className="user-action">
+            Admin <DownOutlined />
+          </span>
+        </Dropdown>
+      </div>
     </Header>
   )
 }
