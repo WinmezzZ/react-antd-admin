@@ -1,6 +1,6 @@
 import { Notice } from '~/interface/layout/notice.interface'
 
-const mockNoticeList: Notice[] = [
+const mockNoticeList: Notice<'all'>[] = [
   {
     id: '000000001',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',

@@ -6,5 +6,7 @@
   // "emmet.showExpandedAbbreviation": "never",
   "eslint.validate": ["typescript", "typescriptreact"],
   "editor.formatOnSave": true,
-  "prettier.printWidth": 120
+  "prettier.printWidth": 120,
+  "prettier.semi": false,
+  "prettier.singleQuote": true
 }

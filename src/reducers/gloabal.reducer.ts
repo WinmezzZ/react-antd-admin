@@ -2,7 +2,8 @@ import { GlobalState, GlobalActions } from '~/actions/global.action'
 import { getGlobalState } from '~/uitls/getGloabal'
 
 const globalState: GlobalState = {
-  ...getGlobalState()
+  ...getGlobalState(),
+  noticeCount: 0
 }
 
 export const globalReducer = (state = globalState, actions: GlobalActions): GlobalState => {

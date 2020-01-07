@@ -16,6 +16,9 @@ export interface GlobalState {
 
   /** 菜单栏收起状态 */
   collapsed: boolean
+
+  /** 通知消息数量 */
+  noticeCount: number
 }
 
 const SETGLOBALITEM = 'SETGLOBALITEM'
