@@ -27,12 +27,19 @@ export interface Event extends Base {
   status: string
 }
 
-type TypeMap = {
-  all: Notification | Message | Event
-  notification: Notification
-  message: Message
-  event: Event
-}
+// type TypeMap = {
+//   all: Notification | Message | Event
+//   notification: Notification
+//   message: Message
+//   event: Event
+// }
+
+// export type Notice<T extends keyof TypeMap> = TypeMap[T]
+
+type Notices = Notification | Message | Event
+export type Notice<T extends Notices['type'] | 'all' = 'all'> = T extends 'all'
+  ? Notices
+  : Extract<Notices, { type: T }>
 
 // type MinusKeys<T, U> = Pick<T, Exclude<keyof T, keyof U>>
 
@@ -41,5 +48,3 @@ type TypeMap = {
 // type MergedProperties<T, U> = { [K in keyof T & keyof U]: undefined extends T[K] ? Defined<T[K] | U[K]> : T[K] }
 
 // type Merge<T extends Object, U extends Object> = MinusKeys<T, U> & MinusKeys<U, T> & MergedProperties<U, T>
-
-export type Notice<T extends keyof TypeMap> = TypeMap[T]

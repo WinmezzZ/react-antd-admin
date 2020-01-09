@@ -6,4 +6,4 @@ import { Notice } from '~/interface/layout/notice.interface'
 export const getMenuList = () => request<MenuList>('get', '/user/menu')
 
 /** 获取通知列表接口 */
-export const getNoticeList = () => request<Notice<'all'>[]>('get', '/user/notice')
+export const getNoticeList = () => request<Notice[]>('get', '/user/notice')

@@ -13,9 +13,13 @@ const { TabPane } = Tabs
 
 const HeaderNoticeComponent: FC = () => {
   const [visible, setVisible] = useState(false)
-  const [noticeList, setNoticeList] = useState<Notice<'all'>[]>([])
+  const [noticeList, setNoticeList] = useState<Notice[]>([])
   const [loading, setLoading] = useState(false)
   const { noticeCount } = useSelector((state: AppState) => state.globalReducer)
+
+  const noticeListFilter = <T extends Notice['type']>(type: T): Notice<T>[] => {
+    return noticeList.filter(notice => notice.type === type) as Notice<T>[]
+  }
 
   const getNotice = async () => {
     setLoading(true)
@@ -35,9 +39,7 @@ const HeaderNoticeComponent: FC = () => {
           <TabPane tab="notification" key="1">
             <List
               itemLayout="horizontal"
-              dataSource={((noticeList as any) as Notice<'notification'>[]).filter(
-                notice => notice.type === 'notification'
-              )}
+              dataSource={noticeListFilter('notification')}
               renderItem={item => (
                 <List.Item>
                   <List.Item.Meta
@@ -53,9 +55,7 @@ const HeaderNoticeComponent: FC = () => {
           <TabPane tab="message" key="2">
             <List
               itemLayout="horizontal"
-              dataSource={((noticeList as any) as Notice<'notification'>[]).filter(
-                notice => notice.type === 'notification'
-              )}
+              dataSource={noticeListFilter('notification')}
               renderItem={item => (
                 <List.Item>
                   <List.Item.Meta
@@ -71,9 +71,7 @@ const HeaderNoticeComponent: FC = () => {
           <TabPane tab="event" key="3">
             <List
               itemLayout="horizontal"
-              dataSource={((noticeList as any) as Notice<'notification'>[]).filter(
-                notice => notice.type === 'notification'
-              )}
+              dataSource={noticeListFilter('notification')}
               renderItem={item => (
                 <List.Item>
                   <List.Item.Meta

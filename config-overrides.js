@@ -1,4 +1,4 @@
-const { override, addLessLoader, addWebpackAlias, useEslintRc, fixBabelImports } = require('customize-cra')
+const { override, addLessLoader, addWebpackAlias, fixBabelImports } = require('customize-cra')
 const path = require('path')
 const darkThemeVars = require('antd/dist/dark-theme')
 
@@ -10,7 +10,6 @@ const rewiredSourceMap = () => config => {
 }
 
 module.exports = override(
-  useEslintRc(),
   addLessLoader({
     javascriptEnabled: true,
     modifyVars: {
