@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
-// import { LockOutline, UserOutline } from '@ant-design/icons'
-import { Input, Button, Checkbox, Form } from 'antd'
+import { Button, Checkbox, Form, Input } from 'antd'
 import './index.less'
 import { useHistory } from 'react-router-dom'
 

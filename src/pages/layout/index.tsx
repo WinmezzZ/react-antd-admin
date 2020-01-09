@@ -46,8 +46,8 @@ const LayoutPage: FC = () => {
       {!isMobile ? (
         <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="md">
           <div className="logo">
-            <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }}></img>
-            <img src={AntdSvg} alt=""></img>
+            <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }} />
+            <img src={AntdSvg} alt="" />
           </div>
           <MenuComponent />
         </Sider>

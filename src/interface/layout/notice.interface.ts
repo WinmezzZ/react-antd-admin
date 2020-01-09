@@ -27,19 +27,8 @@ export interface Event extends Base {
   status: string
 }
 
-// type TypeMap = {
-//   all: Notification | Message | Event
-//   notification: Notification
-//   message: Message
-//   event: Event
-// }
-
-// export type Notice<T extends keyof TypeMap> = TypeMap[T]
-
 type Notices = Notification | Message | Event
-export type Notice<T extends Notices['type'] | 'all' = 'all'> = T extends 'all'
-  ? Notices
-  : Extract<Notices, { type: T }>
+export type Notice<T extends Notices['type'] | 'all' = 'all'> = T extends 'all' ? Notices : Extract<Notices, { type: T }>
 
 // type MinusKeys<T, U> = Pick<T, Exclude<keyof T, keyof U>>
 

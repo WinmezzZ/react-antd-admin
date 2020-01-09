@@ -9,10 +9,7 @@ const globalState: GlobalState = {
 export const globalReducer = (state = globalState, actions: GlobalActions): GlobalState => {
   switch (actions.type) {
     case 'SETGLOBALITEM':
-      return {
-        ...state,
-        ...actions.payload
-      }
+      return { ...state, ...actions.payload }
     default:
       return state
   }

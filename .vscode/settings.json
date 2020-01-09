@@ -3,10 +3,25 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.preferences.importModuleSpecifier": "auto",
   "emmet.showAbbreviationSuggestions": false,
-  // "emmet.showExpandedAbbreviation": "never",
-  "eslint.validate": ["typescript", "typescriptreact"],
+  "emmet.showExpandedAbbreviation": "never",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.options": {
+    "extensions": [".js", ".jsx", ".ts", ".tsx"]
+  },
   "editor.formatOnSave": true,
-  "prettier.printWidth": 120,
-  "prettier.semi": false,
-  "prettier.singleQuote": true
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": false
+  }
 }
