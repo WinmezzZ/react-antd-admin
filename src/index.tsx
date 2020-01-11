@@ -10,7 +10,7 @@ import './mock'
 
 const store = configureStore()
 
-const render = (Router: any) => {
+const render = (Router: React.FC) => {
   ReactDOM.render(
     <Provider store={store}>
       <Router />
