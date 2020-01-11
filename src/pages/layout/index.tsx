@@ -44,7 +44,7 @@ const LayoutPage: FC = () => {
   return (
     <Layout className="layout-page">
       {!isMobile ? (
-        <Sider trigger={null} collapsible collapsed={collapsed} breakpoint="md">
+        <Sider className="layout-page-sider" trigger={null} collapsible collapsed={collapsed} breakpoint="md">
           <div className="logo">
             <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }} />
             <img src={AntdSvg} alt="" />
@@ -65,7 +65,7 @@ const LayoutPage: FC = () => {
       )}
       <Layout>
         <HeaderComponent collapsed={collapsed} toggle={toggle} />
-        <Content>
+        <Content className="layout-page-content">
           <Suspense fallback={<h1>Loading profile...</h1>}>
             <MainRoutes />
           </Suspense>

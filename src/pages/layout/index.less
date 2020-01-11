@@ -4,16 +4,32 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.65);
+    background-color: @dark-color;
+    z-index: 9;
   }
-  .logo {
-    height: 64px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 30px;
-      height: 30px;
+  &-sider {
+    .logo {
+      height: 64px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: @dark-color;
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.65);
+      z-index: 9;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    border-right: 1px solid #303030;
+  }
+  &-content {
+    > * {
+      height: 100%;
+      // background-color: #292a2d !important;
+      background-color: #1f1f1f !important;
     }
   }
   .actions {
@@ -42,5 +58,18 @@
   }
 }
 .ant-menu.ant-menu-inline.ant-menu-root {
-  padding-top: 15px !important;
+  margin-top: 15px !important;
+}
+
+.notice-description {
+  font-size: 12px;
+  &-datetime {
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+}
+
+.notice-title {
+  display: flex;
+  justify-content: space-between;
 }

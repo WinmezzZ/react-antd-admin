@@ -60,6 +60,7 @@ const MenuComponent: FC = () => {
       openKeys={openKeys}
       onOpenChange={keys => setOpenkeys([keys.pop()!])}
       onClick={onMenuClick}
+      className="layout-page-sider-menu"
     >
       {menuList?.map(menu =>
         menu.children ? (

@@ -5,7 +5,7 @@ export type RouteConfig = {
   /**
    * Route path
    */
-  path: string
+  path: string | string[]
   /**
    * Required React.FunctionalComponent and React.Lazy component, see the detail in src/App.vue.
    */

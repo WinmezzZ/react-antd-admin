@@ -1,3 +1,10 @@
+export enum EventStatus {
+  todo = 'rgba(255,255,255,0.65)',
+  urgent = '#f5222d',
+  doing = '#faad14',
+  processing = '#1890ff'
+}
+
 interface Base {
   type: 'message' | 'notification' | 'event'
   id: string
@@ -24,11 +31,13 @@ export interface Event extends Base {
   type: 'event'
   description: string
   extra: string
-  status: string
+  status: keyof typeof EventStatus
 }
 
 type Notices = Notification | Message | Event
-export type Notice<T extends Notices['type'] | 'all' = 'all'> = T extends 'all' ? Notices : Extract<Notices, { type: T }>
+export type Notice<T extends Notices['type'] | 'all' = 'all'> = T extends 'all'
+  ? Notices
+  : Extract<Notices, { type: T }>
 
 // type MinusKeys<T, U> = Pick<T, Exclude<keyof T, keyof U>>
 
