@@ -4,7 +4,6 @@ import { TagsActions } from '~/actions/tagsView.action'
 const defaultTagList: TagItem[] = [
   {
     id: '0',
-    index: 0,
     label: '控制台',
     path: '/dashboard',
     closable: false
@@ -29,7 +28,6 @@ export const tagsViewlReducer = (state = tagsViewState, actions: TagsActions): T
       if (!tags.find(tag => tag.id === actions.payload.id)) {
         tags.push({
           ...actions.payload,
-          index: tags.length,
           closable: true
         })
       }
@@ -41,7 +39,7 @@ export const tagsViewlReducer = (state = tagsViewState, actions: TagsActions): T
 
     case 'REMOVETAG':
       const targetKey = actions.payload
-      let activeTagId = ''
+      let activeTagId = state.activeTagId
       let lastIndex = 0
       tags.forEach((tag, i) => {
         if (tag.id === targetKey) {
@@ -49,15 +47,13 @@ export const tagsViewlReducer = (state = tagsViewState, actions: TagsActions): T
         }
       })
       const tagList = tags.filter(tag => tag.id !== targetKey)
-      if (state.activeTagId === targetKey) {
+      if (tagList.length && activeTagId === targetKey) {
         if (lastIndex >= 0) {
           activeTagId = tagList[lastIndex].id
         } else {
           activeTagId = tagList[0].id
         }
       }
-      const index = tags.findIndex(tag => tag.id === targetKey)
-      tags.splice(index, 1)
       return {
         ...state,
         tags: tagList,

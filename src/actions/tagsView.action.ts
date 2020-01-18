@@ -17,11 +17,7 @@ interface SetActiveTag extends Action<SETACTIVETAG> {
   payload: TagItem['id']
 }
 interface AddTag extends Action<ADDTAG> {
-  payload: {
-    id: TagItem['id']
-    label: TagItem['label']
-    path: TagItem['path']
-  }
+  payload: Omit<TagItem, 'closable'>
 }
 interface RemoveTag extends Action<REMOVETAG> {
   payload: TagItem['id']

@@ -1,5 +1,6 @@
 import { Action } from 'redux'
 import { Device } from '~/interface/layout/index.interface'
+import { MenuChild } from '~/interface/layout/menu.interface'
 
 export interface GlobalState {
   /** user's device */
@@ -10,6 +11,9 @@ export interface GlobalState {
 
   /** notification count */
   noticeCount: number
+
+  /** menu list for init tagsView */
+  menuList: MenuChild[]
 }
 
 const SETGLOBALITEM = 'SETGLOBALITEM'

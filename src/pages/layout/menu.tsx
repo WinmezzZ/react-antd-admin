@@ -1,8 +1,8 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, useCallback } from 'react'
 import React from 'react'
 import { Menu } from 'antd'
 import { getMenuList } from '../../api/layout.api'
-import { MenuList } from '../../interface/layout/menu.interface'
+import { MenuList, MenuChild } from '../../interface/layout/menu.interface'
 import { useHistory, useLocation } from 'react-router-dom'
 import { CustomIcon } from './customIcon'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,15 +18,34 @@ const MenuComponent: FC = () => {
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
   const { collapsed, device } = useSelector((state: AppState) => state.globalReducer)
   const dispatch = useDispatch()
-  const router = useHistory()
+  const history = useHistory()
   const { pathname } = useLocation()
 
-  const fetchMenuList = async () => {
+  const initMenuListAll = (menu: MenuList) => {
+    const MenuListAll: MenuChild[] = []
+    menu.forEach(m => {
+      if (!m?.children?.length) {
+        MenuListAll.push(m)
+      } else {
+        m?.children.forEach(mu => {
+          MenuListAll.push(mu)
+        })
+      }
+    })
+    return MenuListAll
+  }
+
+  const fetchMenuList = useCallback(async () => {
     const { status, result } = await getMenuList()
     if (status) {
       setMenuList(result)
+      dispatch(
+        setGlobalItem({
+          menuList: initMenuListAll(result)
+        })
+      )
     }
-  }
+  }, [dispatch])
 
   const getTitie = (menu: MenuList[0]) => {
     return (
@@ -38,6 +57,7 @@ const MenuComponent: FC = () => {
   }
 
   const onMenuClick = (menu: MenuList[0]) => {
+    if (menu.path === pathname) return
     const { key, label, path } = menu
     setSelectedKeys([key])
     dispatch(setGlobalItem({ collapsed: device !== 'DESKTOP' }))
@@ -48,17 +68,17 @@ const MenuComponent: FC = () => {
         path
       })
     )
-    router.push(key)
+    history.push(path)
   }
 
   useEffect(() => {
     setSelectedKeys([pathname])
     setOpenkeys(collapsed ? [] : ['/' + pathname.split('/')[1]])
-  }, [pathname, collapsed])
+  }, [collapsed, pathname])
 
   useEffect(() => {
     fetchMenuList()
-  }, [])
+  }, [fetchMenuList])
 
   return (
     <Menu

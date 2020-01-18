@@ -1,8 +1,6 @@
 export type TagItem = {
   id: string
 
-  index: number
-
   label: string
 
   /** tag's route path */
