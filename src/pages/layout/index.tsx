@@ -10,6 +10,7 @@ import ReactSvg from '~/assets/logo/react.svg'
 import AntdSvg from '~/assets/logo/antd.svg'
 import MainRoutes from '~/routes'
 import { getGlobalState } from '~/uitls/getGloabal'
+import TagsView from './tagView'
 
 const { Sider, Content } = Layout
 const WIDTH = 992
@@ -65,6 +66,7 @@ const LayoutPage: FC = () => {
       )}
       <Layout>
         <HeaderComponent collapsed={collapsed} toggle={toggle} />
+        <TagsView />
         <Content className="layout-page-content">
           <Suspense fallback={<h1>Loading profile...</h1>}>
             <MainRoutes />

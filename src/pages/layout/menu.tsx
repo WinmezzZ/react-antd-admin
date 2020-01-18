@@ -3,12 +3,12 @@ import React from 'react'
 import { Menu } from 'antd'
 import { getMenuList } from '../../api/layout.api'
 import { MenuList } from '../../interface/layout/menu.interface'
-import { ClickParam } from 'antd/lib/menu'
 import { useHistory, useLocation } from 'react-router-dom'
 import { CustomIcon } from './customIcon'
 import { useDispatch, useSelector } from 'react-redux'
 import { setGlobalItem } from '~/actions/global.action'
 import { AppState } from '~/stores'
+import { addTag } from '~/actions/tagsView.action'
 
 const { SubMenu, Item } = Menu
 
@@ -37,9 +37,17 @@ const MenuComponent: FC = () => {
     )
   }
 
-  const onMenuClick = ({ key }: ClickParam) => {
+  const onMenuClick = (menu: MenuList[0]) => {
+    const { key, label, path } = menu
     setSelectedKeys([key])
     dispatch(setGlobalItem({ collapsed: device !== 'DESKTOP' }))
+    dispatch(
+      addTag({
+        id: key,
+        label,
+        path
+      })
+    )
     router.push(key)
   }
 
@@ -59,18 +67,21 @@ const MenuComponent: FC = () => {
       selectedKeys={selectedKeys}
       openKeys={openKeys}
       onOpenChange={keys => setOpenkeys([keys.pop()!])}
-      onClick={onMenuClick}
       className="layout-page-sider-menu"
     >
       {menuList?.map(menu =>
         menu.children ? (
           <SubMenu key={menu.path} title={getTitie(menu)}>
             {menu.children.map(child => (
-              <Item key={child.path}>{child.label}</Item>
+              <Item key={child.path} onClick={() => onMenuClick(child)}>
+                {child.label}
+              </Item>
             ))}
           </SubMenu>
         ) : (
-          <Item key={menu.path}>{getTitie(menu)}</Item>
+          <Item key={menu.path} onClick={() => onMenuClick(menu)}>
+            {getTitie(menu)}
+          </Item>
         )
       )}
     </Menu>

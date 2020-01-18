@@ -1,5 +1,10 @@
 {
-  "extends": ["react-app", "plugin:@typescript-eslint/recommended", "prettier", "prettier/@typescript-eslint"],
+  "extends": [
+    "react-app",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["react-hooks", "@typescript-eslint", "prettier"],
   "env": {
@@ -29,10 +34,17 @@
     "prettier/prettier": [
       "warn",
       {
+        "endOfLine": "crlf",
+        "printWidth": 120,
+        "eslintIntegration": true,
+        "tabWidth": 2,
+        "useTabs": false,
         "singleQuote": true,
         "semi": false,
-        "endOfLine": "crlf",
-        "printWidth": 120
+        "trailingComma": "none",
+        "bracketSpacing": true,
+        "jsxBracketSameLine": false,
+        "arrowParens": "avoid"
       }
     ],
     "jsx-a11y/href-no-hash": "off",
@@ -44,6 +56,7 @@
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-interface": "off"
   }
 }
