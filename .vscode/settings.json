@@ -4,7 +4,12 @@
   "typescript.preferences.importModuleSpecifier": "auto",
   "emmet.showAbbreviationSuggestions": false,
   "emmet.showExpandedAbbreviation": "never",
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "eslint.options": {
     "extensions": [".js", ".jsx", ".ts", ".tsx"]
   },
@@ -24,6 +29,12 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "prettier.disableLanguages": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace"
+  "prettier.disableLanguages": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
+  "editor.tabSize": 2
 }

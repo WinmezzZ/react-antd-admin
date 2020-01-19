@@ -41,6 +41,39 @@ const mockMenuList: MenuList = [
         path: '/permission/data'
       }
     ]
+  },
+  {
+    name: 'application',
+    label: '应用',
+    icon: 'permission',
+    key: '3',
+    path: '/application',
+    children: [
+      {
+        name: 'form',
+        label: '表单',
+        key: '3-0',
+        path: '/application/form'
+      },
+      {
+        name: 'table',
+        label: '表格',
+        key: '3-1',
+        path: '/application/table'
+      },
+      {
+        name: 'dialog',
+        label: '对话框',
+        key: '3-2',
+        path: '/application/dialog'
+      },
+      {
+        name: 'complex',
+        label: '综合',
+        key: '3-3',
+        path: '/application/complex'
+      }
+    ]
   }
 ]
 
