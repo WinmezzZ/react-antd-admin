@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { Button, Checkbox, Form, Input } from 'antd'
 import './index.less'
 import { useHistory } from 'react-router-dom'
@@ -14,6 +14,10 @@ const LoginForm: FC = () => {
   const onFinished = () => {
     router.push('/')
   }
+
+  useEffect(() => {
+    document.title = '登录'
+  }, [])
 
   return (
     <div className="login-page">

@@ -1,14 +1,14 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, useCallback } from 'react'
 import React from 'react'
 import { Menu } from 'antd'
 import { getMenuList } from '../../api/layout.api'
-import { MenuList } from '../../interface/layout/menu.interface'
-import { ClickParam } from 'antd/lib/menu'
+import { MenuList, MenuChild } from '../../interface/layout/menu.interface'
 import { useHistory, useLocation } from 'react-router-dom'
 import { CustomIcon } from './customIcon'
 import { useDispatch, useSelector } from 'react-redux'
 import { setGlobalItem } from '~/actions/global.action'
 import { AppState } from '~/stores'
+import { addTag } from '~/actions/tagsView.action'
 
 const { SubMenu, Item } = Menu
 
@@ -18,15 +18,34 @@ const MenuComponent: FC = () => {
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
   const { collapsed, device } = useSelector((state: AppState) => state.globalReducer)
   const dispatch = useDispatch()
-  const router = useHistory()
+  const history = useHistory()
   const { pathname } = useLocation()
 
-  const fetchMenuList = async () => {
+  const initMenuListAll = (menu: MenuList) => {
+    const MenuListAll: MenuChild[] = []
+    menu.forEach(m => {
+      if (!m?.children?.length) {
+        MenuListAll.push(m)
+      } else {
+        m?.children.forEach(mu => {
+          MenuListAll.push(mu)
+        })
+      }
+    })
+    return MenuListAll
+  }
+
+  const fetchMenuList = useCallback(async () => {
     const { status, result } = await getMenuList()
     if (status) {
       setMenuList(result)
+      dispatch(
+        setGlobalItem({
+          menuList: initMenuListAll(result)
+        })
+      )
     }
-  }
+  }, [dispatch])
 
   const getTitie = (menu: MenuList[0]) => {
     return (
@@ -37,20 +56,29 @@ const MenuComponent: FC = () => {
     )
   }
 
-  const onMenuClick = ({ key }: ClickParam) => {
+  const onMenuClick = (menu: MenuList[0]) => {
+    if (menu.path === pathname) return
+    const { key, label, path } = menu
     setSelectedKeys([key])
     dispatch(setGlobalItem({ collapsed: device !== 'DESKTOP' }))
-    router.push(key)
+    dispatch(
+      addTag({
+        id: key,
+        label,
+        path
+      })
+    )
+    history.push(path)
   }
 
   useEffect(() => {
     setSelectedKeys([pathname])
     setOpenkeys(collapsed ? [] : ['/' + pathname.split('/')[1]])
-  }, [pathname, collapsed])
+  }, [collapsed, pathname])
 
   useEffect(() => {
     fetchMenuList()
-  }, [])
+  }, [fetchMenuList])
 
   return (
     <Menu
@@ -59,18 +87,21 @@ const MenuComponent: FC = () => {
       selectedKeys={selectedKeys}
       openKeys={openKeys}
       onOpenChange={keys => setOpenkeys([keys.pop()!])}
-      onClick={onMenuClick}
       className="layout-page-sider-menu"
     >
       {menuList?.map(menu =>
         menu.children ? (
           <SubMenu key={menu.path} title={getTitie(menu)}>
             {menu.children.map(child => (
-              <Item key={child.path}>{child.label}</Item>
+              <Item key={child.path} onClick={() => onMenuClick(child)}>
+                {child.label}
+              </Item>
             ))}
           </SubMenu>
         ) : (
-          <Item key={menu.path}>{getTitie(menu)}</Item>
+          <Item key={menu.path} onClick={() => onMenuClick(menu)}>
+            {getTitie(menu)}
+          </Item>
         )
       )}
     </Menu>

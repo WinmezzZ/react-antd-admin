@@ -7,6 +7,10 @@ const Guide = lazy(() => import('~/pages/guide'))
 const PagePage = lazy(() => import('~/pages/permission/page'))
 const ButtonPage = lazy(() => import('~/pages/permission/button'))
 const DataPage = lazy(() => import('~/pages/permission/data'))
+const FormPage = lazy(() => import('~/pages/application/form'))
+const TablePage = lazy(() => import('~/pages/application/table'))
+const DialogPage = lazy(() => import('~/pages/application/dialog'))
+const ComplexPage = lazy(() => import('~/pages/application/complex'))
 
 const MainRoutes: FC = () =>
   renderRoutes([
@@ -53,6 +57,42 @@ const MainRoutes: FC = () =>
       meta: {
         title: '权限-数据权限',
         parent: '/permission'
+      }
+    },
+    {
+      path: '/application/form',
+      exact: true,
+      component: FormPage,
+      meta: {
+        title: '应用-表单',
+        parent: '/application'
+      }
+    },
+    {
+      path: '/application/table',
+      exact: true,
+      component: TablePage,
+      meta: {
+        title: '应用-表格',
+        parent: '/application'
+      }
+    },
+    {
+      path: '/application/dialog',
+      exact: true,
+      component: DialogPage,
+      meta: {
+        title: '应用-表单',
+        parent: '/application'
+      }
+    },
+    {
+      path: '/application/complex',
+      exact: true,
+      component: ComplexPage,
+      meta: {
+        title: '应用-综合',
+        parent: '/application'
       }
     },
     {

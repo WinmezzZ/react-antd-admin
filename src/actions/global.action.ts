@@ -1,24 +1,19 @@
 import { Action } from 'redux'
-
-/** 用户设备 */
-enum DeviceList {
-  /** 手机 */
-  MOBILE = 'MOBILE',
-  /** 电脑 */
-  DESKTOP = 'DESKTOP'
-}
-
-export type Device = keyof typeof DeviceList
+import { Device } from '~/interface/layout/index.interface'
+import { MenuChild } from '~/interface/layout/menu.interface'
 
 export interface GlobalState {
-  /** 用户设备 */
+  /** user's device */
   device: Device
 
-  /** 菜单栏收起状态 */
+  /** menu collapsed status */
   collapsed: boolean
 
-  /** 通知消息数量 */
+  /** notification count */
   noticeCount: number
+
+  /** menu list for init tagsView */
+  menuList: MenuChild[]
 }
 
 const SETGLOBALITEM = 'SETGLOBALITEM'
