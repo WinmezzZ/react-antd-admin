@@ -1,21 +1,15 @@
 {
   "extends": [
-    "react-app",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
+    "plugin:prettier/recommended",
     "prettier/@typescript-eslint"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-hooks", "@typescript-eslint", "prettier"],
+  "plugins": ["react-hooks", "@typescript-eslint"],
   "env": {
     "browser": true,
     "node": true
-  },
-  "globals": {
-    "context": "readonly",
-    "cy": "readonly",
-    "assert": "readonly",
-    "Cypress": "readonly"
   },
   "settings": {
     "react": {
@@ -31,22 +25,6 @@
     }
   },
   "rules": {
-    "prettier/prettier": [
-      "warn",
-      {
-        "endOfLine": "crlf",
-        "printWidth": 120,
-        "eslintIntegration": true,
-        "tabWidth": 2,
-        "useTabs": false,
-        "singleQuote": true,
-        "semi": false,
-        "trailingComma": "none",
-        "bracketSpacing": true,
-        "jsxBracketSameLine": false,
-        "arrowParens": "avoid"
-      }
-    ],
     "jsx-a11y/href-no-hash": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

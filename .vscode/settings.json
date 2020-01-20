@@ -4,6 +4,9 @@
   "eslint.options": {
     "extensions": [".js", ".jsx", ".ts", ".tsx"]
   },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "editor.formatOnSave": true,
   "[javascript]": {
     "editor.formatOnSave": false
@@ -17,8 +20,6 @@
   "[typescriptreact]": {
     "editor.formatOnSave": false
   },
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true
-  },
-  "prettier.disableLanguages": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
+  "editor.fontSize": 16,
+  "editor.tabSize": 2
 }
