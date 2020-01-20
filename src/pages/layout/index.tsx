@@ -12,6 +12,7 @@ import MainRoutes from '~/routes'
 import { getGlobalState } from '~/uitls/getGloabal'
 import TagsView from './tagView'
 import SuspendFallbackLoading from './suspendFallbackLoading'
+import { Redirect } from 'react-router-dom'
 
 const { Sider, Content } = Layout
 const WIDTH = 992
@@ -70,6 +71,7 @@ const LayoutPage: FC = () => {
         <TagsView />
         <Content className="layout-page-content">
           <Suspense fallback={<SuspendFallbackLoading />}>
+            <Redirect path="/" to="/dashboard" />
             <MainRoutes />
           </Suspense>
         </Content>

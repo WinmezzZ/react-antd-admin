@@ -14,19 +14,19 @@ const TagsView: FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const onTagChange = () => {
-    const tag = tags.find(tag => tag.id === activeTagId) || tags[0]
-    history.push(tag.path)
+  const onTagChange = (key: string) => {
+    const tag = tags.find(tag => tag.id === key)
+    tag && history.push(tag.path)
   }
 
   const onChange = (key: string) => {
     dispatch(setActiveTag(key))
-    onTagChange()
+    onTagChange(key)
   }
 
   const onClose = (targetKey: string) => {
     dispatch(removeTag(targetKey))
-    onTagChange()
+    onTagChange(targetKey)
   }
 
   useEffect(() => {

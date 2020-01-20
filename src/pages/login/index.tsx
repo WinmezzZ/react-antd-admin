@@ -12,7 +12,7 @@ const LoginForm: FC = () => {
   const router = useHistory()
 
   const onFinished = () => {
-    router.push('/')
+    router.push('/dashboard')
   }
 
   useEffect(() => {

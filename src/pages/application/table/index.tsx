@@ -7,7 +7,8 @@ const columns: ProColumns[] = [
   {
     title: 'Name',
     dataIndex: 'name',
-    copyable: true
+    copyable: true,
+    renderFormItem: () => 'div'
   },
   {
     title: 'Age',
@@ -24,6 +25,7 @@ const columns: ProColumns[] = [
     dataIndex: 'id',
     render: (text, row, index, action) => [
       <a
+        key={index}
         href="###"
         onClick={() => {
           window.alert('确认删除？')
@@ -33,6 +35,7 @@ const columns: ProColumns[] = [
         delete
       </a>,
       <a
+        key={index}
         href="###"
         onClick={() => {
           window.alert('确认刷新？')
@@ -86,6 +89,9 @@ const TablePage: FC = () => {
   const [keyword, setKeyword] = useState<string>('')
   return (
     <ProTable
+      search={{
+        collapseRender: () => [<div key="1">1</div>]
+      }}
       size="small"
       columns={columns}
       url={request}
@@ -99,6 +105,7 @@ const TablePage: FC = () => {
         //   onSearch={value => setKeyword(value)}
         // />,
         <Button
+          key="1"
           onClick={() => {
             action.reload()
           }}
@@ -110,6 +117,7 @@ const TablePage: FC = () => {
           刷新
         </Button>,
         <Button
+          key="2"
           onClick={() => {
             action.resetPageIndex()
           }}
