@@ -5,6 +5,7 @@ import { AppState } from '~/stores'
 import { setActiveTag, removeTag, addTag } from '~/actions/tagsView.action'
 import { useHistory } from 'react-router-dom'
 import TagsViewAction from './tagViewAction'
+import usePrevious from '~/hooks/usePrevious'
 
 const { TabPane } = Tabs
 
@@ -13,23 +14,20 @@ const TagsView: FC = () => {
   const { tags, activeTagId } = useSelector((state: AppState) => state.tagsViewlReducer)
   const dispatch = useDispatch()
   const history = useHistory()
+  const prevActiveTagId = usePrevious(activeTagId)
 
-  const onTagChange = (key: string) => {
-    const tag = tags.find(tag => tag.id === key)
-    tag && history.push(tag.path)
-  }
-
+  // onClick tag
   const onChange = (key: string) => {
     dispatch(setActiveTag(key))
-    onTagChange(key)
   }
 
+  // onRemove tag
   const onClose = (targetKey: string) => {
     dispatch(removeTag(targetKey))
-    onTagChange(targetKey)
   }
 
   useEffect(() => {
+    // Initializes the tag generated for the current page(Dashboard will be filtered in reducer)
     if (menuList.length) {
       const menu = menuList.find(m => m.path === history.location.pathname) || menuList[0]
       dispatch(
@@ -42,11 +40,14 @@ const TagsView: FC = () => {
     }
   }, [dispatch, history.location.pathname, menuList])
 
-  // useEffect(() => {
-  //   const tag = tags.find(tag => tag.id === activeTagId) || tags[0]
-  //   history.push(tag.path)
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [activeTagId])
+  useEffect(() => {
+    // If current tag id changed, push to new path.
+    if (prevActiveTagId !== activeTagId) {
+      const tag = tags.find(tag => tag.id === activeTagId) || tags[0]
+      history.push(tag.path)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTagId, prevActiveTagId])
 
   return (
     <div>

@@ -71,7 +71,6 @@ const LayoutPage: FC = () => {
         <TagsView />
         <Content className="layout-page-content">
           <Suspense fallback={<SuspendFallbackLoading />}>
-            <Redirect path="/" to="/dashboard" />
             <MainRoutes />
           </Suspense>
         </Content>
