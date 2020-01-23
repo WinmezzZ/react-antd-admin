@@ -21,7 +21,7 @@ const DialogPage: FC = () => {
         <p>内容...</p>
       </Modal>
       <Modal title="表单对话框" visible={visible1} onOk={() => setVisible1(false)} onCancel={() => setVisible1(false)}>
-        <FormPage />
+        <FormPage dialog />
       </Modal>
     </div>
   )

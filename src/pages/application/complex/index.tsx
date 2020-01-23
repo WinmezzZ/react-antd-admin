@@ -1,139 +1,133 @@
-import React, { FC, useState } from 'react'
-import ProTable, { ProColumns } from '@ant-design/pro-table'
-import { Input, Button } from 'antd'
-import moment from 'moment'
+import React, { FC } from 'react'
+import { Button, Slider } from 'antd'
 import './index.less'
+import { PlusOutlined } from '@ant-design/icons'
+import ProTable, { ProColumns } from '@ant-design/pro-table'
 
-const columns: ProColumns[] = [
+enum Value {
+  close,
+  running,
+  online,
+  error
+}
+
+export interface TableListItem {
+  key: number
+  name: string
+  status: string
+  updatedAt: number
+  createdAt: number
+  progress: number
+  money: number
+}
+const tableListDataSource: TableListItem[] = []
+
+for (let i = 0; i < 10; i += 1) {
+  tableListDataSource.push({
+    key: i,
+    name: `TradeCode ${i}`,
+    status: Value[Math.floor(Math.random() * 10) % 4],
+    updatedAt: Date.now() - Math.floor(Math.random() * 1000),
+    createdAt: Date.now() - Math.floor(Math.random() * 2000),
+    money: Math.floor(Math.random() * 2000) * i,
+    progress: Math.ceil(Math.random() * 100) + 1
+  })
+}
+
+const columns: ProColumns<TableListItem>[] = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    copyable: true
+    title: '序号',
+    dataIndex: 'index',
+    valueType: 'index',
+    width: 80
   },
   {
-    title: 'Age',
-    dataIndex: 'age'
+    title: '金额',
+    dataIndex: 'money',
+    valueType: 'money',
+    width: 150
   },
   {
-    title: 'date',
-    dataIndex: 'date',
+    title: '状态',
+    dataIndex: 'status',
+    initialValue: 'all',
+    width: 120,
+    valueEnum: {
+      all: { text: '全部', status: 'Default' },
+      close: { text: '关闭', status: 'Default' },
+      running: { text: '运行中', status: 'Processing' },
+      online: { text: '已上线', status: 'Success' },
+      error: { text: '异常', status: 'Error' }
+    }
+  },
+  {
+    title: '创建时间',
+    key: 'since',
+    dataIndex: 'createdAt',
+    width: 200,
+    valueType: 'dateTime'
+  },
+  {
+    title: '进度',
+    key: 'progress',
+    dataIndex: 'progress',
+    valueType: item => ({
+      type: 'progress',
+      status: item.status !== 'error' ? 'active' : 'exception'
+    }),
+    renderFormItem: (_, { value, onChange }) => (
+      <Slider value={value} onChange={onChange} tipFormatter={() => value + '%'} />
+    ),
+    width: 200
+  },
+  {
+    title: '更新时间',
+    key: 'update',
+    width: 120,
+    dataIndex: 'createdAt',
     valueType: 'date'
   },
   {
-    title: 'option',
+    title: '关闭时间',
+    key: 'close',
+    width: 120,
+    dataIndex: 'updatedAt',
+    valueType: 'time'
+  },
+  {
+    title: '操作',
+    key: 'option',
+    width: 120,
     valueType: 'option',
-    dataIndex: 'id',
-    render: (text, row, index, action) => [
-      <a
-        key={index}
-        href="###"
-        onClick={() => {
-          window.alert('确认删除？')
-          action.reload()
-        }}
-      >
-        delete
-      </a>,
-      <a
-        key={index}
-        href="###"
-        onClick={() => {
-          window.alert('确认刷新？')
-          action.reload()
-        }}
-      >
-        reload
-      </a>
-    ]
+    render: () => [<a key="1">操作</a>, <a key="2">删除</a>]
   }
 ]
 
-const data: {
-  key: string | number
-  name: string
-  age: string | number
-  address: string
-  money: number
-  date: number
-}[] = []
-for (let i = 0; i < 46; i += 1) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 10 + i,
-    money: parseFloat((10000.26 * (i + 1)).toFixed(2)),
-    date: moment('2019-11-16 12:50:26').valueOf() + i * 1000 * 60 * 2,
-    address: `London, Park Lane no. ${i}`
-  })
-}
-
-const request = (): Promise<{
-  data: {
-    key: string | number
-    name: string
-    age: string | number
-    address: string
-  }[]
-  success: true
-}> =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        data,
+const ComplexPage: FC = () => (
+  <ProTable<TableListItem>
+    rowKey="key"
+    columns={columns}
+    request={() =>
+      Promise.resolve({
+        data: tableListDataSource,
         success: true
       })
-    }, 1000)
-  })
-
-const ComplexPage: FC = () => {
-  const [keyword, setKeyword] = useState<string>('')
-  return (
-    <ProTable
-      search={{
-        collapseRender: () => [<div key="1">1</div>]
-      }}
-      size="small"
-      columns={columns}
-      url={request}
-      rowKey="key"
-      params={{ keyword }}
-      toolBarRender={action => [
-        // <Input.Search
-        //   style={{
-        //     width: 200
-        //   }}
-        //   onSearch={value => setKeyword(value)}
-        // />,
-        <Button
-          key="1"
-          onClick={() => {
-            action.reload()
-          }}
-          type="primary"
-          style={{
-            marginRight: 8
-          }}
-        >
-          刷新
-        </Button>,
-        <Button
-          key="2"
-          onClick={() => {
-            action.resetPageIndex()
-          }}
-          type="default"
-          style={{
-            marginRight: 8
-          }}
-        >
-          回到第一页
-        </Button>
-      ]}
-      pagination={{
-        defaultCurrent: 0
-      }}
-    />
-  )
-}
+    }
+    pagination={{
+      showSizeChanger: true
+    }}
+    scroll={{
+      x: columns.length * 120
+    }}
+    dateFormatter="string"
+    params={{ state: 'all' }}
+    toolBarRender={() => [
+      <Button key="3" type="primary">
+        <PlusOutlined />
+        新建
+      </Button>
+    ]}
+  />
+)
 
 export default ComplexPage

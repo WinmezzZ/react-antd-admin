@@ -20,11 +20,14 @@ axios.interceptors.response.use(
     return config?.data
   },
   error => {
-    const errorMessage = '系统异常'
-
+    let errorMessage = '系统异常'
+    if (error.message.includes('Network Error')) {
+      errorMessage = '网络错误，请检查您的网络'
+    }
+    console.dir(error)
     $message.error(errorMessage)
     return {
-      code: -1,
+      status: false,
       message: errorMessage,
       result: null
     }

@@ -9,7 +9,7 @@ export type RouteConfig = {
   /**
    * Required React.FunctionalComponent and React.Lazy component, see the detail in src/App.vue.
    */
-  component: LazyExoticComponent<FC<{ meta: any }>>
+  component: LazyExoticComponent<FC<{ [x: string]: any; meta: any }>>
 
   exact?: boolean
 

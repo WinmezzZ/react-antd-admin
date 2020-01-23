@@ -40,11 +40,11 @@ export const removeTag = (payload: string): RemoveTag => ({
   payload
 })
 
-export const removeAllTag = (payload: string): RemoveAllTag => ({
+export const removeAllTag = (): RemoveAllTag => ({
   type: 'REMOVEALLTAG'
 })
 
-export const removeOtherTag = (payload: number): RemoveOtherTag => ({
+export const removeOtherTag = (): RemoveOtherTag => ({
   type: 'REMOVEOTHERTAG'
 })
 

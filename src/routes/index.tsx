@@ -1,16 +1,16 @@
 import { FC, lazy } from 'react'
 import renderRoutes from './config'
 
-const NotFound = lazy(() => import('~/pages/404'))
-const Dashboard = lazy(() => import('~/pages/dashboard'))
-const Guide = lazy(() => import('~/pages/guide'))
-const PagePage = lazy(() => import('~/pages/permission/page'))
-const ButtonPage = lazy(() => import('~/pages/permission/button'))
-const DataPage = lazy(() => import('~/pages/permission/data'))
-const FormPage = lazy(() => import('~/pages/application/form'))
-const TablePage = lazy(() => import('~/pages/application/table'))
-const DialogPage = lazy(() => import('~/pages/application/dialog'))
-const ComplexPage = lazy(() => import('~/pages/application/complex'))
+const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/404'))
+const Dashboard = lazy(() => import(/* webpackChunkName: "dashboard'"*/ '~/pages/dashboard'))
+const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ '~/pages/guide'))
+const PagePage = lazy(() => import(/* webpackChunkName: "permission-page'"*/ '~/pages/permission/page'))
+const ButtonPage = lazy(() => import(/* webpackChunkName: "permission-button'"*/ '~/pages/permission/button'))
+const DataPage = lazy(() => import(/* webpackChunkName: "permission-data'"*/ '~/pages/permission/data'))
+const FormPage = lazy(() => import(/* webpackChunkName: "application-form'"*/ '~/pages/application/form'))
+const TablePage = lazy(() => import(/* webpackChunkName: "application-table'"*/ '~/pages/application/table'))
+const DialogPage = lazy(() => import(/* webpackChunkName: "application-dialog''"*/ '~/pages/application/dialog'))
+const ComplexPage = lazy(() => import(/* webpackChunkName: "application-complex'"*/ '~/pages/application/complex'))
 
 const MainRoutes: FC = () =>
   renderRoutes([
