@@ -1,138 +1,47 @@
-import React, { FC, useState } from 'react'
-import ProTable, { ProColumns } from '@ant-design/pro-table'
-import { Input, Button } from 'antd'
-import moment from 'moment'
+import React, { FC } from 'react'
+import { Table } from 'antd'
 
-const columns: ProColumns[] = [
+const columns = [
   {
-    title: 'Name',
+    title: '姓名',
     dataIndex: 'name',
-    copyable: true,
-    renderFormItem: () => 'div'
+    width: 150
   },
   {
-    title: 'Age',
-    dataIndex: 'age'
+    title: '年龄',
+    dataIndex: 'age',
+    width: 150
   },
   {
-    title: 'date',
-    dataIndex: 'date',
-    valueType: 'date'
-  },
-  {
-    title: 'option',
-    valueType: 'option',
-    dataIndex: 'id',
-    render: (text, row, index, action) => [
-      <a
-        key={index}
-        href="###"
-        onClick={() => {
-          window.alert('确认删除？')
-          action.reload()
-        }}
-      >
-        delete
-      </a>,
-      <a
-        key={index}
-        href="###"
-        onClick={() => {
-          window.alert('确认刷新？')
-          action.reload()
-        }}
-      >
-        reload
-      </a>
-    ]
+    title: '地址',
+    dataIndex: 'address'
   }
 ]
 
-const data: {
-  key: string | number
+type Row = {
+  key: number
   name: string
-  age: string | number
+  age: number
   address: string
-  money: number
-  date: number
-}[] = []
-for (let i = 0; i < 46; i += 1) {
+}
+
+const data: Row[] = []
+for (let i = 0; i < 100; i++) {
   data.push({
     key: i,
     name: `Edward King ${i}`,
-    age: 10 + i,
-    money: parseFloat((10000.26 * (i + 1)).toFixed(2)),
-    date: moment('2019-11-16 12:50:26').valueOf() + i * 1000 * 60 * 2,
+    age: 32,
     address: `London, Park Lane no. ${i}`
   })
 }
 
-const request = (): Promise<{
-  data: {
-    key: string | number
-    name: string
-    age: string | number
-    address: string
-  }[]
-  success: true
-}> =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        data,
-        success: true
-      })
-    }, 1000)
-  })
-
 const TablePage: FC = () => {
-  const [keyword, setKeyword] = useState<string>('')
   return (
-    <ProTable
-      search={{
-        collapseRender: () => [<div key="1">1</div>]
-      }}
-      size="small"
-      columns={columns}
-      url={request}
-      rowKey="key"
-      params={{ keyword }}
-      toolBarRender={action => [
-        // <Input.Search
-        //   style={{
-        //     width: 200
-        //   }}
-        //   onSearch={value => setKeyword(value)}
-        // />,
-        <Button
-          key="1"
-          onClick={() => {
-            action.reload()
-          }}
-          type="primary"
-          style={{
-            marginRight: 8
-          }}
-        >
-          刷新
-        </Button>,
-        <Button
-          key="2"
-          onClick={() => {
-            action.resetPageIndex()
-          }}
-          type="default"
-          style={{
-            marginRight: 8
-          }}
-        >
-          回到第一页
-        </Button>
-      ]}
-      pagination={{
-        defaultCurrent: 0
-      }}
-    />
+    <Table columns={columns} dataSource={data} pagination={{ pageSize: 50 }} scroll={{ y: 400 }}>
+      <Table.Column key="name" width={150} title="姓名" dataIndex="name" />
+      <Table.Column key="age" width={150} title="年龄" dataIndex="age" />
+      <Table.Column key="address" title="地址" dataIndex="address" />
+    </Table>
   )
 }
 

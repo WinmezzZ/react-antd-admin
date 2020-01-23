@@ -12,7 +12,6 @@ import MainRoutes from '~/routes'
 import { getGlobalState } from '~/uitls/getGloabal'
 import TagsView from './tagView'
 import SuspendFallbackLoading from './suspendFallbackLoading'
-import { Redirect } from 'react-router-dom'
 
 const { Sider, Content } = Layout
 const WIDTH = 992
