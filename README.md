@@ -1,5 +1,5 @@
-# Updating step by step...（逐步更新中...）
+Updating step by step...
 
-## :warning: important
+## :Warning: important
 
-- Temporarily not suitable for build envioment, just for learning.
+- Temporarily not suitable for production envioment, only learning.
