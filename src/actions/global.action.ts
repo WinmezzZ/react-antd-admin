@@ -14,6 +14,9 @@ export interface GlobalState {
 
   /** menu list for init tagsView */
   menuList: MenuChild[]
+
+  /** login status */
+  logged: boolean
 }
 
 const SETGLOBALITEM = 'SETGLOBALITEM'

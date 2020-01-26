@@ -4,7 +4,8 @@ import { getGlobalState } from '~/uitls/getGloabal'
 const globalState: GlobalState = {
   ...getGlobalState(),
   noticeCount: 0,
-  menuList: []
+  menuList: [],
+  logged: false
 }
 
 export const globalReducer = (state = globalState, actions: GlobalActions): GlobalState => {

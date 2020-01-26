@@ -1,5 +1,6 @@
 import React, { FC, LazyExoticComponent } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import PrivateRoute from './pravateRoute'
 
 export type RouteConfig = {
   /**
@@ -25,6 +26,7 @@ export type RouteConfig = {
     component: RouteConfig['component']
     exact: RouteConfig['exact']
     strict: RouteConfig['strict']
+    meta: RouteConfig['meta']
   }[]
 }
 
@@ -33,8 +35,9 @@ export default function renderRoutes(routeTree: RouteConfig[]) {
     <Switch>
       {routeTree.map((route, i) => {
         const { path, component: Component, exact, meta } = route
+        const WitchRoute = meta.auth ? PrivateRoute : Route
         return (
-          <Route
+          <WitchRoute
             path={path}
             exact={exact}
             key={i}

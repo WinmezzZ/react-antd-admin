@@ -62,3 +62,5 @@ export const request = <T = any>(method: Method, url: string, data?: any): MyRes
     })
   }
 }
+
+export const signal = axios.CancelToken.source()

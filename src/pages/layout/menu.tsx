@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setGlobalItem } from '~/actions/global.action'
 import { AppState } from '~/stores'
 import { addTag } from '~/actions/tagsView.action'
+import { signal } from '../../api/request'
 
 const { SubMenu, Item } = Menu
 
@@ -78,6 +79,9 @@ const MenuComponent: FC = () => {
 
   useEffect(() => {
     fetchMenuList()
+    return () => {
+      signal.cancel()
+    }
   }, [fetchMenuList])
 
   return (

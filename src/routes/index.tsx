@@ -38,7 +38,8 @@ const MainRoutes: FC = () =>
       component: PagePage,
       meta: {
         title: '权限-页面权限',
-        parent: '/permission'
+        parent: '/permission',
+        auth: true
       }
     },
     {

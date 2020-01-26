@@ -29,14 +29,15 @@ const TagsView: FC = () => {
   useEffect(() => {
     // Initializes the tag generated for the current page(Dashboard will be filtered in reducer)
     if (menuList.length) {
-      const menu = menuList.find(m => m.path === history.location.pathname) || menuList[0]
-      dispatch(
-        addTag({
-          path: menu.path,
-          label: menu.label,
-          id: menu.key
-        })
-      )
+      const menu = menuList.find(m => m.path === history.location.pathname)
+      menu &&
+        dispatch(
+          addTag({
+            path: menu.path,
+            label: menu.label,
+            id: menu.key
+          })
+        )
     }
   }, [dispatch, history.location.pathname, menuList])
 
