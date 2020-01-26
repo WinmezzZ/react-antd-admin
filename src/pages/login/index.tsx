@@ -3,18 +3,13 @@ import { Button, Checkbox, Form, Input } from 'antd'
 import './index.less'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setGlobalItem } from '~/actions/global.action'
+import { loginAsync } from '~/actions/user.action'
+import { LoginParams } from '~/interface/user/login'
 
-interface FormState {
-  username: string
-  password: string
-  checkd: boolean
-}
-
-const initialValues: FormState = {
+const initialValues: LoginParams = {
   username: 'guest',
-  password: 'guest',
-  checkd: true
+  password: 'guest'
+  // remember: true
 }
 
 const LoginForm: FC = () => {
@@ -22,15 +17,12 @@ const LoginForm: FC = () => {
   const location = useLocation()
   const dispatch = useDispatch()
 
-  const onFinished = () => {
-    dispatch(
-      setGlobalItem({
-        logged: true
-      })
-    )
-    if (!location.pathname.includes('/login')) return
-    const { from } = location.state || { from: { pathname: '/dashboard' } }
-    history.push(from)
+  const onFinished = async (form: any) => {
+    const res = Boolean(dispatch(await loginAsync(form)))
+    if (res) {
+      const { from } = location.state || { from: { pathname: '/dashboard' } }
+      history.push(from)
+    }
   }
 
   useEffect(() => {
@@ -49,9 +41,8 @@ const LoginForm: FC = () => {
         </Form.Item>
         <Form.Item name="remember" valuePropName="checked">
           <Checkbox>记住用户</Checkbox>
-          <a className="login-form-forgot" href="###">
-            忘记密码
-          </a>
+        </Form.Item>
+        <Form.Item>
           <Button htmlType="submit" className="login-page-form_button">
             登录
           </Button>

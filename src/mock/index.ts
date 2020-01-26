@@ -18,5 +18,6 @@ function intercepter<T>(data: T): Response<T> {
 }
 
 Mock.mock('/user/login', 'post', intercepter(mockLoginResult))
+// Mock.mock('/user/logout', 'post', intercepter(null))
 Mock.mock('/user/menu', 'get', intercepter(mockMenuList))
 Mock.mock('/user/notice', 'get', intercepter(mockNoticeList))

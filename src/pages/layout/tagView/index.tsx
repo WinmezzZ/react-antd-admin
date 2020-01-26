@@ -10,7 +10,7 @@ import usePrevious from '~/hooks/usePrevious'
 const { TabPane } = Tabs
 
 const TagsView: FC = () => {
-  const { menuList } = useSelector((state: AppState) => state.globalReducer)
+  const { menuList } = useSelector((state: AppState) => state.userReducer)
   const { tags, activeTagId } = useSelector((state: AppState) => state.tagsViewlReducer)
   const dispatch = useDispatch()
   const history = useHistory()

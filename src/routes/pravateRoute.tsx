@@ -1,15 +1,12 @@
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import { AppState } from '~/stores'
-import {
-  Route,
-  // Redirect,
-  RouteProps,
-  Redirect
-} from 'react-router-dom'
+import { Route, RouteProps, useHistory } from 'react-router-dom'
+import { Result, Button } from 'antd'
 
 const PrivateRoute: FC<RouteProps> = ({ render, ...rest }) => {
-  const { logged } = useSelector((state: AppState) => state.globalReducer)
+  const { logged } = useSelector((state: AppState) => state.userReducer)
+  const history = useHistory()
 
   return (
     <Route
@@ -18,11 +15,15 @@ const PrivateRoute: FC<RouteProps> = ({ render, ...rest }) => {
         logged ? (
           render!({ location, ...props })
         ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: location }
-            }}
+          <Result
+            status="403"
+            title="403"
+            subTitle="对不起，游客无法查看此页面"
+            extra={
+              <Button type="primary" onClick={() => history.replace('/login', { from: location })}>
+                去登录
+              </Button>
+            }
           />
         )
       }

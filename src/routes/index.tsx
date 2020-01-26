@@ -1,8 +1,9 @@
 import { FC, lazy } from 'react'
 import renderRoutes from './config'
 
+import Dashboard from '~/pages/dashboard'
 const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/404'))
-const Dashboard = lazy(() => import(/* webpackChunkName: "dashboard'"*/ '~/pages/dashboard'))
+// const Dashboard = lazy(() => import(/* webpackChunkName: "dashboard'"*/ '~/pages/dashboard'))
 const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ '~/pages/guide'))
 const PagePage = lazy(() => import(/* webpackChunkName: "permission-page'"*/ '~/pages/permission/page'))
 const ButtonPage = lazy(() => import(/* webpackChunkName: "permission-button'"*/ '~/pages/permission/button'))
@@ -19,8 +20,7 @@ const MainRoutes: FC = () =>
       exact: true,
       component: Dashboard,
       meta: {
-        title: '控制台',
-        parent: '/'
+        title: '控制台'
       }
     },
     {
@@ -28,8 +28,7 @@ const MainRoutes: FC = () =>
       exact: true,
       component: Guide,
       meta: {
-        title: '权限-页面权限',
-        parent: '/'
+        title: '权限-页面权限'
       }
     },
     {
@@ -38,7 +37,6 @@ const MainRoutes: FC = () =>
       component: PagePage,
       meta: {
         title: '权限-页面权限',
-        parent: '/permission',
         auth: true
       }
     },
@@ -47,8 +45,7 @@ const MainRoutes: FC = () =>
       exact: true,
       component: ButtonPage,
       meta: {
-        title: '权限-按钮权限',
-        parent: '/permission'
+        title: '权限-按钮权限'
       }
     },
     {
@@ -56,8 +53,7 @@ const MainRoutes: FC = () =>
       exact: true,
       component: DataPage,
       meta: {
-        title: '权限-数据权限',
-        parent: '/permission'
+        title: '权限-数据权限'
       }
     },
     {
@@ -65,8 +61,7 @@ const MainRoutes: FC = () =>
       exact: true,
       component: FormPage,
       meta: {
-        title: '应用-表单',
-        parent: '/application'
+        title: '应用-表单'
       }
     },
     {
@@ -74,8 +69,7 @@ const MainRoutes: FC = () =>
       exact: true,
       component: TablePage,
       meta: {
-        title: '应用-表格',
-        parent: '/application'
+        title: '应用-表格'
       }
     },
     {
@@ -83,8 +77,7 @@ const MainRoutes: FC = () =>
       exact: true,
       component: DialogPage,
       meta: {
-        title: '应用-表单',
-        parent: '/application'
+        title: '应用-表单'
       }
     },
     {
@@ -92,8 +85,7 @@ const MainRoutes: FC = () =>
       exact: true,
       component: ComplexPage,
       meta: {
-        title: '应用-综合',
-        parent: '/application'
+        title: '应用-综合'
       }
     },
     {

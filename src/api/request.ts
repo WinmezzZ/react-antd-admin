@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { message as $message } from 'antd'
 
 axios.defaults.timeout = 6000
@@ -21,11 +21,11 @@ axios.interceptors.response.use(
   },
   error => {
     let errorMessage = '系统异常'
-    if (error.message.includes('Network Error')) {
+    if (error?.message?.includes('Network Error')) {
       errorMessage = '网络错误，请检查您的网络'
     }
     console.dir(error)
-    $message.error(errorMessage)
+    error.message && $message.error(errorMessage)
     return {
       status: false,
       message: errorMessage,
@@ -50,17 +50,21 @@ export type MyResponse<T = any> = Promise<Response<T>>
  * @param url - request url
  * @param data - request data or params
  */
-export const request = <T = any>(method: Method, url: string, data?: any): MyResponse<T> => {
+export const request = <T = any>(
+  method: Method,
+  url: string,
+  data?: any,
+  config?: AxiosRequestConfig
+): MyResponse<T> => {
   // const prefix = '/api'
   const prefix = ''
   url = prefix + url
   if (method === 'post') {
-    return axios.post(url, data)
+    return axios.post(url, data, config)
   } else {
     return axios.get(url, {
-      params: data
+      params: data,
+      ...config
     })
   }
 }
-
-export const signal = axios.CancelToken.source()

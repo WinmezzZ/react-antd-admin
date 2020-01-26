@@ -9,3 +9,9 @@ export interface LoginResult {
   /** auth token */
   token: string
 }
+
+export interface LogoutParams {
+  token: string
+}
+
+export interface LogoutResult {}

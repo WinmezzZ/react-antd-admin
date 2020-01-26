@@ -10,24 +10,18 @@ export type RouteConfig = {
   /**
    * Required React.FunctionalComponent and React.Lazy component, see the detail in src/App.vue.
    */
-  component: LazyExoticComponent<FC<{ [x: string]: any; meta: any }>>
+  component: LazyExoticComponent<FC> | React.FC
 
   exact?: boolean
 
   strict?: boolean
 
-  meta?: any
-
-  /**
-   * If it has child routes
-   */
-  routes?: {
-    path: RouteConfig['path']
-    component: RouteConfig['component']
-    exact: RouteConfig['exact']
-    strict: RouteConfig['strict']
-    meta: RouteConfig['meta']
-  }[]
+  meta: {
+    /** document title */
+    title: string
+    /** authorization？ */
+    auth?: boolean
+  }
 }
 
 export default function renderRoutes(routeTree: RouteConfig[]) {
@@ -43,7 +37,7 @@ export default function renderRoutes(routeTree: RouteConfig[]) {
             key={i}
             render={props => {
               meta.title && (document.title = meta.title)
-              return <Component {...props} meta={meta} key={i} />
+              return <Component {...props} key={i} />
             }}
           />
         )

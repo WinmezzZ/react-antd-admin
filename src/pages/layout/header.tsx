@@ -10,6 +10,8 @@ import {
 import { Layout, Dropdown, Menu } from 'antd'
 import { useHistory } from 'react-router-dom'
 import HeaderNoticeComponent from './notice'
+import { useDispatch } from 'react-redux'
+import { logoutAsync } from '~/actions/user.action'
 
 const { Header } = Layout
 
@@ -22,15 +24,18 @@ type Action = 'userInfo' | 'userSetting' | 'logout'
 
 const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
   const router = useHistory()
+  const dispatch = useDispatch()
 
-  const onActionClick = (action: Action) => {
+  const onActionClick = async (action: Action) => {
     switch (action) {
       case 'userInfo':
         return
       case 'userSetting':
         return
       case 'logout':
-        router.push('/login')
+        const res = Boolean(await dispatch(logoutAsync()))
+        res && router.push('/login')
+        return
     }
   }
   const menu = (

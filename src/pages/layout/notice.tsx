@@ -17,7 +17,7 @@ const HeaderNoticeComponent: FC = () => {
   const [loading, setLoading] = useState(false)
   const { noticeCount } = useSelector((state: AppState) => state.globalReducer)
 
-  const noticeListFilter = <T extends Notice['type']>(type: T): Notice<T>[] => {
+  const noticeListFilter = <T extends Notice['type']>(type: T) => {
     return noticeList.filter(notice => notice.type === type) as Notice<T>[]
   }
 

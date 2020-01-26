@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setGlobalItem } from '~/actions/global.action'
 import { AppState } from '~/stores'
 import { addTag } from '~/actions/tagsView.action'
-import { signal } from '../../api/request'
+import { setUserItem } from '~/actions/user.action'
 
 const { SubMenu, Item } = Menu
 
@@ -41,7 +41,7 @@ const MenuComponent: FC = () => {
     if (status) {
       setMenuList(result)
       dispatch(
-        setGlobalItem({
+        setUserItem({
           menuList: initMenuListAll(result)
         })
       )
@@ -79,9 +79,6 @@ const MenuComponent: FC = () => {
 
   useEffect(() => {
     fetchMenuList()
-    return () => {
-      signal.cancel()
-    }
   }, [fetchMenuList])
 
   return (
