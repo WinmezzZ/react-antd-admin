@@ -1,5 +1,5 @@
 Updating step by step...
 
-## :Warning: important
+## :warning: Important
 
 - Temporarily not suitable for production envioment, only learning.
