@@ -54,7 +54,7 @@ export const logoutAsync = (): ThunkAction<Promise<boolean>, AppState, null, Set
   return async dispatch => {
     const { status } = await apiLogout({ token: localStorage.getItem('t')! })
     if (status) {
-      localStorage.removeItem('t')
+      localStorage.clear()
       dispatch(
         setUserItem({
           logged: false

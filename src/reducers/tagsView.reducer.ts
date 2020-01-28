@@ -3,7 +3,7 @@ import { TagsActions } from '~/actions/tagsView.action'
 
 const defaultTagList: TagItem[] = [
   {
-    id: '0',
+    id: 'menu.dashboard',
     label: '控制台',
     path: '/dashboard',
     closable: false

@@ -18,10 +18,10 @@ const PrivateRoute: FC<RouteProps> = ({ render, ...rest }) => {
           <Result
             status="403"
             title="403"
-            subTitle="对不起，游客无法查看此页面"
+            subTitle="Sorry, you must log in to view this page."
             extra={
               <Button type="primary" onClick={() => history.replace('/login', { from: location })}>
-                去登录
+                go to login
               </Button>
             }
           />

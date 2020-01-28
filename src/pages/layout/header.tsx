@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { LogoutOutlined, SettingOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
+import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import { Layout, Dropdown, Menu } from 'antd'
 import { useHistory } from 'react-router-dom'
 import HeaderNoticeComponent from './notice'
@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logoutAsync } from '~/actions/user.action'
 import Avator from '~/assets/header/avator.jpeg'
 import { AppState } from '~/stores'
+import { ReactComponent as LanguageSvg } from '~/assets/header/language.svg'
+import { setGlobalItem } from '~/actions/global.action'
+import { LocaleFormatter } from '~/locales'
 
 const { Header } = Layout
 
@@ -19,7 +22,8 @@ type Action = 'userInfo' | 'userSetting' | 'logout'
 
 const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
   const { username } = useSelector((state: AppState) => state.userReducer)
-  const router = useHistory()
+  const { locale } = useSelector((state: AppState) => state.globalReducer)
+  const history = useHistory()
   const dispatch = useDispatch()
 
   const onActionClick = async (action: Action) => {
@@ -30,7 +34,7 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
         return
       case 'logout':
         const res = Boolean(await dispatch(logoutAsync()))
-        res && router.push('/login')
+        res && history.push('/login')
         return
     }
   }
@@ -39,20 +43,19 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
       <Menu.Item key="1">
         <span>
           <UserOutlined />
-          <span>个人中心</span>
-        </span>
-      </Menu.Item>
-      <Menu.Item key="2">
-        <span>
-          <SettingOutlined />
-          <span>个人设置</span>
+          <span onClick={() => history.push('/dashboard')}>
+            <LocaleFormatter id="header.avator.account" />
+          </span>
         </span>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="3">
+      <Menu.Item key="2">
         <span>
           <LogoutOutlined />
-          <span onClick={() => onActionClick('logout')}>退出登录</span>
+          <LocaleFormatter id="header.avator.account" />
+          <span onClick={() => onActionClick('logout')}>
+            <LocaleFormatter id="header.avator.logout" />
+          </span>
         </span>
       </Menu.Item>
     </Menu>
@@ -62,6 +65,28 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
       <span onClick={toggle}>{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</span>
       <div className="actions">
         <HeaderNoticeComponent />
+        <Dropdown
+          overlay={
+            <Menu>
+              <Menu.Item
+                disabled={locale.split('-')[0] === 'zh'}
+                key="1"
+                onClick={() => dispatch(setGlobalItem({ locale: 'zh-CN' }))}
+              >
+                简体中文
+              </Menu.Item>
+              <Menu.Item
+                disabled={locale.split('-')[0] === 'en'}
+                key="2"
+                onClick={() => dispatch(setGlobalItem({ locale: 'en-US' }))}
+              >
+                English
+              </Menu.Item>
+            </Menu>
+          }
+        >
+          <LanguageSvg />
+        </Dropdown>
         <Dropdown overlay={menu}>
           <span className="user-action">
             <img src={Avator} className="user-avator" />

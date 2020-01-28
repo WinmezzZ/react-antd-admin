@@ -12,6 +12,7 @@ const FormPage = lazy(() => import(/* webpackChunkName: "application-form'"*/ '~
 const TablePage = lazy(() => import(/* webpackChunkName: "application-table'"*/ '~/pages/application/table'))
 const DialogPage = lazy(() => import(/* webpackChunkName: "application-dialog''"*/ '~/pages/application/dialog'))
 const ComplexPage = lazy(() => import(/* webpackChunkName: "application-complex'"*/ '~/pages/application/complex'))
+const AccountPage = lazy(() => import(/* webpackChunkName: "application-account'"*/ '~/pages/account'))
 
 const MainRoutes: FC = () =>
   renderRoutes([
@@ -86,6 +87,14 @@ const MainRoutes: FC = () =>
       component: ComplexPage,
       meta: {
         title: '应用-综合'
+      }
+    },
+    {
+      path: '/account',
+      exact: true,
+      component: AccountPage,
+      meta: {
+        title: '个人设置'
       }
     },
     {

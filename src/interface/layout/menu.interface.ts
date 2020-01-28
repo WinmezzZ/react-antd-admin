@@ -14,6 +14,7 @@ interface MenuItem {
   path: string
   /** 子菜单 */
   children?: MenuItem[]
+  id: string
 }
 
 export type MenuChild = Omit<MenuItem, 'children'>

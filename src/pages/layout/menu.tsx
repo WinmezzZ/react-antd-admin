@@ -10,6 +10,7 @@ import { setGlobalItem } from '~/actions/global.action'
 import { AppState } from '~/stores'
 import { addTag } from '~/actions/tagsView.action'
 import { setUserItem } from '~/actions/user.action'
+import { LocaleFormatter } from '~/locales'
 
 const { SubMenu, Item } = Menu
 
@@ -52,19 +53,21 @@ const MenuComponent: FC = () => {
     return (
       <span style={{ display: 'flex', alignItems: 'center' }}>
         <CustomIcon type={menu.icon!} />
-        <span>{menu.label}</span>
+        <span>
+          <LocaleFormatter id={menu.id as any} />
+        </span>
       </span>
     )
   }
 
   const onMenuClick = (menu: MenuList[0]) => {
     if (menu.path === pathname) return
-    const { key, label, path } = menu
+    const { key, id, label, path } = menu
     setSelectedKeys([key])
     dispatch(setGlobalItem({ collapsed: device !== 'DESKTOP' }))
     dispatch(
       addTag({
-        id: key,
+        id,
         label,
         path
       })
@@ -95,7 +98,7 @@ const MenuComponent: FC = () => {
           <SubMenu key={menu.path} title={getTitie(menu)}>
             {menu.children.map(child => (
               <Item key={child.path} onClick={() => onMenuClick(child)}>
-                {child.label}
+                <LocaleFormatter id={child.id as any} />
               </Item>
             ))}
           </SubMenu>

@@ -6,6 +6,7 @@ import { setActiveTag, removeTag, addTag } from '~/actions/tagsView.action'
 import { useHistory } from 'react-router-dom'
 import TagsViewAction from './tagViewAction'
 import usePrevious from '~/hooks/usePrevious'
+import { LocaleFormatter } from '~/locales'
 
 const { TabPane } = Tabs
 
@@ -35,7 +36,7 @@ const TagsView: FC = () => {
           addTag({
             path: menu.path,
             label: menu.label,
-            id: menu.key
+            id: menu.id
           })
         )
     }
@@ -62,7 +63,7 @@ const TagsView: FC = () => {
         tabBarExtraContent={<TagsViewAction />}
       >
         {tags.map(tag => (
-          <TabPane tab={tag.label} key={tag.id} closable={tag.closable} />
+          <TabPane tab={<LocaleFormatter id={tag.id as any} />} key={tag.id} closable={tag.closable} />
         ))}
       </Tabs>
     </div>
