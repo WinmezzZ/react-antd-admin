@@ -63,7 +63,7 @@ export const tagsViewlReducer = (state = tagsViewState, actions: TagsActions): T
     case 'REMOVEALLTAG':
       return {
         ...state,
-        tags: defaultTagList
+        activeTagId: state.tags[0].id
       }
 
     case 'REMOVEOTHERTAG':

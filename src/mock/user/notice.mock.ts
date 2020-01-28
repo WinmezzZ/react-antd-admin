@@ -1,4 +1,5 @@
 import { Notice } from '~/interface/layout/notice.interface'
+import { intercepter, mock } from '../config'
 
 const mockNoticeList: Notice<'all'>[] = [
   {
@@ -98,4 +99,4 @@ const mockNoticeList: Notice<'all'>[] = [
   }
 ]
 
-export default mockNoticeList
+mock.mock('/user/notice', 'get', intercepter(mockNoticeList))

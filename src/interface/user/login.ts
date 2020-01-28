@@ -1,3 +1,6 @@
+/** user's role */
+export type Role = 'guest' | 'admin'
+
 export interface LoginParams {
   /** 用户名 */
   username: string
@@ -8,6 +11,8 @@ export interface LoginParams {
 export interface LoginResult {
   /** auth token */
   token: string
+  username: string
+  role: Role
 }
 
 export interface LogoutParams {

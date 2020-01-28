@@ -1,17 +1,12 @@
 import React, { FC } from 'react'
-import {
-  DownOutlined,
-  LogoutOutlined,
-  SettingOutlined,
-  UserOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined
-} from '@ant-design/icons'
+import { LogoutOutlined, SettingOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import { Layout, Dropdown, Menu } from 'antd'
 import { useHistory } from 'react-router-dom'
 import HeaderNoticeComponent from './notice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { logoutAsync } from '~/actions/user.action'
+import Avator from '~/assets/header/avator.jpeg'
+import { AppState } from '~/stores'
 
 const { Header } = Layout
 
@@ -23,6 +18,7 @@ interface Props {
 type Action = 'userInfo' | 'userSetting' | 'logout'
 
 const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
+  const { username } = useSelector((state: AppState) => state.userReducer)
   const router = useHistory()
   const dispatch = useDispatch()
 
@@ -68,7 +64,8 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
         <HeaderNoticeComponent />
         <Dropdown overlay={menu}>
           <span className="user-action">
-            Admin <DownOutlined />
+            <img src={Avator} className="user-avator" />
+            {username}
           </span>
         </Dropdown>
       </div>

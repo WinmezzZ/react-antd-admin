@@ -1,4 +1,5 @@
-import { MenuList } from '../interface/layout/menu.interface'
+import { MenuList } from '~/interface/layout/menu.interface'
+import { mock, intercepter } from '../config'
 
 const mockMenuList: MenuList = [
   {
@@ -77,4 +78,4 @@ const mockMenuList: MenuList = [
   }
 ]
 
-export default mockMenuList
+mock.mock('/user/menu', 'get', intercepter(mockMenuList))

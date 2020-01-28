@@ -1,16 +1,20 @@
 import { Action } from 'redux'
 import { MenuChild } from '~/interface/layout/menu.interface'
-import { LoginParams } from '~/interface/user/login'
+import { LoginParams, Role } from '~/interface/user/login'
 import { ThunkAction } from 'redux-thunk'
 import { apiLogin, apiLogout } from '~/api/user.api'
 import { AppState } from '~/stores'
 
 export interface UserState {
+  username: string
+
   /** menu list for init tagsView */
   menuList: MenuChild[]
 
   /** login status */
   logged: boolean
+
+  role: Role
 }
 
 const SETUSERITEM = 'SETUSERITEM'
@@ -33,9 +37,11 @@ export const loginAsync = (payload: LoginParams): ThunkAction<Promise<boolean>, 
     const { result, status } = await apiLogin(payload)
     if (status) {
       localStorage.setItem('t', result.token)
+      localStorage.setItem('username', result.username)
       dispatch(
         setUserItem({
-          logged: true
+          logged: true,
+          username: result.username
         })
       )
       return true
