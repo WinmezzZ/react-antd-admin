@@ -19,6 +19,7 @@
     "react-scripts": "3.3.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "source-map-explorer": "^2.2.2",
     "styled-components": "^4.4.1",
     "typescript": "~3.7.2"
   },
@@ -26,7 +27,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "browserslist": {
     "production": [
@@ -61,6 +63,7 @@
     "less-loader": "^5.0.0",
     "prettier": "^1.19.1",
     "react-app-rewired": "^2.1.5",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "webpack-bundle-analyzer": "^3.6.0"
   }
 }

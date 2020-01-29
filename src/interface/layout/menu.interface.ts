@@ -1,8 +1,11 @@
 interface MenuItem {
-  /** 菜单中文名 */
+  /** menu item name */
   name: string
-  /** 菜单英文名 */
-  label: string
+  /** menu labels */
+  label: {
+    zh_CN: string
+    en_US: string
+  }
   /** 图标名称
    *
    * 子子菜单不需要图标
@@ -14,7 +17,6 @@ interface MenuItem {
   path: string
   /** 子菜单 */
   children?: MenuItem[]
-  id: string
 }
 
 export type MenuChild = Omit<MenuItem, 'children'>

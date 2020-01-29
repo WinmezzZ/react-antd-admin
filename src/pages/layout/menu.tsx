@@ -10,7 +10,6 @@ import { setGlobalItem } from '~/actions/global.action'
 import { AppState } from '~/stores'
 import { addTag } from '~/actions/tagsView.action'
 import { setUserItem } from '~/actions/user.action'
-import { LocaleFormatter } from '~/locales'
 
 const { SubMenu, Item } = Menu
 
@@ -18,7 +17,7 @@ const MenuComponent: FC = () => {
   const [menuList, setMenuList] = useState<MenuList>([])
   const [openKeys, setOpenkeys] = useState<string[]>([])
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
-  const { collapsed, device } = useSelector((state: AppState) => state.globalReducer)
+  const { collapsed, device, locale } = useSelector((state: AppState) => state.globalReducer)
   const dispatch = useDispatch()
   const history = useHistory()
   const { pathname } = useLocation()
@@ -53,21 +52,19 @@ const MenuComponent: FC = () => {
     return (
       <span style={{ display: 'flex', alignItems: 'center' }}>
         <CustomIcon type={menu.icon!} />
-        <span>
-          <LocaleFormatter id={menu.id as any} />
-        </span>
+        <span>{menu.label[locale]}</span>
       </span>
     )
   }
 
   const onMenuClick = (menu: MenuList[0]) => {
     if (menu.path === pathname) return
-    const { key, id, label, path } = menu
+    const { key, label, path } = menu
     setSelectedKeys([key])
     dispatch(setGlobalItem({ collapsed: device !== 'DESKTOP' }))
     dispatch(
       addTag({
-        id,
+        id: key,
         label,
         path
       })
@@ -98,7 +95,7 @@ const MenuComponent: FC = () => {
           <SubMenu key={menu.path} title={getTitie(menu)}>
             {menu.children.map(child => (
               <Item key={child.path} onClick={() => onMenuClick(child)}>
-                <LocaleFormatter id={child.id as any} />
+                {child.label[locale]}
               </Item>
             ))}
           </SubMenu>

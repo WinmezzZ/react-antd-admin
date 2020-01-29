@@ -1,18 +1,9 @@
-import { TagItem, TagState } from '~/interface/layout/tagsView.interface'
+import { TagState } from '~/interface/layout/tagsView.interface'
 import { TagsActions } from '~/actions/tagsView.action'
 
-const defaultTagList: TagItem[] = [
-  {
-    id: 'menu.dashboard',
-    label: '控制台',
-    path: '/dashboard',
-    closable: false
-  }
-]
-
 const tagsViewState: TagState = {
-  tags: defaultTagList,
-  activeTagId: defaultTagList[0]['id']
+  tags: [],
+  activeTagId: ''
 }
 
 export const tagsViewlReducer = (state = tagsViewState, actions: TagsActions): TagState => {
@@ -70,7 +61,7 @@ export const tagsViewlReducer = (state = tagsViewState, actions: TagsActions): T
       const activeTag = state.tags.find(tag => tag.id === state.activeTagId) || state.tags[0]
       return {
         ...state,
-        tags: [...defaultTagList, activeTag]
+        tags: [state.tags[0], activeTag]
       }
 
     default:

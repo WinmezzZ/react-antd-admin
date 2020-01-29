@@ -1,7 +1,10 @@
 export type TagItem = {
   id: string
 
-  label: string
+  label: {
+    zh_CN: string
+    en_US: string
+  }
 
   /** tag's route path */
   path: string

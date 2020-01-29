@@ -12,7 +12,7 @@ export interface GlobalState {
   noticeCount: number
 
   /** user's language */
-  locale: string
+  locale: 'zh_CN' | 'en_US'
 }
 
 const SETGLOBALITEM = 'SETGLOBALITEM'

@@ -8,6 +8,8 @@ import { logoutAsync } from '~/actions/user.action'
 import Avator from '~/assets/header/avator.jpeg'
 import { AppState } from '~/stores'
 import { ReactComponent as LanguageSvg } from '~/assets/header/language.svg'
+import { ReactComponent as ZhCnSvg } from '~/assets/header/zh_CN.svg'
+import { ReactComponent as EnUsSvg } from '~/assets/header/en_US.svg'
 import { setGlobalItem } from '~/actions/global.action'
 import { LocaleFormatter } from '~/locales'
 
@@ -38,6 +40,11 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
         return
     }
   }
+
+  const selectLocale = ({ key }: { key: any }) => {
+    dispatch(setGlobalItem({ locale: key }))
+    localStorage.setItem('locale', key)
+  }
   const menu = (
     <Menu>
       <Menu.Item key="1">
@@ -52,7 +59,6 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
       <Menu.Item key="2">
         <span>
           <LogoutOutlined />
-          <LocaleFormatter id="header.avator.account" />
           <span onClick={() => onActionClick('logout')}>
             <LocaleFormatter id="header.avator.logout" />
           </span>
@@ -66,21 +72,14 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
       <div className="actions">
         <HeaderNoticeComponent />
         <Dropdown
+          trigger={['click']}
           overlay={
-            <Menu>
-              <Menu.Item
-                disabled={locale.split('-')[0] === 'zh'}
-                key="1"
-                onClick={() => dispatch(setGlobalItem({ locale: 'zh-CN' }))}
-              >
-                简体中文
+            <Menu onClick={selectLocale}>
+              <Menu.Item style={{textAlign: 'left'}} disabled={locale === 'zh_CN'} key="zh_CN">
+                <ZhCnSvg /> 简体中文
               </Menu.Item>
-              <Menu.Item
-                disabled={locale.split('-')[0] === 'en'}
-                key="2"
-                onClick={() => dispatch(setGlobalItem({ locale: 'en-US' }))}
-              >
-                English
+              <Menu.Item style={{textAlign: 'left'}} disabled={locale === 'en_US'} key="en_US">
+                <EnUsSvg /> English
               </Menu.Item>
             </Menu>
           }

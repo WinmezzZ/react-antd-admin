@@ -1,6 +1,7 @@
-const { override, addLessLoader, addWebpackAlias, fixBabelImports } = require('customize-cra')
+const { override, addLessLoader, addWebpackAlias, fixBabelImports, addWebpackPlugin } = require('customize-cra')
 const path = require('path')
 const darkThemeVars = require('antd/dist/dark-theme')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const resolve = dir => path.join(__dirname, '.', dir)
 
@@ -23,6 +24,7 @@ module.exports = override(
   addWebpackAlias({
     '~': resolve('src')
   }),
+  // addWebpackPlugin(new BundleAnalyzerPlugin()),
   fixBabelImports('import', {
     libraryName: 'antd',
     libraryDirectory: 'es',
