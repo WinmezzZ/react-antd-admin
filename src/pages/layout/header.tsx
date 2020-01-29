@@ -75,10 +75,10 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
           trigger={['click']}
           overlay={
             <Menu onClick={selectLocale}>
-              <Menu.Item style={{textAlign: 'left'}} disabled={locale === 'zh_CN'} key="zh_CN">
+              <Menu.Item style={{ textAlign: 'left' }} disabled={locale === 'zh_CN'} key="zh_CN">
                 <ZhCnSvg /> 简体中文
               </Menu.Item>
-              <Menu.Item style={{textAlign: 'left'}} disabled={locale === 'en_US'} key="en_US">
+              <Menu.Item style={{ textAlign: 'left' }} disabled={locale === 'en_US'} key="en_US">
                 <EnUsSvg /> English
               </Menu.Item>
             </Menu>

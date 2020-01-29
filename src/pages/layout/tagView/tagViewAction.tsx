@@ -29,7 +29,7 @@ const TagsViewAction: FC = () => {
         </Menu>
       }
     >
-      <SettingOutlined style={{ marginRight: 10 }} />
+      <SettingOutlined className="tagsView-extra" />
     </Dropdown>
   )
 }

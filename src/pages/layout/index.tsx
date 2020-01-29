@@ -1,4 +1,4 @@
-import React, { FC, useEffect, Suspense } from 'react'
+import React, { FC, useEffect, Suspense, useCallback, useState } from 'react'
 import { Layout, Drawer } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import './index.less'
@@ -12,11 +12,15 @@ import MainRoutes from '~/routes'
 import { getGlobalState } from '~/uitls/getGloabal'
 import TagsView from './tagView'
 import SuspendFallbackLoading from './suspendFallbackLoading'
+import { getMenuList } from '~/api/layout.api'
+import { MenuList, MenuChild } from '~/interface/layout/menu.interface'
+import { setUserItem } from '~/actions/user.action'
 
 const { Sider, Content } = Layout
 const WIDTH = 992
 
 const LayoutPage: FC = () => {
+  const [menuList, setMenuList] = useState<MenuList>([])
   const { device, collapsed } = useSelector((state: AppState) => state.globalReducer)
   const isMobile = device === 'MOBILE'
   const dispatch = useDispatch()
@@ -28,6 +32,36 @@ const LayoutPage: FC = () => {
       })
     )
   }
+
+  const initMenuListAll = (menu: MenuList) => {
+    const MenuListAll: MenuChild[] = []
+    menu.forEach(m => {
+      if (!m?.children?.length) {
+        MenuListAll.push(m)
+      } else {
+        m?.children.forEach(mu => {
+          MenuListAll.push(mu)
+        })
+      }
+    })
+    return MenuListAll
+  }
+
+  const fetchMenuList = useCallback(async () => {
+    const { status, result } = await getMenuList()
+    if (status) {
+      setMenuList(result)
+      dispatch(
+        setUserItem({
+          menuList: initMenuListAll(result)
+        })
+      )
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    fetchMenuList()
+  }, [fetchMenuList])
 
   useEffect(() => {
     window.onresize = () => {
@@ -51,7 +85,7 @@ const LayoutPage: FC = () => {
             <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }} />
             <img src={AntdSvg} alt="" />
           </div>
-          <MenuComponent />
+          <MenuComponent menuList={menuList} />
         </Sider>
       ) : (
         <Drawer
@@ -62,13 +96,13 @@ const LayoutPage: FC = () => {
           onClose={toggle}
           visible={!collapsed}
         >
-          <MenuComponent />
+          <MenuComponent menuList={menuList} />
         </Drawer>
       )}
       <Layout>
         <HeaderComponent collapsed={collapsed} toggle={toggle} />
-        <TagsView />
         <Content className="layout-page-content">
+          <TagsView />
           <Suspense fallback={<SuspendFallbackLoading />}>
             <MainRoutes />
           </Suspense>

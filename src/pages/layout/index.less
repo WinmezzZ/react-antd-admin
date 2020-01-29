@@ -4,11 +4,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.65);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.45);
     background-color: @dark-color;
     z-index: 9;
   }
   &-sider {
+    box-sizing: border-box;
     .logo {
       height: 64px;
       box-sizing: border-box;
@@ -16,7 +17,7 @@
       justify-content: center;
       align-items: center;
       background-color: @dark-color;
-      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.65);
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.45);
       z-index: 9;
       img {
         width: 30px;
@@ -26,8 +27,11 @@
     border-right: 1px solid #303030;
   }
   &-content {
-    > * {
-      height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    > :nth-child(2) {
+      flex: auto;
       overflow-y: auto;
       padding: 10px;
       box-sizing: border-box;
@@ -65,8 +69,13 @@
     height: 40px;
   }
 }
-.ant-menu.ant-menu-inline.ant-menu-root {
-  padding-top: 15px !important;
+
+.layout-page-sider-menu {
+  margin-top: 15px !important;
+  border-right: none !important;
+}
+.ant-menu-inline-collapsed {
+  width: 79px !important;
 }
 
 .notice-description {
@@ -80,4 +89,12 @@
 .notice-title {
   display: flex;
   justify-content: space-between;
+}
+
+.tagsView-extra {
+  height: 100%;
+  width: 50px;
+  cursor: pointer;
+  display: block;
+  line-height: 40px;
 }
