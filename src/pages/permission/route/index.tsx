@@ -1,5 +1,8 @@
 import React, { FC } from 'react'
+import { LocaleFormatter } from '~/locales'
 
-const RoutePermissionPage: FC = () => <div>看到此页面代表您已登录</div>
+const RoutePermissionPage: FC = () => {
+  return <LocaleFormatter id="gloabal.tips.loginResult" />
+}
 
 export default RoutePermissionPage
