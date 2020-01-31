@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux'
 import { AppState } from '~/stores'
 import { Route, RouteProps, useHistory } from 'react-router-dom'
 import { Result, Button } from 'antd'
+import { useLocale } from '~/locales'
 
 const PrivateRoute: FC<RouteProps> = ({ render, ...rest }) => {
   const { logged } = useSelector((state: AppState) => state.userReducer)
   const history = useHistory()
+  const { formatMessage } = useLocale()
 
   return (
     <Route
@@ -18,10 +20,10 @@ const PrivateRoute: FC<RouteProps> = ({ render, ...rest }) => {
           <Result
             status="403"
             title="403"
-            subTitle="Sorry, you must log in to view this page."
+            subTitle={formatMessage({ id: 'gloabal.tips.unauthorized' })}
             extra={
               <Button type="primary" onClick={() => history.replace('/login', { from: location })}>
-                go to login
+                {formatMessage({ id: 'gloabal.tips.goToLogin' })}
               </Button>
             }
           />

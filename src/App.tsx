@@ -1,11 +1,31 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import LoginPage from './pages/login'
 import LayoutPage from './pages/layout'
 import { IntlProvider } from 'react-intl'
 import { useSelector } from 'react-redux'
 import { AppState } from './stores'
 import { lacaleConfig } from './locales'
+import RenderRoutes, { RouteProps } from './routes/config'
+
+const rootRoutes: RouteProps[] = [
+  {
+    path: '/login',
+    component: LoginPage,
+    exact: true,
+    meta: {
+      titleId: 'title.login'
+    }
+  },
+
+  {
+    path: '/',
+    component: LayoutPage,
+    meta: {
+      titleId: ''
+    }
+  }
+]
 
 const App: React.FC = () => {
   const { locale } = useSelector((state: AppState) => state.globalReducer)
@@ -13,10 +33,7 @@ const App: React.FC = () => {
   return (
     <IntlProvider locale={locale.split('_')[0]} messages={lacaleConfig[locale]}>
       <BrowserRouter>
-        <Switch>
-          <Route path="/login" exact component={LoginPage} />
-          <Route path="/" component={LayoutPage} />
-        </Switch>
+        <RenderRoutes routes={rootRoutes} />
       </BrowserRouter>
     </IntlProvider>
   )

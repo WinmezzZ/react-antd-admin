@@ -26,14 +26,14 @@ export type RouteProps = {
 }
 
 interface Props {
-  routeTree: RouteProps[]
+  routes: RouteProps[]
 }
 
-const RenderRoutes: FC<Props> = ({ routeTree }) => {
+const RenderRoutes: FC<Props> = ({ routes }) => {
   const { formatMessage } = useIntl()
   return (
     <Switch>
-      {routeTree.map((route, i) => {
+      {routes.map((route, i) => {
         const { path, component: Component, exact, meta } = route
         const { titleId, auth } = meta
         const WitchRoute = auth ? PrivateRoute : Route

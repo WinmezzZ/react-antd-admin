@@ -11,7 +11,7 @@ import { ReactComponent as LanguageSvg } from '~/assets/header/language.svg'
 import { ReactComponent as ZhCnSvg } from '~/assets/header/zh_CN.svg'
 import { ReactComponent as EnUsSvg } from '~/assets/header/en_US.svg'
 import { setGlobalItem } from '~/actions/global.action'
-import { LocaleFormatter } from '~/locales'
+import { LocaleFormatter, useLocale } from '~/locales'
 
 const { Header } = Layout
 
@@ -23,10 +23,11 @@ interface Props {
 type Action = 'userInfo' | 'userSetting' | 'logout'
 
 const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
-  const { username } = useSelector((state: AppState) => state.userReducer)
+  const { logged } = useSelector((state: AppState) => state.userReducer)
   const { locale } = useSelector((state: AppState) => state.globalReducer)
   const history = useHistory()
   const dispatch = useDispatch()
+  const { formatMessage } = useLocale()
 
   const onActionClick = async (action: Action) => {
     switch (action) {
@@ -39,6 +40,10 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
         res && history.push('/login')
         return
     }
+  }
+
+  const toLogin = () => {
+    history.push('/login')
   }
 
   const selectLocale = ({ key }: { key: any }) => {
@@ -86,12 +91,17 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
         >
           <LanguageSvg />
         </Dropdown>
-        <Dropdown overlay={menu}>
-          <span className="user-action">
-            <img src={Avator} className="user-avator" />
-            {username}
+        {logged ? (
+          <Dropdown overlay={menu}>
+            <span className="user-action">
+              <img src={Avator} className="user-avator" />
+            </span>
+          </Dropdown>
+        ) : (
+          <span style={{ cursor: 'pointer' }} onClick={toLogin}>
+            {formatMessage({ id: 'gloabal.tips.login' })}
           </span>
-        </Dropdown>
+        )}
       </div>
     </Header>
   )

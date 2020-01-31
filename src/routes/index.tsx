@@ -5,9 +5,9 @@ import Dashboard from '~/pages/dashboard'
 const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/404'))
 // const Dashboard = lazy(() => import(/* webpackChunkName: "dashboard'"*/ '~/pages/dashboard'))
 const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ '~/pages/guide'))
-const PagePage = lazy(() => import(/* webpackChunkName: "permission-page'"*/ '~/pages/permission/page'))
-const ButtonPage = lazy(() => import(/* webpackChunkName: "permission-button'"*/ '~/pages/permission/button'))
-const DataPage = lazy(() => import(/* webpackChunkName: "permission-data'"*/ '~/pages/permission/data'))
+const RoutePermission = lazy(() => import(/* webpackChunkName: "route-permission"*/ '~/pages/permission/route'))
+const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permission"*/ '~/pages/permission/button'))
+const PermissionConfig = lazy(() => import(/* webpackChunkName: "permission-config'"*/ '~/pages/permission/config'))
 const FormPage = lazy(() => import(/* webpackChunkName: "application-form'"*/ '~/pages/application/form'))
 const TablePage = lazy(() => import(/* webpackChunkName: "application-table'"*/ '~/pages/application/table'))
 const DialogPage = lazy(() => import(/* webpackChunkName: "application-dialog''"*/ '~/pages/application/dialog'))
@@ -32,28 +32,28 @@ const routerTree: RouteProps[] = [
     }
   },
   {
-    path: '/permission/page',
+    path: '/permission/route',
     exact: true,
-    component: PagePage,
+    component: RoutePermission,
     meta: {
-      titleId: 'title.permission.page',
+      titleId: 'title.permission.route',
       auth: true
     }
   },
   {
     path: '/permission/button',
     exact: true,
-    component: ButtonPage,
+    component: ButtonPermission,
     meta: {
       titleId: 'title.permission.button'
     }
   },
   {
-    path: '/permission/data',
+    path: '/permission/config',
     exact: true,
-    component: DataPage,
+    component: PermissionConfig,
     meta: {
-      titleId: 'title.permission.data'
+      titleId: 'title.permission.config'
     }
   },
   {
@@ -100,11 +100,11 @@ const routerTree: RouteProps[] = [
     path: '*',
     component: NotFound,
     meta: {
-      titleId: '404'
+      titleId: 'title.notFount'
     }
   }
 ]
 
-const MainRoutes: FC = () => <RenderRoutes routeTree={routerTree} />
+const MainRoutes: FC = () => <RenderRoutes routes={routerTree} />
 
 export default MainRoutes

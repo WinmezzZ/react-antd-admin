@@ -1,12 +1,14 @@
 export const enUS_title = {
+  'title.login': 'Login',
   'title.dashboard': 'Dashboard',
   'title.guide': 'Guide',
-  'title.permission.page': 'Page Permission',
+  'title.permission.route': 'Route Permission',
   'title.permission.button': 'Button Permission',
-  'title.permission.data': 'Data Permission',
+  'title.permission.config': 'Permission Config',
   'title.application.form': 'Form',
   'title.application.table': 'Table',
   'title.application.dialog': 'Dialog',
   'title.application.complex': 'Complex',
-  'title.account': 'Account'
+  'title.account': 'Account',
+  'title.notFount': '404'
 }

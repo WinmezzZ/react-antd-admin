@@ -33,13 +33,13 @@ const mockMenuList: MenuList = [
     path: '/permission',
     children: [
       {
-        name: 'pagePermission',
+        name: 'routePermission',
         label: {
-          zh_CN: '页面权限',
-          en_US: 'Page Permission'
+          zh_CN: '路由权限',
+          en_US: 'Route Permission'
         },
         key: '2-0',
-        path: '/permission/page'
+        path: '/permission/route'
       },
       {
         name: 'buttonPermission',
@@ -51,13 +51,22 @@ const mockMenuList: MenuList = [
         path: '/permission/button'
       },
       {
-        name: 'dataPermission',
+        name: 'permissionConfig',
         label: {
-          zh_CN: '数据权限',
-          en_US: 'Data Permission'
+          zh_CN: '权限配置',
+          en_US: 'Permission Config'
         },
         key: '2-2',
-        path: '/permission/data'
+        path: '/permission/config'
+      },
+      {
+        name: 'notFound',
+        label: {
+          zh_CN: '404',
+          en_US: '404'
+        },
+        key: '2-3',
+        path: '/permission/404'
       }
     ]
   },
