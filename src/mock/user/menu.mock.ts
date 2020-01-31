@@ -71,54 +71,6 @@ const mockMenuList: MenuList = [
     ]
   },
   {
-    name: 'application',
-    label: {
-      zh_CN: '应用',
-      en_US: 'Application'
-    },
-    icon: 'application',
-    key: '3',
-    path: '/application',
-    children: [
-      {
-        name: 'form',
-        label: {
-          zh_CN: '表单',
-          en_US: 'Form'
-        },
-        key: '3-0',
-        path: '/application/form'
-      },
-      {
-        name: 'table',
-        label: {
-          zh_CN: '表格',
-          en_US: 'Table'
-        },
-        key: '3-1',
-        path: '/application/table'
-      },
-      {
-        name: 'dialog',
-        label: {
-          zh_CN: '对话框',
-          en_US: 'Dialog'
-        },
-        key: '3-2',
-        path: '/application/dialog'
-      },
-      {
-        name: 'complex',
-        label: {
-          zh_CN: '综合',
-          en_US: 'Complex'
-        },
-        key: '3-3',
-        path: '/application/complex'
-      }
-    ]
-  },
-  {
     name: 'account',
     label: {
       zh_CN: '个人设置',

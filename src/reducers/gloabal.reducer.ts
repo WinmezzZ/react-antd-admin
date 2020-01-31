@@ -1,5 +1,5 @@
 import { GlobalState, GlobalActions } from '~/actions/global.action'
-import { getGlobalState } from '~/uitls/getGloabal'
+import { getGlobalState } from '~/utils/getGloabal'
 
 const globalState: GlobalState = {
   ...getGlobalState(),
