@@ -1,8 +1,9 @@
 import React, { FC, LazyExoticComponent } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import PrivateRoute from './pravateRoute'
+import { useIntl } from 'react-intl'
 
-export type RouteConfig = {
+export type RouteProps = {
   /**
    * Route path
    */
@@ -17,26 +18,35 @@ export type RouteConfig = {
   strict?: boolean
 
   meta: {
-    /** document title */
-    title: string
+    /** document title locale id */
+    titleId: string
     /** authorization？ */
     auth?: boolean
   }
 }
 
-export default function renderRoutes(routeTree: RouteConfig[]) {
+interface Props {
+  routeTree: RouteProps[]
+}
+
+const RenderRoutes: FC<Props> = ({ routeTree }) => {
+  const { formatMessage } = useIntl()
   return (
     <Switch>
       {routeTree.map((route, i) => {
         const { path, component: Component, exact, meta } = route
-        const WitchRoute = meta.auth ? PrivateRoute : Route
+        const { titleId, auth } = meta
+        const WitchRoute = auth ? PrivateRoute : Route
         return (
           <WitchRoute
             path={path}
             exact={exact}
             key={i}
             render={props => {
-              meta.title && (document.title = meta.title)
+              meta.titleId &&
+                (document.title = formatMessage({
+                  id: titleId
+                }))
               return <Component {...props} key={i} />
             }}
           />
@@ -45,3 +55,5 @@ export default function renderRoutes(routeTree: RouteConfig[]) {
     </Switch>
   )
 }
+
+export default RenderRoutes
