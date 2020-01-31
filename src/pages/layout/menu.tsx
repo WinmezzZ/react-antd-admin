@@ -41,7 +41,8 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
       addTag({
         id: key,
         label,
-        path
+        path,
+        closable: true
       })
     )
     history.push(path)

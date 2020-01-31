@@ -17,10 +17,7 @@ export const tagsViewlReducer = (state = tagsViewState, actions: TagsActions): T
 
     case 'ADDTAG':
       if (!tags.find(tag => tag.id === actions.payload.id)) {
-        tags.push({
-          ...actions.payload,
-          closable: true
-        })
+        tags.push(actions.payload)
       }
       return {
         ...state,
