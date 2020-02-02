@@ -13,14 +13,13 @@ const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ '~/pages
 const routerTree: RouteProps[] = [
   {
     path: '/',
-    exact: true,
     component: () => <Redirect to="/dashboard" />,
     meta: {
       titleId: ''
     }
   },
   {
-    path: 'dashboard',
+    path: '/dashboard',
     exact: true,
     component: Dashboard,
     meta: {

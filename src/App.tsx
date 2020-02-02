@@ -22,7 +22,6 @@ const rootRoutes: RouteProps[] = [
       titleId: 'title.login'
     }
   },
-
   {
     path: '/',
     component: LayoutPage,
@@ -55,7 +54,7 @@ const App: React.FC = () => {
     <ConfigProvider locale={getAntdLocale()} componentSize="middle">
       <IntlProvider locale={locale.split('_')[0]} messages={lacaleConfig[locale]}>
         <BrowserRouter>
-          <RenderRoutes routes={rootRoutes} />
+          <RenderRoutes root routes={rootRoutes} />
         </BrowserRouter>
       </IntlProvider>
     </ConfigProvider>
