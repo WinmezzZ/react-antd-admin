@@ -20,7 +20,7 @@ const routerTree: RouteProps[] = [
     }
   },
   {
-    path: ['/', '/dashboard'],
+    path: 'dashboard',
     exact: true,
     component: Dashboard,
     meta: {

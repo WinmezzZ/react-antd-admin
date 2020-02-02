@@ -1,13 +1,13 @@
 import React, { FC, LazyExoticComponent } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import PrivateRoute from './pravateRoute'
 import { useIntl } from 'react-intl'
 
-export type RouteProps = {
+export interface RouteProps {
   /**
    * Route path
    */
-  path: string | string[]
+  path: string
   /**
    * Required React.FunctionalComponent and React.Lazy component, see the detail in src/App.vue.
    */
@@ -37,6 +37,7 @@ const RenderRoutes: FC<Props> = ({ routes }) => {
         const { path, component: Component, exact, meta } = route
         const { titleId, auth } = meta
         const WitchRoute = auth ? PrivateRoute : Route
+
         return (
           <WitchRoute
             path={path}
