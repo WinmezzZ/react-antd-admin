@@ -11,5 +11,7 @@ export const enUS_globalTips = {
   'gloabal.tips.authorize': 'Authorize',
   'gloabal.tips.delete': 'Delete',
   'gloabal.tips.create': 'Create',
-  'gloabal.tips.modify': 'Modify'
+  'gloabal.tips.modify': 'Modify',
+  'gloabal.tips.search': 'Search',
+  'gloabal.tips.reset': 'Reset'
 }

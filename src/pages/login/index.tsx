@@ -14,7 +14,7 @@ const initialValues: LoginParams = {
 
 const LoginForm: FC = () => {
   const history = useHistory()
-  const location = useLocation()
+  const location = useLocation<{ from: string }>()
   const dispatch = useDispatch()
 
   const onFinished = async (form: any) => {

@@ -1,5 +1,4 @@
-export type RoleStatus = 'enabled' | 'disabled' | 'all'
-
+export type RoleStatus = 'enabled' | 'disabled'
 export interface Role {
   name: {
     zh_CN: string
