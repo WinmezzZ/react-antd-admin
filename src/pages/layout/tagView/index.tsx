@@ -37,7 +37,8 @@ const TagsView: FC = () => {
           addTag({
             path: dashboard.path,
             label: dashboard.label,
-            id: dashboard.key
+            id: dashboard.key,
+            closable: false
           })
         ),
           // Initializes the tag generated for the current page
@@ -46,7 +47,8 @@ const TagsView: FC = () => {
             addTag({
               path: menu.path,
               label: menu.label,
-              id: menu.key
+              id: menu.key,
+              closable: true
             })
           )
       }

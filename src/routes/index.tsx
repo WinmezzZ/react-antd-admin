@@ -2,6 +2,7 @@ import React, { FC, lazy } from 'react'
 import RenderRoutes, { RouteProps } from './config'
 
 import Dashboard from '~/pages/dashboard'
+import { Redirect } from 'react-router-dom'
 const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/404'))
 const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ '~/pages/guide'))
 const RoutePermission = lazy(() => import(/* webpackChunkName: "route-permission"*/ '~/pages/permission/route'))
@@ -10,6 +11,14 @@ const PermissionConfig = lazy(() => import(/* webpackChunkName: "permission-conf
 const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ '~/pages/account'))
 
 const routerTree: RouteProps[] = [
+  {
+    path: '/',
+    exact: true,
+    component: () => <Redirect to="/dashboard" />,
+    meta: {
+      titleId: ''
+    }
+  },
   {
     path: ['/', '/dashboard'],
     exact: true,

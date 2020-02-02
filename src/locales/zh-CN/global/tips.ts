@@ -12,5 +12,7 @@ export const zhCN_globalTips = {
   'gloabal.tips.authorize': '授权',
   'gloabal.tips.delete': '删除',
   'gloabal.tips.create': '新建',
-  'gloabal.tips.modify': '修改'
+  'gloabal.tips.modify': '修改',
+  'gloabal.tips.search': '搜索',
+  'gloabal.tips.reset': '重置'
 }
