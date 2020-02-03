@@ -54,7 +54,7 @@ const App: React.FC = () => {
     <ConfigProvider locale={getAntdLocale()} componentSize="middle">
       <IntlProvider locale={locale.split('_')[0]} messages={lacaleConfig[locale]}>
         <BrowserRouter>
-          <RenderRoutes root routes={rootRoutes} />
+          <RenderRoutes routes={rootRoutes} />
         </BrowserRouter>
       </IntlProvider>
     </ConfigProvider>

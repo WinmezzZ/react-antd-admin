@@ -26,15 +26,13 @@ export interface RouteProps {
 }
 
 interface Props {
-  root?: boolean
   routes: RouteProps[]
 }
 
-const RenderRoutes: FC<Props> = ({ root, routes }) => {
+const RenderRoutes: FC<Props> = ({ routes }) => {
   const { formatMessage } = useIntl()
   return (
     <Switch>
-      {!root && <Redirect from="/" to="/dashboard" />}
       {routes.map((route, i) => {
         const { path, component: Component, exact, meta } = route
         const { titleId, auth } = meta
@@ -57,10 +55,6 @@ const RenderRoutes: FC<Props> = ({ root, routes }) => {
       })}
     </Switch>
   )
-}
-
-RenderRoutes.defaultProps = {
-  root: false
 }
 
 export default RenderRoutes
