@@ -21,12 +21,19 @@ const layout = {
 }
 
 interface Props {
+  /** form name */
   name: string
+  /** Form item required? */
   required?: boolean
+  /** search form need responsive layout */
   responsive?: boolean
+  /** Initial form data */
+  values?: {
+    [x: string]: any
+  }
 }
 
-export default function useGetRoleForm({ required = false, responsive = false, name = 'form' }: Props) {
+export default function useGetRoleForm({ required = false, responsive = false, name = 'form', values = {} }: Props) {
   const { formatMessage } = useLocale()
   const [formInstance] = Form.useForm()
 
@@ -34,8 +41,14 @@ export default function useGetRoleForm({ required = false, responsive = false, n
     const { device } = useSelector((state: AppState) => state.globalReducer)
 
     return (
-      <Form {...props} {...(device === 'MOBILE' ? { layout: 'vertical' } : layout)} form={formInstance} name={name}>
-        {responsive ? <Row gutter={24}>{children}</Row> : children}
+      <Form
+        {...props}
+        {...(device === 'MOBILE' ? { layout: 'vertical' } : layout)}
+        form={formInstance}
+        name={name}
+        initialValues={values}
+      >
+        {responsive ? <Row>{children}</Row> : children}
       </Form>
     )
   }

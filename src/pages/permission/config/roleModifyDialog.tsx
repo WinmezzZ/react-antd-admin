@@ -7,22 +7,23 @@ import { useLocale } from '~/locales'
 interface Values extends Role {}
 
 interface RoleModifyDialogProps {
+  values: Values
   visible: boolean
   onModify: (values: Values) => void
   onCancel: () => void
 }
 
-const RoleModifyDialog: FC<RoleModifyDialogProps> = ({ onModify, onCancel, visible }) => {
-  const { Form, form, Name, Code, Status } = useGetRoleFormItem({ name: 'modifyForm', required: true })
+const RoleModifyDialog: FC<RoleModifyDialogProps> = ({ onModify, onCancel, visible, values }) => {
+  const { Form, form, Name, Code, Status } = useGetRoleFormItem({ name: 'modifyForm', required: true, values })
   const { formatMessage } = useLocale()
 
+  const onSubmit = async () => {
+    const values: any = await form.validateFields()
+    onModify(values)
+  }
+
   return (
-    <Modal
-      title={formatMessage({ id: 'gloabal.tips.modify' })}
-      visible={visible}
-      onOk={async () => onModify((await form.validateFields()) as any)}
-      onCancel={onCancel}
-    >
+    <Modal title={formatMessage({ id: 'gloabal.tips.modify' })} visible={visible} onOk={onSubmit} onCancel={onCancel}>
       <Form>
         <Name />
         <Code />

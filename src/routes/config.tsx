@@ -1,5 +1,5 @@
 import React, { FC, LazyExoticComponent } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import PrivateRoute from './pravateRoute'
 import { useIntl } from 'react-intl'
 

@@ -1,13 +1,11 @@
-import React, { FC, useState, useEffect } from 'react'
-import { Button, Table, Tag } from 'antd'
-// import { PlusOutlined } from '@ant-design/icons'
-// import ProTable, { IntlProvider, createIntl } from '@ant-design/pro-table'
+import React, { FC, useState, useEffect, useCallback } from 'react'
+import { Button, Table, Tag, Modal } from 'antd'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { useLocale, LocaleFormatter } from '~/locales'
 import { apiGetRoleList } from '~/api/permission/role.api'
 import { Role, RoleStatus } from '~/interface/permission/role.interface'
 import { useSelector } from 'react-redux'
 import { AppState } from '~/stores'
-// import useProTableLocale from '~/hooks/useProTableLocale'
 
 enum TagColor {
   enabled = 'success',
@@ -17,19 +15,20 @@ enum TagColor {
 interface RoleTableProps {
   onCreate: () => void
   onModify: (row: Role) => void
+  onAuthorize: (row: Role) => void
 }
 
-const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify }) => {
+const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify, onAuthorize }) => {
   const { formatMessage } = useLocale()
   const [tableData, setTableData] = useState<Role[]>()
   const { locale } = useSelector((state: AppState) => state.globalReducer)
 
-  const initData = async () => {
+  const initData = useCallback(async () => {
     const { result, status } = await apiGetRoleList()
     if (status) {
       setTableData(result)
     }
-  }
+  }, [])
 
   const getLocaleStatus = (status: RoleStatus) => {
     switch (status) {
@@ -38,14 +37,9 @@ const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify }) => {
     }
   }
 
-  const onAuthorize = (row: Role) => {
-    row
-    //
-  }
-
   useEffect(() => {
     initData()
-  }, [])
+  }, [initData])
   return (
     <Table
       size="middle"
@@ -74,13 +68,31 @@ const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify }) => {
         width={200}
         align="center"
         render={(_, row) => [
-          <Button type="link" key="1" onClick={() => onAuthorize(row)}>
+          <Button type="link" key="1" onClick={() => onAuthorize({ ...row })}>
             {formatMessage({ id: 'gloabal.tips.authorize' })}
           </Button>,
-          <Button type="link" key="2" onClick={() => onModify(row)}>
+          <Button
+            type="link"
+            key="2"
+            onClick={() =>
+              onModify({
+                ...row,
+                name: row.name[locale] as any
+              })
+            }
+          >
             {formatMessage({ id: 'gloabal.tips.modify' })}
           </Button>,
-          <Button type="link" key="3">
+          <Button
+            type="link"
+            key="3"
+            onClick={() => {
+              Modal.confirm({
+                icon: <ExclamationCircleOutlined />,
+                title: formatMessage({ id: 'gloabal.tips.deleteConfirm' })
+              })
+            }}
+          >
             {formatMessage({ id: 'gloabal.tips.delete' })}
           </Button>
         ]}
@@ -90,78 +102,3 @@ const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify }) => {
 }
 
 export default RoleTable
-
-// const ComplexPage: FC = () => {
-//   const { formatMessage } = useLocale()
-//   const { locale } = useSelector((state: AppState) => state.globalReducer)
-//   const lang = useProTableLocale(locale)
-
-//   return (
-//     <IntlProvider value={createIntl(locale, lang)}>
-//       <ProTable<Role>
-//         rowKey="id"
-//         columns={[
-//           {
-//             title: formatMessage({ id: 'app.permission.role.name' }),
-//             dataIndex: 'name',
-//             width: 100,
-//             render: (_, { name }) => name[locale]
-//           },
-//           {
-//             title: formatMessage({ id: 'app.permission.role.code' }),
-//             dataIndex: 'code',
-//             width: 100
-//           },
-//           {
-//             title: formatMessage({ id: 'app.permission.role.status' }),
-//             dataIndex: 'status',
-//             width: 100,
-//             valueEnum: {
-//               all: { text: formatMessage({ id: 'app.permission.role.status.all' }), status: 'Default' },
-//               enabled: { text: formatMessage({ id: 'app.permission.role.status.enabled' }), status: 'Success' },
-//               disabled: { text: formatMessage({ id: 'app.permission.role.status.disabled' }), status: 'Error' }
-//             }
-//           },
-//           {
-//             title: formatMessage({ id: 'gloabal.tips.operation' }),
-//             key: 'option',
-//             valueType: 'option',
-//             align: 'center',
-//             width: 140,
-//             render: () => [
-//               <Button type="link" key="1">
-//                 {formatMessage({ id: 'gloabal.tips.authorize' })}
-//               </Button>,
-//               <Button type="link" key="2">
-//                 {formatMessage({ id: 'gloabal.tips.delete' })}
-//               </Button>
-//             ]
-//           }
-//         ]}
-//         request={async () => {
-//           const { result: data, status: success } = await apiGetRoleList()
-//           return {
-//             data,
-//             success
-//           }
-//         }}
-//         pagination={{
-//           showSizeChanger: true
-//         }}
-//         scroll={{
-//           x: 440
-//         }}
-//         dateFormatter="string"
-//         params={{ state: 'all' }}
-//         toolBarRender={() => [
-//           <Button key="3" type="primary">
-//             <PlusOutlined />
-//             {formatMessage({ id: 'gloabal.tips.create' })}
-//           </Button>
-//         ]}
-//       />
-//     </IntlProvider>
-//   )
-// }
-
-// export default ComplexPage
