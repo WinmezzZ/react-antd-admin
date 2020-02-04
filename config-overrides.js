@@ -24,7 +24,7 @@ module.exports = override(
   addWebpackAlias({
     '~': resolve('src')
   }),
-  addWebpackPlugin(new BundleAnalyzerPlugin()),
+  // addWebpackPlugin(new BundleAnalyzerPlugin()),
   fixBabelImports('import', {
     libraryName: 'antd',
     libraryDirectory: 'es',

@@ -42,7 +42,6 @@ const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify, onAuthorize }) => {
   }, [initData])
   return (
     <Table
-      size="middle"
       rowKey="id"
       dataSource={tableData}
       scroll={{ x: 500 }}
