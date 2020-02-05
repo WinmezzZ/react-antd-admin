@@ -5,7 +5,7 @@ const mockMenuList: MenuList = [
   {
     name: 'dashboard',
     label: {
-      zh_CN: '控制台',
+      zh_CN: '首页',
       en_US: 'Dashboard'
     },
     icon: 'dashboard',

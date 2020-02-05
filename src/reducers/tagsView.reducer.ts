@@ -27,6 +27,10 @@ export const tagsViewlReducer = (state = tagsViewState, actions: TagsActions): T
 
     case 'REMOVETAG':
       const targetKey = actions.payload
+      // dashboard cloud't be closed
+      if (targetKey === state.tags[0].id) {
+        return { ...state }
+      }
       let activeTagId = state.activeTagId
       let lastIndex = 0
       tags.forEach((tag, i) => {
@@ -51,14 +55,16 @@ export const tagsViewlReducer = (state = tagsViewState, actions: TagsActions): T
     case 'REMOVEALLTAG':
       return {
         ...state,
-        activeTagId: state.tags[0].id
+        activeTagId: state.tags[0].id,
+        tags: [state.tags[0]]
       }
 
     case 'REMOVEOTHERTAG':
-      const activeTag = state.tags.find(tag => tag.id === state.activeTagId) || state.tags[0]
+      const activeTag = state.tags.find(tag => tag.id === state.activeTagId)
+      const activeIsDashboard = activeTag!.id === state.tags[0].id
       return {
         ...state,
-        tags: [state.tags[0], activeTag]
+        tags: activeIsDashboard ? [state.tags[0]] : [state.tags[0], activeTag!]
       }
 
     default:
