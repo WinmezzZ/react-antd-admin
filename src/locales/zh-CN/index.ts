@@ -5,6 +5,7 @@ import { zhCN_title } from './user/title'
 import { zhCN_globalTips } from './global/tips'
 import { zhCN_permissionRole } from './permission/role'
 import { zhCN_dashboard } from './dashboard'
+import { zhCN_guide } from './guide'
 
 const zh_CN = {
   ...zhCN_account,
@@ -13,7 +14,8 @@ const zh_CN = {
   ...zhCN_title,
   ...zhCN_globalTips,
   ...zhCN_permissionRole,
-  ...zhCN_dashboard
+  ...zhCN_dashboard,
+  ...zhCN_guide
 }
 
 export default zh_CN

@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { ReactComponent as GuideSvg } from '~/assets/menu/guide.svg'
 import { ReactComponent as PermissionSvg } from '~/assets/menu/permission.svg'
 import { ReactComponent as DashboardSvg } from '~/assets/menu/dashboard.svg'
+import { ReactComponent as AccountSvg } from '~/assets/menu/account.svg'
 
 interface Props {
   type: string
@@ -16,6 +17,8 @@ export const CustomIcon: FC<Props> = props => {
     com = <PermissionSvg />
   } else if (type === 'dashboard') {
     com = <DashboardSvg />
+  } else if (type === 'account') {
+    com = <AccountSvg />
   } else {
     com = <GuideSvg />
   }

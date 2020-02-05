@@ -102,7 +102,7 @@ const HeaderNoticeComponent: FC = () => {
       overlayStyle={{ width: 336, backgroundColor: '#292a2d', padding: 8 }}
     >
       <Badge count={noticeCount} overflowCount={999}>
-        <span className="notice">
+        <span className="notice" id="notice-center">
           <NoticeSvg className="anticon" />
         </span>
       </Badge>

@@ -73,7 +73,9 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
   )
   return (
     <Header className="layout-page-header">
-      <span onClick={toggle}>{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</span>
+      <div onClick={toggle}>
+        <span id="sidebar-trigger">{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</span>
+      </div>
       <div className="actions">
         <HeaderNoticeComponent />
         <Dropdown
@@ -89,7 +91,9 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
             </Menu>
           }
         >
-          <LanguageSvg />
+          <span>
+            <LanguageSvg id="language-change" />
+          </span>
         </Dropdown>
         {logged ? (
           <Dropdown overlay={menu}>

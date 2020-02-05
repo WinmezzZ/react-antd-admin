@@ -29,7 +29,9 @@ const TagsViewAction: FC = () => {
         </Menu>
       }
     >
-      <SettingOutlined className="tagsView-extra" />
+      <span id="pageTabs-actions">
+        <SettingOutlined className="tagsView-extra" />
+      </span>
     </Dropdown>
   )
 }
