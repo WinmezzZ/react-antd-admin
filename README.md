@@ -24,6 +24,9 @@ Management system based on react and ant-design.
 
 </div>
 
+- Preview: https://winmee.cn
+- Documentation: https://winmee.cn/documentation
+
 ## ✨ Features
 
 - 💡 **TypeScript**: A language for application-scale JavaScript
@@ -36,7 +39,7 @@ Management system based on react and ant-design.
 - 🌐 **International**: Built-in i18n solution
 - ⚙️ **Best Practices**: Solid workflow to make your code healthy
 - 🔢 **Mock development**: Easy to use mock development solution
-- ✅ **UI Test**: No barriers to use with complete documentation and detailed comments
+- ✅ **Usage**: No barriers to use with complete documentation and detailed comments
 
 ## 📦 Install
 
