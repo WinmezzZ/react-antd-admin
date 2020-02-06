@@ -13,13 +13,23 @@ const mockMenuList: MenuList = [
     path: '/dashboard'
   },
   {
+    name: 'documentation',
+    label: {
+      zh_CN: '文档',
+      en_US: 'Documentation'
+    },
+    icon: 'documentation',
+    key: '1',
+    path: '/documentation'
+  },
+  {
     name: 'guide',
     label: {
       zh_CN: '引导',
       en_US: 'Guide'
     },
     icon: 'guide',
-    key: '1',
+    key: '2',
     path: '/guide'
   },
   {
@@ -29,7 +39,7 @@ const mockMenuList: MenuList = [
       en_US: 'Permission'
     },
     icon: 'permission',
-    key: '2',
+    key: '3',
     path: '/permission',
     children: [
       {

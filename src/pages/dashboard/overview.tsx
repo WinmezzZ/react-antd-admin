@@ -109,7 +109,7 @@ const Overview: FC = () => {
   }, [])
 
   return (
-    <Row gutter={[20, 20]}>
+    <Row gutter={[12, 12]}>
       <ColCard
         loading={loading}
         metaName={formatMessage({ id: 'app.dashboard.overview.totalSales' })}

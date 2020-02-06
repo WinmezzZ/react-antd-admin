@@ -4,6 +4,7 @@ import RenderRoutes, { RouteProps } from './config'
 import Dashboard from '~/pages/dashboard'
 import { Redirect } from 'react-router-dom'
 const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/404'))
+const Documentation = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/doucumentation'))
 const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ '~/pages/guide'))
 const RoutePermission = lazy(() => import(/* webpackChunkName: "route-permission"*/ '~/pages/permission/route'))
 const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permission"*/ '~/pages/permission/button'))
@@ -25,6 +26,13 @@ const routerTree: RouteProps[] = [
     component: Dashboard,
     meta: {
       titleId: 'title.dashboard'
+    }
+  },
+  {
+    path: '/documentation',
+    component: Documentation,
+    meta: {
+      titleId: 'title.documentation'
     }
   },
   {

@@ -48,7 +48,7 @@ const TimeLine: FC = () => {
   }, [])
 
   return (
-    <Card loading={loading} style={{ marginTop: 20 }}>
+    <Card loading={loading} style={{ marginTop: 12 }}>
       <ResponsiveContainer height={400}>
         <LineChart data={data} syncId="anyId">
           <CartesianGrid strokeDasharray="3 3" />
