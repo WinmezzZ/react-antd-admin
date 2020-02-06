@@ -1,10 +1,10 @@
-English | [简体中文](./README.zh_CN.md)
+English | [简体中文](./README.md)
 
 <h1 align="center">React Antd Admin</h1>
 
 <div align="center">
 
-Management system based on react and ant-design.
+基于 react 和 ant-design 开发的后台管理系统。
 
 <a href="https://github.com/facebook/react">
   <img src="https://img.shields.io/badge/react-16.12.0-brightgreen" alt="React">
@@ -26,17 +26,17 @@ Management system based on react and ant-design.
 
 ## ✨ Features
 
-- 💡 **TypeScript**: A language for application-scale JavaScript
-- 📜 **Blocks**: Build page with block template
-- 💎 **Hooks**: Use react hooks API instead of traditional class API
-- 📐 **Common Templates**: Typical templates for enterprise applications
-- 🚀 **State of The Art Development**: Newest development stack of React/hooks/Redux/antd/typescript
-- 📱 **Responsive**: Designed for variable screen sizes
-- 🎨 **Theming**: The dark series of theme style
-- 🌐 **International**: Built-in i18n solution
-- ⚙️ **Best Practices**: Solid workflow to make your code healthy
-- 🔢 **Mock development**: Easy to use mock development solution
-- ✅ **UI Test**: No barriers to use with complete documentation and detailed comments
+- 💡 **TypeScript**: 应用程序级 JavaScript 的语言
+- 📜 **区块**: 通过区块模板快速构建页面
+- 💎 **Hooks**: 使用最新的 react hooks API 代替传统的 class API
+- 📐 **常见设计模式**: 提炼自中后台应用的典型页面和场景
+- 🚀 **最新技术栈**: 使用 React/hooks/Redux/antd/typescript 等前端前沿技术开发
+- 📱 **响应式**: 针对不同屏幕大小设计
+- 🎨 **主题**: 暗黑系列的主题风格
+- 🌐 **国际化**: 内建业界通用的国际化方案
+- ⚙️ **最佳实践**: 良好的工程实践助您持续产出高质量代码
+- 🔢 **Mock 数据**: 实用的本地数据调试方案
+- ✅ **使用**: 完整的文档和详细的注释，无阻碍使用
 
 ## 📦 Install
 
