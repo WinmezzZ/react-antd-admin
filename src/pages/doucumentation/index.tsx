@@ -9,7 +9,7 @@ const div = <div style={{ height: 200 }}>2333</div>
 const DocumentationPage: FC = () => {
   return (
     <div>
-      <Typography>
+      <Typography className="innerText">
         <Title>
           <LocaleFormatter id="app.documentation.introduction.title" />
         </Title>
