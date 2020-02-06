@@ -4,7 +4,7 @@ import { getGlobalState } from '~/utils/getGloabal'
 const globalState: GlobalState = {
   ...getGlobalState(),
   noticeCount: 0,
-  locale: (localStorage.getItem('locale')! || navigator.language.replace('-', '_')) as any
+  locale: (localStorage.getItem('locale')! || 'en_US') as any
 }
 
 export const globalReducer = (state = globalState, actions: GlobalActions): GlobalState => {

@@ -9,7 +9,7 @@ export const enUS_guide = {
   'app.guide.driverjs.closeBtnText': 'Close',
   'app.guide.driverjs.prevBtnText': 'Previous',
   'app.guide.driverjs.nextBtnText': 'Next',
-  'app.guide.driverjs.doneBtnText': 'Down',
+  'app.guide.driverjs.doneBtnText': 'Done',
   'app.guide.driverStep.sidebarTrigger.title': 'Sidebar Trigger',
   'app.guide.driverStep.sidebarTrigger.description': 'Open and close the Sidebar',
   'app.guide.driverStep.notices.title': 'Notices',
