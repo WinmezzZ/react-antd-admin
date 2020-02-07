@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './styles/index.less'
+import './styles/main.less'
 import configureStore from './stores'
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'

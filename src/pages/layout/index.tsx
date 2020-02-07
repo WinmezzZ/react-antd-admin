@@ -15,15 +15,18 @@ import SuspendFallbackLoading from './suspendFallbackLoading'
 import { getMenuList } from '~/api/layout.api'
 import { MenuList, MenuChild } from '~/interface/layout/menu.interface'
 import { setUserItem } from '~/actions/user.action'
+import ThemeSwitch from './themeSwitch'
+import { useGuide } from '../guide/useGuide'
 
 const { Sider, Content } = Layout
 const WIDTH = 992
 
 const LayoutPage: FC = () => {
   const [menuList, setMenuList] = useState<MenuList>([])
-  const { device, collapsed } = useSelector((state: AppState) => state.globalReducer)
+  const { device, collapsed, newUser } = useSelector((state: AppState) => state.globalReducer)
   const isMobile = device === 'MOBILE'
   const dispatch = useDispatch()
+  const { driverStart } = useGuide()
 
   const toggle = () => {
     dispatch(
@@ -77,6 +80,11 @@ const LayoutPage: FC = () => {
     }
   }, [dispatch])
 
+  useEffect(() => {
+    newUser && setTimeout(driverStart, 1000)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Layout className="layout-page">
       {!isMobile ? (
@@ -106,6 +114,7 @@ const LayoutPage: FC = () => {
           <Suspense fallback={<SuspendFallbackLoading />}>
             <MainRoutes />
           </Suspense>
+          <ThemeSwitch />
         </Content>
       </Layout>
     </Layout>

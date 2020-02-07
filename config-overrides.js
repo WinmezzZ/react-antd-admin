@@ -2,6 +2,17 @@ const { override, addLessLoader, addWebpackAlias, fixBabelImports, addWebpackPlu
 const path = require('path')
 const darkThemeVars = require('antd/dist/dark-theme')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
+
+const options = {
+  antDir: path.join(__dirname, './node_modules/antd'), 
+  stylesDir: path.join(__dirname, './src/styles'),
+  varFile: path.join(__dirname, './src/styles/var.less'), 
+  mainLessFile: path.join(__dirname, './src/styles/index.less'), 
+  themeVariables: ['@primary-color'],
+  indexFileName: 'index.html',
+  generateOnce: false,
+}
 
 const resolve = dir => path.join(__dirname, '.', dir)
 
@@ -11,24 +22,25 @@ const rewiredSourceMap = () => config => {
 }
 
 module.exports = override(
-  addLessLoader({
-    javascriptEnabled: true,
-    modifyVars: {
-      hack: `true;@import "${require.resolve('antd/lib/style/color/colorPalette.less')}";`,
-      ...darkThemeVars,
-      '@primary-color': '#13c2c2',
-      '@dark-color': '#141414',
-      '@font-color': 'rgba(256, 256, 256, 0.85)'
-    }
-  }),
-  addWebpackAlias({
-    '~': resolve('src')
-  }),
-  // addWebpackPlugin(new BundleAnalyzerPlugin()),
   fixBabelImports('import', {
     libraryName: 'antd',
     libraryDirectory: 'es',
     style: true
   }),
+  addLessLoader({
+    modifyVars: {
+      // hack: `true;@import "${require.resolve('antd/lib/style/color/colorPalette.less')}";`,
+      // ...darkThemeVars,
+      // '@primary-color': '#13c2c2'
+    },
+    javascriptEnabled: true,
+  }),
+  addWebpackAlias({
+    '~': resolve('src')
+  }),
+  addWebpackPlugin(
+    // new BundleAnalyzerPlugin(),
+    new AntDesignThemePlugin(options)
+  ),
   rewiredSourceMap()
 )

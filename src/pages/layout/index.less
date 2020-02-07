@@ -1,3 +1,5 @@
+@import '~src/styles/var';
+
 .layout-page {
   &-header {
     padding: 0 15px;
@@ -5,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.45);
-    background-color: @dark-color;
+    background-color: @dark-color !important;
     z-index: 9;
   }
   &-sider {
@@ -117,4 +119,40 @@
   display: block;
   line-height: 40px;
   text-align: center;
+}
+
+.themeSwitch {
+  position: fixed;
+  right: 32px;
+  bottom: 102px;
+  z-index: 2147483640;
+  cursor: pointer;
+  > span {
+    display: block;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 22px;
+  }
+}
+
+.theme-color-content {
+  display: flex;
+  .theme-color-block {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 2px;
+    cursor: pointer;
+    border-radius: 2px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }

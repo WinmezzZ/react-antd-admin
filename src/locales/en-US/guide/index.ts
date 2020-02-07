@@ -19,5 +19,7 @@ export const enUS_guide = {
   'app.guide.driverStep.pageTabs.title': 'Page Tabs',
   'app.guide.driverStep.pageTabs.description': 'The history of the page you visited will be displayed here',
   'app.guide.driverStep.pageTabsActions.title': 'Page Tabs Actions',
-  'app.guide.driverStep.pageTabsActions.description': 'Click here to do some quick operations to the Page Tabs'
+  'app.guide.driverStep.pageTabsActions.description': 'Click here to do some quick operations to the Page Tabs',
+  'app.guide.driverStep.switchTheme.title': 'Switch Theme',
+  'app.guide.driverStep.switchTheme.description': 'Click here to switch system theme color'
 }

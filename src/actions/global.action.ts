@@ -13,6 +13,9 @@ export interface GlobalState {
 
   /** user's language */
   locale: 'zh_CN' | 'en_US'
+
+  /** Is first time to view the site ? */
+  newUser: boolean
 }
 
 const SETGLOBALITEM = 'SETGLOBALITEM'
