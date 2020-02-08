@@ -6,8 +6,6 @@ import { AppState } from '~/stores'
 import { setGlobalItem } from '~/actions/global.action'
 import MenuComponent from './menu'
 import HeaderComponent from './header'
-import ReactSvg from '~/assets/logo/react.svg'
-import AntdSvg from '~/assets/logo/antd.svg'
 import MainRoutes from '~/routes'
 import { getGlobalState } from '~/utils/getGloabal'
 import TagsView from './tagView'
@@ -81,34 +79,30 @@ const LayoutPage: FC = () => {
   }, [dispatch])
 
   useEffect(() => {
-    newUser && setTimeout(driverStart, 1000)
+    newUser && driverStart()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [newUser])
 
   return (
     <Layout className="layout-page">
-      {!isMobile ? (
-        <Sider className="layout-page-sider" trigger={null} collapsible collapsed={collapsed} breakpoint="md">
-          <div className="logo">
-            <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }} />
-            <img src={AntdSvg} alt="" />
-          </div>
-          <MenuComponent menuList={menuList} />
-        </Sider>
-      ) : (
-        <Drawer
-          width="200"
-          placement="left"
-          bodyStyle={{ padding: 0, backgroundColor: '#141414', height: '100%' }}
-          closable={false}
-          onClose={toggle}
-          visible={!collapsed}
-        >
-          <MenuComponent menuList={menuList} />
-        </Drawer>
-      )}
+      <HeaderComponent collapsed={collapsed} toggle={toggle} />
       <Layout>
-        <HeaderComponent collapsed={collapsed} toggle={toggle} />
+        {!isMobile ? (
+          <Sider className="layout-page-sider" trigger={null} collapsible collapsed={collapsed} breakpoint="md">
+            <MenuComponent menuList={menuList} />
+          </Sider>
+        ) : (
+          <Drawer
+            width="200"
+            placement="left"
+            bodyStyle={{ padding: 0, height: '100%' }}
+            closable={false}
+            onClose={toggle}
+            visible={!collapsed}
+          >
+            <MenuComponent menuList={menuList} />
+          </Drawer>
+        )}
         <Content className="layout-page-content">
           <TagsView />
           <Suspense fallback={<SuspendFallbackLoading />}>

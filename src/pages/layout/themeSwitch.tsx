@@ -14,12 +14,15 @@ const colors = [
   'rgb(114, 46, 209)'
 ]
 
+const defaultVars = {
+  '@primary-color': colors[0]
+}
+
 export const ThemeSwitch: FC = () => {
   const [theme, setTheme] = useState<string>(colors[0])
   const [vars, setVars] = useState(() => {
-    const data = Object.assign({}, JSON.parse(localStorage.getItem('app-theme')!))
-    setTheme(data['@primary-color'] || colors[0])
-    window.less.modifyVars(data)
+    const data = Object.assign({}, defaultVars, JSON.parse(localStorage.getItem('app-theme')!))
+    setTheme(data['@primary-color'])
     return data
   })
   const { formatMessage } = useLocale()

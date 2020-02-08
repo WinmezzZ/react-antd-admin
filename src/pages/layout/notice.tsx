@@ -99,7 +99,13 @@ const HeaderNoticeComponent: FC = () => {
       trigger={['click']}
       visible={visible}
       onVisibleChange={v => setVisible(v)}
-      overlayStyle={{ width: 336, backgroundColor: '#292a2d', padding: 8 }}
+      overlayStyle={{
+        width: 336,
+        backgroundColor: '#ffffff',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+        padding: 8,
+        borderRadius: 4
+      }}
     >
       <Badge count={noticeCount} overflowCount={999}>
         <span className="notice" id="notice-center">

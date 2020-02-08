@@ -56,7 +56,7 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
   return (
     <Menu
       mode="inline"
-      theme="dark"
+      theme="light"
       selectedKeys={selectedKeys}
       openKeys={openKeys}
       onOpenChange={keys => setOpenkeys([keys.pop()!])}

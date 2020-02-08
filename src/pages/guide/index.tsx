@@ -10,22 +10,24 @@ const GuidePage: FC = () => {
   const { driverStart } = useGuide()
 
   return (
-    <div className="guide-page">
-      <p className="guide-intro">
-        {formatMessage({ id: 'app.guide.guideIntro' })}
-        <a
-          className="driverjs-link"
-          href="https://github.com/kamranahmedse/driver.js"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          driver.js
-        </a>
-        .
-      </p>
-      <Button type="primary" onClick={driverStart}>
-        {formatMessage({ id: 'app.guide.showGuide' })}
-      </Button>
+    <div className="guide-page ">
+      <div className="innerText">
+        <p className="guide-intro">
+          {formatMessage({ id: 'app.guide.guideIntro' })}
+          <a
+            className="driverjs-link"
+            href="https://github.com/kamranahmedse/driver.js"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            driver.js
+          </a>
+          .
+        </p>
+        <Button type="primary" onClick={driverStart}>
+          {formatMessage({ id: 'app.guide.showGuide' })}
+        </Button>
+      </div>
     </div>
   )
 }

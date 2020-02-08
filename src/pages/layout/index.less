@@ -2,47 +2,57 @@
 
 .layout-page {
   &-header {
-    padding: 0 15px;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.45);
-    background-color: @dark-color !important;
     z-index: 9;
-  }
-  &-sider {
-    box-sizing: border-box;
+    background-color: #fff !important;
+    box-shadow: 0 4px 10px #dddddd;
+    &-main {
+      padding: 0 15px;
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .logo {
       height: 64px;
+      width: 200px;
       box-sizing: border-box;
-      margin-bottom: 15px;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: @dark-color;
-      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.45);
       z-index: 9;
       img {
         width: 30px;
         height: 30px;
       }
     }
-    border-right: 1px solid #303030;
+  }
+  &-sider {
+    background-color: #fff !important;
+    box-sizing: border-box;
+    border-right: 1px solid #f0f0f0;
   }
   &-content {
     display: flex;
     flex-direction: column;
     flex: 1;
+    > :nth-child(1) .ant-tabs-bar {
+      padding: 6px 0 0;
+      background: #fff;
+    }
+
     > :nth-child(2) {
       flex: auto;
       overflow-y: auto;
+      margin: 12px;
       padding: 12px;
       box-sizing: border-box;
-      // background-color: #292a2d !important;
-      background-color: #1f1f1f !important;
       .ant-form,
       .ant-table-wrapper {
-        border: 6px solid rgb(41, 42, 45);
+        border: 6px solid #fff;
         box-sizing: border-box;
         padding: 6px;
       }
@@ -51,8 +61,8 @@
         margin-bottom: 12px;
       }
       .innerText {
-        background-color: rgb(41, 42, 45);
-        padding: 8px 24px;
+        background-color: #fff;
+        padding: 24px;
         margin-bottom: 20px;
         border-radius: 2px;
         display: block;
@@ -125,17 +135,18 @@
   position: fixed;
   right: 32px;
   bottom: 102px;
-  z-index: 2147483640;
   cursor: pointer;
   > span {
     display: block;
     text-align: center;
     background: #fff;
-    border-radius: 4px;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
     width: 44px;
     height: 44px;
     line-height: 44px;
     font-size: 22px;
+    z-index: 10001;
   }
 }
 

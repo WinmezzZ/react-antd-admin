@@ -1,6 +1,6 @@
 const { override, addLessLoader, addWebpackAlias, fixBabelImports, addWebpackPlugin } = require('customize-cra')
 const path = require('path')
-const darkThemeVars = require('antd/dist/dark-theme')
+// const darkThemeVars = require('antd/dist/dark-theme')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
 
