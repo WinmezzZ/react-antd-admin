@@ -35,7 +35,7 @@ The best practices for React Hooks and Typescript.
 - 📐 **Common Templates**: Typical templates for enterprise applications
 - 🚀 **State of The Art Development**: Newest development stack of React/hooks/Redux/antd/typescript
 - 📱 **Responsive**: Designed for variable screen sizes
-- 🎨 **Theming**: The dark series of theme style
+- 🎨 **Theming**: Dynamically switch system theme
 - 🌐 **International**: Built-in i18n solution
 - ⚙️ **Best Practices**: Solid workflow to make your code healthy
 - 🔢 **Mock development**: Easy to use mock development solution
