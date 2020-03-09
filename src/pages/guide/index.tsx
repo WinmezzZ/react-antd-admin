@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import 'driver.js/dist/driver.min.css'
 import { Button } from 'antd'
-import './index.less'
 import { useLocale } from '~/locales'
 import useGuide from './useGuide'
 

@@ -23,6 +23,7 @@ export const ThemeSwitch: FC = () => {
   const [vars, setVars] = useState(() => {
     const data = Object.assign({}, defaultVars, JSON.parse(localStorage.getItem('app-theme')!))
     setTheme(data['@primary-color'])
+    window.less.modifyVars(data)
     return data
   })
   const { formatMessage } = useLocale()

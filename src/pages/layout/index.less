@@ -1,6 +1,7 @@
 @import '~src/styles/var';
 
 .layout-page {
+  height: 100%;
   &-header {
     padding: 0;
     display: flex;
@@ -34,6 +35,7 @@
     background-color: #fff !important;
     box-sizing: border-box;
     border-right: 1px solid #f0f0f0;
+    margin-bottom: 10px;
   }
   &-content {
     display: flex;
@@ -48,8 +50,8 @@
       flex: auto;
       overflow-y: auto;
       margin: 12px;
-      padding: 12px;
       box-sizing: border-box;
+      background-color: #ffffff;
       .ant-form,
       .ant-table-wrapper {
         border: 6px solid #fff;
@@ -63,13 +65,18 @@
       .innerText {
         background-color: #fff;
         padding: 24px;
-        margin-bottom: 20px;
         border-radius: 2px;
         display: block;
         line-height: 32px;
         font-size: 16px;
       }
     }
+  }
+  &-footer {
+    background-color: #ffffff !important;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 12px;
   }
   .actions {
     height: 100%;

@@ -36,7 +36,9 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
     if (menu.path === pathname) return
     const { key, label, path } = menu
     setSelectedKeys([key])
-    dispatch(setGlobalItem({ collapsed: device !== 'DESKTOP' }))
+    if (device !== 'DESKTOP') {
+      dispatch(setGlobalItem({ collapsed: true }))
+    }
     dispatch(
       addTag({
         id: key,
