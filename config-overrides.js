@@ -1,8 +1,9 @@
 const { override, addLessLoader, addWebpackAlias, fixBabelImports, addWebpackPlugin } = require('customize-cra')
 const path = require('path')
 // const darkThemeVars = require('antd/dist/dark-theme')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const AntDesignThemePlugin = require('antd-theme-webpack-plugin')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
 
 const options = {
   antDir: path.join(__dirname, './node_modules/antd'), 
@@ -16,8 +17,20 @@ const options = {
 
 const resolve = dir => path.join(__dirname, '.', dir)
 
-const rewiredSourceMap = () => config => {
+const rewiredSourceMap = () => (config) => {
   config.devtool = config.mode === 'development' ? 'cheap-module-source-map' : false
+  return config
+}
+
+const prerenderPlugin = () => (config) => {
+  if (config.mode === 'production') {
+    config.plugins = config.plugins.concat([
+      new PrerenderSPAPlugin({
+        routes: ['/dashboard'],
+        staticDir: path.join(__dirname, 'build'),
+      }),
+    ]);
+  }
   return config
 }
 
@@ -42,5 +55,6 @@ module.exports = override(
     // new BundleAnalyzerPlugin(),
     new AntDesignThemePlugin(options)
   ),
+  prerenderPlugin(),
   rewiredSourceMap()
 )

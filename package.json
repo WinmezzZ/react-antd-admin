@@ -64,6 +64,7 @@
     "http-proxy-middleware": "^0.20.0",
     "less": "^2.7.0",
     "less-loader": "^5.0.0",
+    "prerender-spa-plugin": "^3.4.0",
     "prettier": "^1.19.1",
     "react-app-rewired": "^2.1.5",
     "redux-devtools-extension": "^2.13.8",
