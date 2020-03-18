@@ -23,6 +23,6 @@
   },
   "editor.fontSize": 16,
   "editor.tabSize": 2,
-  "editor.fontFamily": "'Source Code Variable', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
   "workbench.colorTheme": "Community Material Theme Palenight High Contrast"
 }
