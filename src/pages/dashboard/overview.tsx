@@ -95,18 +95,8 @@ const Field: FC<FieldProps> = ({ name, number }) => (
   </div>
 )
 
-const Overview: FC = () => {
-  const [loading, setLoading] = useState(true)
+const Overview:FC<{ loading: boolean }> = ({ loading }) => {
   const { formatMessage } = useLocale()
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [])
 
   return (
     <Row gutter={[12, 12]}>

@@ -35,17 +35,7 @@ const CustomTooltip: FC<any> = ({ active, payload, label }) => {
   return null
 }
 
-const TimeLine: FC = () => {
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [])
+const TimeLine: FC<{ loading: boolean }> = ({ loading }) => {
 
   return (
     <Card loading={loading} style={{ marginTop: 12 }}>

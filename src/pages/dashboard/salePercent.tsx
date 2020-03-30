@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useState } from 'react'
 import { Card, Row, Col, List, Radio, Badge } from 'antd'
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts'
 import { ColProps } from 'antd/lib/col'
@@ -59,20 +59,10 @@ const wrapperCol: ColProps = {
   xxl: 12
 }
 
-const SalePercent: FC = () => {
-  const [loading, setLoading] = useState(true)
+const SalePercent: FC<{loading: boolean }> = ({ loading }) => {
   const [dataType, setDataType] = useState<DataType>('all')
   const { locale } = useSelector((state: AppState) => state.globalReducer)
   const { formatMessage } = useLocale()
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [])
 
   return (
     <Card
@@ -87,7 +77,7 @@ const SalePercent: FC = () => {
         </Radio.Group>
       }
     >
-      <Row gutter={20}>
+       <Row gutter={20}>
         <Col {...wrapperCol}>
           <ResponsiveContainer height={250}>
             <PieChart>
@@ -103,6 +93,7 @@ const SalePercent: FC = () => {
                       </span>
                     )
                   }
+                  return null
                 }}
               />
               <Pie
