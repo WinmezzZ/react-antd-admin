@@ -7,10 +7,10 @@ English | [简体中文](./README.zh_CN.md)
 The best practices for React Hooks and Typescript.
 
 <a href="https://github.com/facebook/react">
-  <img src="https://img.shields.io/badge/react-16.12.0-brightgreen" alt="React">
+  <img src="https://img.shields.io/badge/react-16.13.1-brightgreen" alt="React">
 </a>
 <a href="https://github.com/ant-design/ant-design">
-  <img src="https://img.shields.io/badge/ant--design-4.0.0--rc.0-brightgreen" alt="ant-design">
+  <img src="https://img.shields.io/badge/ant--design-4.1.0-brightgreen" alt="ant-design">
 </a>
 <a href="https://github.com/microsoft/TypeScript" rel="nofollow">
   <img src="https://img.shields.io/badge/typescript-3.7.5-brightgreen" alt="Typescript">
