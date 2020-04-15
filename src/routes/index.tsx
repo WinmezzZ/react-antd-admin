@@ -1,8 +1,10 @@
-import React, { FC, lazy } from 'react'
-import RenderRoutes, { RouteProps } from './config'
+import React, { lazy, FC } from 'react'
 
 import Dashboard from '~/pages/dashboard'
-import { Redirect } from 'react-router-dom'
+import LoginPage from '~/pages/login'
+import LayoutPage from '~/pages/layout'
+import { RouteProps } from './config'
+import { Routes, Route } from 'react-router'
 const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/404'))
 const Documentation = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/doucumentation'))
 const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ '~/pages/guide'))
@@ -11,80 +13,92 @@ const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permissi
 const PermissionConfig = lazy(() => import(/* webpackChunkName: "permission-config'"*/ '~/pages/permission/config'))
 const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ '~/pages/account'))
 
-const routerTree: RouteProps[] = [
+export const routeList: RouteProps[] = [
   {
-    path: '/',
-    exact: true,
-    component: () => <Redirect to="/dashboard" />,
+    path: 'login',
+    element: <LoginPage />,
+    meta: {
+      titleId: 'title.login'
+    }
+  },
+  {
+    path: '',
+    element: <LayoutPage />,
     meta: {
       titleId: ''
-    }
-  },
-  {
-    path: '/dashboard',
-    exact: true,
-    component: Dashboard,
-    meta: {
-      titleId: 'title.dashboard'
-    }
-  },
-  {
-    path: '/documentation',
-    component: Documentation,
-    meta: {
-      titleId: 'title.documentation'
-    }
-  },
-  {
-    path: '/guide',
-    exact: true,
-    component: Guide,
-    meta: {
-      titleId: 'title.guide'
-    }
-  },
-  {
-    path: '/permission/route',
-    exact: true,
-    component: RoutePermission,
-    meta: {
-      titleId: 'title.permission.route',
-      auth: true
-    }
-  },
-  {
-    path: '/permission/button',
-    exact: true,
-    component: ButtonPermission,
-    meta: {
-      titleId: 'title.permission.button'
-    }
-  },
-  {
-    path: '/permission/config',
-    exact: true,
-    component: PermissionConfig,
-    meta: {
-      titleId: 'title.permission.config'
-    }
-  },
-  {
-    path: '/account',
-    exact: true,
-    component: AccountPage,
-    meta: {
-      titleId: 'title.account'
-    }
-  },
-  {
-    path: '*',
-    component: NotFound,
-    meta: {
-      titleId: 'title.notFount'
-    }
+    },
+    children: [
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
+        meta: {
+          titleId: 'title.dashboard'
+        }
+      },
+      {
+        path: 'documentation',
+        element: <Documentation />,
+        meta: {
+          titleId: 'title.documentation'
+        }
+      },
+      {
+        path: 'guide',
+        element: <Guide />,
+        meta: {
+          titleId: 'title.guide'
+        }
+      },
+      {
+        path: 'permission/route',
+        element: <RoutePermission />,
+        meta: {
+          titleId: 'title.permission.route',
+          auth: true
+        }
+      },
+      {
+        path: 'permission/button',
+        element: <ButtonPermission />,
+        meta: {
+          titleId: 'title.permission.button'
+        }
+      },
+      {
+        path: 'permission/config',
+        element: <PermissionConfig />,
+        meta: {
+          titleId: 'title.permission.config'
+        }
+      },
+      {
+        path: 'account',
+        element: <AccountPage />,
+        meta: {
+          titleId: 'title.account'
+        }
+      },
+      {
+        path: '*',
+        element: <NotFound />,
+        meta: {
+          titleId: 'title.notFount'
+        }
+      }
+    ]
   }
 ]
 
-const MainRoutes: FC = () => <RenderRoutes routes={routerTree} />
-
-export default MainRoutes
+export const RenderRoutes: FC = () => {
+  return (
+    <Routes>
+      {routeList.map(route => (
+        <Route path={route.path} element={route.element} key={route.path}>
+          {route.children?.map(child => (
+            <Route path={child.path} element={child.element} key={child.path} />
+          ))}
+        </Route>
+      ))}
+    </Routes>
+  )
+}

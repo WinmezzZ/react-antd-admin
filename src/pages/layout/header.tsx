@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import { Layout, Dropdown, Menu } from 'antd'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import HeaderNoticeComponent from './notice'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutAsync } from '~/actions/user.action'
@@ -27,7 +27,7 @@ type Action = 'userInfo' | 'userSetting' | 'logout'
 const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
   const { logged } = useSelector((state: AppState) => state.userReducer)
   const { locale, device } = useSelector((state: AppState) => state.globalReducer)
-  const history = useHistory()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { formatMessage } = useLocale()
 
@@ -39,13 +39,13 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
         return
       case 'logout':
         const res = Boolean(await dispatch(logoutAsync()))
-        res && history.push('/login')
+        res && navigate('/login')
         return
     }
   }
 
   const toLogin = () => {
-    history.push('/login')
+    navigate('/login')
   }
 
   const selectLocale = ({ key }: { key: any }) => {
@@ -57,7 +57,7 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
       <Menu.Item key="1">
         <span>
           <UserOutlined />
-          <span onClick={() => history.push('/dashboard')}>
+          <span onClick={() => navigate('/dashboard')}>
             <LocaleFormatter id="header.avator.account" />
           </span>
         </span>

@@ -6,7 +6,6 @@ import { AppState } from '~/stores'
 import { setGlobalItem } from '~/actions/global.action'
 import MenuComponent from './menu'
 import HeaderComponent from './header'
-import MainRoutes from '~/routes'
 import { getGlobalState } from '~/utils/getGloabal'
 import TagsView from './tagView'
 import SuspendFallbackLoading from './suspendFallbackLoading'
@@ -15,6 +14,7 @@ import { MenuList, MenuChild } from '~/interface/layout/menu.interface'
 import { setUserItem } from '~/actions/user.action'
 import ThemeSwitch from './themeSwitch'
 import { useGuide } from '../guide/useGuide'
+import { Outlet, useLocation, useNavigate } from 'react-router'
 
 const { Text } = Typography
 const { Sider, Content, Footer } = Layout
@@ -26,6 +26,14 @@ const LayoutPage: FC = () => {
   const isMobile = device === 'MOBILE'
   const dispatch = useDispatch()
   const { driverStart } = useGuide()
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      navigate('/dashboard')
+    }
+  }, [navigate, location])
 
   const toggle = () => {
     dispatch(
@@ -107,7 +115,7 @@ const LayoutPage: FC = () => {
         <Content className="layout-page-content">
           <TagsView />
           <Suspense fallback={<SuspendFallbackLoading />}>
-            <MainRoutes />
+            <Outlet />
           </Suspense>
           <ThemeSwitch />
         </Content>

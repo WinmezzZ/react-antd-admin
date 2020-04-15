@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC } from 'react'
 import { Card, Badge } from 'antd'
 import { ResponsiveContainer, LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid, Brush, Legend } from 'recharts'
 import moment from 'moment'
@@ -36,7 +36,6 @@ const CustomTooltip: FC<any> = ({ active, payload, label }) => {
 }
 
 const TimeLine: FC<{ loading: boolean }> = ({ loading }) => {
-
   return (
     <Card loading={loading} style={{ marginTop: 12 }}>
       <ResponsiveContainer height={400}>

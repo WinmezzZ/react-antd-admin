@@ -4,7 +4,7 @@ import Overview from './overview'
 import SalePercent from './salePercent'
 import TimeLine from './timeLine'
 
-const DashBoardPage: FC = () => { 
+const DashBoardPage: FC = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -15,11 +15,13 @@ const DashBoardPage: FC = () => {
       clearTimeout(timer)
     }
   }, [])
-  return <div>
-    <Overview loading={loading} />
-    <SalePercent loading={loading} />
-    <TimeLine loading={loading} />
-  </div>
+  return (
+    <div>
+      <Overview loading={loading} />
+      <SalePercent loading={loading} />
+      <TimeLine loading={loading} />
+    </div>
+  )
 }
 
 export default DashBoardPage

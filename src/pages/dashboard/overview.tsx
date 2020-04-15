@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC } from 'react'
 import { Row, Col, Card, Tooltip, Progress, Badge } from 'antd'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { ColProps } from 'antd/lib/col'
@@ -95,7 +95,7 @@ const Field: FC<FieldProps> = ({ name, number }) => (
   </div>
 )
 
-const Overview:FC<{ loading: boolean }> = ({ loading }) => {
+const Overview: FC<{ loading: boolean }> = ({ loading }) => {
   const { formatMessage } = useLocale()
 
   return (

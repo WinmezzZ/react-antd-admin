@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Button, Checkbox, Form, Input } from 'antd'
 import './index.less'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { loginAsync } from '~/actions/user.action'
 import { LoginParams } from '~/interface/user/login'
@@ -13,15 +13,15 @@ const initialValues: LoginParams = {
 }
 
 const LoginForm: FC = () => {
-  const history = useHistory()
-  const location = useLocation<{ from: string }>()
+  const navigate = useNavigate()
+  const location = useLocation()
   const dispatch = useDispatch()
 
   const onFinished = async (form: any) => {
     const res = Boolean(dispatch(await loginAsync(form)))
     if (res) {
-      const { from } = location.state || { from: { pathname: '/dashboard' } }
-      history.push(from)
+      const { from } = (location.state as any) || { from: { pathname: '/dashboard' } }
+      navigate(from)
     }
   }
 

@@ -59,7 +59,7 @@ const wrapperCol: ColProps = {
   xxl: 12
 }
 
-const SalePercent: FC<{loading: boolean }> = ({ loading }) => {
+const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
   const [dataType, setDataType] = useState<DataType>('all')
   const { locale } = useSelector((state: AppState) => state.globalReducer)
   const { formatMessage } = useLocale()
@@ -77,7 +77,7 @@ const SalePercent: FC<{loading: boolean }> = ({ loading }) => {
         </Radio.Group>
       }
     >
-       <Row gutter={20}>
+      <Row gutter={20}>
         <Col {...wrapperCol}>
           <ResponsiveContainer height={250}>
             <PieChart>

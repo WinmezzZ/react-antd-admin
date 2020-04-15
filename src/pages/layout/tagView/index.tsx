@@ -3,7 +3,7 @@ import { Tabs } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import { AppState } from '~/stores'
 import { setActiveTag, removeTag, addTag } from '~/actions/tagsView.action'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import TagsViewAction from './tagViewAction'
 import usePrevious from '~/hooks/usePrevious'
 
@@ -14,7 +14,8 @@ const TagsView: FC = () => {
   const { locale } = useSelector((state: AppState) => state.globalReducer)
   const { tags, activeTagId } = useSelector((state: AppState) => state.tagsViewlReducer)
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
+  const location = useLocation()
   const prevActiveTagId = usePrevious(activeTagId)
 
   // onClick tag
@@ -29,7 +30,7 @@ const TagsView: FC = () => {
 
   useEffect(() => {
     if (menuList.length) {
-      const menu = menuList.find(m => m.path === history.location.pathname)
+      const menu = menuList.find(m => m.path === location.pathname)
       if (menu) {
         // Initializes dashboard page.
         const dashboard = menuList[0]
@@ -53,13 +54,13 @@ const TagsView: FC = () => {
           )
       }
     }
-  }, [dispatch, history.location.pathname, menuList])
+  }, [dispatch, location.pathname, menuList])
 
   useEffect(() => {
     // If current tag id changed, push to new path.
     if (prevActiveTagId !== activeTagId) {
       const tag = tags.find(tag => tag.id === activeTagId) || tags[0]
-      history.push(tag.path)
+      navigate(tag.path)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTagId, prevActiveTagId])

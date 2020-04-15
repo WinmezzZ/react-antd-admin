@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react'
 import React from 'react'
 import { Menu } from 'antd'
 import { MenuList } from '../../interface/layout/menu.interface'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { CustomIcon } from './customIcon'
 import { useDispatch, useSelector } from 'react-redux'
 import { setGlobalItem } from '~/actions/global.action'
@@ -20,7 +20,7 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
   const { collapsed, device, locale } = useSelector((state: AppState) => state.globalReducer)
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
   const { pathname } = useLocation()
 
   const getTitie = (menu: MenuList[0]) => {
@@ -47,7 +47,7 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
         closable: true
       })
     )
-    history.push(path)
+    navigate(path)
   }
 
   useEffect(() => {
