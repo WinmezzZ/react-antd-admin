@@ -10,7 +10,7 @@ React Hooks + Typescript 最佳实践。
   <img src="https://img.shields.io/badge/react-16.12.0-brightgreen" alt="React">
 </a>
 <a href="https://github.com/ant-design/ant-design">
-  <img src="https://img.shields.io/badge/ant--design-4.0.0--rc.0-brightgreen" alt="ant-design">
+  <img src="https://img.shields.io/badge/ant--design-4.0.0-brightgreen" alt="ant-design">
 </a>
 <a href="https://github.com/microsoft/TypeScript" rel="nofollow">
   <img src="https://img.shields.io/badge/typescript-3.7.5-brightgreen" alt="Typescript">
@@ -24,8 +24,8 @@ React Hooks + Typescript 最佳实践。
 
 </div>
 
-- 预览: https://winmee.cn
-- 文档: https://winmee.cn/documentation
+- 预览: https://winme.weishour.com
+- 文档: https://winme.weishour.com/documentation
 
 ## ✨ 特性
 
