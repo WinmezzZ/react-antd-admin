@@ -24,8 +24,8 @@ The best practices for React Hooks and Typescript.
 
 </div>
 
-- Preview: https://winmee.cn
-- Documentation: https://winmee.cn/documentation
+- Preview: https://winme.weishour.com
+- Documentation: https://winme.weishour.com
 
 ## ✨ Features
 
