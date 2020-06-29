@@ -9,7 +9,7 @@ import enUS from 'antd/es/locale/en_US'
 import zhCN from 'antd/es/locale/zh_CN'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
-import { RenderRoutes } from './routes'
+import RenderRouter from './routes'
 
 const App: React.FC = () => {
   const { locale } = useSelector((state: AppState) => state.globalReducer)
@@ -34,7 +34,7 @@ const App: React.FC = () => {
     <ConfigProvider locale={getAntdLocale()} componentSize="middle">
       <IntlProvider locale={locale.split('_')[0]} messages={lacaleConfig[locale]}>
         <BrowserRouter>
-          <RenderRoutes />
+          <RenderRouter />
         </BrowserRouter>
       </IntlProvider>
     </ConfigProvider>

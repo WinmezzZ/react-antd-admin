@@ -1,38 +1,25 @@
 import React, { FC } from 'react'
-import { Route, RouteConfigObject } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import { RouteProps } from 'react-router'
 import PrivateRoute from './pravateRoute'
 import { useIntl } from 'react-intl'
 
-export interface RouteProps extends RouteConfigObject {
-  meta: {
-    /** document title locale id */
-    titleId: string
-    /** authorization？ */
-    auth?: boolean
-  }
-  children?: RouteProps[]
+export interface WrapperRouteProps extends RouteProps {
+  /** document title locale id */
+  titleId: string
+  /** authorization？ */
+  auth?: boolean
 }
 
-interface Props {
-  routes: RouteProps[]
-}
-
-const RenderRoutes: FC<Props> = ({ routes }) => {
+const WrapperRouteComponent: FC<WrapperRouteProps> = ({ titleId, auth, ...props }) => {
   const { formatMessage } = useIntl()
-  return (
-    <>
-      {routes.map(route => {
-        const { meta } = route
-        const { titleId, auth } = meta
-        const WitchRoute = auth ? PrivateRoute : Route
-        meta.titleId &&
-          (document.title = formatMessage({
-            id: titleId
-          }))
-        return WitchRoute
-      })}
-    </>
-  )
+  const WitchRoute = auth ? PrivateRoute : Route
+  if (titleId) {
+    document.title = formatMessage({
+      id: titleId
+    })
+  }
+  return <WitchRoute {...props} />
 }
 
-export default RenderRoutes
+export default WrapperRouteComponent

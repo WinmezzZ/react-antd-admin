@@ -3,8 +3,10 @@ import React, { lazy, FC } from 'react'
 import Dashboard from '~/pages/dashboard'
 import LoginPage from '~/pages/login'
 import LayoutPage from '~/pages/layout'
-import { RouteProps } from './config'
-import { Routes, Route } from 'react-router'
+import { PartialRouteObject } from 'react-router'
+import WrapperRouteComponent from './config'
+import { useRoutes } from 'react-router-dom'
+
 const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/404'))
 const Documentation = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/doucumentation'))
 const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ '~/pages/guide'))
@@ -13,92 +15,54 @@ const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permissi
 const PermissionConfig = lazy(() => import(/* webpackChunkName: "permission-config'"*/ '~/pages/permission/config'))
 const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ '~/pages/account'))
 
-export const routeList: RouteProps[] = [
+const routeList: PartialRouteObject[] = [
   {
     path: 'login',
-    element: <LoginPage />,
-    meta: {
-      titleId: 'title.login'
-    }
+    element: <WrapperRouteComponent element={<LoginPage />} titleId="title.login" />
   },
   {
     path: '',
-    element: <LayoutPage />,
-    meta: {
-      titleId: ''
-    },
+    element: <WrapperRouteComponent element={<LayoutPage />} titleId="" />,
     children: [
       {
         path: 'dashboard',
-        element: <Dashboard />,
-        meta: {
-          titleId: 'title.dashboard'
-        }
+        element: <WrapperRouteComponent element={<Dashboard />} titleId="title.dashboard" />
       },
       {
         path: 'documentation',
-        element: <Documentation />,
-        meta: {
-          titleId: 'title.documentation'
-        }
+        element: <WrapperRouteComponent element={<Documentation />} titleId="title.documentation" />
       },
       {
         path: 'guide',
-        element: <Guide />,
-        meta: {
-          titleId: 'title.guide'
-        }
+        element: <WrapperRouteComponent element={<Guide />} titleId="title.guide" />
       },
       {
         path: 'permission/route',
-        element: <RoutePermission />,
-        meta: {
-          titleId: 'title.permission.route',
-          auth: true
-        }
+        element: <WrapperRouteComponent element={<RoutePermission />} titleId="title.permission.route" auth />
       },
       {
         path: 'permission/button',
-        element: <ButtonPermission />,
-        meta: {
-          titleId: 'title.permission.button'
-        }
+        element: <WrapperRouteComponent element={<ButtonPermission />} titleId="title.permission.button" />
       },
       {
         path: 'permission/config',
-        element: <PermissionConfig />,
-        meta: {
-          titleId: 'title.permission.config'
-        }
+        element: <WrapperRouteComponent element={<PermissionConfig />} titleId="title.permission.config" />
       },
       {
         path: 'account',
-        element: <AccountPage />,
-        meta: {
-          titleId: 'title.account'
-        }
+        element: <WrapperRouteComponent element={<AccountPage />} titleId="title.account" />
       },
       {
         path: '*',
-        element: <NotFound />,
-        meta: {
-          titleId: 'title.notFount'
-        }
+        element: <WrapperRouteComponent element={<NotFound />} titleId="title.notFount" />
       }
     ]
   }
 ]
 
-export const RenderRoutes: FC = () => {
-  return (
-    <Routes>
-      {routeList.map(route => (
-        <Route path={route.path} element={route.element} key={route.path}>
-          {route.children?.map(child => (
-            <Route path={child.path} element={child.element} key={child.path} />
-          ))}
-        </Route>
-      ))}
-    </Routes>
-  )
+const RenderRouter: FC = () => {
+  const element = useRoutes(routeList)
+  return element
 }
+
+export default RenderRouter

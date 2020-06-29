@@ -66,7 +66,7 @@ const TagsView: FC = () => {
   }, [activeTagId, prevActiveTagId])
 
   return (
-    <div id="pageTabs">
+    <div id="pageTabs" style={{ background: '#fff', padding: '6px 4px' }}>
       <Tabs
         tabBarStyle={{ margin: 0 }}
         onChange={onChange}

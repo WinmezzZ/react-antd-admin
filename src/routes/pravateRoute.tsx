@@ -1,24 +1,28 @@
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import { AppState } from '~/stores'
-import { Route, RouteProps, useNavigate } from 'react-router-dom'
+import { Route, useNavigate } from 'react-router-dom'
 import { Result, Button } from 'antd'
 import { useLocale } from '~/locales'
+import { RouteProps, useLocation } from 'react-router'
 
-const PrivateRoute: FC<RouteProps> = ({ path, element }) => {
+const PrivateRoute: FC<RouteProps> = props => {
   const { logged } = useSelector((state: AppState) => state.userReducer)
   const navigate = useNavigate()
   const { formatMessage } = useLocale()
-
+  const location = useLocation()
   return logged ? (
-    <Route path={path} element={element}></Route>
+    <Route {...props} />
   ) : (
     <Result
       status="403"
       title="403"
       subTitle={formatMessage({ id: 'gloabal.tips.unauthorized' })}
       extra={
-        <Button type="primary" onClick={() => navigate('/login', { replace: true, state: { from: path } })}>
+        <Button
+          type="primary"
+          onClick={() => navigate('/login', { replace: true, state: { from: location.pathname } })}
+        >
           {formatMessage({ id: 'gloabal.tips.goToLogin' })}
         </Button>
       }
