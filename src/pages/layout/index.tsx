@@ -1,5 +1,5 @@
 import React, { FC, useEffect, Suspense, useCallback, useState } from 'react'
-import { Layout, Drawer, Typography } from 'antd'
+import { Layout, Drawer } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import './index.less'
 import { AppState } from '~/stores'
@@ -16,8 +16,7 @@ import ThemeSwitch from './themeSwitch'
 import { useGuide } from '../guide/useGuide'
 import { Outlet, useLocation, useNavigate } from 'react-router'
 
-const { Text } = Typography
-const { Sider, Content, Footer } = Layout
+const { Sider, Content } = Layout
 const WIDTH = 992
 
 const LayoutPage: FC = () => {
@@ -120,21 +119,6 @@ const LayoutPage: FC = () => {
           <ThemeSwitch />
         </Content>
       </Layout>
-      <Footer className="layout-page-footer">
-        <Text>
-          github:{' '}
-          <a
-            style={{ color: 'royalblue' }}
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/WinmezzZ/react-antd-admin"
-          >
-            https://github.com/WinmezzZ/react-antd-admin
-          </a>
-        </Text>
-        <br />
-        <Text>赣ICP备18008240号 | Copyright © 2019 - 2020 </Text>
-      </Footer>
     </Layout>
   )
 }
