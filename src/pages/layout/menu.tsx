@@ -55,13 +55,18 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
     setOpenkeys(collapsed ? [] : ['/' + pathname.split('/')[1]])
   }, [collapsed, pathname])
 
+  const onOpenChange = (keys: string[]) => {
+    const key = keys.pop()
+    if (key) setOpenkeys([key])
+  }
+
   return (
     <Menu
       mode="inline"
       theme="light"
       selectedKeys={selectedKeys}
       openKeys={openKeys}
-      onOpenChange={keys => setOpenkeys([keys.pop()!])}
+      onOpenChange={onOpenChange as any}
       className="layout-page-sider-menu"
     >
       {menuList?.map(menu =>
