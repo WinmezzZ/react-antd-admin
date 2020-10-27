@@ -1,14 +1,14 @@
-import React, { FC } from 'react'
-import { Menu, Dropdown } from 'antd'
-import { SettingOutlined } from '@ant-design/icons'
-import { useDispatch, useSelector } from 'react-redux'
-import { removeTag, removeOtherTag, removeAllTag } from '~/actions/tagsView.action'
-import { AppState } from '~/stores'
-import { LocaleFormatter } from '~/locales'
+import React, { FC } from 'react';
+import { Menu, Dropdown } from 'antd';
+import { SettingOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeTag, removeOtherTag, removeAllTag } from 'actions/tagsView.action';
+import { AppState } from 'stores';
+import { LocaleFormatter } from 'locales';
 
 const TagsViewAction: FC = () => {
-  const { activeTagId } = useSelector((state: AppState) => state.tagsViewlReducer)
-  const dispatch = useDispatch()
+  const { activeTagId } = useSelector((state: AppState) => state.tagsViewlReducer);
+  const dispatch = useDispatch();
   return (
     <Dropdown
       overlay={
@@ -33,7 +33,7 @@ const TagsViewAction: FC = () => {
         <SettingOutlined className="tagsView-extra" />
       </span>
     </Dropdown>
-  )
-}
+  );
+};
 
-export default TagsViewAction
+export default TagsViewAction;

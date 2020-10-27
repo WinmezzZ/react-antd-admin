@@ -1,34 +1,32 @@
-import { Action } from 'redux'
-import { Device } from '~/interface/layout/index.interface'
+import { Action } from 'redux';
+import { Device } from 'interface/layout/index.interface';
 
 export interface GlobalState {
   /** user's device */
-  device: Device
+  device: Device;
 
   /** menu collapsed status */
-  collapsed: boolean
+  collapsed: boolean;
 
   /** notification count */
-  noticeCount: number
+  noticeCount: number;
 
   /** user's language */
-  locale: 'zh_CN' | 'en_US'
+  locale: 'zh_CN' | 'en_US';
 
   /** Is first time to view the site ? */
-  newUser: boolean
+  newUser: boolean;
 }
 
-const SETGLOBALITEM = 'SETGLOBALITEM'
+const SETGLOBALITEM = 'SETGLOBALITEM';
 
-type SETGLOBALITEM = typeof SETGLOBALITEM
-
-interface SetGloabalItem extends Action<SETGLOBALITEM> {
-  payload: Partial<GlobalState>
+interface SetGloabalItem extends Action<typeof SETGLOBALITEM> {
+  payload: Partial<GlobalState>;
 }
 
 export const setGlobalItem = (payload: Partial<GlobalState>): SetGloabalItem => ({
   type: 'SETGLOBALITEM',
   payload
-})
+});
 
-export type GlobalActions = SetGloabalItem
+export type GlobalActions = SetGloabalItem;

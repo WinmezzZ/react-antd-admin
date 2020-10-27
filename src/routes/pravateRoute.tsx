@@ -1,16 +1,16 @@
-import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
-import { AppState } from '~/stores'
-import { Route, useNavigate } from 'react-router-dom'
-import { Result, Button } from 'antd'
-import { useLocale } from '~/locales'
-import { RouteProps, useLocation } from 'react-router'
+import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { AppState } from 'stores';
+import { Route, useNavigate } from 'react-router-dom';
+import { Result, Button } from 'antd';
+import { useLocale } from 'locales';
+import { RouteProps, useLocation } from 'react-router';
 
 const PrivateRoute: FC<RouteProps> = props => {
-  const { logged } = useSelector((state: AppState) => state.userReducer)
-  const navigate = useNavigate()
-  const { formatMessage } = useLocale()
-  const location = useLocation()
+  const { logged } = useSelector((state: AppState) => state.userReducer);
+  const navigate = useNavigate();
+  const { formatMessage } = useLocale();
+  const location = useLocation();
   return logged ? (
     <Route {...props} />
   ) : (
@@ -27,7 +27,7 @@ const PrivateRoute: FC<RouteProps> = props => {
         </Button>
       }
     />
-  )
-}
+  );
+};
 
-export default PrivateRoute
+export default PrivateRoute;

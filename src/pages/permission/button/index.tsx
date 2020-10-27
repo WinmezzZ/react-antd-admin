@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-const ButtonPermissionPage: FC = () => <span>button</span>
+const ButtonPermissionPage: FC = () => <span>button</span>;
 
-export default ButtonPermissionPage
+export default ButtonPermissionPage;

@@ -1,14 +1,14 @@
-import { useRef } from 'react'
-import Driver from 'driver.js'
-import 'driver.js/dist/driver.min.css'
-import './index.less'
-import { useLocale } from '~/locales'
-import { setGlobalItem } from '~/actions/global.action'
-import { useDispatch } from 'react-redux'
+import { useRef } from 'react';
+import Driver from 'driver.js';
+import 'driver.js/dist/driver.min.css';
+import './index.less';
+import { useLocale } from 'locales';
+import { setGlobalItem } from 'actions/global.action';
+import { useDispatch } from 'react-redux';
 
 export const useGuide = () => {
-  const { formatMessage } = useLocale()
-  const dispatch = useDispatch()
+  const { formatMessage } = useLocale();
+  const dispatch = useDispatch();
 
   const driver = useRef(
     new Driver({
@@ -20,7 +20,7 @@ export const useGuide = () => {
       nextBtnText: formatMessage({ id: 'app.guide.driverjs.nextBtnText' }),
       doneBtnText: formatMessage({ id: 'app.guide.driverjs.doneBtnText' })
     })
-  )
+  );
 
   const driverStart = () => {
     setTimeout(() => {
@@ -79,22 +79,22 @@ export const useGuide = () => {
             isLast: true
           }
         }
-      ])
+      ]);
 
-      localStorage.setItem('newUser', 'false')
+      localStorage.setItem('newUser', 'false');
       dispatch(
         setGlobalItem({
           newUser: false
         })
-      )
-      driver.current.start()
-      console.log('guide started')
-    }, 1000)
-  }
+      );
+      driver.current.start();
+      console.log('guide started');
+    }, 1000);
+  };
 
   return {
     driverStart
-  }
-}
+  };
+};
 
-export default useGuide
+export default useGuide;

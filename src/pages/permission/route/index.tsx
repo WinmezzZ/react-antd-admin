@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
-import { LocaleFormatter } from '~/locales'
-import './index.less'
+import React, { FC } from 'react';
+import { LocaleFormatter } from 'locales';
+import './index.less';
 
 const RoutePermissionPage: FC = () => {
   return (
@@ -9,7 +9,7 @@ const RoutePermissionPage: FC = () => {
         <LocaleFormatter id="gloabal.tips.loginResult" />
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default RoutePermissionPage
+export default RoutePermissionPage;

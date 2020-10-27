@@ -1,19 +1,19 @@
-import React, { lazy, FC } from 'react'
+import React, { lazy, FC } from 'react';
 
-import Dashboard from '~/pages/dashboard'
-import LoginPage from '~/pages/login'
-import LayoutPage from '~/pages/layout'
-import { PartialRouteObject } from 'react-router'
-import WrapperRouteComponent from './config'
-import { useRoutes } from 'react-router-dom'
+import Dashboard from 'pages/dashboard';
+import LoginPage from 'pages/login';
+import LayoutPage from 'pages/layout';
+import { PartialRouteObject } from 'react-router';
+import WrapperRouteComponent from './config';
+import { useRoutes } from 'react-router-dom';
 
-const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/404'))
-const Documentation = lazy(() => import(/* webpackChunkName: "404'"*/ '~/pages/doucumentation'))
-const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ '~/pages/guide'))
-const RoutePermission = lazy(() => import(/* webpackChunkName: "route-permission"*/ '~/pages/permission/route'))
-const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permission"*/ '~/pages/permission/button'))
-const PermissionConfig = lazy(() => import(/* webpackChunkName: "permission-config'"*/ '~/pages/permission/config'))
-const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ '~/pages/account'))
+const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ 'pages/404'));
+const Documentation = lazy(() => import(/* webpackChunkName: "404'"*/ 'pages/doucumentation'));
+const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ 'pages/guide'));
+const RoutePermission = lazy(() => import(/* webpackChunkName: "route-permission"*/ 'pages/permission/route'));
+const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permission"*/ 'pages/permission/button'));
+const PermissionConfig = lazy(() => import(/* webpackChunkName: "permission-config'"*/ 'pages/permission/config'));
+const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ 'pages/account'));
 
 const routeList: PartialRouteObject[] = [
   {
@@ -58,11 +58,11 @@ const routeList: PartialRouteObject[] = [
       }
     ]
   }
-]
+];
 
 const RenderRouter: FC = () => {
-  const element = useRoutes(routeList)
-  return element
-}
+  const element = useRoutes(routeList);
+  return element;
+};
 
-export default RenderRouter
+export default RenderRouter;

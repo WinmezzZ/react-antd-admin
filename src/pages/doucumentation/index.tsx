@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import { Typography } from 'antd'
+import React, { FC } from 'react';
+import { Typography } from 'antd';
+import { LocaleFormatter } from 'locales';
 
-const { Title, Paragraph } = Typography
-import { LocaleFormatter } from '~/locales'
+const { Title, Paragraph } = Typography;
 
-const div = <div style={{ height: 200 }}>2333</div>
+const div = <div style={{ height: 200 }}>2333</div>;
 
 const DocumentationPage: FC = () => {
   return (
@@ -82,7 +82,7 @@ const DocumentationPage: FC = () => {
         <Paragraph>{div}</Paragraph>
       </Typography>
     </div>
-  )
-}
+  );
+};
 
-export default DocumentationPage
+export default DocumentationPage;

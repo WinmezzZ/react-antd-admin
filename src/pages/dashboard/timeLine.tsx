@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
-import { Card, Badge } from 'antd'
-import { ResponsiveContainer, LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid, Brush, Legend } from 'recharts'
-import moment from 'moment'
-import { LocaleFormatter } from '~/locales'
+import React, { FC } from 'react';
+import { Card, Badge } from 'antd';
+import { ResponsiveContainer, LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid, Brush, Legend } from 'recharts';
+import moment from 'moment';
+import { LocaleFormatter } from 'locales';
 
 const data = new Array(20).fill(null).map((_, index) => ({
   name: moment()
@@ -10,12 +10,12 @@ const data = new Array(20).fill(null).map((_, index) => ({
     .format('HH:mm'),
   traffic: Math.floor(Math.random() * 120 + 1),
   payments: Math.floor(Math.random() * 120 + 1)
-}))
+}));
 
 const CustomTooltip: FC<any> = ({ active, payload, label }) => {
   if (active) {
-    const { value: value1, stroke: stroke1 } = payload[0]
-    const { value: value2, stroke: stroke2 } = payload[1]
+    const { value: value1, stroke: stroke1 } = payload[0];
+    const { value: value2, stroke: stroke2 } = payload[1];
     return (
       <div className="customTooltip">
         <span className="customTooltip-title">{label}</span>
@@ -30,10 +30,10 @@ const CustomTooltip: FC<any> = ({ active, payload, label }) => {
           </li>
         </ul>
       </div>
-    )
+    );
   }
-  return null
-}
+  return null;
+};
 
 const TimeLine: FC<{ loading: boolean }> = ({ loading }) => {
   return (
@@ -55,7 +55,7 @@ const TimeLine: FC<{ loading: boolean }> = ({ loading }) => {
         </LineChart>
       </ResponsiveContainer>
     </Card>
-  )
-}
+  );
+};
 
-export default TimeLine
+export default TimeLine;

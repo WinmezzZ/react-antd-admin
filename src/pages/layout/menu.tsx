@@ -1,27 +1,27 @@
-import { FC, useState, useEffect } from 'react'
-import React from 'react'
-import { Menu } from 'antd'
-import { MenuList } from '../../interface/layout/menu.interface'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { CustomIcon } from './customIcon'
-import { useDispatch, useSelector } from 'react-redux'
-import { setGlobalItem } from '~/actions/global.action'
-import { AppState } from '~/stores'
-import { addTag } from '~/actions/tagsView.action'
+import { FC, useState, useEffect } from 'react';
+import React from 'react';
+import { Menu } from 'antd';
+import { MenuList } from '../../interface/layout/menu.interface';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { CustomIcon } from './customIcon';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGlobalItem } from 'actions/global.action';
+import { AppState } from 'stores';
+import { addTag } from 'actions/tagsView.action';
 
-const { SubMenu, Item } = Menu
+const { SubMenu, Item } = Menu;
 
 interface Props {
-  menuList: MenuList
+  menuList: MenuList;
 }
 
 const MenuComponent: FC<Props> = ({ menuList }) => {
-  const [openKeys, setOpenkeys] = useState<string[]>([])
-  const [selectedKeys, setSelectedKeys] = useState<string[]>([])
-  const { collapsed, device, locale } = useSelector((state: AppState) => state.globalReducer)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
+  const [openKeys, setOpenkeys] = useState<string[]>([]);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+  const { collapsed, device, locale } = useSelector((state: AppState) => state.globalReducer);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const getTitie = (menu: MenuList[0]) => {
     return (
@@ -29,15 +29,15 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
         <CustomIcon type={menu.icon!} />
         <span>{menu.label[locale]}</span>
       </span>
-    )
-  }
+    );
+  };
 
   const onMenuClick = (menu: MenuList[0]) => {
-    if (menu.path === pathname) return
-    const { key, label, path } = menu
-    setSelectedKeys([key])
+    if (menu.path === pathname) return;
+    const { key, label, path } = menu;
+    setSelectedKeys([key]);
     if (device !== 'DESKTOP') {
-      dispatch(setGlobalItem({ collapsed: true }))
+      dispatch(setGlobalItem({ collapsed: true }));
     }
     dispatch(
       addTag({
@@ -46,19 +46,19 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
         path,
         closable: true
       })
-    )
-    navigate(path)
-  }
+    );
+    navigate(path);
+  };
 
   useEffect(() => {
-    setSelectedKeys([pathname])
-    setOpenkeys(collapsed ? [] : ['/' + pathname.split('/')[1]])
-  }, [collapsed, pathname])
+    setSelectedKeys([pathname]);
+    setOpenkeys(collapsed ? [] : ['/' + pathname.split('/')[1]]);
+  }, [collapsed, pathname]);
 
   const onOpenChange = (keys: string[]) => {
-    const key = keys.pop()
-    if (key) setOpenkeys([key])
-  }
+    const key = keys.pop();
+    if (key) setOpenkeys([key]);
+  };
 
   return (
     <Menu
@@ -85,7 +85,7 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
         )
       )}
     </Menu>
-  )
-}
+  );
+};
 
-export default MenuComponent
+export default MenuComponent;

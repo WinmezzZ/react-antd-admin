@@ -1,8 +1,8 @@
 export interface Locales<T = any> {
   /** Chinese */
-  zh_CN: T
+  zh_CN: T;
   /** English */
-  en_US: T
+  en_US: T;
 }
 
-export type Language = keyof Locales
+export type Language = keyof Locales;

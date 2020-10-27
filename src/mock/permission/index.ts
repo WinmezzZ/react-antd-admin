@@ -1,1 +1,1 @@
-import './role.mock'
+import './role.mock';

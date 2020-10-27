@@ -16,4 +16,4 @@ export const zhCN_globalTips = {
   'gloabal.tips.search': '搜索',
   'gloabal.tips.reset': '重置',
   'gloabal.tips.deleteConfirm': '确定要删除此条数据吗？'
-}
+};

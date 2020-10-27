@@ -14,4 +14,4 @@ export const enUS_dashboard = {
   'app.dashboard.salePercent.offline': 'Offline',
   'app.dashboard.timeline.traffic': 'Traffic',
   'app.dashboard.timeline.payments': 'Payments'
-}
+};

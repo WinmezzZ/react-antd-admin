@@ -1,3 +1,3 @@
-import { mock, intercepter } from '../config'
+import { mock, intercepter } from '../config';
 
-mock.mock('/user/logout', 'post', intercepter(null))
+mock.mock('/user/logout', 'post', intercepter(null));

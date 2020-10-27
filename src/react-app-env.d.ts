@@ -1,7 +1,7 @@
 /// <reference types="react-scripts" />
 declare interface Window {
-  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: Function
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: Function;
   less: {
-    modifyVars: (arg: any) => Promise<any>
-  }
+    modifyVars: (arg: any) => Promise<any>;
+  };
 }

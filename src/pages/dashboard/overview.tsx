@@ -1,19 +1,19 @@
-import React, { FC } from 'react'
-import { Row, Col, Card, Tooltip, Progress, Badge } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons'
-import { ColProps } from 'antd/lib/col'
-import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg'
-import { ReactComponent as CaretDownIcon } from './assets/caret-down.svg'
-import { ResponsiveContainer, AreaChart, Tooltip as RTooltip, Area, XAxis, BarChart, Bar } from 'recharts'
-import moment from 'moment'
-import { useLocale } from '~/locales'
+import React, { FC } from 'react';
+import { Row, Col, Card, Tooltip, Progress, Badge } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { ColProps } from 'antd/lib/col';
+import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg';
+import { ReactComponent as CaretDownIcon } from './assets/caret-down.svg';
+import { ResponsiveContainer, AreaChart, Tooltip as RTooltip, Area, XAxis, BarChart, Bar } from 'recharts';
+import moment from 'moment';
+import { useLocale } from 'locales';
 
 const data = new Array(14).fill(null).map((_, index) => ({
   name: moment()
     .add(index, 'day')
     .format('YYYY-MM-DD'),
   number: Math.floor(Math.random() * 8 + 1)
-}))
+}));
 
 const wrapperCol: ColProps = {
   xs: 24,
@@ -22,14 +22,14 @@ const wrapperCol: ColProps = {
   lg: 12,
   xl: 12,
   xxl: 6
-}
+};
 
 interface ColCardProps {
-  metaName: string
-  metaCount: string
-  body: React.ReactNode
-  footer: React.ReactNode
-  loading: boolean
+  metaName: string;
+  metaCount: string;
+  body: React.ReactNode;
+  footer: React.ReactNode;
+  loading: boolean;
 }
 
 const ColCard: FC<ColCardProps> = ({ metaName, metaCount, body, footer, loading }) => {
@@ -47,17 +47,17 @@ const ColCard: FC<ColCardProps> = ({ metaName, metaCount, body, footer, loading 
         <div className="overview-footer">{footer}</div>
       </Card>
     </Col>
-  )
-}
+  );
+};
 
 interface TrendProps {
-  wow: string
-  dod: string
-  style?: React.CSSProperties
+  wow: string;
+  dod: string;
+  style?: React.CSSProperties;
 }
 
 const Trend: FC<TrendProps> = ({ wow, dod, style = {} }) => {
-  const { formatMessage } = useLocale()
+  const { formatMessage } = useLocale();
   return (
     <div className="trend" style={style}>
       <div className="trend-item">
@@ -71,8 +71,8 @@ const Trend: FC<TrendProps> = ({ wow, dod, style = {} }) => {
         <CaretDownIcon color="#52c41a" />
       </div>
     </div>
-  )
-}
+  );
+};
 
 const CustomTooltip: FC<any> = ({ active, payload, label }) =>
   active && (
@@ -81,11 +81,11 @@ const CustomTooltip: FC<any> = ({ active, payload, label }) =>
         <Badge color={payload[0].fill} /> {label} : {payload[0].value}
       </span>
     </div>
-  )
+  );
 
 interface FieldProps {
-  name: string
-  number: string
+  name: string;
+  number: string;
 }
 
 const Field: FC<FieldProps> = ({ name, number }) => (
@@ -93,10 +93,10 @@ const Field: FC<FieldProps> = ({ name, number }) => (
     <span className="field-label">{name}</span>
     <span className="field-number">{number} </span>
   </div>
-)
+);
 
 const Overview: FC<{ loading: boolean }> = ({ loading }) => {
-  const { formatMessage } = useLocale()
+  const { formatMessage } = useLocale();
 
   return (
     <Row gutter={[12, 12]}>
@@ -145,7 +145,7 @@ const Overview: FC<{ loading: boolean }> = ({ loading }) => {
         footer={<Trend style={{ position: 'inherit' }} wow="12%" dod="12%" />}
       />
     </Row>
-  )
-}
+  );
+};
 
-export default Overview
+export default Overview;

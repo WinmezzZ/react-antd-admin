@@ -3,4 +3,4 @@ export const enUS_tagsViewDropMenu = {
   'tagsView.operation.closeOther': 'Close Other',
   'tagsView.operation.closeAll': 'Close All',
   'tagsView.operation.dashboard': 'Dashboard'
-}
+};

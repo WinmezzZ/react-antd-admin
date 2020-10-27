@@ -1,57 +1,57 @@
-import React, { FC } from 'react'
-import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
-import { Layout, Dropdown, Menu } from 'antd'
-import { useNavigate } from 'react-router-dom'
-import HeaderNoticeComponent from './notice'
-import { useDispatch, useSelector } from 'react-redux'
-import { logoutAsync } from '~/actions/user.action'
-import Avator from '~/assets/header/avator.jpeg'
-import { AppState } from '~/stores'
-import { ReactComponent as LanguageSvg } from '~/assets/header/language.svg'
-import { ReactComponent as ZhCnSvg } from '~/assets/header/zh_CN.svg'
-import { ReactComponent as EnUsSvg } from '~/assets/header/en_US.svg'
-import { setGlobalItem } from '~/actions/global.action'
-import { LocaleFormatter, useLocale } from '~/locales'
-import ReactSvg from '~/assets/logo/react.svg'
-import AntdSvg from '~/assets/logo/antd.svg'
+import React, { FC } from 'react';
+import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { Layout, Dropdown, Menu } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import HeaderNoticeComponent from './notice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutAsync } from 'actions/user.action';
+import Avator from 'assets/header/avator.jpeg';
+import { AppState } from 'stores';
+import { ReactComponent as LanguageSvg } from 'assets/header/language.svg';
+import { ReactComponent as ZhCnSvg } from 'assets/header/zh_CN.svg';
+import { ReactComponent as EnUsSvg } from 'assets/header/en_US.svg';
+import { setGlobalItem } from 'actions/global.action';
+import { LocaleFormatter, useLocale } from 'locales';
+import ReactSvg from 'assets/logo/react.svg';
+import AntdSvg from 'assets/logo/antd.svg';
 
-const { Header } = Layout
+const { Header } = Layout;
 
 interface Props {
-  collapsed: boolean
-  toggle: () => void
+  collapsed: boolean;
+  toggle: () => void;
 }
 
-type Action = 'userInfo' | 'userSetting' | 'logout'
+type Action = 'userInfo' | 'userSetting' | 'logout';
 
 const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
-  const { logged } = useSelector((state: AppState) => state.userReducer)
-  const { locale, device } = useSelector((state: AppState) => state.globalReducer)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { formatMessage } = useLocale()
+  const { logged } = useSelector((state: AppState) => state.userReducer);
+  const { locale, device } = useSelector((state: AppState) => state.globalReducer);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { formatMessage } = useLocale();
 
   const onActionClick = async (action: Action) => {
     switch (action) {
       case 'userInfo':
-        return
+        return;
       case 'userSetting':
-        return
+        return;
       case 'logout':
-        const res = Boolean(await dispatch(logoutAsync()))
-        res && navigate('/login')
-        return
+        const res = Boolean(await dispatch(logoutAsync()));
+        res && navigate('/login');
+        return;
     }
-  }
+  };
 
   const toLogin = () => {
-    navigate('/login')
-  }
+    navigate('/login');
+  };
 
   const selectLocale = ({ key }: { key: any }) => {
-    dispatch(setGlobalItem({ locale: key }))
-    localStorage.setItem('locale', key)
-  }
+    dispatch(setGlobalItem({ locale: key }));
+    localStorage.setItem('locale', key);
+  };
   const menu = (
     <Menu>
       <Menu.Item key="1">
@@ -72,7 +72,7 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
         </span>
       </Menu.Item>
     </Menu>
-  )
+  );
   return (
     <Header className="layout-page-header">
       {device !== 'MOBILE' && (
@@ -107,7 +107,7 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
           {logged ? (
             <Dropdown overlay={menu} trigger={['click']}>
               <span className="user-action">
-                <img src={Avator} className="user-avator" />
+                <img src={Avator} className="user-avator" alt="avator" />
               </span>
             </Dropdown>
           ) : (
@@ -118,7 +118,7 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
         </div>
       </div>
     </Header>
-  )
-}
+  );
+};
 
-export default HeaderComponent
+export default HeaderComponent;

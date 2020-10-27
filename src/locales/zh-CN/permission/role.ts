@@ -8,4 +8,4 @@ export const zhCN_permissionRole = {
   'app.permission.role.nameRequired': '请输入角色名称',
   'app.permission.role.codeRequired': '请输入角色编码',
   'app.permission.role.statusRequired': '请选择角色启用状态'
-}
+};

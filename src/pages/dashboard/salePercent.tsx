@@ -1,25 +1,25 @@
-import React, { FC, useState } from 'react'
-import { Card, Row, Col, List, Radio, Badge } from 'antd'
-import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts'
-import { ColProps } from 'antd/lib/col'
-import { useLocale } from '~/locales'
-import { useSelector } from 'react-redux'
-import { AppState } from '~/stores'
+import React, { FC, useState } from 'react';
+import { Card, Row, Col, List, Radio, Badge } from 'antd';
+import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { ColProps } from 'antd/lib/col';
+import { useLocale } from 'locales';
+import { useSelector } from 'react-redux';
+import { AppState } from 'stores';
 
-type DataType = 'all' | 'online' | 'offline'
+type DataType = 'all' | 'online' | 'offline';
 
 interface Values {
   name: {
-    zh_CN: string
-    en_US: string
-  }
-  value: number
+    zh_CN: string;
+    en_US: string;
+  };
+  value: number;
 }
 
 interface Data {
-  all: Values[]
-  online: Values[]
-  offline: Values[]
+  all: Values[];
+  online: Values[];
+  offline: Values[];
 }
 
 const data: Data = {
@@ -46,9 +46,9 @@ const data: Data = {
     { name: { zh_CN: '服饰箱包', en_US: 'clothing' }, value: 255 },
     { name: { zh_CN: '其他', en_US: 'others' }, value: 65 }
   ]
-}
+};
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#E36E7E', '#8F66DE']
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#E36E7E', '#8F66DE'];
 
 const wrapperCol: ColProps = {
   xs: 24,
@@ -57,12 +57,12 @@ const wrapperCol: ColProps = {
   lg: 12,
   xl: 12,
   xxl: 12
-}
+};
 
 const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
-  const [dataType, setDataType] = useState<DataType>('all')
-  const { locale } = useSelector((state: AppState) => state.globalReducer)
-  const { formatMessage } = useLocale()
+  const [dataType, setDataType] = useState<DataType>('all');
+  const { locale } = useSelector((state: AppState) => state.globalReducer);
+  const { formatMessage } = useLocale();
 
   return (
     <Card
@@ -84,16 +84,16 @@ const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
               <Tooltip
                 content={({ active, payload }: any) => {
                   if (active) {
-                    const { name, value } = payload[0]
-                    const total = data[dataType].map(d => d.value).reduce((a, b) => a + b)
-                    const percent = ((value / total) * 100).toFixed(2) + '%'
+                    const { name, value } = payload[0];
+                    const total = data[dataType].map(d => d.value).reduce((a, b) => a + b);
+                    const percent = ((value / total) * 100).toFixed(2) + '%';
                     return (
                       <span className="customTooltip">
                         {name[locale]} : {percent}
                       </span>
-                    )
+                    );
                   }
-                  return null
+                  return null;
                 }}
               />
               <Pie
@@ -116,20 +116,20 @@ const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
             bordered
             dataSource={data[dataType]}
             renderItem={(item, index) => {
-              const total = data[dataType].map(d => d.value).reduce((a, b) => a + b)
-              const percent = ((item.value / total) * 100).toFixed(2) + '%'
+              const total = data[dataType].map(d => d.value).reduce((a, b) => a + b);
+              const percent = ((item.value / total) * 100).toFixed(2) + '%';
               return (
                 <List.Item>
                   <Badge color={COLORS[index]} />
                   <span>{item.name[locale]}</span> | <span>{item.value}</span> <span>¥ {percent}</span>
                 </List.Item>
-              )
+              );
             }}
           />
         </Col>
       </Row>
     </Card>
-  )
-}
+  );
+};
 
-export default SalePercent
+export default SalePercent;

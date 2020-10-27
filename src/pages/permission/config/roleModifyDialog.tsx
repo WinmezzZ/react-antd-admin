@@ -1,26 +1,26 @@
-import React, { FC } from 'react'
-import { Modal } from 'antd'
-import { Role } from '~/interface/permission/role.interface'
-import useGetRoleFormItem from './useGetRoleForm'
-import { useLocale } from '~/locales'
+import React, { FC } from 'react';
+import { Modal } from 'antd';
+import { Role } from 'interface/permission/role.interface';
+import useGetRoleFormItem from './useGetRoleForm';
+import { useLocale } from 'locales';
 
 interface Values extends Role {}
 
 interface RoleModifyDialogProps {
-  values: Values
-  visible: boolean
-  onModify: (values: Values) => void
-  onCancel: () => void
+  values: Values;
+  visible: boolean;
+  onModify: (values: Values) => void;
+  onCancel: () => void;
 }
 
 const RoleModifyDialog: FC<RoleModifyDialogProps> = ({ onModify, onCancel, visible, values }) => {
-  const { Form, form, Name, Code, Status } = useGetRoleFormItem({ name: 'modifyForm', required: true, values })
-  const { formatMessage } = useLocale()
+  const { Form, form, Name, Code, Status } = useGetRoleFormItem({ name: 'modifyForm', required: true, values });
+  const { formatMessage } = useLocale();
 
   const onSubmit = async () => {
-    const values: any = await form.validateFields()
-    onModify(values)
-  }
+    const values: any = await form.validateFields();
+    onModify(values);
+  };
 
   return (
     <Modal title={formatMessage({ id: 'gloabal.tips.modify' })} visible={visible} onOk={onSubmit} onCancel={onCancel}>
@@ -30,7 +30,7 @@ const RoleModifyDialog: FC<RoleModifyDialogProps> = ({ onModify, onCancel, visib
         <Status />
       </Form>
     </Modal>
-  )
-}
+  );
+};
 
-export default RoleModifyDialog
+export default RoleModifyDialog;

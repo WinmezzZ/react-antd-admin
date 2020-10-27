@@ -1,20 +1,20 @@
-import React, { FC } from 'react'
-import { Modal } from 'antd'
-import { Role } from '~/interface/permission/role.interface'
-import useGetRoleFormItem from './useGetRoleForm'
-import { useLocale } from '~/locales'
+import React, { FC } from 'react';
+import { Modal } from 'antd';
+import { Role } from 'interface/permission/role.interface';
+import useGetRoleFormItem from './useGetRoleForm';
+import { useLocale } from 'locales';
 
 interface Values extends Role {}
 
 interface RoleCreateDialogProps {
-  visible: boolean
-  onCreate: (values: Values) => void
-  onCancel: () => void
+  visible: boolean;
+  onCreate: (values: Values) => void;
+  onCancel: () => void;
 }
 
 const RoleCreateDialog: FC<RoleCreateDialogProps> = ({ onCreate, onCancel, visible }) => {
-  const { Form, form, Name, Code, Status } = useGetRoleFormItem({ name: 'createForm', required: true })
-  const { formatMessage } = useLocale()
+  const { Form, form, Name, Code, Status } = useGetRoleFormItem({ name: 'createForm', required: true });
+  const { formatMessage } = useLocale();
 
   return (
     <Modal
@@ -29,7 +29,7 @@ const RoleCreateDialog: FC<RoleCreateDialogProps> = ({ onCreate, onCancel, visib
         <Status />
       </Form>
     </Modal>
-  )
-}
+  );
+};
 
-export default RoleCreateDialog
+export default RoleCreateDialog;

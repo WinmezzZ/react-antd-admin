@@ -22,4 +22,4 @@ export const enUS_guide = {
   'app.guide.driverStep.pageTabsActions.description': 'Click here to do some quick operations to the Page Tabs',
   'app.guide.driverStep.switchTheme.title': 'Switch Theme',
   'app.guide.driverStep.switchTheme.description': 'Click here to switch system theme color'
-}
+};

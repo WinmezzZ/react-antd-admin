@@ -1,11 +1,11 @@
-import React, { FC, useState, useEffect, useCallback } from 'react'
-import { Button, Table, Tag, Modal } from 'antd'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
-import { useLocale, LocaleFormatter } from '~/locales'
-import { apiGetRoleList } from '~/api/permission/role.api'
-import { Role, RoleStatus } from '~/interface/permission/role.interface'
-import { useSelector } from 'react-redux'
-import { AppState } from '~/stores'
+import React, { FC, useState, useEffect, useCallback } from 'react';
+import { Button, Table, Tag, Modal } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { useLocale, LocaleFormatter } from 'locales';
+import { apiGetRoleList } from 'api/permission/role.api';
+import { Role, RoleStatus } from 'interface/permission/role.interface';
+import { useSelector } from 'react-redux';
+import { AppState } from 'stores';
 
 enum TagColor {
   enabled = 'success',
@@ -13,33 +13,33 @@ enum TagColor {
 }
 
 interface RoleTableProps {
-  onCreate: () => void
-  onModify: (row: Role) => void
-  onAuthorize: (row: Role) => void
+  onCreate: () => void;
+  onModify: (row: Role) => void;
+  onAuthorize: (row: Role) => void;
 }
 
 const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify, onAuthorize }) => {
-  const { formatMessage } = useLocale()
-  const [tableData, setTableData] = useState<Role[]>()
-  const { locale } = useSelector((state: AppState) => state.globalReducer)
+  const { formatMessage } = useLocale();
+  const [tableData, setTableData] = useState<Role[]>();
+  const { locale } = useSelector((state: AppState) => state.globalReducer);
 
   const initData = useCallback(async () => {
-    const { result, status } = await apiGetRoleList()
+    const { result, status } = await apiGetRoleList();
     if (status) {
-      setTableData(result)
+      setTableData(result);
     }
-  }, [])
+  }, []);
 
   const getLocaleStatus = (status: RoleStatus) => {
     switch (status) {
       case 'enabled':
-        return formatMessage({ id: 'app.permission.role.status.disabled' })
+        return formatMessage({ id: 'app.permission.role.status.disabled' });
     }
-  }
+  };
 
   useEffect(() => {
-    initData()
-  }, [initData])
+    initData();
+  }, [initData]);
   return (
     <Table
       rowKey="id"
@@ -89,7 +89,7 @@ const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify, onAuthorize }) => {
               Modal.confirm({
                 icon: <ExclamationCircleOutlined />,
                 title: formatMessage({ id: 'gloabal.tips.deleteConfirm' })
-              })
+              });
             }}
           >
             {formatMessage({ id: 'gloabal.tips.delete' })}
@@ -97,7 +97,7 @@ const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify, onAuthorize }) => {
         ]}
       />
     </Table>
-  )
-}
+  );
+};
 
-export default RoleTable
+export default RoleTable;

@@ -1,4 +1,4 @@
-import { Language } from '~/interface'
+import { Language } from 'interface';
 
 const en_US = {
   tableFrom: {
@@ -30,7 +30,7 @@ const en_US = {
     densityMiddle: 'Middle',
     densitySmall: 'Compact'
   }
-}
+};
 
 const zh_CN = {
   tableFrom: {
@@ -62,10 +62,10 @@ const zh_CN = {
     densityMiddle: '中等',
     densitySmall: '紧凑'
   }
-}
+};
 
 export default function useProTableLocale(lang: Language) {
-  if (lang === 'zh_CN') return zh_CN
-  if (lang === 'en_US') return en_US
-  return zh_CN
+  if (lang === 'zh_CN') return zh_CN;
+  if (lang === 'en_US') return en_US;
+  return zh_CN;
 }

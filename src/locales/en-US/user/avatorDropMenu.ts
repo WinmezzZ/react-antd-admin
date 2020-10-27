@@ -5,4 +5,4 @@ export const enUS_avatorDropMenu = {
   'global.theme.switchingTheme': 'Switching Theme...',
   'global.theme.switchThemeDone': 'Update theme successfully!',
   'global.theme.switchThemeFail': 'Update theme fail'
-}
+};

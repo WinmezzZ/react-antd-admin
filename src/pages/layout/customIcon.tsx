@@ -1,29 +1,29 @@
-import React, { FC } from 'react'
-import { ReactComponent as GuideSvg } from '~/assets/menu/guide.svg'
-import { ReactComponent as PermissionSvg } from '~/assets/menu/permission.svg'
-import { ReactComponent as DashboardSvg } from '~/assets/menu/dashboard.svg'
-import { ReactComponent as AccountSvg } from '~/assets/menu/account.svg'
-import { ReactComponent as DocumentationSvg } from '~/assets/menu/documentation.svg'
+import React, { FC } from 'react';
+import { ReactComponent as GuideSvg } from 'assets/menu/guide.svg';
+import { ReactComponent as PermissionSvg } from 'assets/menu/permission.svg';
+import { ReactComponent as DashboardSvg } from 'assets/menu/dashboard.svg';
+import { ReactComponent as AccountSvg } from 'assets/menu/account.svg';
+import { ReactComponent as DocumentationSvg } from 'assets/menu/documentation.svg';
 
 interface Props {
-  type: string
+  type: string;
 }
 
 export const CustomIcon: FC<Props> = props => {
-  const { type } = props
-  let com = <GuideSvg />
+  const { type } = props;
+  let com = <GuideSvg />;
   if (type === 'guide') {
-    com = <GuideSvg />
+    com = <GuideSvg />;
   } else if (type === 'permission') {
-    com = <PermissionSvg />
+    com = <PermissionSvg />;
   } else if (type === 'dashboard') {
-    com = <DashboardSvg />
+    com = <DashboardSvg />;
   } else if (type === 'account') {
-    com = <AccountSvg />
+    com = <AccountSvg />;
   } else if (type === 'documentation') {
-    com = <DocumentationSvg />
+    com = <DocumentationSvg />;
   } else {
-    com = <GuideSvg />
+    com = <GuideSvg />;
   }
-  return <span className="anticon">{com}</span>
-}
+  return <span className="anticon">{com}</span>;
+};

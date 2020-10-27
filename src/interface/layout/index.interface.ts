@@ -6,4 +6,4 @@ enum DeviceList {
   DESKTOP = 'DESKTOP'
 }
 
-export type Device = keyof typeof DeviceList
+export type Device = keyof typeof DeviceList;

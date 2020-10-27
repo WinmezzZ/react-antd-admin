@@ -1,16 +1,16 @@
-import React, { FC, useState } from 'react'
-import RoleCreateDialog from './roleCreateDialog'
-import RoleTable from './roleTable'
-import RoleSearch from './roleSearch'
-import RoleModifyDialog from './roleModifyDialog'
-import { Role } from '~/interface/permission/role.interface'
-import RoleAuthorizeDialog from './roleAuthorizeDialog'
+import React, { FC, useState } from 'react';
+import RoleCreateDialog from './roleCreateDialog';
+import RoleTable from './roleTable';
+import RoleSearch from './roleSearch';
+import RoleModifyDialog from './roleModifyDialog';
+import { Role } from 'interface/permission/role.interface';
+import RoleAuthorizeDialog from './roleAuthorizeDialog';
 
 const RolePage: FC = () => {
-  const [mcreateVisible, setCreateVisible] = useState(false)
-  const [modifyVisible, setModifyVisible] = useState(false)
-  const [authorizeVisible, setAuthorizeVisible] = useState(false)
-  const [values, setValues] = useState({} as Role)
+  const [mcreateVisible, setCreateVisible] = useState(false);
+  const [modifyVisible, setModifyVisible] = useState(false);
+  const [authorizeVisible, setAuthorizeVisible] = useState(false);
+  const [values, setValues] = useState({} as Role);
 
   return (
     <div>
@@ -35,16 +35,16 @@ const RolePage: FC = () => {
       <RoleTable
         onCreate={() => setCreateVisible(true)}
         onModify={values => {
-          setValues(values)
-          setModifyVisible(true)
+          setValues(values);
+          setModifyVisible(true);
         }}
         onAuthorize={values => {
-          setValues(values)
-          setAuthorizeVisible(true)
+          setValues(values);
+          setAuthorizeVisible(true);
         }}
       />
     </div>
-  )
-}
+  );
+};
 
-export default RolePage
+export default RolePage;

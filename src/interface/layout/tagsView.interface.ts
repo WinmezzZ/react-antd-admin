@@ -1,22 +1,22 @@
 export type TagItem = {
-  id: string
+  id: string;
 
   label: {
-    zh_CN: string
-    en_US: string
-  }
+    zh_CN: string;
+    en_US: string;
+  };
 
   /** tag's route path */
-  path: string
+  path: string;
 
   /** can be closed ? */
-  closable: boolean
-}
+  closable: boolean;
+};
 
 export interface TagState {
   /** tagsView list */
-  tags: TagItem[]
+  tags: TagItem[];
 
   /**current tagView id */
-  activeTagId: TagItem['id']
+  activeTagId: TagItem['id'];
 }

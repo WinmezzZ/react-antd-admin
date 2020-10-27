@@ -1,30 +1,26 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './styles/main.less'
-import configureStore from './stores'
-import { Provider } from 'react-redux'
-import * as serviceWorker from './serviceWorker'
-import App from './App'
-import './mock'
-const store = configureStore()
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './styles/main.less';
+import configureStore from './stores';
+import { Provider } from 'react-redux';
+import reportWebVitals from './reportWebVitals';
+import App from './App';
+import './mock';
+const store = configureStore();
 
-const render = (Router: React.FC) => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <Router />
-    </Provider>,
-    document.getElementById('root')
-  )
-}
-
-render(App)
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 
 // hmr enable
 if (module.hot && process.env.NODE_ENV === 'development') {
-  module.hot.accept('./App', () => {
-    const Router = require('./App').default
-    render(Router)
-  })
+  module.hot.accept();
 }
 
-serviceWorker.unregister()
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

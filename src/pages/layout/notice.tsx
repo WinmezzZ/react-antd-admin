@@ -1,36 +1,36 @@
-import React, { FC, useState, useEffect } from 'react'
-import { Tabs, Dropdown, Badge, Spin, List, Avatar, Tag } from 'antd'
-import { ReactComponent as NoticeSvg } from '~/assets/header/notice.svg'
-import { LoadingOutlined } from '@ant-design/icons'
-import { useSelector } from 'react-redux'
-import { AppState } from '~/stores'
-import { getNoticeList } from '~/api/layout.api'
-import { Notice, EventStatus } from '~/interface/layout/notice.interface'
+import React, { FC, useState, useEffect } from 'react';
+import { Tabs, Dropdown, Badge, Spin, List, Avatar, Tag } from 'antd';
+import { ReactComponent as NoticeSvg } from 'assets/header/notice.svg';
+import { LoadingOutlined } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
+import { AppState } from 'stores';
+import { getNoticeList } from 'api/layout.api';
+import { Notice, EventStatus } from 'interface/layout/notice.interface';
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
-const { TabPane } = Tabs
+const { TabPane } = Tabs;
 
 const HeaderNoticeComponent: FC = () => {
-  const [visible, setVisible] = useState(false)
-  const [noticeList, setNoticeList] = useState<Notice[]>([])
-  const [loading, setLoading] = useState(false)
-  const { noticeCount } = useSelector((state: AppState) => state.globalReducer)
+  const [visible, setVisible] = useState(false);
+  const [noticeList, setNoticeList] = useState<Notice[]>([]);
+  const [loading, setLoading] = useState(false);
+  const { noticeCount } = useSelector((state: AppState) => state.globalReducer);
 
   const noticeListFilter = <T extends Notice['type']>(type: T) => {
-    return noticeList.filter(notice => notice.type === type) as Notice<T>[]
-  }
+    return noticeList.filter(notice => notice.type === type) as Notice<T>[];
+  };
 
   const getNotice = async () => {
-    setLoading(true)
-    const { status, result } = await getNoticeList()
-    setLoading(false)
-    status && setNoticeList(result)
-  }
+    setLoading(true);
+    const { status, result } = await getNoticeList();
+    setLoading(false);
+    status && setNoticeList(result);
+  };
 
   useEffect(() => {
-    getNotice()
-  }, [])
+    getNotice();
+  }, []);
 
   const tabs = (
     <div>
@@ -91,7 +91,7 @@ const HeaderNoticeComponent: FC = () => {
         </Tabs>
       </Spin>
     </div>
-  )
+  );
   return (
     <Dropdown
       overlay={tabs}
@@ -113,7 +113,7 @@ const HeaderNoticeComponent: FC = () => {
         </span>
       </Badge>
     </Dropdown>
-  )
-}
+  );
+};
 
-export default HeaderNoticeComponent
+export default HeaderNoticeComponent;

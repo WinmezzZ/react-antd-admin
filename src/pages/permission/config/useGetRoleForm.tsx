@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import { Form, Input, Col, Row, Select } from 'antd'
-import { useLocale } from '~/locales'
-import { ColProps } from 'antd/lib/col'
-import { useSelector } from 'react-redux'
-import { AppState } from '~/stores'
-import { FormProps } from 'antd/lib/form'
+import React, { FC } from 'react';
+import { Form, Input, Col, Row, Select } from 'antd';
+import { useLocale } from 'locales';
+import { ColProps } from 'antd/lib/col';
+import { useSelector } from 'react-redux';
+import { AppState } from 'stores';
+import { FormProps } from 'antd/lib/form';
 
 const wrapperCol: ColProps = {
   xs: 24,
@@ -13,32 +13,32 @@ const wrapperCol: ColProps = {
   lg: 8,
   xl: 8,
   xxl: 6
-}
+};
 
 const layout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 18 }
-}
+};
 
 interface Props {
   /** form name */
-  name: string
+  name: string;
   /** Form item required? */
-  required?: boolean
+  required?: boolean;
   /** search form need responsive layout */
-  responsive?: boolean
+  responsive?: boolean;
   /** Initial form data */
   values?: {
-    [x: string]: any
-  }
+    [x: string]: any;
+  };
 }
 
 export default function useGetRoleForm({ required = false, responsive = false, name = 'form', values = {} }: Props) {
-  const { formatMessage } = useLocale()
-  const [formInstance] = Form.useForm()
+  const { formatMessage } = useLocale();
+  const [formInstance] = Form.useForm();
 
   const _Form: FC<FormProps> = ({ children, ...props }) => {
-    const { device } = useSelector((state: AppState) => state.globalReducer)
+    const { device } = useSelector((state: AppState) => state.globalReducer);
 
     return (
       <Form
@@ -50,17 +50,17 @@ export default function useGetRoleForm({ required = false, responsive = false, n
       >
         {responsive ? <Row>{children}</Row> : children}
       </Form>
-    )
-  }
+    );
+  };
 
-  type InternalForm = typeof _Form
+  type InternalForm = typeof _Form;
   interface Forms extends InternalForm {
-    Item: typeof Form.Item
+    Item: typeof Form.Item;
   }
 
-  const WrappedForm: Forms = _Form as Forms
+  const WrappedForm: Forms = _Form as Forms;
 
-  WrappedForm.Item = Form.Item
+  WrappedForm.Item = Form.Item;
 
   const Name: FC = () => {
     const name = (
@@ -71,10 +71,10 @@ export default function useGetRoleForm({ required = false, responsive = false, n
       >
         <Input />
       </Form.Item>
-    )
+    );
 
-    return responsive ? <Col {...wrapperCol}>{name}</Col> : name
-  }
+    return responsive ? <Col {...wrapperCol}>{name}</Col> : name;
+  };
 
   const Code: FC = () => {
     const code = (
@@ -85,10 +85,10 @@ export default function useGetRoleForm({ required = false, responsive = false, n
       >
         <Input />
       </Form.Item>
-    )
+    );
 
-    return responsive ? <Col {...wrapperCol}>{code}</Col> : code
-  }
+    return responsive ? <Col {...wrapperCol}>{code}</Col> : code;
+  };
 
   const Status = () => {
     const status = (
@@ -109,10 +109,10 @@ export default function useGetRoleForm({ required = false, responsive = false, n
           </Select.Option>
         </Select>
       </Form.Item>
-    )
+    );
 
-    return responsive ? <Col {...wrapperCol}>{status}</Col> : status
-  }
+    return responsive ? <Col {...wrapperCol}>{status}</Col> : status;
+  };
 
   return {
     form: formInstance,
@@ -120,5 +120,5 @@ export default function useGetRoleForm({ required = false, responsive = false, n
     Name,
     Code,
     Status
-  }
+  };
 }

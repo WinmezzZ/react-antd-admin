@@ -1,29 +1,29 @@
-import React, { FC } from 'react'
-import { Button, Checkbox, Form, Input } from 'antd'
-import './index.less'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { loginAsync } from '~/actions/user.action'
-import { LoginParams } from '~/interface/user/login'
+import React, { FC } from 'react';
+import { Button, Checkbox, Form, Input } from 'antd';
+import './index.less';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginAsync } from 'actions/user.action';
+import { LoginParams } from 'interface/user/login';
 
 const initialValues: LoginParams = {
   username: 'guest',
   password: 'guest'
   // remember: true
-}
+};
 
 const LoginForm: FC = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   const onFinished = async (form: any) => {
-    const res = dispatch(await loginAsync(form))
+    const res = dispatch(await loginAsync(form));
     if (!!res) {
-      const from = (location.state as any)?.from || { pathname: '/dashboard' }
-      navigate(from)
+      const from = (location.state as any)?.from || { pathname: '/dashboard' };
+      navigate(from);
     }
-  }
+  };
 
   return (
     <div className="login-page">
@@ -45,7 +45,7 @@ const LoginForm: FC = () => {
         </Form.Item>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

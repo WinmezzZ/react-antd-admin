@@ -14,4 +14,4 @@ export const zhCN_dashboard = {
   'app.dashboard.salePercent.offline': '线下',
   'app.dashboard.timeline.traffic': '客流量',
   'app.dashboard.timeline.payments': '支付笔数'
-}
+};

@@ -1,2 +1,2 @@
-import './user'
-import './permission'
+import './user';
+import './permission';
