@@ -4,12 +4,10 @@ import { Role } from 'interface/permission/role.interface';
 import useGetRoleFormItem from './useGetRoleForm';
 import { useLocale } from 'locales';
 
-interface Values extends Role {}
-
 interface RoleModifyDialogProps {
-  values: Values;
+  values: Role;
   visible: boolean;
-  onModify: (values: Values) => void;
+  onModify: (values: Role) => void;
   onCancel: () => void;
 }
 

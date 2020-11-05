@@ -3,10 +3,9 @@ import { Modal, Tree, Spin } from 'antd';
 import { Role } from 'interface/permission/role.interface';
 import { useLocale } from 'locales';
 import { getMenuList } from 'api/layout.api';
-import { useSelector } from 'react-redux';
-import { AppState } from 'stores';
 import usePrevious from 'hooks/usePrevious';
 import { TreeNodeNormal } from 'antd/lib/tree/Tree';
+import { useAppState } from 'stores';
 
 interface Values extends Role {}
 
@@ -18,13 +17,13 @@ interface RoleModifyDialogProps {
 }
 
 const RoleAuthorizeDialog: FC<RoleModifyDialogProps> = ({ onAuthorize, onCancel, visible, values }) => {
-  const { menuList } = useSelector((state: AppState) => state.userReducer);
+  const { menuList, locale } = useAppState(state => state.user);
   const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
   const [treeData, setTreeData] = useState<TreeNodeNormal[]>([]);
-  const { locale } = useSelector((state: AppState) => state.globalReducer);
   const { formatMessage } = useLocale();
   const prevRoleId = usePrevious(values.id);
   const prevLocale = usePrevious(locale);
+
   const onSubmit = async () => {
     onAuthorize(checkedKeys);
   };

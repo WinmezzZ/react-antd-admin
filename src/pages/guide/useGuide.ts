@@ -3,12 +3,12 @@ import Driver from 'driver.js';
 import 'driver.js/dist/driver.min.css';
 import './index.less';
 import { useLocale } from 'locales';
-import { setGlobalItem } from 'actions/global.action';
-import { useDispatch } from 'react-redux';
+import { setUserItem } from 'stores/user.store';
+import { useAppDispatch } from 'stores';
 
 export const useGuide = () => {
   const { formatMessage } = useLocale();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const driver = useRef(
     new Driver({
@@ -83,7 +83,7 @@ export const useGuide = () => {
 
       localStorage.setItem('newUser', 'false');
       dispatch(
-        setGlobalItem({
+        setUserItem({
           newUser: false
         })
       );

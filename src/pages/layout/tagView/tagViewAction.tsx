@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
 import { Menu, Dropdown } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeTag, removeOtherTag, removeAllTag } from 'actions/tagsView.action';
-import { AppState } from 'stores';
 import { LocaleFormatter } from 'locales';
+import { useAppDispatch, useAppState } from 'stores';
+import { removeTag, removeOtherTag, removeAllTag } from 'stores/tags-view.store';
 
 const TagsViewAction: FC = () => {
-  const { activeTagId } = useSelector((state: AppState) => state.tagsViewlReducer);
-  const dispatch = useDispatch();
+  const { activeTagId } = useAppState(state => state.tagsView);
+  const dispatch = useAppDispatch();
   return (
     <Dropdown
       overlay={

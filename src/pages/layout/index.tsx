@@ -1,9 +1,6 @@
 import React, { FC, useEffect, Suspense, useCallback, useState } from 'react';
 import { Layout, Drawer } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
 import './index.less';
-import { AppState } from 'stores';
-import { setGlobalItem } from 'actions/global.action';
 import MenuComponent from './menu';
 import HeaderComponent from './header';
 import { getGlobalState } from 'utils/getGloabal';
@@ -11,19 +8,21 @@ import TagsView from './tagView';
 import SuspendFallbackLoading from './suspendFallbackLoading';
 import { getMenuList } from 'api/layout.api';
 import { MenuList, MenuChild } from 'interface/layout/menu.interface';
-import { setUserItem } from 'actions/user.action';
 import ThemeSwitch from './themeSwitch';
 import { useGuide } from '../guide/useGuide';
 import { Outlet, useLocation, useNavigate } from 'react-router';
+import { setUserItem } from 'stores/user.store';
+import { useAppDispatch, useAppState } from 'stores';
+import { setActiveTag } from 'stores/tags-view.store';
 
 const { Sider, Content } = Layout;
 const WIDTH = 992;
 
 const LayoutPage: FC = () => {
   const [menuList, setMenuList] = useState<MenuList>([]);
-  const { device, collapsed, newUser } = useSelector((state: AppState) => state.globalReducer);
+  const { device, collapsed, newUser } = useAppState(state => state.user);
   const isMobile = device === 'MOBILE';
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { driverStart } = useGuide();
   const location = useLocation();
   const navigate = useNavigate();
@@ -36,7 +35,7 @@ const LayoutPage: FC = () => {
 
   const toggle = () => {
     dispatch(
-      setGlobalItem({
+      setUserItem({
         collapsed: !collapsed
       })
     );
@@ -65,6 +64,7 @@ const LayoutPage: FC = () => {
           menuList: initMenuListAll(result)
         })
       );
+      dispatch(setActiveTag(result[0].key));
     }
   }, [dispatch]);
 
@@ -78,7 +78,7 @@ const LayoutPage: FC = () => {
       const rect = document.body.getBoundingClientRect();
       const needCollapse = rect.width < WIDTH;
       dispatch(
-        setGlobalItem({
+        setUserItem({
           device,
           collapsed: needCollapse
         })

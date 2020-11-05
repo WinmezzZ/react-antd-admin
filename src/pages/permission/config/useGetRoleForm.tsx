@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { Form, Input, Col, Row, Select } from 'antd';
 import { useLocale } from 'locales';
 import { ColProps } from 'antd/lib/col';
-import { useSelector } from 'react-redux';
-import { AppState } from 'stores';
 import { FormProps } from 'antd/lib/form';
+import { useAppState } from 'stores';
+import { Role } from 'interface/permission/role.interface';
 
 const wrapperCol: ColProps = {
   xs: 24,
@@ -28,17 +28,15 @@ interface Props {
   /** search form need responsive layout */
   responsive?: boolean;
   /** Initial form data */
-  values?: {
-    [x: string]: any;
-  };
+  values?: Role;
 }
 
-export default function useGetRoleForm({ required = false, responsive = false, name = 'form', values = {} }: Props) {
+export default function useGetRoleForm({ required = false, responsive = false, name = 'form', values }: Props) {
   const { formatMessage } = useLocale();
-  const [formInstance] = Form.useForm();
+  const [formInstance] = Form.useForm<FormProps>();
 
   const _Form: FC<FormProps> = ({ children, ...props }) => {
-    const { device } = useSelector((state: AppState) => state.globalReducer);
+    const { device } = useAppState(state => state.user);
 
     return (
       <Form

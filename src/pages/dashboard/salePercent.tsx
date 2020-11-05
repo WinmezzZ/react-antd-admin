@@ -3,8 +3,7 @@ import { Card, Row, Col, List, Radio, Badge } from 'antd';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
 import { ColProps } from 'antd/lib/col';
 import { useLocale } from 'locales';
-import { useSelector } from 'react-redux';
-import { AppState } from 'stores';
+import { useAppState } from 'stores';
 
 type DataType = 'all' | 'online' | 'offline';
 
@@ -61,7 +60,7 @@ const wrapperCol: ColProps = {
 
 const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
   const [dataType, setDataType] = useState<DataType>('all');
-  const { locale } = useSelector((state: AppState) => state.globalReducer);
+  const { locale } = useAppState(state => state.user);
   const { formatMessage } = useLocale();
 
   return (

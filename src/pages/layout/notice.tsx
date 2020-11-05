@@ -2,10 +2,9 @@ import React, { FC, useState, useEffect } from 'react';
 import { Tabs, Dropdown, Badge, Spin, List, Avatar, Tag } from 'antd';
 import { ReactComponent as NoticeSvg } from 'assets/header/notice.svg';
 import { LoadingOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import { AppState } from 'stores';
 import { getNoticeList } from 'api/layout.api';
 import { Notice, EventStatus } from 'interface/layout/notice.interface';
+import { useAppState } from 'stores';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -15,7 +14,7 @@ const HeaderNoticeComponent: FC = () => {
   const [visible, setVisible] = useState(false);
   const [noticeList, setNoticeList] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(false);
-  const { noticeCount } = useSelector((state: AppState) => state.globalReducer);
+  const { noticeCount } = useAppState(state => state.user);
 
   const noticeListFilter = <T extends Notice['type']>(type: T) => {
     return noticeList.filter(notice => notice.type === type) as Notice<T>[];

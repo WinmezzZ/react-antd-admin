@@ -4,8 +4,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useLocale, LocaleFormatter } from 'locales';
 import { apiGetRoleList } from 'api/permission/role.api';
 import { Role, RoleStatus } from 'interface/permission/role.interface';
-import { useSelector } from 'react-redux';
-import { AppState } from 'stores';
+import { useAppState } from 'stores';
 
 enum TagColor {
   enabled = 'success',
@@ -21,7 +20,7 @@ interface RoleTableProps {
 const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify, onAuthorize }) => {
   const { formatMessage } = useLocale();
   const [tableData, setTableData] = useState<Role[]>();
-  const { locale } = useSelector((state: AppState) => state.globalReducer);
+  const { locale } = useAppState(state => state.user);
 
   const initData = useCallback(async () => {
     const { result, status } = await apiGetRoleList();

@@ -1,19 +1,17 @@
 import React, { FC, useEffect } from 'react';
 import { Tabs } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppState } from 'stores';
-import { setActiveTag, removeTag, addTag } from 'actions/tagsView.action';
 import { useNavigate, useLocation } from 'react-router-dom';
 import TagsViewAction from './tagViewAction';
 import usePrevious from 'hooks/usePrevious';
+import { useAppDispatch, useAppState } from 'stores';
+import { addTag, removeTag, setActiveTag } from 'stores/tags-view.store';
 
 const { TabPane } = Tabs;
 
 const TagsView: FC = () => {
-  const { menuList } = useSelector((state: AppState) => state.userReducer);
-  const { locale } = useSelector((state: AppState) => state.globalReducer);
-  const { tags, activeTagId } = useSelector((state: AppState) => state.tagsViewlReducer);
-  const dispatch = useDispatch();
+  const { tags, activeTagId } = useAppState(state => state.tagsView);
+  const { menuList, locale } = useAppState(state => state.user);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const prevActiveTagId = usePrevious(activeTagId);

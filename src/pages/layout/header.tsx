@@ -3,17 +3,15 @@ import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } fr
 import { Layout, Dropdown, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import HeaderNoticeComponent from './notice';
-import { useDispatch, useSelector } from 'react-redux';
-import { logoutAsync } from 'actions/user.action';
 import Avator from 'assets/header/avator.jpeg';
-import { AppState } from 'stores';
 import { ReactComponent as LanguageSvg } from 'assets/header/language.svg';
 import { ReactComponent as ZhCnSvg } from 'assets/header/zh_CN.svg';
 import { ReactComponent as EnUsSvg } from 'assets/header/en_US.svg';
-import { setGlobalItem } from 'actions/global.action';
 import { LocaleFormatter, useLocale } from 'locales';
 import ReactSvg from 'assets/logo/react.svg';
 import AntdSvg from 'assets/logo/antd.svg';
+import { logoutAsync, setUserItem } from 'stores/user.store';
+import { useAppDispatch, useAppState } from 'stores';
 
 const { Header } = Layout;
 
@@ -25,10 +23,9 @@ interface Props {
 type Action = 'userInfo' | 'userSetting' | 'logout';
 
 const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
-  const { logged } = useSelector((state: AppState) => state.userReducer);
-  const { locale, device } = useSelector((state: AppState) => state.globalReducer);
+  const { logged, locale, device } = useAppState(state => state.user);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { formatMessage } = useLocale();
 
   const onActionClick = async (action: Action) => {
@@ -49,7 +46,7 @@ const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
   };
 
   const selectLocale = ({ key }: { key: any }) => {
-    dispatch(setGlobalItem({ locale: key }));
+    dispatch(setUserItem({ locale: key }));
     localStorage.setItem('locale', key);
   };
   const menu = (

@@ -4,10 +4,9 @@ import { Menu } from 'antd';
 import { MenuList } from '../../interface/layout/menu.interface';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { CustomIcon } from './customIcon';
-import { useDispatch, useSelector } from 'react-redux';
-import { setGlobalItem } from 'actions/global.action';
-import { AppState } from 'stores';
-import { addTag } from 'actions/tagsView.action';
+import { useAppDispatch, useAppState } from 'stores';
+import { setUserItem } from 'stores/user.store';
+import { addTag } from 'stores/tags-view.store';
 
 const { SubMenu, Item } = Menu;
 
@@ -18,8 +17,8 @@ interface Props {
 const MenuComponent: FC<Props> = ({ menuList }) => {
   const [openKeys, setOpenkeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
-  const { collapsed, device, locale } = useSelector((state: AppState) => state.globalReducer);
-  const dispatch = useDispatch();
+  const { collapsed, device, locale } = useAppState(state => state.user);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -37,7 +36,7 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
     const { key, label, path } = menu;
     setSelectedKeys([key]);
     if (device !== 'DESKTOP') {
-      dispatch(setGlobalItem({ collapsed: true }));
+      dispatch(setUserItem({ collapsed: true }));
     }
     dispatch(
       addTag({
