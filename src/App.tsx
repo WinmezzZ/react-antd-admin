@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
-import { useSelector } from 'react-redux';
-import { AppState } from './stores';
 import { lacaleConfig } from './locales';
 import { ConfigProvider } from 'antd';
 import enUS from 'antd/es/locale/en_US';
@@ -10,9 +8,10 @@ import zhCN from 'antd/es/locale/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import RenderRouter from './routes';
+import { useAppState } from 'stores';
 
 const App: React.FC = () => {
-  const { locale } = useSelector((state: AppState) => state.globalReducer);
+  const { locale } = useAppState(state => state.user);
 
   useEffect(() => {
     if (locale === 'en_US') {

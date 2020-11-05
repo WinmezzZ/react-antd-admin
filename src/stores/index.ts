@@ -1,19 +1,16 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { globalReducer } from 'reducers/gloabal.reducer';
-import { tagsViewlReducer } from 'reducers/tagsView.reducer';
-import { userReducer } from 'reducers/user.reducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
+import rootReducer from './rootReducer';
 
-const rootReducer = combineReducers({
-  globalReducer,
-  userReducer,
-  tagsViewlReducer
+const store = configureStore({
+  reducer: rootReducer
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
+type AppState = ReturnType<typeof rootReducer>;
+type AppDispatch = typeof store.dispatch;
 
-export default function configureStore() {
-  const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
-  return store;
-}
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+export const useAppState = <T extends (state: AppState) => any>(selector: T): ReturnType<T> => useSelector(selector);
+
+export default store;

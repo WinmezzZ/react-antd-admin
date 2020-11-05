@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/main.less';
-import configureStore from './stores';
+import store from './stores';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import './mock';
-const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
