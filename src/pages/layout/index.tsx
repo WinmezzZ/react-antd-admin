@@ -8,7 +8,6 @@ import TagsView from './tagView';
 import SuspendFallbackLoading from './suspendFallbackLoading';
 import { getMenuList } from 'api/layout.api';
 import { MenuList, MenuChild } from 'interface/layout/menu.interface';
-import ThemeSwitch from './themeSwitch';
 import { useGuide } from '../guide/useGuide';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import { setUserItem } from 'stores/user.store';
@@ -116,7 +115,6 @@ const LayoutPage: FC = () => {
           <Suspense fallback={<SuspendFallbackLoading />}>
             <Outlet />
           </Suspense>
-          <ThemeSwitch />
         </Content>
       </Layout>
     </Layout>
