@@ -57,6 +57,8 @@ npm install
 npm run build
 ```
 
+此项目默认部署在根站点上，如果要部署在子站点上，则需要设置公共路径，在本项目根目录下的 `.env` 文件中添加 `PUBLIC_URL=YOUR_CHILD_PATH`。
+
 ## 🖥 浏览器支持
 
 现代浏览器和 Internet Explorer 10+
