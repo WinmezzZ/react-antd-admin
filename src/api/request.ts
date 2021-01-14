@@ -1,9 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { message as $message } from 'antd';
 
-axios.defaults.timeout = 6000;
+const axiosInstance = axios.create({
+  timeout: 6000
+});
 
-axios.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   config => {
     return config;
   },
@@ -12,7 +14,7 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   config => {
     if (config?.data?.message) {
       // $message.success(config.data.message)
@@ -60,9 +62,9 @@ export const request = <T = any>(
   const prefix = '';
   url = prefix + url;
   if (method === 'post') {
-    return axios.post(url, data, config);
+    return axiosInstance.post(url, data, config);
   } else {
-    return axios.get(url, {
+    return axiosInstance.get(url, {
       params: data,
       ...config
     });
