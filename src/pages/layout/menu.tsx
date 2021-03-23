@@ -56,7 +56,8 @@ const MenuComponent: FC<Props> = ({ menuList }) => {
 
   const onOpenChange = (keys: string[]) => {
     const key = keys.pop();
-    if (key) setOpenkeys([key]);
+
+    setOpenkeys(key ? [key] : []);
   };
 
   return (
