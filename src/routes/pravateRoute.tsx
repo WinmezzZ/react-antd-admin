@@ -21,7 +21,7 @@ const PrivateRoute: FC<RouteProps> = props => {
       extra={
         <Button
           type="primary"
-          onClick={() => navigate('/login', { replace: true, state: { from: location.pathname } })}
+          onClick={() => navigate(`/login${'?from=' + encodeURIComponent(location.pathname)}`, { replace: true })}
         >
           {formatMessage({ id: 'gloabal.tips.goToLogin' })}
         </Button>

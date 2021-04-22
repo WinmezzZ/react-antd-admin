@@ -1,8 +1,7 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import { Tabs } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import TagsViewAction from './tagViewAction';
-import usePrevious from 'hooks/usePrevious';
 import { useAppDispatch, useAppState } from 'stores';
 import { addTag, removeTag, setActiveTag } from 'stores/tags-view.store';
 
@@ -14,17 +13,37 @@ const TagsView: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const prevActiveTagId = usePrevious(activeTagId);
 
   // onClick tag
   const onChange = (key: string) => {
-    dispatch(setActiveTag(key));
+    const tag = tags.find(tag => tag.id === key);
+    if (tag) {
+      setCurrentTag(tag.id);
+      navigate(tag.path);
+    }
   };
 
   // onRemove tag
   const onClose = (targetKey: string) => {
     dispatch(removeTag(targetKey));
   };
+
+  const setCurrentTag = useCallback(
+    (id?: string) => {
+      const tag = tags.find(item => {
+        if (id) {
+          return item.id === id;
+        } else {
+          return item.path === location.pathname;
+        }
+      });
+
+      if (tag) {
+        dispatch(setActiveTag(tag.id));
+      }
+    },
+    [dispatch, location.pathname, tags]
+  );
 
   useEffect(() => {
     if (menuList.length) {
@@ -50,18 +69,16 @@ const TagsView: FC = () => {
             closable: true
           })
         );
+        // set active and tag when click tag
+        setCurrentTag(menu.key);
       }
     }
-  }, [dispatch, location.pathname, menuList]);
+  }, [dispatch, location.pathname, menuList, setCurrentTag]);
 
+  // Initial active tag when page loaded
   useEffect(() => {
-    // If current tag id changed, push to new path.
-    if (prevActiveTagId !== activeTagId) {
-      const tag = tags.find(tag => tag.id === activeTagId) || tags[0];
-      navigate(tag.path);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTagId, prevActiveTagId]);
+    setCurrentTag();
+  }, [setCurrentTag]);
 
   return (
     <div id="pageTabs" style={{ background: '#fff', padding: '6px 4px' }}>

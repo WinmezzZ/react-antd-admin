@@ -1,5 +1,4 @@
 import React, { lazy, FC } from 'react';
-
 import Dashboard from 'pages/dashboard';
 import LoginPage from 'pages/login';
 import LayoutPage from 'pages/layout';
@@ -21,7 +20,7 @@ const routeList: PartialRouteObject[] = [
     element: <WrapperRouteComponent element={<LoginPage />} titleId="title.login" />
   },
   {
-    path: '',
+    path: '/',
     element: <WrapperRouteComponent element={<LayoutPage />} titleId="" />,
     children: [
       {

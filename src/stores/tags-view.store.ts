@@ -16,6 +16,7 @@ const tagsViewSlice = createSlice({
     addTag(state, action: PayloadAction<TagItem>) {
       if (!state.tags.find(tag => tag.id === action.payload.id)) {
         state.tags.push(action.payload);
+        state.activeTagId = action.payload.id;
       }
     },
     removeTag(state, action: PayloadAction<string>) {

@@ -6,6 +6,7 @@ import { LoginParams } from 'interface/user/login';
 import { loginAsync } from 'stores/user.store';
 import { useAppDispatch } from 'stores';
 import { Location } from 'history';
+import { formatSearch } from 'utils/formatSearch';
 
 const initialValues: LoginParams = {
   username: 'guest',
@@ -21,7 +22,8 @@ const LoginForm: FC = () => {
   const onFinished = async (form: LoginParams) => {
     const res = dispatch(await loginAsync(form));
     if (!!res) {
-      const from = location.state.from || { pathname: '/dashboard' };
+      const search = formatSearch(location.search);
+      const from = search.from || { pathname: '/dashboard' };
       navigate(from);
     }
   };
