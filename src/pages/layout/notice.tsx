@@ -20,6 +20,8 @@ const HeaderNoticeComponent: FC = () => {
     return noticeList.filter(notice => notice.type === type) as Notice<T>[];
   };
 
+  // loads the notices belonging to logged in user
+  // and sets loading flag in-process
   const getNotice = async () => {
     setLoading(true);
     const { status, result } = await getNoticeList();

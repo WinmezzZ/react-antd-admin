@@ -1,10 +1,15 @@
 import React, { FC } from 'react';
 import { Spin, Alert } from 'antd';
 
-const SuspendFallbackLoading: FC = () => {
+interface FallbackMessageProps {
+  message: string;
+  description?: string;
+}
+
+const SuspendFallbackLoading: FC<FallbackMessageProps> = ({ message, description }) => {
   return (
     <Spin tip="加载中...">
-      <Alert message="Alert message title" description="Further details about the context of this alert." type="info" />
+      <Alert message={message} description={description} type="info" />
     </Spin>
   );
 };

@@ -22,6 +22,8 @@ const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify, onAuthorize }) => {
   const [tableData, setTableData] = useState<Role[]>();
   const { locale } = useAppState(state => state.user);
 
+  // callback that get the data from backend(mock)
+  // and loads the table with role-member rows
   const initData = useCallback(async () => {
     const { result, status } = await apiGetRoleList();
     if (status) {
@@ -32,12 +34,13 @@ const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify, onAuthorize }) => {
   const getLocaleStatus = (status: RoleStatus) => {
     switch (status) {
       case 'enabled':
-        return formatMessage({ id: 'app.permission.role.status.disabled' });
+        return formatMessage({ id: 'app.permission.role.status.enabled' });
     }
   };
 
   useEffect(() => {
     initData();
+    console.log('test');
   }, [initData]);
   return (
     <Table

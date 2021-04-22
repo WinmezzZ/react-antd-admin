@@ -5,7 +5,8 @@ type Callback = () => Promise<any>;
 type Deps = readonly any[];
 
 /**
- *
+ * hook that wraps a callback function inside
+ * useEffect hook, triggered everytime dependencies change
  * @param callback callback
  * @param deps dependences
  */

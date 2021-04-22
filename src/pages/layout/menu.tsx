@@ -10,11 +10,11 @@ import { addTag } from 'stores/tags-view.store';
 
 const { SubMenu, Item } = Menu;
 
-interface Props {
+interface MenuProps {
   menuList: MenuList;
 }
 
-const MenuComponent: FC<Props> = ({ menuList }) => {
+const MenuComponent: FC<MenuProps> = ({ menuList }) => {
   const [openKeys, setOpenkeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const { collapsed, device, locale } = useAppState(state => state.user);
