@@ -34,7 +34,7 @@ const MenuComponent: FC<MenuProps> = ({ menuList }) => {
   const onMenuClick = (menu: MenuList[0]) => {
     if (menu.path === pathname) return;
     const { key, label, path } = menu;
-    setSelectedKeys([key]);\
+    setSelectedKeys([key]);
     if (device !== 'DESKTOP') {
       dispatch(setUserItem({ collapsed: true }));
     }
