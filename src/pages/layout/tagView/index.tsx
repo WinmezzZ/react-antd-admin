@@ -69,16 +69,9 @@ const TagsView: FC = () => {
             closable: true
           })
         );
-        // set active and tag when click tag
-        setCurrentTag(menu.key);
       }
     }
-  }, [dispatch, location.pathname, menuList, setCurrentTag]);
-
-  // Initial active tag when page loaded
-  useEffect(() => {
-    setCurrentTag();
-  }, [setCurrentTag]);
+  }, [dispatch, location.pathname, menuList]);
 
   return (
     <div id="pageTabs" style={{ background: '#fff', padding: '6px 4px' }}>

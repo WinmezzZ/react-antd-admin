@@ -12,7 +12,6 @@ import { useGuide } from '../guide/useGuide';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import { setUserItem } from 'stores/user.store';
 import { useAppDispatch, useAppState } from 'stores';
-import { setActiveTag } from 'stores/tags-view.store';
 
 const { Sider, Content } = Layout;
 const WIDTH = 992;
@@ -63,7 +62,6 @@ const LayoutPage: FC = () => {
           menuList: initMenuListAll(result)
         })
       );
-      dispatch(setActiveTag(result[0].key));
     }
   }, [dispatch]);
 
