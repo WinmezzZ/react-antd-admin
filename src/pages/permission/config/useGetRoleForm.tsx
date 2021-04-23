@@ -20,7 +20,7 @@ const layout = {
   wrapperCol: { span: 18 }
 };
 
-interface Props {
+interface RoleFormProps {
   /** form name */
   name: string;
   /** Form item required? */
@@ -31,7 +31,7 @@ interface Props {
   values?: Role;
 }
 
-export default function useGetRoleForm({ required = false, responsive = false, name = 'form', values }: Props) {
+export default function useGetRoleForm({ required = false, responsive = false, name = 'form', values }: RoleFormProps) {
   const { formatMessage } = useLocale();
   const [formInstance] = Form.useForm<FormProps>();
 

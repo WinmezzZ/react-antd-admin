@@ -7,6 +7,7 @@ import TimeLine from './timeLine';
 const DashBoardPage: FC = () => {
   const [loading, setLoading] = useState(true);
 
+  // mock timer to mimic dashboard data loading
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(undefined as any);

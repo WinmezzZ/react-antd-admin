@@ -15,14 +15,14 @@ import { useAppDispatch, useAppState } from 'stores';
 
 const { Header } = Layout;
 
-interface Props {
+interface HeaderProps {
   collapsed: boolean;
   toggle: () => void;
 }
 
 type Action = 'userInfo' | 'userSetting' | 'logout';
 
-const HeaderComponent: FC<Props> = ({ collapsed, toggle }) => {
+const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
   const { logged, locale, device } = useAppState(state => state.user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

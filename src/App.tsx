@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
-import { lacaleConfig } from './locales';
+import { localeConfig } from './locales';
 import { ConfigProvider } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
@@ -13,6 +13,8 @@ import { useAppState } from 'stores';
 const App: React.FC = () => {
   const { locale } = useAppState(state => state.user);
 
+  // set the locale for the user
+  // more languages options can be added here
   useEffect(() => {
     if (locale === 'en_US') {
       moment.locale('en');
@@ -21,6 +23,11 @@ const App: React.FC = () => {
     }
   }, [locale]);
 
+  /**
+   * handler function that passes locale
+   * information to ConfigProvider for
+   * setting language across text components
+   */
   const getAntdLocale = () => {
     if (locale === 'en_US') {
       return enUS;
@@ -31,7 +38,7 @@ const App: React.FC = () => {
 
   return (
     <ConfigProvider locale={getAntdLocale()} componentSize="middle">
-      <IntlProvider locale={locale.split('_')[0]} messages={lacaleConfig[locale]}>
+      <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
         <BrowserRouter>
           <RenderRouter />
         </BrowserRouter>

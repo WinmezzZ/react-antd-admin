@@ -5,11 +5,11 @@ import { ReactComponent as DashboardSvg } from 'assets/menu/dashboard.svg';
 import { ReactComponent as AccountSvg } from 'assets/menu/account.svg';
 import { ReactComponent as DocumentationSvg } from 'assets/menu/documentation.svg';
 
-interface Props {
+interface CustomIconProps {
   type: string;
 }
 
-export const CustomIcon: FC<Props> = props => {
+export const CustomIcon: FC<CustomIconProps> = props => {
   const { type } = props;
   let com = <GuideSvg />;
   if (type === 'guide') {

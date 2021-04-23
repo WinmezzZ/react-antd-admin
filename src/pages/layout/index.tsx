@@ -112,7 +112,14 @@ const LayoutPage: FC = () => {
         )}
         <Content className="layout-page-content">
           <TagsView />
-          <Suspense fallback={<SuspendFallbackLoading />}>
+          <Suspense
+            fallback={
+              <SuspendFallbackLoading
+                message="Alert message title"
+                description="Further details about the context of this alert."
+              />
+            }
+          >
             <Outlet />
           </Suspense>
         </Content>

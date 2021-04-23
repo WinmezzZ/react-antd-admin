@@ -47,6 +47,7 @@ const RoleAuthorizeDialog: FC<RoleModifyDialogProps> = ({ onAuthorize, onCancel,
 
   // Set the checkedKeys when the user menu list is loaded
   useEffect(() => {
+    // Only fires when the menuList is not empty
     if (menuList.length) {
       setCheckedKeys(menuList.map(m => m.key));
     }
@@ -68,6 +69,7 @@ const RoleAuthorizeDialog: FC<RoleModifyDialogProps> = ({ onAuthorize, onCancel,
       onOk={onSubmit}
       onCancel={onCancel}
     >
+      {/** TODO: Signal error via a component if network error */}
       {treeData.length ? (
         <Tree
           checkable
