@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { CustomIcon } from './customIcon';
 import { useAppDispatch, useAppState } from 'stores';
 import { setUserItem } from 'stores/user.store';
-import { addTag } from 'stores/tags-view.store';
+import { addTag, setActiveTag } from 'stores/tags-view.store';
 
 const { SubMenu, Item } = Menu;
 
@@ -35,6 +35,7 @@ const MenuComponent: FC<MenuProps> = ({ menuList }) => {
     if (menu.path === pathname) return;
     const { key, label, path } = menu;
     setSelectedKeys([key]);
+    dispatch(setActiveTag(key));
     if (device !== 'DESKTOP') {
       dispatch(setUserItem({ collapsed: true }));
     }
