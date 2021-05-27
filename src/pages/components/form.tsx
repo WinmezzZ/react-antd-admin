@@ -1,5 +1,5 @@
-import MyInput from 'components/base/input';
-import MySelect from 'components/base/select';
+import MyInput from 'components/basic/input';
+import MySelect from 'components/basic/select';
 import MyFormItem from 'components/core/form-item';
 import React, { FC } from 'react';
 

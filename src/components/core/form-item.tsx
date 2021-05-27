@@ -1,23 +1,23 @@
 import React, { FC, ReactNode } from 'react';
 import { Form } from 'antd';
 import { FormItemProps } from 'antd/lib/form';
-import MyInput from 'components/base/input';
-import MyInputNumber from 'components/base/input-number';
-import MySwitch from 'components/base/switch';
-import MyDatePicker from 'components/base/date-picker';
-import MyCheckBox from 'components/base/checkbox';
-import MyRadio from 'components/base/radio';
-import MySelect from 'components/base/select';
+import MyInput from 'components/basic/input';
+import MyInputNumber from 'components/basic/input-number';
+import MySwitch from 'components/basic/switch';
+import MyDatePicker from 'components/basic/date-picker';
+import MyCheckBox from 'components/basic/checkbox';
+import MyRadio from 'components/basic/radio';
+import MySelect from 'components/basic/select';
 
 const FormItem = Form.Item;
 
-const baseControls = ['input', 'input-number', 'switch', 'date-picker'] as const;
+const basicControls = ['input', 'input-number', 'switch', 'date-picker'] as const;
 const advancedControls = ['checkbox', 'radio', 'select'] as const;
-type BaseControls = typeof baseControls[number];
+type BasicControls = typeof basicControls[number];
 type AdvancedControls = typeof advancedControls[number];
 
-interface BaseControlProps extends FormItemProps {
-  type?: typeof baseControls[number];
+interface BasicControlProps extends FormItemProps {
+  type?: typeof basicControls[number];
 }
 interface AdvancedControlPropsOption {
   label: string;
@@ -29,15 +29,15 @@ interface AdvancedControlProps extends FormItemProps {
   options: AdvancedControlPropsOption[];
 }
 
-type GetBaseControlsProps = {
-  [x in BaseControls]: (props: BaseControlProps) => ReactNode;
+type GetBasicControlsProps = {
+  [x in BasicControls]: (props: BasicControlProps) => ReactNode;
 };
 
 type GetAdvancedControlsProps = {
   [x in AdvancedControls]: (props: AdvancedControlProps) => ReactNode;
 };
 
-class GetControl implements GetBaseControlsProps, GetAdvancedControlsProps {
+class GetControl implements GetBasicControlsProps, GetAdvancedControlsProps {
   input() {
     return <MyInput />;
   }
@@ -63,7 +63,7 @@ class GetControl implements GetBaseControlsProps, GetAdvancedControlsProps {
   }
 }
 
-const MyFormItem: FC<BaseControlProps | AdvancedControlProps> = props => {
+const MyFormItem: FC<BasicControlProps | AdvancedControlProps> = props => {
   const { children, type, ...rest } = props;
   const control = type ? new GetControl()[type](props as never) : props.children;
 
