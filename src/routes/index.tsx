@@ -13,6 +13,7 @@ const RoutePermission = lazy(() => import(/* webpackChunkName: "route-permission
 const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permission"*/ 'pages/permission/button'));
 const PermissionConfig = lazy(() => import(/* webpackChunkName: "permission-config'"*/ 'pages/permission/config'));
 const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ 'pages/account'));
+const FormPage = lazy(() => import(/* webpackChunkName: "account'"*/ 'pages/components/form'));
 
 const routeList: PartialRouteObject[] = [
   {
@@ -51,6 +52,11 @@ const routeList: PartialRouteObject[] = [
         path: 'account',
         element: <WrapperRouteComponent element={<AccountPage />} titleId="title.account" />
       },
+      {
+        path: 'usage/form',
+        element: <WrapperRouteComponent element={<FormPage />} titleId="title.account" />
+      },
+
       {
         path: '*',
         element: <WrapperRouteComponent element={<NotFound />} titleId="title.notFount" />
