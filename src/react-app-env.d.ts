@@ -5,7 +5,5 @@ declare interface Window {
 }
 
 declare interface ObjectConstructor {
-  keys<T>(o: T): ObjectKeys<T>;
+  keys<T>(o: T): (keyof T)[];
 }
-
-type ObjectKeys<T extends object> = (keyof T)[];

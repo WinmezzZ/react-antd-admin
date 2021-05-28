@@ -1,16 +1,39 @@
-import MyInput from 'components/basic/input';
-import MySelect from 'components/basic/select';
-import MyFormItem from 'components/core/form-item';
 import React, { FC } from 'react';
+import MyButton from 'components/basic/button';
+import MyForm from 'components/basic/form';
 
-const Form: FC = () => {
+const tailLayout = {
+  wrapperCol: { offset: 8, span: 16 }
+};
+
+interface Data {
+  test: number;
+}
+
+const FormPage: FC = () => {
+  const onFinish = (value: any) => {
+    console.log(value);
+  };
+
   return (
-    <div>
-      <MyInput />
-      <MySelect />
-      <MyFormItem type="date-picker" />
-    </div>
+    <MyForm<Data> onFinish={onFinish}>
+      <MyForm.Item
+        label="测试"
+        type="select"
+        rules={[{ required: true }]}
+        name="test"
+        options={[
+          { label: 'aaa', value: 1 },
+          { label: 'bbb', value: 2 }
+        ]}
+      />
+      <MyForm.Item {...tailLayout}>
+        <MyButton type="primary" htmlType="submit">
+          Submit
+        </MyButton>
+      </MyForm.Item>
+    </MyForm>
   );
 };
 
-export default Form;
+export default FormPage;

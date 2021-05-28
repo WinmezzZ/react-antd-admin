@@ -6,42 +6,88 @@ import MyDatePicker from 'components/basic/date-picker';
 import MyCheckBox from 'components/basic/checkbox';
 import MyRadio from 'components/basic/radio';
 import MySelect from 'components/basic/select';
-import { AdvancedControlProps, AdvancedControls, BasicControlProps, BasicControls } from './types';
+import { AdvancedControls, BasicControls, CustomFormItemProps, AdvancedControlPropsOption } from './types';
+import { FormInstance } from 'rc-field-form';
 
-// Method member must be one of BasicControls, provide BasicControlProps arguments, and return ReactNode
-// 方法成员必须名字为 basicControls 其中之一，提供 BasicControlProps 参数，返回 ReactNode
+// Method member must be one of BasicControls, provide options arguments, and return ReactNode
+// 方法成员必须名字为 basicControls 其中之一，提供 options 参数，返回 ReactNode
 type GetBasicControlsProps = {
-  [x in BasicControls]: (props: BasicControlProps) => ReactNode;
+  [x in BasicControls]: () => ReactNode;
 };
 
 type GetAdvancedControlsProps = {
-  [x in AdvancedControls]: (props: AdvancedControlProps) => ReactNode;
+  [x in AdvancedControls]: (options: AdvancedControlPropsOption[]) => ReactNode;
 };
 
 // Why implements: Prevent incorrect member names, and prevent missing members
 // 为什么要 implements：防止成员名写错，防止成员遗漏
 export class GetControl implements GetBasicControlsProps, GetAdvancedControlsProps {
+  props: CustomFormItemProps;
+  form: FormInstance;
+
+  constructor(props: CustomFormItemProps, form: FormInstance) {
+    this.props = props;
+    this.form = form;
+  }
+
+  get value() {
+    if (this.props.name) {
+      return this.form.getFieldValue(this.props.name);
+    }
+    return undefined;
+  }
+
+  get controlProps() {
+    const { innerProps, required } = this.props;
+    let clearable = true;
+
+    if (innerProps && 'clearable' in innerProps) {
+      clearable = innerProps.clearable;
+    } else {
+      clearable = !!required;
+    }
+    return {
+      ...innerProps,
+      clearable
+    };
+  }
+
   input() {
-    return <MyInput />;
+    return <MyInput {...this.controlProps} />;
   }
+
   'input-number'() {
-    return <MyInputNumber />;
+    return <MyInputNumber {...this.controlProps} />;
   }
+
   switch() {
-    return <MySwitch />;
+    return <MySwitch {...this.controlProps} />;
   }
+
   'date-picker'() {
-    return <MyDatePicker />;
+    return <MyDatePicker {...this.controlProps} />;
   }
-  checkbox({ options }: AdvancedControlProps) {
-    if (options.length === 1) return <MyCheckBox />;
-    return <MyCheckBox.Group options={options} />;
+
+  checkbox(options: AdvancedControlPropsOption[]) {
+    if (options.length === 1) return <MyCheckBox {...this.controlProps} />;
+    return <MyCheckBox.Group options={options} {...this.controlProps} />;
   }
-  radio(props: AdvancedControlProps) {
-    if (props.options.length === 1) return <MyRadio />;
-    return <MyRadio.Group options={props.options} />;
+
+  radio(options: AdvancedControlPropsOption[]) {
+    if (options.length === 1) return <MyRadio {...this.controlProps} />;
+    return <MyRadio.Group options={options} {...this.controlProps} />;
   }
-  select(props: AdvancedControlProps) {
-    return <MySelect options={props.options} />;
+
+  select(options: AdvancedControlPropsOption[]) {
+    return <MySelect options={options} {...this.controlProps} />;
+  }
+
+  text(options: AdvancedControlPropsOption[]) {
+    const value = this.value || this.props.initialValue;
+    const data = options.find(item => item.value === value);
+
+    if (data) {
+      return data.label;
+    }
   }
 }
