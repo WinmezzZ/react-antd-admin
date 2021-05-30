@@ -17,16 +17,7 @@ const FormPage: FC = () => {
 
   return (
     <MyForm<Data> onFinish={onFinish}>
-      <MyForm.Item
-        label="测试"
-        type="select"
-        rules={[{ required: true }]}
-        name="test"
-        options={[
-          { label: 'aaa', value: 1 },
-          { label: 'bbb', value: 2 }
-        ]}
-      />
+      <MyForm.Item label="测试" required name="test" innerProps="1" />
       <MyForm.Item {...tailLayout}>
         <MyButton type="primary" htmlType="submit">
           Submit
