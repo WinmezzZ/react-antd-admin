@@ -17,7 +17,7 @@ const FormPage: FC = () => {
 
   return (
     <MyForm<Data> onFinish={onFinish}>
-      <MyForm.Item label="测试" required name="test" innerProps="1" />
+      <MyForm.Item label="测试" required name="test" type="input" />
       <MyForm.Item {...tailLayout}>
         <MyButton type="primary" htmlType="submit">
           Submit

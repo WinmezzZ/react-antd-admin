@@ -22,10 +22,10 @@ type GetAdvancedControlsProps = {
 // Why implements: Prevent incorrect member names, and prevent missing members
 // 为什么要 implements：防止成员名写错，防止成员遗漏
 export class GetControl implements GetBasicControlsProps, GetAdvancedControlsProps {
-  props: CustomFormItemProps;
+  props: CustomFormItemProps<any>;
   form: FormInstance;
 
-  constructor(props: CustomFormItemProps, form: FormInstance) {
+  constructor(props: CustomFormItemProps<any>, form: FormInstance) {
     this.props = props;
     this.form = form;
   }
@@ -38,17 +38,17 @@ export class GetControl implements GetBasicControlsProps, GetAdvancedControlsPro
   }
 
   get controlProps() {
-    const { innerProps, required } = this.props;
-    let clearable = true;
+    const { innerProps = {}, required } = this.props;
+    let allowClear = true;
 
     if (innerProps && 'clearable' in innerProps) {
-      clearable = innerProps.clearable;
+      allowClear = innerProps.clearable;
     } else {
-      clearable = !!required;
+      allowClear = !!required;
     }
     return {
       ...innerProps,
-      clearable
+      allowClear
     };
   }
 
