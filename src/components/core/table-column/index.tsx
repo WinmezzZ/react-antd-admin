@@ -4,18 +4,18 @@ import { MyTableColumnProps, dateFormatMap, datetimeFormatMap, timeFormatMap } f
 import moment from 'moment';
 import { getPathValue } from 'rc-table/lib/utils/valueUtil';
 
-const MyTableColumn = <RecordType extends object>(props: MyTableColumnProps<RecordType>) => {
-  const { options, date, time, datetime, ...rest } = props;
+const MyTableColumn = <RecordType extends object = object>(props: MyTableColumnProps<RecordType>) => {
+  const { options, date, time, datetime, render, ...rest } = props;
 
   const renderContent = (value: any, record: RecordType, index: number) => {
     if (!value) return '-';
 
     if ('datetime' in props) {
-      return moment(value, datetimeFormatMap[datetime || 'second']);
+      return moment(value, datetimeFormatMap[typeof datetime === 'string' ? datetime : 'second']);
     } else if ('date' in props) {
-      return moment(value, dateFormatMap[date || 'day']);
+      return moment(value, dateFormatMap[typeof date === 'string' ? date : 'day']);
     } else if ('time' in props) {
-      return moment(value, timeFormatMap[time || 'second']);
+      return moment(value, timeFormatMap[typeof time === 'string' ? time : 'second']);
     }
 
     if (props.dataIndex && options) {
@@ -23,11 +23,9 @@ const MyTableColumn = <RecordType extends object>(props: MyTableColumnProps<Reco
 
       if (data) return data.label || '-';
     }
-
-    return value || value === 0 ? value : '-';
   };
 
-  return <Table.Column {...rest} key={props.dataIndex?.toString()} render={renderContent} />;
+  return <Table.Column {...rest} key={props.dataIndex?.toString()} render={render || renderContent} />;
 };
 
 export default MyTableColumn;

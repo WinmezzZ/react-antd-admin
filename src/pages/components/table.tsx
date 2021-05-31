@@ -50,13 +50,13 @@ const TalbePage: FC = () => {
       </ColumnGroup>
       <Column title="Age" dataIndex="age" key="age" />
       <Column title="Address" dataIndex="address" key="address" />
-      <Column
+      <Column<ColumnType>
         title="Tags"
         dataIndex="tags"
         key="tags"
-        render={(value, record) => (
+        render={(tags: string[]) => (
           <>
-            {record.tags.map(tag => (
+            {tags.map(tag => (
               <Tag color="blue" key={tag}>
                 {tag}
               </Tag>
@@ -67,7 +67,7 @@ const TalbePage: FC = () => {
       <Column
         title="Action"
         key="action"
-        render={(text, record) => (
+        render={(text, record: any) => (
           <Space size="middle">
             <MyButton type="text">Invite {record.lastName}</MyButton>
             <MyButton type="text">Delete</MyButton>

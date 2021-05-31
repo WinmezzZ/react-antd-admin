@@ -13,7 +13,8 @@ const RoutePermission = lazy(() => import(/* webpackChunkName: "route-permission
 const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permission"*/ 'pages/permission/button'));
 const PermissionConfig = lazy(() => import(/* webpackChunkName: "permission-config'"*/ 'pages/permission/config'));
 const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ 'pages/account'));
-const FormPage = lazy(() => import(/* webpackChunkName: "account'"*/ 'pages/components/form'));
+const FormPage = lazy(() => import(/* webpackChunkName: "form'"*/ 'pages/components/form'));
+const Tableage = lazy(() => import(/* webpackChunkName: "table'"*/ 'pages/components/table'));
 
 const routeList: PartialRouteObject[] = [
   {
@@ -56,7 +57,10 @@ const routeList: PartialRouteObject[] = [
         path: 'usage/form',
         element: <WrapperRouteComponent element={<FormPage />} titleId="title.account" />
       },
-
+      {
+        path: 'usage/table',
+        element: <WrapperRouteComponent element={<Tableage />} titleId="title.account" />
+      },
       {
         path: '*',
         element: <WrapperRouteComponent element={<NotFound />} titleId="title.notFount" />

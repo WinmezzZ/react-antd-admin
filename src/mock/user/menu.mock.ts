@@ -109,6 +109,16 @@ const mockMenuList: MenuList = [
         },
         key: '5-0',
         path: '/usage/form'
+      },
+
+      {
+        name: 'usageTable',
+        label: {
+          zh_CN: '表格',
+          en_US: 'Table'
+        },
+        key: '5-1',
+        path: '/usage/table'
       }
     ]
   }

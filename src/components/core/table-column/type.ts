@@ -41,7 +41,7 @@ export const timeFormatMap: TimeFormatMap = {
 
 export interface MyTableColumnProps<T> extends ColumnProps<T> {
   options?: TableColumnPropsOption[];
-  datetime?: DatetimeType;
-  date?: DateType;
-  time?: TimeType;
+  datetime?: DatetimeType | boolean;
+  date?: DateType | boolean;
+  time?: TimeType | boolean;
 }
