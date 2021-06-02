@@ -2,8 +2,10 @@ import React, { FC } from 'react';
 import TableColumn from '../table-column';
 import { Table } from 'antd';
 
-const MyTable: FC = props => {
+const BaseTable: FC = props => {
   return <Table {...props} />;
 };
 
-export default Object.assign(MyTable, Table, { Column: TableColumn });
+const MyTable = Object.assign(BaseTable, Table, { Column: TableColumn });
+
+export default MyTable;

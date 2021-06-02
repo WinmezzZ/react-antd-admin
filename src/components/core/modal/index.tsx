@@ -14,7 +14,7 @@ interface MyModalProps<FormValues> extends FilteredModalProps {
   onClose?: (formData?: FormValues) => any;
 }
 
-const MyModal = <FormValues extends object>(props: MyModalProps<FormValues>) => {
+const BaseModal = <FormValues extends object>(props: MyModalProps<FormValues>) => {
   const { form, formProps, children, onClose, ...rest } = props;
   const [formInstance] = useForm<FormValues>();
 
@@ -40,8 +40,10 @@ const MyModal = <FormValues extends object>(props: MyModalProps<FormValues>) => 
   );
 };
 
-MyModal.defaultProps = {
+BaseModal.defaultProps = {
   width: '1000px'
 };
+
+const MyModal = Object.assign(BaseModal, Modal);
 
 export default MyModal;
