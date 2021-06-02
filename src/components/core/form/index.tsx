@@ -15,15 +15,14 @@ const BaseForm = <Values extends object>(props: MyFormProps<Values>) => {
   const { options, children } = props;
   return (
     <Form<Values> {...props}>
-      {options
-        ? options.map(option => {
-            return <MyFormItem {...option} />;
-          })
-        : children}
+      {options?.map(option => {
+        return <MyFormItem {...option} />;
+      })}
+      {children}
     </Form>
   );
 };
 
-const MyForm = Object.assign(BaseForm, Form, { Item: FormItem });
+const MyForm = Object.assign(Form, BaseForm, { Item: FormItem });
 
 export default MyForm;

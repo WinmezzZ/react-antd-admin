@@ -6,6 +6,6 @@ const BaseTable: FC = props => {
   return <Table {...props} />;
 };
 
-const MyTable = Object.assign(BaseTable, Table, { Column: TableColumn });
+const MyTable = Object.assign(Table, BaseTable, { Column: TableColumn });
 
 export default MyTable;
