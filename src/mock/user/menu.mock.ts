@@ -89,6 +89,46 @@ const mockMenuList: MenuList = [
     icon: 'account',
     key: '4',
     path: '/account'
+  },
+
+  {
+    name: 'usage',
+    label: {
+      zh_CN: '使用',
+      en_US: 'Usage'
+    },
+    icon: 'permission',
+    key: '5',
+    path: '/usage',
+    children: [
+      {
+        name: 'usageForm',
+        label: {
+          zh_CN: '表单',
+          en_US: 'Form'
+        },
+        key: '5-0',
+        path: '/usage/form'
+      },
+      {
+        name: 'usageTable',
+        label: {
+          zh_CN: '表格',
+          en_US: 'Table'
+        },
+        key: '5-1',
+        path: '/usage/table'
+      },
+      {
+        name: 'usageSearch',
+        label: {
+          zh_CN: '查询',
+          en_US: 'Search'
+        },
+        key: '5-2',
+        path: '/usage/search'
+      }
+    ]
   }
 ];
 

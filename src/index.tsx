@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.less';
-import './styles/main.less';
+import './styles/index.less';
 import store from './stores';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
