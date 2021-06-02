@@ -14,7 +14,8 @@ const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permissi
 const PermissionConfig = lazy(() => import(/* webpackChunkName: "permission-config'"*/ 'pages/permission/config'));
 const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ 'pages/account'));
 const FormPage = lazy(() => import(/* webpackChunkName: "form'"*/ 'pages/components/form'));
-const Tableage = lazy(() => import(/* webpackChunkName: "table'"*/ 'pages/components/table'));
+const TablePage = lazy(() => import(/* webpackChunkName: "table'"*/ 'pages/components/table'));
+const SearchPage = lazy(() => import(/* webpackChunkName: "search'"*/ 'pages/components/search'));
 
 const routeList: PartialRouteObject[] = [
   {
@@ -59,7 +60,11 @@ const routeList: PartialRouteObject[] = [
       },
       {
         path: 'usage/table',
-        element: <WrapperRouteComponent element={<Tableage />} titleId="title.account" />
+        element: <WrapperRouteComponent element={<TablePage />} titleId="title.account" />
+      },
+      {
+        path: 'usage/search',
+        element: <WrapperRouteComponent element={<SearchPage />} titleId="title.account" />
       },
       {
         path: '*',
