@@ -10,6 +10,4 @@ const MySelect: FC = props => {
   return <Select {...props} />;
 };
 
-Object.assign(MySelect, Select);
-
-export default MySelect as typeof Select;
+export default Object.assign(MySelect, Select);

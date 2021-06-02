@@ -5,6 +5,4 @@ const MyModal: FC = props => {
   return <Modal {...props} />;
 };
 
-Object.assign(MyModal, Modal);
-
-export default MyModal as typeof Modal;
+export default Object.assign(MyModal, Modal);

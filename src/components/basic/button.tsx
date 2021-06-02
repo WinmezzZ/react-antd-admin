@@ -5,6 +5,4 @@ const MyButton: FC = props => {
   return <Button {...props} />;
 };
 
-Object.assign(MyButton, Button);
-
-export default MyButton as typeof Button;
+export default Object.assign(MyButton, Button);

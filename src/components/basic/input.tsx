@@ -5,6 +5,4 @@ const MyInput: FC = props => {
   return <Input {...props} />;
 };
 
-Object.assign(MyInput, Input);
-
-export default (MyInput as never) as typeof Input;
+export default Object.assign(MyInput, Input);

@@ -5,6 +5,4 @@ const MyRadio: FC = props => {
   return <Radio {...props} />;
 };
 
-Object.assign(MyRadio, Radio);
-
-export default (MyRadio as never) as typeof Radio;
+export default Object.assign(MyRadio, Radio);

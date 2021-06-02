@@ -5,6 +5,4 @@ const MyCheckBox: FC = props => {
   return <Checkbox {...props} />;
 };
 
-Object.assign(MyCheckBox, Checkbox);
-
-export default (MyCheckBox as never) as typeof Checkbox;
+export default Object.assign(MyCheckBox, Checkbox);

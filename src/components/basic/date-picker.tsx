@@ -1,12 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { DatePicker } from 'antd';
 
-class MyDatePicker extends React.Component {
-  render() {
-    return <DatePicker {...this.props} />;
-  }
-}
+const MyDatePicker: FC = props => {
+  return <MyDatePicker {...props} />;
+};
 
-Object.assign(MyDatePicker, DatePicker);
-
-export default MyDatePicker as typeof DatePicker;
+export default Object.assign(MyDatePicker, DatePicker);
