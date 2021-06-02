@@ -33,7 +33,7 @@ const MyFormItem = <T extends Controls | undefined>(props: MyFormItemProps<T>) =
   // Why do we need to use class: To optimize readability and maintainability, otherwise we have to use a lot of if and else to handle the logic of various types
   // 为什么需要使用class：为了优化可读性和可维护性，否则只能使用大量的 if else 处理各种 type 的逻辑
   return (
-    <Form.Item shouldUpdate>
+    <Form.Item shouldUpdate noStyle>
       {instance => {
         return (
           <Form.Item {...rest} rules={rules} required={required}>
