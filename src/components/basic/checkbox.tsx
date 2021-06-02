@@ -1,8 +1,13 @@
 import React, { FC } from 'react';
 import { Checkbox } from 'antd';
+import { CheckboxProps } from 'antd/lib/checkbox';
 
-const MyCheckBox: FC = props => {
+interface MyButtonProps extends CheckboxProps {}
+
+const BaseCheckBox: FC<MyButtonProps> = props => {
   return <Checkbox {...props} />;
 };
 
-export default Object.assign(MyCheckBox, Checkbox);
+const MyCheckBox = Object.assign(Checkbox, BaseCheckBox);
+
+export default MyCheckBox;

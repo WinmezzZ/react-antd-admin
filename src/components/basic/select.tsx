@@ -6,8 +6,10 @@ import { Select } from 'antd';
 //   return <Select<T> {...props}>{children}</Select>;
 // };
 
-const MySelect: FC = props => {
+const BaseSelect: FC = props => {
   return <Select {...props} />;
 };
 
-export default Object.assign(MySelect, Select);
+const MySelect = Object.assign(Select, BaseSelect);
+
+export default MySelect;

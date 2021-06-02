@@ -1,8 +1,13 @@
 import React, { FC } from 'react';
 import { Button } from 'antd';
+import { ButtonProps } from 'antd/lib/button';
 
-const MyButton: FC = props => {
+interface MyButtonProps extends ButtonProps {}
+
+const BaseButton: FC<MyButtonProps> = props => {
   return <Button {...props} />;
 };
 
-export default Object.assign(MyButton, Button);
+const MyButton = Object.assign(Button, BaseButton);
+
+export default MyButton;

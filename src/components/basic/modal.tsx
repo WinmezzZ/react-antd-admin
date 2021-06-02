@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 import { Modal } from 'antd';
 
-const MyModal: FC = props => {
+const BaseModal: FC = props => {
   return <Modal {...props} />;
 };
 
-export default Object.assign(MyModal, Modal);
+const MyModal = Object.assign(Modal, BaseModal);
+
+export default MyModal;

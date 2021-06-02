@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 import { DatePicker } from 'antd';
 
-const MyDatePicker: FC = props => {
+const BasePicker: FC = props => {
   return <MyDatePicker {...props} />;
 };
 
-export default Object.assign(MyDatePicker, DatePicker);
+const MyDatePicker = Object.assign(DatePicker, BasePicker);
+
+export default MyDatePicker;

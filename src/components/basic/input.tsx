@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 import { Input } from 'antd';
 
-const MyInput: FC = props => {
+const BaseInput: FC = props => {
   return <Input {...props} />;
 };
 
-export default Object.assign(MyInput, Input);
+const MyInput = Object.assign(Input, BaseInput);
+
+export default MyInput;
