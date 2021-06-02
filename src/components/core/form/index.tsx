@@ -11,26 +11,21 @@ export interface MyFormProps<T> extends FormProps<T> {
   options?: MyFormOptions;
 }
 
-const MyForm = <Values extends object>(props: MyFormProps<Values>) => {
-  const { options, children } = props;
-  return (
-    <Form<Values> {...props}>
-      {options
-        ? options.map(option => {
-            return <MyFormItem {...option} />;
-          })
-        : children}
-    </Form>
-  );
-};
+const MyForm = Object.assign(
+  <Values extends object>(props: MyFormProps<Values>) => {
+    const { options, children } = props;
+    return (
+      <Form<Values> {...props}>
+        {options
+          ? options.map(option => {
+              return <MyFormItem {...option} />;
+            })
+          : children}
+      </Form>
+    );
+  },
+  Form,
+  { Item: FormItem }
+);
 
-Object.assign(MyForm, Form, { Item: FormItem });
-
-type FormType = Omit<typeof Form, 'Item'>;
-type SelfType = typeof MyForm;
-
-interface FormInterface extends FormType, SelfType {
-  Item: typeof FormItem;
-}
-
-export default MyForm as FormInterface;
+export default MyForm;
