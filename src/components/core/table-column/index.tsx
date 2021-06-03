@@ -18,8 +18,10 @@ const MyTableColumn = <RecordType extends object = object>(props: MyTableColumnP
       return moment(value, timeFormatMap[typeof time === 'string' ? time : 'second']);
     }
 
-    if (props.dataIndex && options) {
-      const data = options.find(item => item.value === getPathValue(record, props.dataIndex!));
+    const dataIndex = props.dataIndex;
+
+    if (dataIndex && options) {
+      const data = options.find(item => item.value === getPathValue(record, dataIndex));
 
       if (data) return data.label || '-';
     }
