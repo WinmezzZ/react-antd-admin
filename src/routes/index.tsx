@@ -5,6 +5,8 @@ import LayoutPage from 'pages/layout';
 import { PartialRouteObject } from 'react-router';
 import WrapperRouteComponent from './config';
 import { useRoutes } from 'react-router-dom';
+import TabsPage from 'pages/components/tabs';
+import SidePage from 'pages/components/aside';
 
 const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ 'pages/404'));
 const Documentation = lazy(() => import(/* webpackChunkName: "404'"*/ 'pages/doucumentation'));
@@ -65,6 +67,14 @@ const routeList: PartialRouteObject[] = [
       {
         path: 'usage/search',
         element: <WrapperRouteComponent element={<SearchPage />} titleId="title.account" />
+      },
+      {
+        path: 'usage/tabs',
+        element: <WrapperRouteComponent element={<TabsPage />} titleId="title.account" />
+      },
+      {
+        path: 'usage/aside',
+        element: <WrapperRouteComponent element={<SidePage />} titleId="title.account" />
       },
       {
         path: '*',

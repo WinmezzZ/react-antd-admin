@@ -127,6 +127,24 @@ const mockMenuList: MenuList = [
         },
         key: '5-2',
         path: '/usage/search'
+      },
+      {
+        name: 'usageAside',
+        label: {
+          zh_CN: '侧边栏',
+          en_US: 'Aside'
+        },
+        key: '5-3',
+        path: '/usage/aside'
+      },
+      {
+        name: 'usageTabs',
+        label: {
+          zh_CN: '选项卡',
+          en_US: 'Tabs'
+        },
+        key: '5-4',
+        path: '/usage/tabs'
       }
     ]
   }
