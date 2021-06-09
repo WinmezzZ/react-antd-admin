@@ -5,8 +5,6 @@ import LayoutPage from 'pages/layout';
 import { PartialRouteObject } from 'react-router';
 import WrapperRouteComponent from './config';
 import { useRoutes } from 'react-router-dom';
-import TabsPage from 'pages/components/tabs';
-import SidePage from 'pages/components/aside';
 
 const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ 'pages/404'));
 const Documentation = lazy(() => import(/* webpackChunkName: "404'"*/ 'pages/doucumentation'));
@@ -18,6 +16,9 @@ const AccountPage = lazy(() => import(/* webpackChunkName: "account'"*/ 'pages/a
 const FormPage = lazy(() => import(/* webpackChunkName: "form'"*/ 'pages/components/form'));
 const TablePage = lazy(() => import(/* webpackChunkName: "table'"*/ 'pages/components/table'));
 const SearchPage = lazy(() => import(/* webpackChunkName: "search'"*/ 'pages/components/search'));
+const TabsPage = lazy(() => import(/* webpackChunkName: "tabs'"*/ 'pages/components/tabs'));
+const AsidePage = lazy(() => import(/* webpackChunkName: "aside'"*/ 'pages/components/aside'));
+const RadioCardsPage = lazy(() => import(/* webpackChunkName: "radio-cards'"*/ 'pages/components/radio-cards'));
 
 const routeList: PartialRouteObject[] = [
   {
@@ -57,24 +58,28 @@ const routeList: PartialRouteObject[] = [
         element: <WrapperRouteComponent element={<AccountPage />} titleId="title.account" />
       },
       {
-        path: 'usage/form',
+        path: 'component/form',
         element: <WrapperRouteComponent element={<FormPage />} titleId="title.account" />
       },
       {
-        path: 'usage/table',
+        path: 'component/table',
         element: <WrapperRouteComponent element={<TablePage />} titleId="title.account" />
       },
       {
-        path: 'usage/search',
+        path: 'component/search',
         element: <WrapperRouteComponent element={<SearchPage />} titleId="title.account" />
       },
       {
-        path: 'usage/tabs',
+        path: 'component/tabs',
         element: <WrapperRouteComponent element={<TabsPage />} titleId="title.account" />
       },
       {
-        path: 'usage/aside',
-        element: <WrapperRouteComponent element={<SidePage />} titleId="title.account" />
+        path: 'component/aside',
+        element: <WrapperRouteComponent element={<AsidePage />} titleId="title.account" />
+      },
+      {
+        path: 'component/radio-cards',
+        element: <WrapperRouteComponent element={<RadioCardsPage />} titleId="title.account" />
       },
       {
         path: '*',
