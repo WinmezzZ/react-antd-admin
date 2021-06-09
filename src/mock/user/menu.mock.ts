@@ -92,59 +92,144 @@ const mockMenuList: MenuList = [
   },
 
   {
-    name: 'usage',
+    name: 'component',
     label: {
-      zh_CN: '使用',
-      en_US: 'Usage'
+      zh_CN: '组件',
+      en_US: 'Component'
     },
     icon: 'permission',
     key: '5',
-    path: '/usage',
+    path: '/component',
     children: [
       {
-        name: 'usageForm',
+        name: 'componentForm',
         label: {
           zh_CN: '表单',
           en_US: 'Form'
         },
         key: '5-0',
-        path: '/usage/form'
+        path: '/component/form'
       },
       {
-        name: 'usageTable',
+        name: 'componentTable',
         label: {
           zh_CN: '表格',
           en_US: 'Table'
         },
         key: '5-1',
-        path: '/usage/table'
+        path: '/component/table'
       },
       {
-        name: 'usageSearch',
+        name: 'componentSearch',
         label: {
           zh_CN: '查询',
           en_US: 'Search'
         },
         key: '5-2',
-        path: '/usage/search'
+        path: '/component/search'
       },
       {
-        name: 'usageAside',
+        name: 'componentAside',
         label: {
           zh_CN: '侧边栏',
           en_US: 'Aside'
         },
         key: '5-3',
-        path: '/usage/aside'
+        path: '/component/aside'
       },
       {
-        name: 'usageTabs',
+        name: 'componentTabs',
         label: {
           zh_CN: '选项卡',
           en_US: 'Tabs'
         },
         key: '5-4',
-        path: '/usage/tabs'
+        path: '/component/tabs'
+      },
+      {
+        name: 'componentRadioCards',
+        label: {
+          zh_CN: '单选卡片',
+          en_US: 'Radio Cards'
+        },
+        key: '5-5',
+        path: '/component/radio-cards'
+      }
+    ]
+  },
+
+  {
+    name: 'business',
+    label: {
+      zh_CN: '业务',
+      en_US: 'Business'
+    },
+    icon: 'permission',
+    key: '6',
+    path: '/business',
+    children: [
+      {
+        name: 'basic',
+        label: {
+          zh_CN: '基本',
+          en_US: 'Basic'
+        },
+        key: '6-0',
+        path: '/business/basic'
+      },
+      {
+        name: 'withSearch',
+        label: {
+          zh_CN: '带查询',
+          en_US: 'WithSearch'
+        },
+        key: '6-1',
+        path: '/business/with-search'
+      },
+      {
+        name: 'withAside',
+        label: {
+          zh_CN: '带侧边栏',
+          en_US: 'WithAside'
+        },
+        key: '6-2',
+        path: '/business/with-aside'
+      },
+      {
+        name: 'withNavTabs',
+        label: {
+          zh_CN: '带导航条',
+          en_US: 'With Nav Tabs'
+        },
+        key: '6-3',
+        path: '/business/with-nav-tabs'
+      },
+      {
+        name: 'withCommonAside',
+        label: {
+          zh_CN: '带公共侧边栏',
+          en_US: 'With Common Aside'
+        },
+        key: '6-4',
+        path: '/business//with-common-aside'
+      },
+      {
+        name: 'businessTabs',
+        label: {
+          zh_CN: '选项卡',
+          en_US: 'Tabs'
+        },
+        key: '6-4',
+        path: '/business/tabs'
+      },
+      {
+        name: 'businessRadioCards',
+        label: {
+          zh_CN: '单选卡片',
+          en_US: 'Radio Cards'
+        },
+        key: '6-5',
+        path: '/business/radio-cards'
       }
     ]
   }
