@@ -55,7 +55,7 @@ new Array(30).fill(undefined).forEach((item, index) => {
 const TalbePage: FC = () => {
   return (
     <div className="aaa">
-      <MyTable<ColumnType> dataSource={data} rowKey={record => record.key} height="400px">
+      <MyTable<ColumnType> dataSource={data} rowKey={record => record.key} height="100%">
         <ColumnGroup title="Name">
           <Column title="First Name" dataIndex="firstName" key="firstName" />
           <Column title="Last Name" dataIndex="lastName" key="lastName" />

@@ -9,23 +9,23 @@ interface MyTableProps<T extends object> extends TableProps<T> {
 
 const MyTable = <T extends object = {}>(props: MyTableProps<T>) => {
   const { height, ...rest } = props;
-  console.log(rest);
+
   return (
-    <div style={{ height: height || 'auto' }} css={styles} className="xxx">
+    <div style={{ height }} css={styles}>
       <Table<T> {...rest} scroll={{ x: 'max-content', y: '100%' }} />
     </div>
   );
 };
 
 MyTable.defaultProps = {
+  size: 'small',
+  height: 'auto',
   pagination: {
-    showTotal(total) {
-      return `共${total}条`;
-    },
+    size: 'default',
     showQuickJumper: true,
     showSizeChanger: true,
     pageSizeOptions: ['10', '20', '50', '100', '200'],
-    pageSize: 20
+    defaultPageSize: 20
   }
 } as MyTableProps<any>;
 
@@ -38,7 +38,35 @@ const styles = css`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  .ant-table-wrapper {
+  background-color: #ffffff;
+
+  .ant-table-wrapper,
+  .ant-spin-nested-loading,
+  .ant-spin-container,
+  .ant-table-container {
     height: 100%;
+  }
+  .ant-spin-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .ant-table {
+      flex: 1;
+      overflow: hidden;
+      border-bottom: 1px solid #eee;
+
+      .ant-table-container {
+        display: flex;
+        flex-direction: column;
+        .ant-table-body {
+          flex: 1;
+        }
+      }
+    }
+
+    .ant-pagination {
+      padding: 0 10px;
+    }
   }
 `;
