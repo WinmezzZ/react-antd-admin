@@ -12,9 +12,9 @@ export interface MyFormProps<T> extends FormProps<T> {
 }
 
 const BaseForm = <Values extends object>(props: MyFormProps<Values>) => {
-  const { options, children } = props;
+  const { options, children, ...rest } = props;
   return (
-    <Form<Values> {...props}>
+    <Form<Values> {...rest}>
       {options?.map(option => {
         return <MyFormItem {...option} />;
       })}
@@ -23,6 +23,6 @@ const BaseForm = <Values extends object>(props: MyFormProps<Values>) => {
   );
 };
 
-const MyForm = Object.assign(Form, BaseForm, { Item: FormItem });
+const MyForm = Object.assign(BaseForm, Form, { Item: FormItem });
 
 export default MyForm;
