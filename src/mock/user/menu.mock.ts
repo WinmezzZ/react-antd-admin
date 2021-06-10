@@ -212,24 +212,6 @@ const mockMenuList: MenuList = [
         },
         key: '6-4',
         path: '/business//with-common-aside'
-      },
-      {
-        name: 'businessTabs',
-        label: {
-          zh_CN: '选项卡',
-          en_US: 'Tabs'
-        },
-        key: '6-4',
-        path: '/business/tabs'
-      },
-      {
-        name: 'businessRadioCards',
-        label: {
-          zh_CN: '单选卡片',
-          en_US: 'Radio Cards'
-        },
-        key: '6-5',
-        path: '/business/radio-cards'
       }
     ]
   }
