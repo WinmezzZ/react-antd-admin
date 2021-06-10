@@ -19,6 +19,7 @@ const SearchPage = lazy(() => import(/* webpackChunkName: "search'"*/ 'pages/com
 const TabsPage = lazy(() => import(/* webpackChunkName: "tabs'"*/ 'pages/components/tabs'));
 const AsidePage = lazy(() => import(/* webpackChunkName: "aside'"*/ 'pages/components/aside'));
 const RadioCardsPage = lazy(() => import(/* webpackChunkName: "radio-cards'"*/ 'pages/components/radio-cards'));
+const BusinessBasicPage = lazy(() => import(/* webpackChunkName: "basic-page" */ 'pages/business/basic'));
 
 const routeList: PartialRouteObject[] = [
   {
@@ -80,6 +81,10 @@ const routeList: PartialRouteObject[] = [
       {
         path: 'component/radio-cards',
         element: <WrapperRouteComponent element={<RadioCardsPage />} titleId="title.account" />
+      },
+      {
+        path: 'business/basic',
+        element: <WrapperRouteComponent element={<BusinessBasicPage />} titleId="title.account" />
       },
       {
         path: '*',
