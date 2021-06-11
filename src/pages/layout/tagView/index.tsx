@@ -73,6 +73,14 @@ const TagsView: FC = () => {
     }
   }, [dispatch, location.pathname, menuList]);
 
+  //fix: remove tab route back auto
+  useEffect(() => {
+    if (tags && activeTagId) {
+      const target = tags.filter(e => e.id === activeTagId);
+      navigate(target[0].path);
+    }
+  }, [tags, activeTagId, navigate]);
+
   return (
     <div id="pageTabs" style={{ background: '#fff', padding: '6px 4px' }}>
       <Tabs
