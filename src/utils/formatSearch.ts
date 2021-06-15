@@ -4,7 +4,7 @@ export function formatSearch(se: string) {
   let arr = se.split('&'), //把字符串分割为字符串数组
     obj: Record<string, string> = {},
     newarr = [];
-  arr.forEach(function(v, i) {
+  arr.forEach((v, i) => {
     //数组遍历
     console.log(v);
     console.log(i);
