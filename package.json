@@ -22,9 +22,9 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "lint": "tsc --pretty && eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write **/*.{js,ts,tsx}",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^6.1.2",
     "@emotion/babel-preset-css-prop": "^11.2.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -55,14 +56,14 @@
     "@types/react-redux": "^7.1.5",
     "@types/recharts": "^1.8.13",
     "@types/webpack-env": "^1.15.0",
-    "customize-cra": "^0.9.1",
+    "craco-esbuild": "^0.3.2",
+    "craco-less": "^1.17.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "http-proxy-middleware": "^0.20.0",
     "less": "^3.11.3",
     "less-loader": "^5.0.0",
     "prettier": "^2.3.1",
-    "react-app-rewired": "^2.1.6",
     "redux-devtools-extension": "^2.13.8",
     "webpack-bundle-analyzer": "^3.6.0"
   }
