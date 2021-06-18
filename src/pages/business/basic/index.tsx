@@ -10,7 +10,7 @@ const BusinessBasicPage: FC = () => {
   return (
     <MyPage
       pageApi={getBusinessUserList}
-      tableRender={
+      tableRender={data => (
         <>
           <ColumnGroup title="Name">
             <Column title="First Name" dataIndex="firstName" key="firstName" />
@@ -43,7 +43,7 @@ const BusinessBasicPage: FC = () => {
             )}
           />
         </>
-      }
+      )}
     ></MyPage>
   );
 };

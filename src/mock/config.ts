@@ -10,8 +10,8 @@ export type ArrayElementType<T> = T extends (infer U)[] ? U : any;
 
 const warpperPage = <T extends any[]>(data: T): PageData<T> => {
   return {
-    page: 0,
-    rows: 20,
+    pageNum: 0,
+    pageSize: 20,
     total: 0,
     data
   };

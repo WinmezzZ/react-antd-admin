@@ -23,7 +23,7 @@ const RoleTable: FC<RoleTableProps> = ({ onCreate, onModify, onAuthorize }) => {
   const { locale } = useAppState(state => state.user);
 
   // callback that get the data from backend(mock)
-  // and loads the table with role-member rows
+  // and loads the table with role-member pageSize
   const initData = useCallback(async () => {
     const { result, status } = await apiGetRoleList();
     if (status) {
