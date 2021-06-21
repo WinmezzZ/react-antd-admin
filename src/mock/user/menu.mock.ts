@@ -61,15 +61,6 @@ const mockMenuList: MenuList = [
         path: '/permission/button'
       },
       {
-        name: 'permissionConfig',
-        label: {
-          zh_CN: '权限配置',
-          en_US: 'Permission Config'
-        },
-        key: '2-2',
-        path: '/permission/config'
-      },
-      {
         name: 'notFound',
         label: {
           zh_CN: '404',
