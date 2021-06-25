@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal } from 'antd';
 import { ModalProps } from 'antd/lib/modal';
 import MyForm from '../form';

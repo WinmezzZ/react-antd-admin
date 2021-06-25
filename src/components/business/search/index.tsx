@@ -1,4 +1,3 @@
-import React from 'react';
 import { Row, Col } from 'antd';
 import MyForm, { MyFormProps } from 'components/core/form';
 import MyButton from 'components/basic/button';

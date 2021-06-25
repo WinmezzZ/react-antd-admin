@@ -1,5 +1,4 @@
 import { FC, useState, useEffect } from 'react';
-import React from 'react';
 import { Menu } from 'antd';
 import { MenuList } from '../../interface/layout/menu.interface';
 import { useNavigate, useLocation } from 'react-router-dom';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form } from 'antd';
 import FormItem from '../form-item';
 import { FormProps } from 'antd/lib/form/Form';
