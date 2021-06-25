@@ -1,4 +1,3 @@
-import React from 'react';
 import { Table } from 'antd';
 import { MyTableColumnProps, dateFormatMap, datetimeFormatMap, timeFormatMap } from './type';
 import moment from 'moment';

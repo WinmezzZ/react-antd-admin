@@ -1,4 +1,3 @@
-import React from 'react';
 import TableColumn from '../table-column';
 import { Table, TableProps } from 'antd';
 import { css } from '@emotion/react';

@@ -56,7 +56,6 @@
     "@types/react-redux": "^7.1.5",
     "@types/recharts": "^1.8.13",
     "@types/webpack-env": "^1.15.0",
-    "craco-esbuild": "^0.3.2",
     "craco-less": "^1.17.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",

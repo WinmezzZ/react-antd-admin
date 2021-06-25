@@ -1,4 +1,3 @@
-const CracoEsbuildPlugin = require('craco-esbuild');
 const CracoLessPlugin = require('craco-less');
 
 module.exports = {
@@ -6,12 +5,6 @@ module.exports = {
     presets: ['@emotion/babel-preset-css-prop']
   },
   plugins: [
-    {
-      plugin: CracoEsbuildPlugin,
-      options: {
-        enableSvgr: true
-      }
-    },
     {
       plugin: CracoLessPlugin,
       options: {
