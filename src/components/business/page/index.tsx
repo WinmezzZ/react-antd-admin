@@ -30,7 +30,7 @@ export interface PageRef {
 const BasePage = forwardRef(
   <S extends SearchApi>(props: React.PropsWithChildren<PageProps<S>>, ref: React.Ref<PageRef>) => {
     const { pageApi, pageParams, searchRender, tableRender, asideKey, asideData, asideTreeItemRender } = props;
-    const [pageNum, setPageNum] = useState(0);
+    const [pageNum, setPageNum] = useState(1);
     const [pageSize, setPageSize] = useState(20);
     const [data, setData] = useState<ParseDataType<S>>([]);
     const [asideCheckedKey, setAsideCheckedKey] = useState<string | number>();
@@ -49,6 +49,7 @@ const BasePage = forwardRef(
           };
           const res = await pageApi(obj);
           if (res.status) {
+            console.log(res);
             setPageNum(res.result.pageNum);
             setPageSize(res.result.pageSize);
             setData(res.result.data);
