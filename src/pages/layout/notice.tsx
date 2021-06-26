@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Tabs, Dropdown, Badge, Spin, List, Avatar, Tag } from 'antd';
 import { ReactComponent as NoticeSvg } from 'assets/header/notice.svg';
 import { LoadingOutlined } from '@ant-design/icons';

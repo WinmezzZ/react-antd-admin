@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { TabPaneProps, Tabs, TabsProps } from 'antd';
 
 const { TabPane } = Tabs;

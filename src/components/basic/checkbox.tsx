@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Checkbox } from 'antd';
 import { CheckboxProps } from 'antd/lib/checkbox';
 

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import MyRadio from 'components/basic/radio';
 import { RadioGroupProps } from 'antd';
 import { css } from '@emotion/react';

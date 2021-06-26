@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { DatePicker } from 'antd';
 
 const BasePicker: FC = props => {

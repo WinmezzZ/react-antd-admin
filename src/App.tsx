@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { localeConfig } from './locales';

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import './index.less';
 import Overview from './overview';
 import SalePercent from './salePercent';

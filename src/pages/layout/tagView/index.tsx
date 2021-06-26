@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { Tabs } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import TagsViewAction from './tagViewAction';

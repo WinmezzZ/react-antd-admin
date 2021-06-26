@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Form } from 'antd';
 import { Controls, MyFormItemProps } from './types';
 import { GetControl } from './get-control';

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Divider, Tree, TreeProps } from 'antd';
 import { DataNode } from 'rc-tree/lib/interface';
 import { css } from '@emotion/react';

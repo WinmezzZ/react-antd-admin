@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import './index.less';
 import { useNavigate, useLocation } from 'react-router-dom';

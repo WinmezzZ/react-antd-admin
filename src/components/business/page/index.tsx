@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import { MyResponse } from 'api/request';
 import MyTable from 'components/core/table';
 import { PageData } from 'interface';
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import MyAside, { MyAsideProps } from '../aside';
 import MySearch from '../search';
 

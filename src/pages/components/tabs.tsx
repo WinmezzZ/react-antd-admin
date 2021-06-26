@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import MyTabs, { MyTabOption } from 'components/business/tabs';
 
 const options: MyTabOption[] = [
