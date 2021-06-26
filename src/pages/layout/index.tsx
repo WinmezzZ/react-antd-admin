@@ -1,4 +1,4 @@
-import React, { FC, useEffect, Suspense, useCallback, useState } from 'react';
+import { FC, useEffect, Suspense, useCallback, useState } from 'react';
 import { Layout, Drawer } from 'antd';
 import './index.less';
 import MenuComponent from './menu';

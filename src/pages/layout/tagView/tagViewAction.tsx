@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Menu, Dropdown } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import { LocaleFormatter } from 'locales';

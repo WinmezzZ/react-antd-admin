@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Row, Col, Card, Tooltip, Progress, Badge } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { ColProps } from 'antd/lib/col';
@@ -9,7 +9,9 @@ import moment from 'moment';
 import { useLocale } from 'locales';
 
 const data = new Array(14).fill(null).map((_, index) => ({
-  name: moment().add(index, 'day').format('YYYY-MM-DD'),
+  name: moment()
+    .add(index, 'day')
+    .format('YYYY-MM-DD'),
   number: Math.floor(Math.random() * 8 + 1)
 }));
 

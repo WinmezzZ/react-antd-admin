@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Radio } from 'antd';
 
 const BaseRadio: FC = props => {

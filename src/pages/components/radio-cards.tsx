@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import MyRadioCards, { MyRadioCardssOption } from 'components/business/radio-cards';
 
 const options: MyRadioCardssOption[] = [

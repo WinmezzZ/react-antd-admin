@@ -2,7 +2,7 @@ import { Space, Tag } from 'antd';
 import { getBusinessUserList } from 'api/business';
 import MyButton from 'components/basic/button';
 import MyPage from 'components/business/page';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 const { Column, ColumnGroup } = MyPage.MyTable;
 

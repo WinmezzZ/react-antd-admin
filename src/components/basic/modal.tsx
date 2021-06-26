@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Modal } from 'antd';
 
 const BaseModal: FC = props => {

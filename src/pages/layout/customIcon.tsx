@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { ReactComponent as GuideSvg } from 'assets/menu/guide.svg';
 import { ReactComponent as PermissionSvg } from 'assets/menu/permission.svg';
 import { ReactComponent as DashboardSvg } from 'assets/menu/dashboard.svg';

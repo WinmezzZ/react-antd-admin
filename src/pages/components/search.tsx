@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import MySearch from 'components/business/search';
 import MyFormItem from 'components/core/form-item';
 
