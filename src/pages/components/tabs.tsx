@@ -17,7 +17,11 @@ const options: MyTabOption[] = [
 ];
 
 const TabsPage: FC = () => {
-  return <MyTabs options={options} />;
+  return (
+    <div>
+      <MyTabs options={options} />
+    </div>
+  );
 };
 
 export default TabsPage;
