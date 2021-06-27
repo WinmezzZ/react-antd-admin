@@ -7,25 +7,28 @@ interface MyTableProps<T extends object> extends TableProps<T> {
 }
 
 const MyTable = <T extends object = {}>(props: MyTableProps<T>) => {
-  const { height, ...rest } = props;
+  const { height, pagination, ...rest } = props;
+
+  const defaultPagination = {
+    size: 'default',
+    showQuickJumper: true,
+    showSizeChanger: true,
+    pageSizeOptions: ['10', '20', '50', '100', '200'],
+    defaultPageSize: 20
+  };
+
+  const combinedPagination = typeof pagination === 'object' ? { ...defaultPagination, ...pagination } : {};
 
   return (
     <div style={{ height }} css={styles}>
-      <Table<T> {...rest} scroll={{ x: 'max-content', y: '100%' }} />
+      <Table<T> {...rest} scroll={{ x: 'max-content', y: '100%' }} pagination={combinedPagination} />
     </div>
   );
 };
 
 MyTable.defaultProps = {
   size: 'small',
-  height: 'auto',
-  pagination: {
-    size: 'default',
-    showQuickJumper: true,
-    showSizeChanger: true,
-    pageSizeOptions: ['10', '20', '50', '100', '200'],
-    defaultPageSize: 20
-  }
+  height: 'auto'
 } as MyTableProps<any>;
 
 MyTable.Column = TableColumn;

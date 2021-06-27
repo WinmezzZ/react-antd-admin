@@ -1,32 +1,30 @@
 import { PageData } from 'interface';
 import Mock from 'mockjs';
+import { getTableData } from 'utils/get-table-page-data';
 import { Response } from '../api/request';
 
 Mock.setup({
   timeout: 300
 });
 
-export type ArrayElementType<T> = T extends (infer U)[] ? U : any;
+export type ArrayElementType<T> = T extends (infer U)[] ? U : any; // Mock the real back-end api structure.
 
-const warpperPage = <T extends any[]>(data: T): PageData<T> => {
-  return {
-    pageNum: 1,
-    pageSize: 20,
-    total: 0,
-    data
-  };
-};
+interface PageParams {
+  pageSize?: number;
+  pageNum?: number;
+}
 
-// Mock the real back-end api structure.
 export function intercepter<T>(data: T): Response<T>;
-export function intercepter<T extends any[]>(data: T, page: boolean): Response<PageData<T>>;
+export function intercepter<T extends any[]>(data: T, page: PageParams): Response<PageData<T>>;
 
-export function intercepter(data: any, page?: boolean) {
+export function intercepter(data: any, page?: PageParams) {
   if (page) {
+    const result = getTableData(Number(page.pageNum), Number(page.pageSize), data);
+
     return {
       status: true,
       message: '成功',
-      result: warpperPage(data)
+      result
     };
   } else {
     return {
