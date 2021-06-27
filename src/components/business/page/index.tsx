@@ -32,6 +32,7 @@ const BasePage = forwardRef(
     const { pageApi, pageParams, searchRender, tableRender, asideKey, asideData, asideTreeItemRender } = props;
     const [pageNum, setPageNum] = useState(1);
     const [pageSize, setPageSize] = useState(20);
+    const [total, setTotal] = useState(0);
     const [data, setData] = useState<ParseDataType<S>>([]);
     const [asideCheckedKey, setAsideCheckedKey] = useState<string | number>();
 
@@ -49,9 +50,7 @@ const BasePage = forwardRef(
           };
           const res = await pageApi(obj);
           if (res.status) {
-            console.log(res);
-            setPageNum(res.result.pageNum);
-            setPageSize(res.result.pageSize);
+            setTotal(res.result.total);
             setData(res.result.data);
           }
         }
@@ -71,6 +70,13 @@ const BasePage = forwardRef(
       setAsideCheckedKey(key);
     };
 
+    const onPageChange = (pageNum: number, pageSize?: number) => {
+      setPageNum(pageNum);
+      if (pageSize) {
+        setPageSize(pageSize);
+      }
+    };
+
     useImperativeHandle(ref, () => ({
       setAsideCheckedKey,
       load: (data?: object) => getPageData(data)
@@ -88,7 +94,7 @@ const BasePage = forwardRef(
         <div>
           {searchRender && <MySearch onSearch={onSearch}>{searchRender}</MySearch>}
           {tableRender && (
-            <MyTable dataSource={data} pagination={{ current: pageNum, pageSize: pageSize }}>
+            <MyTable dataSource={data} pagination={{ current: pageNum, pageSize, total, onChange: onPageChange }}>
               {tableRender(data)}
             </MyTable>
           )}
@@ -97,10 +103,6 @@ const BasePage = forwardRef(
     );
   }
 );
-
-BasePage.defaultProps = {
-  pageParams: {}
-};
 
 const MyPge = Object.assign(BasePage, {
   MySearch,
