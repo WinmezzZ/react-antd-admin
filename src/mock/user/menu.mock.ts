@@ -72,17 +72,6 @@ const mockMenuList: MenuList = [
     ]
   },
   {
-    name: 'account',
-    label: {
-      zh_CN: '个人设置',
-      en_US: 'Account'
-    },
-    icon: 'account',
-    key: '4',
-    path: '/account'
-  },
-
-  {
     name: 'component',
     label: {
       zh_CN: '组件',
