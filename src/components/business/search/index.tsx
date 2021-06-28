@@ -1,22 +1,12 @@
-import { Row, Col } from 'antd';
 import MyForm, { MyFormProps } from 'components/core/form';
 import MyButton from 'components/basic/button';
-import { ColProps } from 'antd/lib/grid';
+import { css } from '@emotion/react';
 
 interface SearchProps<T> extends MyFormProps<T> {
   onSearch: (values: T) => void;
 }
 
-const colSpan: ColProps = {
-  xs: 24,
-  sm: 24,
-  md: 12,
-  lg: 8,
-  xl: 6,
-  xxl: 4
-};
-
-const MySearch = <T extends object>(props: SearchProps<T>) => {
+const BaseSearch = <T extends object>(props: SearchProps<T>) => {
   const { children, onSearch, ...rest } = props;
   const [form] = MyForm.useForm<T>();
 
@@ -28,31 +18,31 @@ const MySearch = <T extends object>(props: SearchProps<T>) => {
   };
 
   return (
-    <div className="my-search">
-      <MyForm {...rest} form={form}>
-        <Row gutter={24}>
-          {Array.isArray(children)
-            ? children.map((child, index) => (
-                <Col {...colSpan} key={index}>
-                  {child}
-                </Col>
-              ))
-            : null}
-        </Row>
-        <Row gutter={24}>
-          <Col span={24} style={{ textAlign: 'right' }}>
-            <MyForm.Item>
-              <MyButton type="primary" onClick={onSubmit}>
-                查询
-              </MyButton>
+    <div css={styles}>
+      <MyForm {...rest} form={form} layout="inline">
+        {children}
+        <MyForm.Item>
+          <MyButton type="primary" onClick={onSubmit}>
+            查询
+          </MyButton>
 
-              <MyButton onClick={() => form.resetFields()}>重置</MyButton>
-            </MyForm.Item>
-          </Col>
-        </Row>
+          <MyButton onClick={() => form.resetFields()}>重置</MyButton>
+        </MyForm.Item>
       </MyForm>
     </div>
   );
 };
 
+const MySearch = Object.assign(BaseSearch, {
+  Item: MyForm.Item
+});
+
 export default MySearch;
+
+const styles = css`
+  padding: 20px;
+  background-color: #ffffff;
+  .ant-form-item {
+    margin-bottom: 20px;
+  }
+`;

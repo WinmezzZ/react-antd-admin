@@ -4,13 +4,13 @@ import { css } from '@emotion/react';
 
 const { TabPane } = Tabs;
 
-export interface MyTabOption extends Omit<TabPaneProps, 'tab' | 'key'> {
+export interface MyTabsOption extends Omit<TabPaneProps, 'tab' | 'key'> {
   label: string;
   value: string | number;
 }
 
 export interface MyTabsProps extends TabsProps {
-  options: MyTabOption[];
+  options: MyTabsOption[];
 }
 
 const BaseTabs: FC<MyTabsProps> = props => {
@@ -30,6 +30,7 @@ const styles = css`
   background-color: #fff;
   padding: 0 20px;
   box-shadow: 0 10px 10px -10px rgb(0 0 0 / 10%);
+  height: 62px;
   .ant-tabs-nav {
     margin: 0;
   }

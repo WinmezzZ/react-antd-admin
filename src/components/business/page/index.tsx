@@ -5,7 +5,9 @@ import { PageData } from 'interface';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { useStates } from 'utils/use-states';
 import MyAside, { MyAsideProps } from '../aside';
+import MyRadioCards, { MyRadioCardssOption } from '../radio-cards';
 import MySearch from '../search';
+import MyTabs, { MyTabsOption } from '../tabs';
 
 interface SearchApi {
   (params?: any): MyResponse<PageData<any>>;
@@ -18,9 +20,14 @@ export interface PageProps<S> {
   pageApi?: S;
   pageParams?: Record<string, any>;
   tableRender?: (data: ParseDataType<S>) => React.ReactNode;
-  asideData?: any[];
+  asideData?: MyAsideProps['options'];
   asideKey?: string;
+  asideValue?: string | number;
+  radioCardsData?: MyRadioCardssOption[];
+  radioCardsValue?: string | number;
   asideTreeItemRender?: MyAsideProps['titleRender'];
+  tabsData?: MyTabsOption[];
+  tabsValue?: string | number;
 }
 
 export interface PageRef {
@@ -30,7 +37,20 @@ export interface PageRef {
 
 const BasePage = forwardRef(
   <S extends SearchApi>(props: React.PropsWithChildren<PageProps<S>>, ref: React.Ref<PageRef>) => {
-    const { pageApi, pageParams, searchRender, tableRender, asideKey, asideData, asideTreeItemRender } = props;
+    const {
+      pageApi,
+      pageParams,
+      searchRender,
+      tableRender,
+      asideKey,
+      asideData,
+      asideValue,
+      asideTreeItemRender,
+      radioCardsData,
+      radioCardsValue,
+      tabsData,
+      tabsValue
+    } = props;
     const [pageData, setPageData] = useStates<PageData<ParseDataType<S>[0]>>({
       pageSize: 20,
       pageNum: 1,
@@ -38,7 +58,13 @@ const BasePage = forwardRef(
       data: []
     });
 
-    const [asideCheckedKey, setAsideCheckedKey] = useState<string | number>();
+    const [asideCheckedKey, setAsideCheckedKey] = useState(asideValue);
+
+    useEffect(() => {
+      if (asideData) {
+        setAsideCheckedKey(asideData[0].key);
+      }
+    }, [asideData]);
 
     const getPageData = useCallback(
       async (params: Record<string, any> = {}) => {
@@ -58,7 +84,8 @@ const BasePage = forwardRef(
           }
         }
       },
-      [pageApi, pageParams, pageData.pageSize, pageData.pageNum, setPageData, asideKey, asideCheckedKey]
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [pageApi, pageParams, pageData.pageSize, pageData.pageNum, asideKey, asideCheckedKey]
     );
 
     useEffect(() => {
@@ -87,28 +114,42 @@ const BasePage = forwardRef(
 
     return (
       <div css={styles}>
-        {asideData && (
-          <MyAside
-            checkedKeys={asideCheckedKey ? [asideCheckedKey] : undefined}
-            titleRender={asideTreeItemRender}
-            onSelect={onSelectAsideTree}
-          />
-        )}
-        <div>
-          {searchRender && <MySearch onSearch={onSearch}>{searchRender}</MySearch>}
-          {tableRender && (
-            <MyTable
-              dataSource={pageData.data}
-              pagination={{
-                current: pageData.pageNum,
-                pageSize: pageData.pageSize,
-                total: pageData.total,
-                onChange: onPageChange
-              }}
-            >
-              {tableRender(pageData.data)}
-            </MyTable>
+        {tabsData && <MyTabs className="tabs" options={tabsData} defaultValue={tabsData[0].value || tabsValue} />}
+        <div className="tabs-main">
+          {asideData && (
+            <MyAside
+              options={asideData}
+              checkedKeys={asideCheckedKey ? [asideCheckedKey] : undefined}
+              titleRender={asideTreeItemRender}
+              onSelect={onSelectAsideTree}
+            />
           )}
+          <div className="aside-main">
+            {searchRender && (
+              <MySearch className="search" onSearch={onSearch}>
+                {searchRender}
+              </MySearch>
+            )}
+            {radioCardsData && (
+              <MyRadioCards options={radioCardsData} defaultValue={radioCardsValue || radioCardsData[0].value} />
+            )}
+            {tableRender && (
+              <div className="table">
+                <MyTable
+                  height="100%"
+                  dataSource={pageData.data}
+                  pagination={{
+                    current: pageData.pageNum,
+                    pageSize: pageData.pageSize,
+                    total: pageData.total,
+                    onChange: onPageChange
+                  }}
+                >
+                  {tableRender(pageData.data)}
+                </MyTable>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -125,4 +166,25 @@ export default MyPge;
 
 const styles = css`
   display: flex;
+  flex-direction: column;
+  .tabs-main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  .search {
+    margin-bottom: 10px;
+  }
+
+  .aside-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    flex-direction: column;
+  }
+
+  .table {
+    flex: 1;
+    overflow: hidden;
+  }
 `;
