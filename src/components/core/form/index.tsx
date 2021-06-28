@@ -1,5 +1,4 @@
 import { Form } from 'antd';
-import FormItem from '../form-item';
 import { FormProps } from 'antd/lib/form/Form';
 import { Controls, MyFormItemProps } from '../form-item/types';
 import MyFormItem from '../form-item';
@@ -22,6 +21,6 @@ const BaseForm = <Values extends object>(props: MyFormProps<Values>) => {
   );
 };
 
-const MyForm = Object.assign(BaseForm, Form, { Item: FormItem });
+const MyForm = Object.assign(BaseForm, Form, { Item: MyFormItem });
 
 export default MyForm;
