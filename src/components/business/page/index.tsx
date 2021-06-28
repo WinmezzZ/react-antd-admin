@@ -3,6 +3,7 @@ import { MyResponse } from 'api/request';
 import MyTable from 'components/core/table';
 import { PageData } from 'interface';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { useStates } from 'utils/use-states';
 import MyAside, { MyAsideProps } from '../aside';
 import MySearch from '../search';
 
@@ -30,10 +31,13 @@ export interface PageRef {
 const BasePage = forwardRef(
   <S extends SearchApi>(props: React.PropsWithChildren<PageProps<S>>, ref: React.Ref<PageRef>) => {
     const { pageApi, pageParams, searchRender, tableRender, asideKey, asideData, asideTreeItemRender } = props;
-    const [pageNum, setPageNum] = useState(1);
-    const [pageSize, setPageSize] = useState(20);
-    const [total, setTotal] = useState(0);
-    const [data, setData] = useState<ParseDataType<S>>([]);
+    const [pageData, setPageData] = useStates<PageData<ParseDataType<S>[0]>>({
+      pageSize: 20,
+      pageNum: 1,
+      total: 0,
+      data: []
+    });
+
     const [asideCheckedKey, setAsideCheckedKey] = useState<string | number>();
 
     const getPageData = useCallback(
@@ -44,18 +48,17 @@ const BasePage = forwardRef(
           const obj = {
             ...params,
             ...pageParams,
-            pageSize,
-            pageNum,
+            pageSize: pageData.pageSize,
+            pageNum: pageData.pageNum,
             [asideKey!]: asideCheckedKey
           };
           const res = await pageApi(obj);
           if (res.status) {
-            setTotal(res.result.total);
-            setData(res.result.data);
+            setPageData({ total: res.result.total, data: res.result.data });
           }
         }
       },
-      [pageApi, pageParams, pageSize, pageNum, asideKey, asideCheckedKey]
+      [pageApi, pageParams, pageData.pageSize, pageData.pageNum, setPageData, asideKey, asideCheckedKey]
     );
 
     useEffect(() => {
@@ -71,9 +74,9 @@ const BasePage = forwardRef(
     };
 
     const onPageChange = (pageNum: number, pageSize?: number) => {
-      setPageNum(pageNum);
+      setPageData({ pageNum });
       if (pageSize) {
-        setPageSize(pageSize);
+        setPageData({ pageSize });
       }
     };
 
@@ -94,8 +97,16 @@ const BasePage = forwardRef(
         <div>
           {searchRender && <MySearch onSearch={onSearch}>{searchRender}</MySearch>}
           {tableRender && (
-            <MyTable dataSource={data} pagination={{ current: pageNum, pageSize, total, onChange: onPageChange }}>
-              {tableRender(data)}
+            <MyTable
+              dataSource={pageData.data}
+              pagination={{
+                current: pageData.pageNum,
+                pageSize: pageData.pageSize,
+                total: pageData.total,
+                onChange: onPageChange
+              }}
+            >
+              {tableRender(pageData.data)}
             </MyTable>
           )}
         </div>
