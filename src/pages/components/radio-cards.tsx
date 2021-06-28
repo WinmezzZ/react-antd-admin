@@ -3,15 +3,15 @@ import MyRadioCards, { MyRadioCardssOption } from 'components/business/radio-car
 
 const options: MyRadioCardssOption[] = [
   {
-    label: 'Tab-1',
+    label: 'Option-1',
     value: 1
   },
   {
-    label: 'Tab-2',
+    label: 'Option-2',
     value: 2
   },
   {
-    label: 'Tab-3',
+    label: 'Option-3',
     value: 3
   }
 ];

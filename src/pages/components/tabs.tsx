@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import MyTabs, { MyTabOption } from 'components/business/tabs';
+import MyTabs, { MyTabsOption } from 'components/business/tabs';
 
-const options: MyTabOption[] = [
+const options: MyTabsOption[] = [
   {
     label: 'Tab-1',
     value: 1
@@ -9,10 +9,6 @@ const options: MyTabOption[] = [
   {
     label: 'Tab-2',
     value: 2
-  },
-  {
-    label: 'Tab-3',
-    value: 3
   }
 ];
 

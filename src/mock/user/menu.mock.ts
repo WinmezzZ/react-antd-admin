@@ -176,22 +176,22 @@ const mockMenuList: MenuList = [
         path: '/business/with-aside'
       },
       {
-        name: 'withNavTabs',
+        name: 'withRadioCard',
         label: {
-          zh_CN: '带导航条',
+          zh_CN: '带单选卡片',
           en_US: 'With Nav Tabs'
         },
         key: '6-3',
-        path: '/business/with-nav-tabs'
+        path: '/business/with-radio-cards'
       },
       {
-        name: 'withCommonAside',
+        name: 'withTabs',
         label: {
-          zh_CN: '带公共侧边栏',
-          en_US: 'With Common Aside'
+          zh_CN: '带选项卡',
+          en_US: 'With Tabs'
         },
         key: '6-4',
-        path: '/business//with-common-aside'
+        path: '/business/with-tabs'
       }
     ]
   }
