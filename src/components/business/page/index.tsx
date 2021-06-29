@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { ColumnsType } from 'antd/lib/table/interface';
 import { MyResponse } from 'api/request';
 import MyTable from 'components/core/table';
 import { PageData } from 'interface';
@@ -13,13 +14,15 @@ interface SearchApi {
   (params?: any): MyResponse<PageData<any>>;
 }
 
-type ParseDataType<S> = S extends (params?: any) => MyResponse<PageData<infer T>> ? T[] : any[];
+type ParseDataType<S> = S extends (params?: any) => MyResponse<PageData<infer T>> ? T : S;
 
+export type MyPageTableOptions<S> = ColumnsType<S>;
 export interface PageProps<S> {
   searchRender?: React.ReactNode;
   pageApi?: S;
-  pageParams?: Record<string, any>;
-  tableRender?: (data: ParseDataType<S>) => React.ReactNode;
+  pageParams?: Object;
+  tableOptions?: MyPageTableOptions<ParseDataType<S>>;
+  tableRender?: (data: MyPageTableOptions<ParseDataType<S>>[]) => React.ReactNode;
   asideData?: MyAsideProps['options'];
   asideKey?: string;
   asideValue?: string | number;
@@ -30,139 +33,151 @@ export interface PageProps<S> {
   tabsValue?: string | number;
 }
 
-export interface PageRef {
+export interface RefPageProps {
   setAsideCheckedKey: (key?: string) => void;
   load: (data?: object) => Promise<void>;
 }
 
-const BasePage = forwardRef(
-  <S extends SearchApi>(props: React.PropsWithChildren<PageProps<S>>, ref: React.Ref<PageRef>) => {
-    const {
-      pageApi,
-      pageParams,
-      searchRender,
-      tableRender,
-      asideKey,
-      asideData,
-      asideValue,
-      asideTreeItemRender,
-      radioCardsData,
-      radioCardsValue,
-      tabsData,
-      tabsValue
-    } = props;
-    const [pageData, setPageData] = useStates<PageData<ParseDataType<S>[0]>>({
-      pageSize: 20,
-      pageNum: 1,
-      total: 0,
-      data: []
-    });
+const BasePage = <S extends SearchApi>(props: PageProps<S>, ref: React.Ref<RefPageProps>) => {
+  const {
+    pageApi,
+    pageParams,
+    searchRender,
+    tableOptions,
+    tableRender,
+    asideKey,
+    asideData,
+    asideValue,
+    asideTreeItemRender,
+    radioCardsData,
+    radioCardsValue,
+    tabsData,
+    tabsValue
+  } = props;
+  const [pageData, setPageData] = useStates<PageData<ParseDataType<S>>>({
+    pageSize: 20,
+    pageNum: 1,
+    total: 0,
+    data: []
+  });
 
-    const [asideCheckedKey, setAsideCheckedKey] = useState(asideValue);
+  const [asideCheckedKey, setAsideCheckedKey] = useState(asideValue);
 
-    useEffect(() => {
-      if (asideData) {
-        setAsideCheckedKey(asideData[0].key);
-      }
-    }, [asideData]);
+  useEffect(() => {
+    if (asideData) {
+      setAsideCheckedKey(asideData[0].key);
+    }
+  }, [asideData]);
 
-    const getPageData = useCallback(
-      async (params: Record<string, any> = {}) => {
-        if (asideKey && !asideCheckedKey) return;
+  const getPageData = useCallback(
+    async (params: Record<string, any> = {}) => {
+      if (asideKey && !asideCheckedKey) return;
 
-        if (pageApi) {
-          const obj = {
-            ...params,
-            ...pageParams,
-            pageSize: pageData.pageSize,
-            pageNum: pageData.pageNum,
-            [asideKey!]: asideCheckedKey
-          };
-          const res = await pageApi(obj);
-          if (res.status) {
-            setPageData({ total: res.result.total, data: res.result.data });
-          }
+      if (pageApi) {
+        const obj = {
+          ...params,
+          ...pageParams,
+          pageSize: pageData.pageSize,
+          pageNum: pageData.pageNum,
+          [asideKey!]: asideCheckedKey
+        };
+        const res = await pageApi(obj);
+        if (res.status) {
+          setPageData({ total: res.result.total, data: res.result.data });
         }
-      },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [pageApi, pageParams, pageData.pageSize, pageData.pageNum, asideKey, asideCheckedKey]
-    );
-
-    useEffect(() => {
-      getPageData();
-    }, [getPageData]);
-
-    const onSearch = (searchParams: Record<string, any>) => {
-      getPageData(searchParams);
-    };
-
-    const onSelectAsideTree: MyAsideProps['onSelect'] = ([key]) => {
-      setAsideCheckedKey(key);
-    };
-
-    const onPageChange = (pageNum: number, pageSize?: number) => {
-      setPageData({ pageNum });
-      if (pageSize) {
-        setPageData({ pageSize });
       }
-    };
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [pageApi, pageParams, pageData.pageSize, pageData.pageNum, asideKey, asideCheckedKey]
+  );
 
-    useImperativeHandle(ref, () => ({
-      setAsideCheckedKey,
-      load: (data?: object) => getPageData(data)
-    }));
+  useEffect(() => {
+    getPageData();
+  }, [getPageData]);
 
-    return (
-      <div css={styles}>
-        {tabsData && <MyTabs className="tabs" options={tabsData} defaultValue={tabsData[0].value || tabsValue} />}
-        <div className="tabs-main">
-          {asideData && (
-            <MyAside
-              options={asideData}
-              checkedKeys={asideCheckedKey ? [asideCheckedKey] : undefined}
-              titleRender={asideTreeItemRender}
-              onSelect={onSelectAsideTree}
-            />
+  const onSearch = (searchParams: Record<string, any>) => {
+    getPageData(searchParams);
+  };
+
+  const onSelectAsideTree: MyAsideProps['onSelect'] = ([key]) => {
+    setAsideCheckedKey(key);
+  };
+
+  const onPageChange = (pageNum: number, pageSize?: number) => {
+    setPageData({ pageNum });
+    if (pageSize) {
+      setPageData({ pageSize });
+    }
+  };
+
+  useImperativeHandle(ref, () => ({
+    setAsideCheckedKey,
+    load: (data?: object) => getPageData(data)
+  }));
+
+  return (
+    <div css={styles}>
+      {tabsData && <MyTabs className="tabs" options={tabsData} defaultValue={tabsData[0].value || tabsValue} />}
+      <div className="tabs-main">
+        {asideData && (
+          <MyAside
+            options={asideData}
+            checkedKeys={asideCheckedKey ? [asideCheckedKey] : undefined}
+            titleRender={asideTreeItemRender}
+            onSelect={onSelectAsideTree}
+          />
+        )}
+        <div className="aside-main">
+          {searchRender && (
+            <MySearch className="search" onSearch={onSearch}>
+              {searchRender}
+            </MySearch>
           )}
-          <div className="aside-main">
-            {searchRender && (
-              <MySearch className="search" onSearch={onSearch}>
-                {searchRender}
-              </MySearch>
-            )}
-            {radioCardsData && (
-              <MyRadioCards options={radioCardsData} defaultValue={radioCardsValue || radioCardsData[0].value} />
-            )}
-            {tableRender && (
-              <div className="table">
-                <MyTable
-                  height="100%"
-                  dataSource={pageData.data}
-                  pagination={{
-                    current: pageData.pageNum,
-                    pageSize: pageData.pageSize,
-                    total: pageData.total,
-                    onChange: onPageChange
-                  }}
-                >
-                  {tableRender(pageData.data)}
-                </MyTable>
-              </div>
-            )}
-          </div>
+          {radioCardsData && (
+            <MyRadioCards options={radioCardsData} defaultValue={radioCardsValue || radioCardsData[0].value} />
+          )}
+          {tableOptions && (
+            <div className="table">
+              <MyTable
+                height="100%"
+                dataSource={pageData.data}
+                columns={tableOptions}
+                pagination={{
+                  current: pageData.pageNum,
+                  pageSize: pageData.pageSize,
+                  total: pageData.total,
+                  onChange: onPageChange
+                }}
+              >
+                {tableRender?.(pageData.data)}
+              </MyTable>
+            </div>
+          )}
         </div>
       </div>
-    );
-  }
-);
+    </div>
+  );
+};
 
-const MyPge = Object.assign(BasePage, {
-  MySearch,
-  MyTable,
-  MyAside
-});
+const BasePageRef = forwardRef(BasePage) as <S extends SearchApi>(
+  props: PageProps<S> & { ref?: React.Ref<RefPageProps> }
+) => React.ReactElement;
 
-export default MyPge;
+type BasePageType = typeof BasePageRef;
+
+interface MyPageType extends BasePageType {
+  MySearch: typeof MySearch;
+  MyTable: typeof MyTable;
+  MyAside: typeof MyAside;
+}
+
+const MyPage = BasePageRef as MyPageType;
+
+MyPage.MySearch = MySearch;
+MyPage.MyTable = MyTable;
+MyPage.MyAside = MyAside;
+
+export default MyPage;
 
 const styles = css`
   display: flex;

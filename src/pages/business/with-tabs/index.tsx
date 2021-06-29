@@ -2,13 +2,13 @@ import { Space, Tag } from 'antd';
 import { getBusinessUserList } from 'api/business';
 import MyButton from 'components/basic/button';
 import { MySideOption } from 'components/business/aside';
-import MyPage from 'components/business/page';
+import MyPage, { MyPageTableOptions } from 'components/business/page';
 import { MyRadioCardssOption } from 'components/business/radio-cards';
 import { MyTabsOption } from 'components/business/tabs';
+import { BuniesssUser } from 'interface/business';
 import { FC } from 'react';
 
 const { Item: SearchItem } = MyPage.MySearch;
-const { Column, ColumnGroup } = MyPage.MyTable;
 
 const asideOptions: MySideOption[] = [
   {
@@ -51,6 +51,42 @@ const tabsOptions: MyTabsOption[] = [
   }
 ];
 
+const tableColums: MyPageTableOptions<BuniesssUser> = [
+  {
+    title: 'Name',
+    children: [
+      { title: 'First Name', dataIndex: 'firstName', key: 'firstName' },
+      { title: 'Last Name', dataIndex: 'lastName', key: 'lastName' }
+    ]
+  },
+  { title: 'Age', dataIndex: 'age', key: 'age' },
+  { title: 'Address', dataIndex: 'address', key: 'address' },
+  {
+    title: 'Tags',
+    dataIndex: 'tags',
+    key: 'tags',
+    render: (tags, record) => (
+      <>
+        {record.tags.map(tag => (
+          <Tag color="blue" key={tag}>
+            {tag}
+          </Tag>
+        ))}
+      </>
+    )
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (_, record) => (
+      <Space size="middle">
+        <MyButton type="text">Invite {record.lastName}</MyButton>
+        <MyButton type="text">Delete</MyButton>
+      </Space>
+    )
+  }
+];
+
 const BusinessWithTabsPage: FC = () => {
   return (
     <MyPage
@@ -74,40 +110,7 @@ const BusinessWithTabsPage: FC = () => {
           <SearchItem label="FirstName" name="firstName10" type="input" />
         </>
       }
-      tableRender={data => (
-        <>
-          <ColumnGroup title="Name">
-            <Column title="First Name" dataIndex="firstName" key="firstName" />
-            <Column title="Last Name" dataIndex="lastName" key="lastName" />
-          </ColumnGroup>
-          <Column title="Age" dataIndex="age" key="age" />
-          <Column title="Address" dataIndex="address" key="address" />
-          <Column<any>
-            title="Tags"
-            dataIndex="tags"
-            key="tags"
-            render={(tags: string[]) => (
-              <>
-                {tags.map(tag => (
-                  <Tag color="blue" key={tag}>
-                    {tag}
-                  </Tag>
-                ))}
-              </>
-            )}
-          />
-          <Column
-            title="Action"
-            key="action"
-            render={(text, record: any) => (
-              <Space size="middle">
-                <MyButton type="text">Invite {record.lastName}</MyButton>
-                <MyButton type="text">Delete</MyButton>
-              </Space>
-            )}
-          />
-        </>
-      )}
+      tableOptions={tableColums}
     ></MyPage>
   );
 };
