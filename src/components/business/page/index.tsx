@@ -122,7 +122,7 @@ const BasePage = <S extends SearchApi>(props: PageProps<S>, ref: React.Ref<RefPa
         {asideData && (
           <MyAside
             options={asideData}
-            checkedKeys={asideCheckedKey ? [asideCheckedKey] : undefined}
+            selectedKeys={asideCheckedKey ? [asideCheckedKey] : undefined}
             titleRender={asideTreeItemRender}
             onSelect={onSelectAsideTree}
           />
