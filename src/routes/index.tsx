@@ -10,7 +10,6 @@ const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ 'pages/404'));
 const Documentation = lazy(() => import(/* webpackChunkName: "404'"*/ 'pages/doucumentation'));
 const Guide = lazy(() => import(/* webpackChunkName: "guide'"*/ 'pages/guide'));
 const RoutePermission = lazy(() => import(/* webpackChunkName: "route-permission"*/ 'pages/permission/route'));
-const ButtonPermission = lazy(() => import(/* webpackChunkName: "button-permission"*/ 'pages/permission/button'));
 const FormPage = lazy(() => import(/* webpackChunkName: "form'"*/ 'pages/components/form'));
 const TablePage = lazy(() => import(/* webpackChunkName: "table'"*/ 'pages/components/table'));
 const SearchPage = lazy(() => import(/* webpackChunkName: "search'"*/ 'pages/components/search'));
@@ -49,10 +48,6 @@ const routeList: PartialRouteObject[] = [
       {
         path: 'permission/route',
         element: <WrapperRouteComponent element={<RoutePermission />} titleId="title.permission.route" auth />
-      },
-      {
-        path: 'permission/button',
-        element: <WrapperRouteComponent element={<ButtonPermission />} titleId="title.permission.button" />
       },
       {
         path: 'component/form',
