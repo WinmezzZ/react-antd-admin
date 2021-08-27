@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { localeConfig } from './locales';
 import { ConfigProvider } from 'antd';
@@ -9,6 +8,7 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import RenderRouter from './routes';
 import { useAppState } from 'stores';
+import { history, HistoryRouter } from 'routes/history';
 
 const App: React.FC = () => {
   const { locale } = useAppState(state => state.user);
@@ -39,9 +39,9 @@ const App: React.FC = () => {
   return (
     <ConfigProvider locale={getAntdLocale()} componentSize="middle">
       <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
-        <BrowserRouter>
+        <HistoryRouter history={history}>
           <RenderRouter />
-        </BrowserRouter>
+        </HistoryRouter>
       </IntlProvider>
     </ConfigProvider>
   );

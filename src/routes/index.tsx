@@ -26,7 +26,7 @@ const BusinessWithTabsPage = lazy(() => import(/* webpackChunkName: "with-tabs" 
 
 const routeList: PartialRouteObject[] = [
   {
-    path: 'login',
+    path: '/login',
     element: <WrapperRouteComponent element={<LoginPage />} titleId="title.login" />
   },
   {

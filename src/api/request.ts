@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { message as $message } from 'antd';
+// import { history } from 'routes/history';
 
 const axiosInstance = axios.create({
   timeout: 6000
@@ -22,6 +23,8 @@ axiosInstance.interceptors.response.use(
     return config?.data;
   },
   error => {
+    // if needs to navigate to login page when request exception
+    // history.replace('/login');
     let errorMessage = '系统异常';
     if (error?.message?.includes('Network Error')) {
       errorMessage = '网络错误，请检查您的网络';
