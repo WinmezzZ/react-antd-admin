@@ -23,7 +23,7 @@ const LoginForm: FC = () => {
     const res = dispatch(await loginAsync(form));
     if (!!res) {
       const search = formatSearch(location.search);
-      const from = search.from || { pathname: '/dashboard' };
+      const from = search.from || { pathname: '/' };
       navigate(from);
     }
   };
