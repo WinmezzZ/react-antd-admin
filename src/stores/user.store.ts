@@ -2,6 +2,7 @@ import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
 import { apiLogin, apiLogout } from 'api/user.api';
 import { LoginParams, Role } from 'interface/user/login';
 import { Locale, UserState } from 'interface/user/user';
+import { createAsyncAction } from 'stores';
 import { getGlobalState } from 'utils/getGloabal';
 
 const initialState: UserState = {
@@ -35,8 +36,28 @@ export const { setUserItem } = userSlice.actions;
 
 export default userSlice.reducer;
 
-export const loginAsync = (payload: LoginParams) => {
-  return async (dispatch: Dispatch) => {
+// source async thunk
+// export const loginAsync = (payload: LoginParams) => {
+//   return async (dispatch: Dispatch) => {
+//     const { result, status } = await apiLogin(payload);
+//     if (status) {
+//       localStorage.setItem('t', result.token);
+//       localStorage.setItem('username', result.username);
+//       dispatch(
+//         setUserItem({
+//           logged: true,
+//           username: result.username
+//         })
+//       );
+//       return true;
+//     }
+//     return false;
+//   };
+// };
+
+// typed wrapper async thunk function demo, no extra feature, just for powerful typings
+export const loginAsync = createAsyncAction<LoginParams, boolean>(payload => {
+  return async (dispatch, getState) => {
     const { result, status } = await apiLogin(payload);
     if (status) {
       localStorage.setItem('t', result.token);
@@ -51,7 +72,7 @@ export const loginAsync = (payload: LoginParams) => {
     }
     return false;
   };
-};
+});
 
 export const logoutAsync = () => {
   return async (dispatch: Dispatch) => {

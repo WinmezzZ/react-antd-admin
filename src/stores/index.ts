@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Dispatch } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import rootReducer from './rootReducer';
 
@@ -14,3 +14,11 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppState = <T extends (state: AppState) => any>(selector: T): ReturnType<T> => useSelector(selector);
 
 export default store;
+
+export type AppStore = typeof store;
+
+type ThunkAction<T = any> = (dispatch: Dispatch, state: AppStore['getState']) => Promise<T>;
+
+export const createAsyncAction = <T = any, R = any>(cb: (arg: T) => ThunkAction<R>) => {
+  return cb;
+};
