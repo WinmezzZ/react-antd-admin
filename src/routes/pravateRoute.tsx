@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Result, Button } from 'antd';
 import { useLocale } from 'locales';
 import { RouteProps, useLocation } from 'react-router';
@@ -12,7 +12,7 @@ const PrivateRoute: FC<RouteProps> = props => {
   const location = useLocation();
 
   return logged ? (
-    <Route {...props} />
+    (props.element as React.ReactElement)
   ) : (
     <Result
       status="403"
