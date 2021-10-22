@@ -11,7 +11,7 @@ import { LocaleFormatter, useLocale } from 'locales';
 import ReactSvg from 'assets/logo/react.svg';
 import AntdSvg from 'assets/logo/antd.svg';
 import { logoutAsync, setUserItem } from 'stores/user.store';
-import { useAppDispatch, useAppState } from 'stores';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { Header } = Layout;
 
@@ -23,9 +23,9 @@ interface HeaderProps {
 type Action = 'userInfo' | 'userSetting' | 'logout';
 
 const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
-  const { logged, locale, device } = useAppState(state => state.user);
+  const { logged, locale, device } = useSelector(state => state.user);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const { formatMessage } = useLocale();
 
   const onActionClick = async (action: Action) => {

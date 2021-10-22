@@ -2,15 +2,15 @@ import { FC, useCallback, useEffect } from 'react';
 import { Tabs } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import TagsViewAction from './tagViewAction';
-import { useAppDispatch, useAppState } from 'stores';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTag, removeTag, setActiveTag } from 'stores/tags-view.store';
 
 const { TabPane } = Tabs;
 
 const TagsView: FC = () => {
-  const { tags, activeTagId } = useAppState(state => state.tagsView);
-  const { menuList, locale } = useAppState(state => state.user);
-  const dispatch = useAppDispatch();
+  const { tags, activeTagId } = useSelector(state => state.tagsView);
+  const { menuList, locale } = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 

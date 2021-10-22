@@ -4,7 +4,7 @@ import './index.less';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { LoginParams } from 'interface/user/login';
 import { loginAsync } from 'stores/user.store';
-import { useAppDispatch } from 'stores';
+import { useDispatch } from 'react-redux';
 import { Location } from 'history';
 import { formatSearch } from 'utils/formatSearch';
 
@@ -17,7 +17,7 @@ const initialValues: LoginParams = {
 const LoginForm: FC = () => {
   const navigate = useNavigate();
   const location = useLocation() as Location<{ from: string }>;
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const onFinished = async (form: LoginParams) => {
     const res = dispatch(await loginAsync(form));

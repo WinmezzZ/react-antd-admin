@@ -11,16 +11,16 @@ import { MenuList, MenuChild } from 'interface/layout/menu.interface';
 import { useGuide } from '../guide/useGuide';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import { setUserItem } from 'stores/user.store';
-import { useAppDispatch, useAppState } from 'stores';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { Sider, Content } = Layout;
 const WIDTH = 992;
 
 const LayoutPage: FC = () => {
   const [menuList, setMenuList] = useState<MenuList>([]);
-  const { device, collapsed, newUser } = useAppState(state => state.user);
+  const { device, collapsed, newUser } = useSelector(state => state.user);
   const isMobile = device === 'MOBILE';
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const { driverStart } = useGuide();
   const location = useLocation();
   const navigate = useNavigate();

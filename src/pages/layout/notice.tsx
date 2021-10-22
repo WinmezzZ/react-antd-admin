@@ -4,7 +4,7 @@ import { ReactComponent as NoticeSvg } from 'assets/header/notice.svg';
 import { LoadingOutlined } from '@ant-design/icons';
 import { getNoticeList } from 'api/layout.api';
 import { Notice, EventStatus } from 'interface/layout/notice.interface';
-import { useAppState } from 'stores';
+import { useSelector } from 'react-redux';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -14,7 +14,7 @@ const HeaderNoticeComponent: FC = () => {
   const [visible, setVisible] = useState(false);
   const [noticeList, setNoticeList] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(false);
-  const { noticeCount } = useAppState(state => state.user);
+  const { noticeCount } = useSelector(state => state.user);
 
   const noticeListFilter = <T extends Notice['type']>(type: T) => {
     return noticeList.filter(notice => notice.type === type) as Notice<T>[];

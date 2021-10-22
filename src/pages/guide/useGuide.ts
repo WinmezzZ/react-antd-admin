@@ -4,11 +4,11 @@ import 'driver.js/dist/driver.min.css';
 import './index.less';
 import { useLocale } from 'locales';
 import { setUserItem } from 'stores/user.store';
-import { useAppDispatch } from 'stores';
+import { useDispatch } from 'react-redux';
 
 export const useGuide = () => {
   const { formatMessage } = useLocale();
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const driver = useRef(
     new Driver({

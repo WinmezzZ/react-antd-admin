@@ -3,7 +3,7 @@ import { Menu } from 'antd';
 import { MenuList } from '../../interface/layout/menu.interface';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { CustomIcon } from './customIcon';
-import { useAppDispatch, useAppState } from 'stores';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserItem } from 'stores/user.store';
 import { addTag } from 'stores/tags-view.store';
 
@@ -16,8 +16,8 @@ interface MenuProps {
 const MenuComponent: FC<MenuProps> = ({ menuList }) => {
   const [openKeys, setOpenkeys] = useState<string[]>([]);
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
-  const { collapsed, device, locale } = useAppState(state => state.user);
-  const dispatch = useAppDispatch();
+  const { collapsed, device, locale } = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
