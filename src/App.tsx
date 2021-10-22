@@ -7,11 +7,11 @@ import zhCN from 'antd/es/locale/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import RenderRouter from './routes';
-import { useAppState } from 'stores';
+import { useSelector } from 'react-redux';
 import { history, HistoryRouter } from 'routes/history';
 
 const App: React.FC = () => {
-  const { locale } = useAppState(state => state.user);
+  const { locale } = useSelector(state => state.user);
 
   // set the locale for the user
   // more languages options can be added here

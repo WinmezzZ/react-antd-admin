@@ -2,7 +2,7 @@ import { lazy, FC } from 'react';
 import Dashboard from 'pages/dashboard';
 import LoginPage from 'pages/login';
 import LayoutPage from 'pages/layout';
-import { PartialRouteObject } from 'react-router';
+import { RouteObject } from 'react-router';
 import WrapperRouteComponent from './config';
 import { useRoutes } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ const BusinessWithRadioCardsPage = lazy(
 );
 const BusinessWithTabsPage = lazy(() => import(/* webpackChunkName: "with-tabs" */ 'pages/business/with-tabs'));
 
-const routeList: PartialRouteObject[] = [
+const routeList: RouteObject[] = [
   {
     path: '/login',
     element: <WrapperRouteComponent element={<LoginPage />} titleId="title.login" />
