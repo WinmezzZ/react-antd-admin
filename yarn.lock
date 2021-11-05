@@ -6779,6 +6779,13 @@ history@^5.0.0:
   dependencies:
     "@babel/runtime" "^7.7.6"
 
+history@^5.0.3:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/history/-/history-5.1.0.tgz#2e93c09c064194d38d52ed62afd0afc9d9b01ece"
+  integrity sha512-zPuQgPacm2vH2xdORvGGz1wQMuHSIB56yNAy5FnLuwOwgSYyPKptJtcMm6Ev+hRGeS+GzhbmRacHzvlESbFwDg==
+  dependencies:
+    "@babel/runtime" "^7.7.6"
+
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -10972,17 +10979,19 @@ react-resize-detector@^4.2.1:
     raf-schd "^4.0.2"
     resize-observer-polyfill "^1.5.1"
 
-react-router-dom@^6.0.0-beta.7:
-  version "6.0.0-beta.7"
-  resolved "https://registry.npmmirror.com/react-router-dom/download/react-router-dom-6.0.0-beta.7.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Freact-router-dom%2Fdownload%2Freact-router-dom-6.0.0-beta.7.tgz#896acf6002a57507cccf09ed5cc6cf9d5554e07d"
-  integrity sha1-iWrPYAKldQfMzwntXMbPnVVU4H0=
+react-router-dom@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.0.0.tgz#8a55a9ab3cc12f7eb06472f6c8001515af651c6a"
+  integrity sha512-bPXyYipf0zu6K7mHSEmNO5YqLKq2q9N+Dsahw9Xh3oq1IirsI3vbnIYcVWin6A0zWyHmKhMGoV7Gr0j0kcuVFg==
   dependencies:
-    react-router "6.0.0-beta.7"
+    react-router "6.0.0"
 
-react-router@6.0.0-beta.7:
-  version "6.0.0-beta.7"
-  resolved "https://registry.npmmirror.com/react-router/download/react-router-6.0.0-beta.7.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Freact-router%2Fdownload%2Freact-router-6.0.0-beta.7.tgz#8c22236c46977e53696ed779ebec31080ab2d3ee"
-  integrity sha1-jCIjbEaXflNpbtd56+wxCAqy0+4=
+react-router@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.0.0.tgz#a8803ac7b612c2a2d31cc466ceda656cf31fdfb9"
+  integrity sha512-FcTRCihYZvERMNbG54D9+Wkv2cj/OtoxNlA/87D7vxKYlmSmbF9J9XChI9Is44j/behEiOhbovgVZBhKQn+wgA==
+  dependencies:
+    history "^5.0.3"
 
 react-scripts@^4.0.3:
   version "4.0.3"

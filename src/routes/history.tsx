@@ -13,6 +13,10 @@ export const HistoryRouter: React.FC<HistoryRouterProps> = ({ history, children 
     action: history.action,
     location: history.location
   });
-  React.useLayoutEffect(() => history.listen(setState), [history]);
-  return React.createElement(Router as never, Object.assign({ children, navigator: history }, state));
+
+  React.useLayoutEffect(() => {
+    history.listen(setState);
+  }, [history]);
+
+  return React.createElement(Router, Object.assign({ children, navigator: history }, state));
 };
