@@ -38,7 +38,7 @@ export const LayoutMainPage = <T extends MenuItemProps[] | undefined>(props: Sho
           showWrpperStyle
             ? {
                 padding: '24px',
-                backgroundColor: 'var(--semi-color-bg-0)',
+                backgroundColor: '#fff',
               }
             : {}
         }
@@ -48,7 +48,7 @@ export const LayoutMainPage = <T extends MenuItemProps[] | undefined>(props: Sho
             showWrpperStyle
               ? {
                   borderRadius: '10px',
-                  border: '1px solid var(--semi-color-border)',
+                  border: '1px solid #ccc',
                   height: '376px',
                   padding: '32px',
                 }

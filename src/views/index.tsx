@@ -1,13 +1,14 @@
 import {
-  IconBell,
-  IconExit,
-  IconHelpCircleStroked,
-  IconMoon,
-  IconSetting,
-  IconSun,
-  IconUser,
-} from '@douyinfe/semi-icons';
-import { Button, Dropdown, Layout, Menu, MenuItemProps, Tooltip, Typography } from 'antd';
+  BellOutlined,
+  LogoutOutlined,
+  QuestionCircleOutlined,
+  SettingOutlined,
+  UserOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+} from '@ant-design/icons';
+import { css } from '@emotion/react';
+import { Button, Dropdown, Layout, Menu, MenuItemProps, Tooltip } from 'antd';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
@@ -26,7 +27,7 @@ const LayoutPage: FC = () => {
   const location = useLocation();
   const navItems: MenuItemProps[] = panelData.map(item => ({
     title: item.PanelName,
-    key: item.PanelCode,
+    eventKey: item.PanelCode,
   }));
   const [selectNavKey, setSelectNavKey] = useState<string>(() => {
     const index0 = getStrTimesIndex(location.pathname, '/', 0);
@@ -54,18 +55,17 @@ const LayoutPage: FC = () => {
 
     if (!panel) return;
 
-    const menu: MenuItemProps[] = panel.Menus.map(item => ({
+    const menu = panel.Menus.map(item => ({
       title: item.name,
-      key: item.code,
-      url: item.url,
+      eventKey: item.code,
     }));
 
     if (level === 0) {
       console.log(menu[0]);
       setSelectNavKey(key);
       setNavSideMenu(menu);
-      setSelectNavSideMenuKey(menu[0].key);
-      jump && navigate('/' + key + '/' + menu[0].key);
+      setSelectNavSideMenuKey(menu[0].eventKey);
+      jump && navigate('/' + key + '/' + menu[0].eventKey);
 
       return;
     }
@@ -91,54 +91,53 @@ const LayoutPage: FC = () => {
   };
 
   return (
-    <Layout>
-      <Header>
+    <Layout css={styles}>
+      <Header className="appnode-header">
+        <Menu mode="horizontal" selectedKeys={[selectNavKey]} onClick={d => onClickNav(d.key, 0)}>
+          {navItems.map(item => (
+            <Menu.Item key={item.eventKey}>{item.title}</Menu.Item>
+          ))}
+        </Menu>
         <div>
-          <Menu mode="horizontal" selectedKeys={[selectNavKey]} onClick={d => onClickNav(d.key, 0)}>
-            {navItems.map(item => (
-              <Menu.Item key={item.key}>{item.title}</Menu.Item>
-            ))}
-          </Menu>
-          <div>
-            <Tooltip title={`切换到${theme === 'dark' ? '浅色' : '深色'}主题`}>
-              <Button
-                onClick={onSwitchTheme}
-                icon={theme === 'light' ? <IconMoon size="large" /> : <IconSun size="large" />}
-                style={{
-                  color: 'var(--semi-color-text-2)',
-                  marginRight: '12px',
-                }}
-              />
-            </Tooltip>
-            <Tooltip title="消息通知">
-              <Button
-                icon={<IconBell size="large" />}
-                style={{
-                  color: 'var(--semi-color-text-2)',
-                  marginRight: '12px',
-                }}
-              />
-            </Tooltip>
+          <Tooltip title={`切换到${theme === 'dark' ? '浅色' : '深色'}主题`}>
+            <Button
+              onClick={onSwitchTheme}
+              shape="circle"
+              icon={theme === 'light' ? <ZoomInOutlined /> : <ZoomOutOutlined />}
+              style={{
+                marginRight: '12px',
+              }}
+            />
+          </Tooltip>
+          <Tooltip title="消息通知">
+            <Button
+              icon={<BellOutlined />}
+              shape="circle"
+              style={{
+                marginRight: '12px',
+              }}
+            />
+          </Tooltip>
 
-            <Dropdown
-              placement="topLeft"
-              overlay={
-                <Menu>
-                  <Menu.Item icon={<IconSetting />}>设置</Menu.Item>
-                  <Menu.Item icon={<IconHelpCircleStroked />}>帮助</Menu.Item>
-                  <Menu.Divider />
-                  <Menu.Item icon={<IconExit />}>退出登录</Menu.Item>
-                </Menu>
-              }
-            >
-              <Button
-                icon={<IconUser size="large" />}
-                style={{
-                  color: 'var(--semi-color-text-2)',
-                }}
-              />
-            </Dropdown>
-          </div>
+          <Dropdown
+            trigger={['click']}
+            overlay={
+              <Menu>
+                <Menu.Item key="setting" icon={<SettingOutlined />}>
+                  设置
+                </Menu.Item>
+                <Menu.Item key="help" icon={<QuestionCircleOutlined />}>
+                  帮助
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key="logout" icon={<LogoutOutlined />}>
+                  退出登录
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            <Button icon={<UserOutlined />} shape="circle" />
+          </Dropdown>
         </div>
       </Header>
       <LayoutMainPage
@@ -152,3 +151,11 @@ const LayoutPage: FC = () => {
 };
 
 export default LayoutPage;
+
+const styles = css`
+  .appnode-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;

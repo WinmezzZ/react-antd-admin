@@ -1,39 +1,31 @@
-import { IconTreeTriangleDown } from '@douyinfe/semi-icons';
-import { Button, Dropdown, SplitButtonGroup } from '@douyinfe/semi-ui';
-import { Size } from '@douyinfe/semi-ui/lib/es/button';
-import { DropDownMenuItem } from '@douyinfe/semi-ui/lib/es/dropdown';
+import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, MenuItemProps } from 'antd';
 import { FC, useState } from 'react';
 
 interface DropMenuButtonProps {
-  menu: DropDownMenuItem[];
-  size?: Size;
+  menu: MenuItemProps[];
   onClick?: () => void;
 }
 
 export const DropMenuButton: FC<DropMenuButtonProps> = props => {
-  const { menu, children, size, onClick } = props;
-  const [btnVisible, setBtnVisible] = useState(false);
-
-  const handleVisibleChange = (visible: boolean) => {
-    setBtnVisible(visible);
-  };
+  const { menu, onClick, children } = props;
 
   return (
-    <SplitButtonGroup style={{ marginRight: 10 }}>
-      <Button size={size} theme="solid" type="primary" onClick={onClick}>
-        {children}
-      </Button>
-      <Dropdown onVisibleChange={v => handleVisibleChange(v)} menu={menu} trigger="click" position="bottomRight">
-        <Button
-          style={
-            btnVisible ? { background: 'var(--semi-color-primary-hover)', padding: '8px 4px' } : { padding: '8px 4px' }
-          }
-          size={size}
-          theme="solid"
-          type="primary"
-          icon={<IconTreeTriangleDown />}
-        ></Button>
-      </Dropdown>
-    </SplitButtonGroup>
+    <Dropdown.Button
+      size="small"
+      trigger={['click']}
+      placement="bottomRight"
+      icon={<DownOutlined />}
+      onClick={onClick}
+      overlay={
+        <Menu>
+          {menu.map(item => (
+            <Menu.Item key={item.eventKey}>{item.title}</Menu.Item>
+          ))}
+        </Menu>
+      }
+    >
+      {children}
+    </Dropdown.Button>
   );
 };

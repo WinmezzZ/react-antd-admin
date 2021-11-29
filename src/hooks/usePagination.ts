@@ -61,7 +61,7 @@ export function useTable<T extends ApiMethod>(options: UseTableOptions<T>) {
       total,
       onChange: onTableChange,
       showSizeChanger: true,
-      showTotal: true,
+      showTotal: (all: number) => `共（${all}）条`,
       showQuickJumper: true,
     },
   };

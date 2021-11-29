@@ -1,7 +1,7 @@
-import { IconFilledArrowDown, IconFilledArrowUp } from '@douyinfe/semi-icons';
-import { Progress, Table } from '@douyinfe/semi-ui';
-import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
+import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { css } from '@emotion/react';
+import { Progress, Table } from 'antd';
+import { ColumnProps } from 'antd/lib/table';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -65,7 +65,14 @@ const NodeManageNodeListPage: FC = () => {
 
   return (
     <div css={styles}>
-      <Table resizable bordered columns={columns} dataSource={tableData} pagination={panination} loading={loading} />
+      <Table
+        rowKey="NodeId"
+        bordered
+        columns={columns}
+        dataSource={tableData}
+        pagination={panination}
+        loading={loading}
+      />
     </div>
   );
 };
@@ -116,7 +123,7 @@ const columns: ColumnProps<NodeItem>[] = [
           <Progress
             percent={+(item.CPUUseRate * 100).toFixed(1) || 0}
             style={{ height: '8px' }}
-            stroke={getStrokeColor(item.CPUUseRate)}
+            strokeColor={getStrokeColor(item.CPUUseRate)}
             showInfo={true}
           >
             {item.CPUUseRate && (item.CPUUseRate * 100).toFixed(2) + '%'}
@@ -133,7 +140,7 @@ const columns: ColumnProps<NodeItem>[] = [
         <Progress
           percent={+(item.RealMemUseRate * 100).toFixed(1) || 0}
           style={{ height: '8px' }}
-          stroke={getStrokeColor(item.RealMemUseRate)}
+          strokeColor={getStrokeColor(item.RealMemUseRate)}
           showInfo={true}
         >
           {item.RealMemUseRate && (item.RealMemUseRate * 100).toFixed(2) + '%'}
@@ -149,7 +156,7 @@ const columns: ColumnProps<NodeItem>[] = [
         <Progress
           percent={+(item.DiskUseRate * 100).toFixed(1) || 0}
           style={{ height: '8px' }}
-          stroke={getStrokeColor(item.DiskUseRate)}
+          strokeColor={getStrokeColor(item.DiskUseRate)}
           showInfo={true}
         >
           {item.DiskUseRate && (item.DiskUseRate * 100).toFixed(2) + '%'}
@@ -164,10 +171,10 @@ const columns: ColumnProps<NodeItem>[] = [
       return (
         item.RXSpeed && (
           <div className="fcc">
-            <IconFilledArrowUp />
+            <ArrowUpOutlined />
             {item.RXSpeed}
             <span className="sprate"> / </span>
-            <IconFilledArrowDown />
+            <ArrowDownOutlined />
             {item.TXSpeed}
           </div>
         )
@@ -176,19 +183,18 @@ const columns: ColumnProps<NodeItem>[] = [
   },
   {
     title: '操作',
-    fixed: true,
+    fixed: 'right',
     width: 160,
     render(_, row) {
       return (
         <DropMenuButton
-          size="small"
           menu={[
-            { node: 'item', name: '软件管理', onClick: () => history.push(`/agent/${row.NodeId}/appmgr`) },
-            { node: 'item', name: '节点设置', onClick: () => history.push(`/ccenter/nodemgr/${row.NodeId}`) },
-            { node: 'item', name: '修改密码' },
-            { node: 'item', name: '取消默认' },
-            { node: 'divider' },
-            { node: 'item', name: '重启受控端', type: 'danger' },
+            { eventKey: 'item', title: '软件管理', onClick: () => history.push(`/agent/${row.NodeId}/appmgr`) },
+            { eventKey: 'item', title: '节点设置', onClick: () => history.push(`/ccenter/nodemgr/${row.NodeId}`) },
+            { eventKey: 'item', title: '修改密码' },
+            { eventKey: 'item', title: '取消默认' },
+            { eventKey: 'divider' },
+            { eventKey: 'item', title: '重启受控端' },
           ]}
           onClick={() => history.push(`/agent/${row.NodeId}`)}
         >
@@ -203,13 +209,13 @@ const styles = css`
   .sprate {
     margin: 0 8px;
   }
-  .semi-icon {
+  .anticon {
     margin-right: 4px;
   }
-  .semi-icon-filled_arrow_up path {
+  /* .anticon-filled_arrow_up path {
     color: var(--semi-color-success);
   }
-  .semi-icon-filled_arrow_down path {
+  .anticon-filled_arrow_down path {
     color: var(--semi-color-link);
-  }
+  } */
 `;

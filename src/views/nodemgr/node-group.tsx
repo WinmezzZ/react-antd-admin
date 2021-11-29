@@ -1,6 +1,5 @@
-import { Table } from '@douyinfe/semi-ui';
-import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
-import { Button } from 'antd';
+import { Button, Table } from 'antd';
+import { ColumnProps } from 'antd/lib/table';
 import { FC } from 'react';
 
 import { apiNodeGroupList } from '~/api/ccenter-app-nodemgr/node-group.api';

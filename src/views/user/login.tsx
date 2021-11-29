@@ -1,5 +1,5 @@
-import { Button, Form } from '@douyinfe/semi-ui';
 import { css } from '@emotion/react';
+import { Button, Form, Input } from 'antd';
 import JSCookie from 'js-cookie';
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
@@ -41,23 +41,15 @@ const LoginForm: FC = () => {
 
   return (
     <div css={styles}>
-      <Form className="form" onSubmit={onSubmit} labelPosition="top" initValues={initValues}>
+      <Form className="form" onFinish={onSubmit} initialValues={initValues}>
         <h2>APPNODE 受控端</h2>
-        <Form.Input
-          field="Username"
-          rules={[{ required: true, message: '请输入用户名' }]}
-          label="用户名"
-          trigger="blur"
-        ></Form.Input>
-        <Form.Input
-          field="Password"
-          rules={[{ required: true, message: '请输入密码' }]}
-          required
-          label="密码"
-          trigger="blur"
-          type="password"
-        ></Form.Input>
-        <Button className="button" htmlType="submit" theme="solid" type="primary">
+        <Form.Item label="用户名" name="Username" rules={[{ required: true, message: '请输入用户名' }]}>
+          <Input></Input>
+        </Form.Item>
+        <Form.Item name="Password" rules={[{ required: true, message: '请输入密码' }]} required label="密码">
+          <Input.Password></Input.Password>
+        </Form.Item>
+        <Button className="button" htmlType="submit" type="primary">
           登录
         </Button>
       </Form>

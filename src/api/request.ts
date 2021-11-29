@@ -1,4 +1,4 @@
-import { Toast } from '@douyinfe/semi-ui';
+import { message } from 'antd';
 import axios, { AxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 import qs from 'query-string';
@@ -46,7 +46,7 @@ axiosInstance.interceptors.response.use(
       }),
     );
     if (config.data?.CODE !== 'ok') {
-      Toast.error(config.data.MESSAGE);
+      message.error(config.data.MESSAGE);
 
       if (config.data?.CODE === 'SessionNotAuthed') {
         Cookies.remove('CSRFToken');
@@ -76,7 +76,7 @@ axiosInstance.interceptors.response.use(
       errorMessage = error?.message;
     }
     console.dir(error);
-    error.message && Toast.error(errorMessage);
+    error.message && message.error(errorMessage);
 
     return {
       ACTION: false,

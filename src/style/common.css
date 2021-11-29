@@ -3,3 +3,7 @@
   justify-content: center;
   align-items: center;
 }
+
+.ant-layout-header, .ant-layout-sider {
+  background-color: #fff !important;
+}

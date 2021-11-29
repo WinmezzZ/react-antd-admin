@@ -8,10 +8,10 @@ import { history, HistoryRouter } from '~/route/history';
 import RenderRouter from './route';
 import { setGlobalState } from './store/global.store';
 
-ConfigProvider.config({
-  prefixCls: 'appnode',
-  iconPrefixCls: 'appnode',
-});
+// ConfigProvider.config({
+//   prefixCls: 'appnode',
+//   iconPrefixCls: 'appnode',
+// });
 
 const App: React.FC = () => {
   const { theme, loading } = useSelector(state => state.global);
