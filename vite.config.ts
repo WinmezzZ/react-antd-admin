@@ -33,13 +33,13 @@ export default defineConfig({
         plugins: ['@emotion/babel-plugin'],
       },
     }),
-    vitePluginImp({
-      libList: [
-        {
-          libName: 'antd',
-          style: name => `antd/es/${name}/style/index.css`,
-        },
-      ],
-    }),
+    // vitePluginImp({
+    //   libList: [
+    //     {
+    //       libName: 'antd',
+    //       style: name => `antd/es/${name}/style/index.css`,
+    //     },
+    //   ],
+    // }),
   ],
 });

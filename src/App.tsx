@@ -1,6 +1,7 @@
 import { ConfigProvider, Spin } from 'antd';
 import zh_CN from 'antd/lib/locale/zh_CN';
 import { Suspense, useEffect } from 'react';
+import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { history, HistoryRouter } from '~/route/history';
@@ -12,6 +13,11 @@ import { setGlobalState } from './store/global.store';
 //   prefixCls: 'appnode',
 //   iconPrefixCls: 'appnode',
 // });
+
+const themes = {
+  light: '../node_modules/antd/dist/antd.css',
+  dark: '../node_modules/antd/dist/antd.dark.css',
+};
 
 const App: React.FC = () => {
   const { theme, loading } = useSelector(state => state.global);
@@ -45,12 +51,14 @@ const App: React.FC = () => {
 
   return (
     <ConfigProvider componentSize="small" iconPrefixCls="appnode" locale={zh_CN}>
-      <HistoryRouter history={history}>
-        <Suspense fallback={<h1>Loading...</h1>}>
-          <Spin spinning={loading} className="app-loading-wrapper" tip="加载中..."></Spin>
-          <RenderRouter />
-        </Suspense>
-      </HistoryRouter>
+      <ThemeSwitcherProvider defaultTheme={theme} themeMap={themes}>
+        <HistoryRouter history={history}>
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Spin spinning={loading} className="app-loading-wrapper" tip="加载中..."></Spin>
+            <RenderRouter />
+          </Suspense>
+        </HistoryRouter>
+      </ThemeSwitcherProvider>
     </ConfigProvider>
   );
 };

@@ -120,7 +120,6 @@ const LayoutPage: FC = () => {
           </Tooltip>
 
           <Dropdown
-            trigger={['click']}
             overlay={
               <Menu>
                 <Menu.Item key="setting" icon={<SettingOutlined />}>

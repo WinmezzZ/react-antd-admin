@@ -68,7 +68,6 @@ const styles = css`
     width: 300px;
     padding: 50px 40px;
     border-radius: 10px;
-    background-color: #ffffff;
     h2 {
       text-align: center;
     }

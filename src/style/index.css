@@ -3,3 +3,5 @@
 @import './main.css';
 
 @import './common.css';
+
+@import 'antd/dist/antd.css';
