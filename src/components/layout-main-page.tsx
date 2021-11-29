@@ -16,7 +16,7 @@ type ShouldKeyRequid<T> = T extends MenuItemProps[]
   : Omit<LayoutMainPageProps<T>, 'selectNavSideMenuKey'>;
 
 export const LayoutMainPage = <T extends MenuItemProps[] | undefined>(props: ShouldKeyRequid<T>) => {
-  const { menu, onClickMenu } = props;
+  const { menu, onClickMenu, showWrpperStyle } = props;
 
   return (
     <Layout>
@@ -33,7 +33,7 @@ export const LayoutMainPage = <T extends MenuItemProps[] | undefined>(props: Sho
           </Menu>
         </Sider>
       )}
-      <Content>
+      <Content style={showWrpperStyle ? { padding: 12 } : {}}>
         <div>
           <Suspense
             fallback={

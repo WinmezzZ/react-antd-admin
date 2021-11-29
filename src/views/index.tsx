@@ -1,14 +1,6 @@
-import {
-  BellOutlined,
-  LogoutOutlined,
-  QuestionCircleOutlined,
-  SettingOutlined,
-  UserOutlined,
-  ZoomInOutlined,
-  ZoomOutOutlined,
-} from '@ant-design/icons';
 import { css } from '@emotion/react';
-import { Button, Dropdown, Layout, Menu, MenuItemProps, Tooltip } from 'antd';
+import { FileQuestion, Logout, Moon, Remind, SettingTwo, Sun, User } from '@icon-park/react';
+import { Dropdown, Layout, Menu, MenuItemProps, Tooltip } from 'antd';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
@@ -92,50 +84,43 @@ const LayoutPage: FC = () => {
 
   return (
     <Layout css={styles}>
-      <Header className="appnode-header">
+      <Header className="appnode-header bg-1">
         <Menu mode="horizontal" selectedKeys={[selectNavKey]} onClick={d => onClickNav(d.key, 0)}>
           {navItems.map(item => (
             <Menu.Item key={item.eventKey}>{item.title}</Menu.Item>
           ))}
         </Menu>
-        <div>
+        <div className="header-icon-wrapper">
           <Tooltip title={`切换到${theme === 'dark' ? '浅色' : '深色'}主题`}>
-            <Button
-              onClick={onSwitchTheme}
-              shape="circle"
-              icon={theme === 'light' ? <ZoomInOutlined /> : <ZoomOutOutlined />}
-              style={{
-                marginRight: '12px',
-              }}
-            />
+            <span className="header-icon" onClick={onSwitchTheme}>
+              {theme === 'light' ? <Moon /> : <Sun />}
+            </span>
           </Tooltip>
           <Tooltip title="消息通知">
-            <Button
-              icon={<BellOutlined />}
-              shape="circle"
-              style={{
-                marginRight: '12px',
-              }}
-            />
+            <span className="header-icon">
+              <Remind />
+            </span>
           </Tooltip>
 
           <Dropdown
             overlay={
               <Menu>
-                <Menu.Item key="setting" icon={<SettingOutlined />}>
+                <Menu.Item key="setting" icon={<SettingTwo />}>
                   设置
                 </Menu.Item>
-                <Menu.Item key="help" icon={<QuestionCircleOutlined />}>
+                <Menu.Item key="help" icon={<FileQuestion />}>
                   帮助
                 </Menu.Item>
                 <Menu.Divider />
-                <Menu.Item key="logout" icon={<LogoutOutlined />}>
+                <Menu.Item key="logout" icon={<Logout />}>
                   退出登录
                 </Menu.Item>
               </Menu>
             }
           >
-            <Button icon={<UserOutlined />} shape="circle" />
+            <span className="header-icon">
+              <User />
+            </span>
           </Dropdown>
         </div>
       </Header>
@@ -156,5 +141,27 @@ const styles = css`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: transparent;
+    box-shadow: 0 2px 8px #f0f1f2;
+    padding: 0;
+    .header-icon-wrapper {
+      display: flex;
+    }
+    .header-icon {
+      margin-right: 30px;
+      cursor: pointer;
+      .i-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+        path {
+          stroke-width: 3px;
+        }
+      }
+    }
   }
 `;

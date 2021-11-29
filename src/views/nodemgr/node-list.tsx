@@ -1,5 +1,5 @@
-import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { css } from '@emotion/react';
+import { ArrowDown, ArrowUp } from '@icon-park/react';
 import { Progress, Table } from 'antd';
 import { ColumnProps } from 'antd/lib/table';
 import { FC } from 'react';
@@ -72,6 +72,7 @@ const NodeManageNodeListPage: FC = () => {
         dataSource={tableData}
         pagination={panination}
         loading={loading}
+        scroll={{ x: 1200 }}
       />
     </div>
   );
@@ -171,10 +172,10 @@ const columns: ColumnProps<NodeItem>[] = [
       return (
         item.RXSpeed && (
           <div className="fcc">
-            <ArrowUpOutlined />
+            <ArrowUp />
             {item.RXSpeed}
             <span className="sprate"> / </span>
-            <ArrowDownOutlined />
+            <ArrowDown />
             {item.TXSpeed}
           </div>
         )
@@ -184,17 +185,17 @@ const columns: ColumnProps<NodeItem>[] = [
   {
     title: '操作',
     fixed: 'right',
-    width: 160,
+    width: 120,
     render(_, row) {
       return (
         <DropMenuButton
           menu={[
-            { eventKey: 'item', title: '软件管理', onClick: () => history.push(`/agent/${row.NodeId}/appmgr`) },
-            { eventKey: 'item', title: '节点设置', onClick: () => history.push(`/ccenter/nodemgr/${row.NodeId}`) },
-            { eventKey: 'item', title: '修改密码' },
-            { eventKey: 'item', title: '取消默认' },
+            { eventKey: 'soft', title: '软件管理', onClick: () => history.push(`/agent/${row.NodeId}/appmgr`) },
+            { eventKey: 'node', title: '节点设置', onClick: () => history.push(`/ccenter/nodemgr/${row.NodeId}`) },
+            { eventKey: 'password', title: '修改密码' },
+            { eventKey: 'cancel-default', title: '取消默认' },
             { eventKey: 'divider' },
-            { eventKey: 'item', title: '重启受控端' },
+            { eventKey: 'restart', title: '重启受控端', danger: true },
           ]}
           onClick={() => history.push(`/agent/${row.NodeId}`)}
         >

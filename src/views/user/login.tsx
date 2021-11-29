@@ -41,13 +41,13 @@ const LoginForm: FC = () => {
 
   return (
     <div css={styles}>
-      <Form className="form" onFinish={onSubmit} initialValues={initValues}>
+      <Form className="form bg-1" onFinish={onSubmit} initialValues={initValues}>
         <h2>APPNODE 受控端</h2>
-        <Form.Item label="用户名" name="Username" rules={[{ required: true, message: '请输入用户名' }]}>
-          <Input></Input>
+        <Form.Item name="Username" rules={[{ required: true, message: '请输入用户名' }]}>
+          <Input placeholder="用户名"></Input>
         </Form.Item>
-        <Form.Item name="Password" rules={[{ required: true, message: '请输入密码' }]} required label="密码">
-          <Input.Password></Input.Password>
+        <Form.Item name="Password" rules={[{ required: true, message: '请输入密码' }]} required>
+          <Input.Password placeholder="密码"></Input.Password>
         </Form.Item>
         <Button className="button" htmlType="submit" type="primary">
           登录
@@ -65,7 +65,7 @@ const styles = css`
   align-items: center;
   background: #f0f2f5;
   .form {
-    width: 300px;
+    width: 300;
     padding: 50px 40px;
     border-radius: 10px;
     h2 {

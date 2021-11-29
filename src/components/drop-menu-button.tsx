@@ -1,6 +1,6 @@
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, MenuItemProps } from 'antd';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 interface DropMenuButtonProps {
   menu: MenuItemProps[];

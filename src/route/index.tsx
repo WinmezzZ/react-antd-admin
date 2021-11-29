@@ -1,6 +1,7 @@
 import { FC, lazy } from 'react';
 import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
 
+import NotFoundPage from '~/views/common/404';
 import LoginPage from '~/views/user/login';
 
 const LayoutPage = lazy(() => import('~/views/index'));
@@ -45,20 +46,20 @@ const routeList: RouteObject[] = [
           },
           {
             path: '*',
-            element: <h1>404</h1>,
+            element: <NotFoundPage />,
           },
         ],
       },
 
       {
         path: '*',
-        element: <h1>404</h1>,
+        element: <NotFoundPage />,
       },
     ],
   },
   {
     path: '*',
-    element: <h1>404</h1>,
+    element: <NotFoundPage />,
   },
 ];
 
