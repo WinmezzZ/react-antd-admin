@@ -19,8 +19,6 @@ const LoginForm: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location);
-
   const onSubmit = async (form: any) => {
     const res = await apiLogin(form);
 
@@ -63,7 +61,6 @@ const styles = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f0f2f5;
   .form {
     width: 300;
     padding: 50px 40px;

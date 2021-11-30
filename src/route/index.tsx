@@ -4,7 +4,7 @@ import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
 import NotFoundPage from '~/views/common/404';
 import LoginPage from '~/views/user/login';
 
-const LayoutPage = lazy(() => import('~/views/index'));
+const LayoutPage = lazy(() => import('~/views/layout/index'));
 const NodeMgrPage = lazy(() => import('~/views/nodemgr/index'));
 const NodeMgrNodeListPage = lazy(() => import('~/views/nodemgr/node-list'));
 const NodeMgrNodeGroupListPage = lazy(() => import('~/views/nodemgr/node-group'));

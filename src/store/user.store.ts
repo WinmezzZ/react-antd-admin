@@ -1,12 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import JSCookie from 'js-cookie';
 
+import { MenuList } from '~/interface/common/menu.interface';
+
 interface State {
   CSRFToken?: string;
+  navMenuList: MenuList;
+  sideMenuList: MenuList;
 }
 
 const initialState: State = {
   CSRFToken: JSCookie.get('CSRFToken'),
+  navMenuList: [],
+  sideMenuList: [],
 };
 
 const userSlice = createSlice({

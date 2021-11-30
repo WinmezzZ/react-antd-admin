@@ -1,11 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import globalReducer from './global.store';
+import tagsReducer from './tags-bar.store';
 import userReducer from './user.store';
 
 const rootReducer = combineReducers({
   global: globalReducer,
   user: userReducer,
+  tags: tagsReducer,
 });
 
 const store = configureStore({

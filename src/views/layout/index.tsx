@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { LayoutMainPage } from '~/components/layout-main-page';
 import { panelData } from '~/config/data/panel';
 import { setGlobalState } from '~/store/global.store';
+import { setUserState } from '~/store/user.store';
 import { getStrTimesIndex } from '~/utils/getStrTimesIndex';
 
 const { Header } = Layout;
@@ -52,11 +53,38 @@ const LayoutPage: FC = () => {
       eventKey: item.code,
     }));
 
+    // dispatch(
+    //   setUserState({
+    //     navMenuList: menu.map(item => ({
+    //       key: item.eventKey,
+    //       title: item.title,
+    //       path: item.eventKey,
+    //     })),
+    //   }),
+    // );
+
     if (level === 0) {
-      console.log(menu[0]);
       setSelectNavKey(key);
       setNavSideMenu(menu);
       setSelectNavSideMenuKey(menu[0].eventKey);
+      // dispatch(
+      //   setUserState({
+      //     sideMenuList: menu.map(item => ({
+      //       key: item.eventKey,
+      //       title: item.title,
+      //     })),
+      //   }),
+      // );
+      dispatch(
+        setUserState({
+          navMenuList: navItems.map(item => ({
+            key: item.eventKey as string,
+            title: item.title as string,
+            path: ('/' + item.eventKey + '/' + menu[0].eventKey) as string,
+          })),
+        }),
+      );
+
       jump && navigate('/' + key + '/' + menu[0].eventKey);
 
       return;

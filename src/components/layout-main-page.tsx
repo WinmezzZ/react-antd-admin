@@ -2,6 +2,8 @@ import { Layout, Menu, MenuItemProps, Skeleton } from 'antd';
 import { FC, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import TagsBar from '~/views/layout/tags-bar';
+
 const { Sider, Content } = Layout;
 
 interface LayoutMainPageProps<T> {
@@ -34,17 +36,20 @@ export const LayoutMainPage = <T extends MenuItemProps[] | undefined>(props: Sho
         </Sider>
       )}
       <Content style={showWrpperStyle ? { padding: 12 } : {}}>
-        <div>
-          <Suspense
-            fallback={
-              <Skeleton loading={true}>
-                <p>Hello World</p>
-              </Skeleton>
-            }
-          >
-            <Outlet />
-          </Suspense>
-        </div>
+        <Layout>
+          <TagsBar />
+          <Content>
+            <Suspense
+              fallback={
+                <Skeleton loading={true}>
+                  <p>Hello World</p>
+                </Skeleton>
+              }
+            >
+              <Outlet />
+            </Suspense>
+          </Content>
+        </Layout>
       </Content>
     </Layout>
   );
