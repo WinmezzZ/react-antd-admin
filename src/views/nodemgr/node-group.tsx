@@ -16,6 +16,7 @@ const NodeGroupListPage: FC = () => {
   return (
     <Table
       style={{ width: 500 }}
+      rowKey="NodeGroupId"
       bordered
       columns={columns}
       dataSource={tableData}

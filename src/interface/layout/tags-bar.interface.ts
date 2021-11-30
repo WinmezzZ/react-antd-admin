@@ -1,5 +1,5 @@
 export type TagsBarItem = {
-  key: string;
+  code: string;
 
   title: string;
 
@@ -15,5 +15,5 @@ export interface TagsBarState {
   tags: TagsBarItem[];
 
   /**current tagView id */
-  activeTagId: TagsBarItem['key'];
+  activeTagPath: TagsBarItem['path'];
 }

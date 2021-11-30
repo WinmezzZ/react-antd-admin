@@ -1,15 +1,16 @@
 import { css } from '@emotion/react';
 import { FileQuestion, Logout, Moon, Remind, SettingTwo, Sun, User } from '@icon-park/react';
-import { Dropdown, Layout, Menu, MenuItemProps, Tooltip } from 'antd';
+import { Dropdown, Layout, Menu, Tooltip } from 'antd';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 
 import { LayoutMainPage } from '~/components/layout-main-page';
 import { panelData } from '~/config/data/panel';
+import { MenuList } from '~/interface/common/menu.interface';
 import { setGlobalState } from '~/store/global.store';
 import { setUserState } from '~/store/user.store';
-import { getStrTimesIndex } from '~/utils/getStrTimesIndex';
+import { getPanelCode } from '~/utils/getStrTimesIndex';
 
 const { Header } = Layout;
 
@@ -18,26 +19,14 @@ const LayoutPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const navItems: MenuItemProps[] = panelData.map(item => ({
+  const navItems = panelData.map(item => ({
     title: item.PanelName,
-    eventKey: item.PanelCode,
+    code: item.PanelCode,
   }));
-  const [selectNavKey, setSelectNavKey] = useState<string>(() => {
-    const index0 = getStrTimesIndex(location.pathname, '/', 0);
-    const index1 = getStrTimesIndex(location.pathname, '/', 1);
-    const activeKey = location.pathname.slice(index0 + 1, index1 > 0 ? index1 : location.pathname.length);
+  const [selectNavKey, setSelectNavKey] = useState(() => getPanelCode(location.pathname));
+  const [navSideMenu, setNavSideMenu] = useState<MenuList>([]);
 
-    return activeKey;
-  });
-  const [navSideMenu, setNavSideMenu] = useState<MenuItemProps[]>([]);
-
-  const [selectNavSideMenuKey, setSelectNavSideMenuKey] = useState<string>(() => {
-    const index1 = getStrTimesIndex(location.pathname, '/', 1);
-    const index2 = getStrTimesIndex(location.pathname, '/', 2);
-    const activeKey = location.pathname.slice(index1 + 1, index2 > 0 ? index1 : location.pathname.length);
-
-    return activeKey;
-  });
+  const [selectNavSideMenuKey, setSelectNavSideMenuKey] = useState<string>(location.pathname);
 
   useEffect(() => {
     onClickNav(selectNavKey, 0, false);
@@ -48,10 +37,7 @@ const LayoutPage: FC = () => {
 
     if (!panel) return;
 
-    const menu = panel.Menus.map(item => ({
-      title: item.name,
-      eventKey: item.code,
-    }));
+    const menu = panel.Menus;
 
     // dispatch(
     //   setUserState({
@@ -63,40 +49,23 @@ const LayoutPage: FC = () => {
     //   }),
     // );
 
-    if (level === 0) {
-      setSelectNavKey(key);
-      setNavSideMenu(menu);
-      setSelectNavSideMenuKey(menu[0].eventKey);
-      // dispatch(
-      //   setUserState({
-      //     sideMenuList: menu.map(item => ({
-      //       key: item.eventKey,
-      //       title: item.title,
-      //     })),
-      //   }),
-      // );
+    setSelectNavKey(getPanelCode(key));
+    setNavSideMenu(menu);
+    setSelectNavSideMenuKey(menu[0].code);
+
+    const activePanel = panelData.find(item => item.PanelCode === key);
+
+    if (activePanel) {
       dispatch(
         setUserState({
-          navMenuList: navItems.map(item => ({
-            key: item.eventKey as string,
-            title: item.title as string,
-            path: ('/' + item.eventKey + '/' + menu[0].eventKey) as string,
-          })),
+          menuList: activePanel.Menus,
         }),
       );
-
-      jump && navigate('/' + key + '/' + menu[0].eventKey);
-
-      return;
     }
 
-    if (level === 1) {
-      setSelectNavSideMenuKey(key);
-      const level1Url = '/' + selectNavKey;
-      const level2Url = `/${key}`;
+    console.log(key);
 
-      jump && navigate(level1Url + level2Url);
-    }
+    jump && navigate(key);
   };
 
   const onSwitchTheme = () => {
@@ -115,7 +84,7 @@ const LayoutPage: FC = () => {
       <Header className="appnode-header bg-1">
         <Menu mode="horizontal" selectedKeys={[selectNavKey]} onClick={d => onClickNav(d.key, 0)}>
           {navItems.map(item => (
-            <Menu.Item key={item.eventKey}>{item.title}</Menu.Item>
+            <Menu.Item key={item.code}>{item.title}</Menu.Item>
           ))}
         </Menu>
         <div className="header-icon-wrapper">
@@ -156,7 +125,6 @@ const LayoutPage: FC = () => {
         menu={navSideMenu}
         selectNavSideMenuKey={selectNavSideMenuKey}
         onClickMenu={e => onClickNav(e.key, 1)}
-        showWrpperStyle
       />
     </Layout>
   );

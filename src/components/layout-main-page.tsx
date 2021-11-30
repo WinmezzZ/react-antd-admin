@@ -2,23 +2,19 @@ import { Layout, Menu, MenuItemProps, Skeleton } from 'antd';
 import { FC, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import { MenuList } from '~/interface/common/menu.interface';
 import TagsBar from '~/views/layout/tags-bar';
 
 const { Sider, Content } = Layout;
 
-interface LayoutMainPageProps<T> {
-  menu?: T;
+interface LayoutMainPageProps {
+  menu: MenuList;
   selectNavSideMenuKey: string;
   onClickMenu?: MenuItemProps['onClick'];
-  showWrpperStyle?: boolean;
 }
 
-type ShouldKeyRequid<T> = T extends MenuItemProps[]
-  ? LayoutMainPageProps<T>
-  : Omit<LayoutMainPageProps<T>, 'selectNavSideMenuKey'>;
-
-export const LayoutMainPage = <T extends MenuItemProps[] | undefined>(props: ShouldKeyRequid<T>) => {
-  const { menu, onClickMenu, showWrpperStyle } = props;
+export const LayoutMainPage: FC<LayoutMainPageProps> = props => {
+  const { menu, onClickMenu, selectNavSideMenuKey } = props;
 
   return (
     <Layout>
@@ -27,15 +23,15 @@ export const LayoutMainPage = <T extends MenuItemProps[] | undefined>(props: Sho
           <Menu
             onClick={onClickMenu}
             style={{ maxWidth: 190, height: '100%' }}
-            defaultSelectedKeys={[props.selectNavSideMenuKey]}
+            defaultSelectedKeys={[selectNavSideMenuKey]}
           >
             {menu.map(item => (
-              <Menu.Item key={item.eventKey}>{item.title}</Menu.Item>
+              <Menu.Item key={item.path}>{item.title}</Menu.Item>
             ))}
           </Menu>
         </Sider>
       )}
-      <Content style={showWrpperStyle ? { padding: 12 } : {}}>
+      <Content style={{ padding: 12 }}>
         <Layout>
           <TagsBar />
           <Content>
@@ -53,8 +49,4 @@ export const LayoutMainPage = <T extends MenuItemProps[] | undefined>(props: Sho
       </Content>
     </Layout>
   );
-};
-
-(LayoutMainPage as FC<LayoutMainPageProps<any>>).defaultProps = {
-  showWrpperStyle: false,
 };

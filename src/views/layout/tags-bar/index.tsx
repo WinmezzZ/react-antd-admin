@@ -10,8 +10,8 @@ import TagsViewAction from './tags-bar-action';
 const { TabPane } = Tabs;
 
 const TagsBar: FC = () => {
-  const { tags, activeTagId } = useSelector(state => state.tags);
-  const { navMenuList } = useSelector(state => state.user);
+  const { tags, activeTagPath } = useSelector(state => state.tags);
+  const { menuList } = useSelector(state => state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,10 +19,10 @@ const TagsBar: FC = () => {
 
   // onClick tag
   const onChange = (key: string) => {
-    const tag = tags.find(tag => tag.key === key);
+    const tag = tags.find(tag => tag.path === key);
 
     if (tag) {
-      setCurrentTag(tag.key);
+      setCurrentTag(tag.path);
       navigate(tag.path);
     }
   };
@@ -36,72 +36,60 @@ const TagsBar: FC = () => {
     (id?: string) => {
       const tag = tags.find(item => {
         if (id) {
-          return item.key === id;
+          return item.path === id;
         } else {
           return item.path === location.pathname;
         }
       });
 
       if (tag) {
-        dispatch(setActiveTag(tag.key));
+        dispatch(setActiveTag(tag.path));
       }
     },
     [dispatch, location.pathname, tags],
   );
 
   useEffect(() => {
-    if (navMenuList.length) {
-      console.log(navMenuList, location.pathname);
-      const menu = navMenuList.find(m => m.path === location.pathname);
+    if (menuList.length) {
+      const menu = menuList.find(m => m.path === location.pathname);
 
+      console.log(menuList, menu);
       if (menu) {
-        // Initializes dashboard page.
-        const dashboard = navMenuList[0];
-
         dispatch(
           addTag({
-            path: dashboard.path,
-            title: dashboard.title,
-            key: dashboard.key,
-            closable: false,
-          }),
-        );
-        // Initializes the tag generated for the current page
-        // Duplicate tag will be ignored in redux.
-        dispatch(
-          addTag({
-            path: menu.path,
-            title: menu.title,
-            key: menu.key,
+            ...menu,
             closable: true,
           }),
         );
       }
     }
-  }, [dispatch, location.pathname, navMenuList]);
+  }, [dispatch, location.pathname, menuList]);
 
   //fix: remove tab route back auto
-  useEffect(() => {
-    if (tags && activeTagId) {
-      const target = tags.filter(e => e.key === activeTagId);
+  // useEffect(() => {
+  //   if (tags && activeTagPath) {
+  //     const target = tags.find(e => e.path === activeTagPath);
 
-      navigate(target[0].path);
-    }
-  }, [tags, activeTagId, navigate]);
+  //     if (target && location.pathname !== target.path) {
+  //       console.log(target.path);
+  //       // navigate(target.path);
+  //     }
+  //   }
+  // }, [tags, activeTagPath, navigate]);
 
   return (
     <div id="pageTabs" className="bg-2" style={{ padding: '6px 4px' }}>
       <Tabs
         tabBarStyle={{ margin: 0 }}
         onChange={onChange}
-        activeKey={activeTagId}
+        activeKey={activeTagPath}
         type="editable-card"
         hideAdd
         onEdit={(targetKey, action) => action === 'remove' && onClose(targetKey as string)}
         tabBarExtraContent={<TagsViewAction />}
       >
         {tags.map(tag => (
-          <TabPane tab={tag.title} key={tag.key} closable={tag.closable} />
+          <TabPane tab={tag.title} key={tag.path} closable={tag.closable} />
         ))}
       </Tabs>
     </div>

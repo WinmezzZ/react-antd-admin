@@ -1,10 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { panelData } from '~/config/data/panel';
 import { TagsBarItem, TagsBarState } from '~/interface/layout/tags-bar.interface';
 
+const homeMenu = panelData.find(item => item.ShowIndex === 1)!.Menus[0];
+
+console.log(homeMenu);
+
 const initialState: TagsBarState = {
-  activeTagId: '',
-  tags: [],
+  activeTagPath: homeMenu.path,
+  tags: [
+    {
+      ...homeMenu,
+      closable: false,
+    },
+  ],
 };
 
 const tagsBarSlice = createSlice({
@@ -12,49 +22,49 @@ const tagsBarSlice = createSlice({
   initialState,
   reducers: {
     setActiveTag(state, action: PayloadAction<string>) {
-      state.activeTagId = action.payload;
+      state.activeTagPath = action.payload;
     },
     addTag(state, action: PayloadAction<TagsBarItem>) {
-      if (!state.tags.find(tag => tag.key === action.payload.key)) {
+      if (!state.tags.find(tag => tag.path === action.payload.path)) {
         state.tags.push(action.payload);
       }
 
-      state.activeTagId = action.payload.key;
+      state.activeTagPath = action.payload.path;
     },
     removeTag(state, action: PayloadAction<string>) {
       const targetKey = action.payload;
       // dashboard cloud't be closed
 
-      if (targetKey === state.tags[0].key) {
+      if (targetKey === state.tags[0].path) {
         return;
       }
 
-      const activeTagId = state.activeTagId;
+      const activeTagPath = state.activeTagPath;
       let lastIndex = 0;
 
       state.tags.forEach((tag, i) => {
-        if (tag.key === targetKey) {
+        if (tag.path === targetKey) {
           state.tags.splice(i, 1);
           lastIndex = i - 1;
         }
       });
-      const tagList = state.tags.filter(tag => tag.key !== targetKey);
+      const tagList = state.tags.filter(tag => tag.path !== targetKey);
 
-      if (tagList.length && activeTagId === targetKey) {
+      if (tagList.length && activeTagPath === targetKey) {
         if (lastIndex >= 0) {
-          state.activeTagId = tagList[lastIndex].key;
+          state.activeTagPath = tagList[lastIndex].path;
         } else {
-          state.activeTagId = tagList[0].key;
+          state.activeTagPath = tagList[0].path;
         }
       }
     },
     removeAllTag(state) {
-      state.activeTagId = state.tags[0].key;
+      state.activeTagPath = state.tags[0].path;
       state.tags = [state.tags[0]];
     },
     removeOtherTag(state) {
-      const activeTag = state.tags.find(tag => tag.key === state.activeTagId);
-      const activeIsDashboard = activeTag!.key === state.tags[0].key;
+      const activeTag = state.tags.find(tag => tag.path === state.activeTagPath);
+      const activeIsDashboard = activeTag!.path === state.tags[0].path;
 
       state.tags = activeIsDashboard ? [state.tags[0]] : [state.tags[0], activeTag!];
     },

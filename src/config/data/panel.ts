@@ -18,18 +18,18 @@ export const panelData = [
     ],
     Menus: [
       {
-        name: '节点列表',
-        url: 'list',
+        title: '节点列表',
+        path: '/nodemgr/list',
         code: 'list',
       },
       {
-        name: '分组管理',
-        url: 'group',
+        title: '分组管理',
+        path: '/nodemgr/group',
         code: 'group',
       },
       {
-        name: '使用手册',
-        url: 'help',
+        title: '使用手册',
+        path: '/nodemgr/help',
         code: 'help',
       },
     ],
@@ -53,18 +53,18 @@ export const panelData = [
     ],
     Menus: [
       {
-        name: '用户列表',
-        url: 'list',
+        title: '用户列表',
+        path: '/usermgr/list',
         code: 'list',
       },
       {
-        name: '分组管理',
-        url: 'group',
+        title: '分组管理',
+        path: '/usermgr/group',
         code: 'group',
       },
       {
-        name: '登录日志',
-        url: 'log',
+        title: '登录日志',
+        path: '/usermgr/log',
         code: 'log',
       },
     ],
@@ -88,13 +88,13 @@ export const panelData = [
     ],
     Menus: [
       {
-        name: '受控端',
-        url: 'agent',
+        title: '受控端',
+        path: '/licensemgr/agent',
         code: 'agent',
       },
       {
-        name: '控制中心',
-        url: 'ccenter',
+        title: '控制中心',
+        path: '/licensemgr/ccenter',
         code: 'ccenter',
       },
     ],
@@ -118,23 +118,23 @@ export const panelData = [
     ],
     Menus: [
       {
-        name: '所有软件',
-        url: 'list-all',
+        title: '所有软件',
+        path: '/appmgr/list-all',
         code: 'list-all',
       },
       {
-        name: '已安装',
-        url: 'installed',
+        title: '已安装',
+        path: '/appmgr/installed',
         code: 'installed',
       },
       {
-        name: '可用更新',
-        url: 'update',
+        title: '可用更新',
+        path: '/appmgr/update',
         code: 'update',
       },
       {
-        name: '软件仓库设置',
-        url: 'repo',
+        title: '软件仓库设置',
+        path: '/appmgr/repo',
         code: 'repo',
       },
     ],
@@ -158,13 +158,13 @@ export const panelData = [
     ],
     Menus: [
       {
-        name: '文件对传',
-        url: 'file',
+        title: '文件对传',
+        path: '/dftransfer/file',
         code: 'file',
       },
       {
-        name: '参数设置',
-        url: 'config',
+        title: '参数设置',
+        path: '/dftransfer/config',
         code: 'config',
       },
     ],

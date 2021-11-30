@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeAllTag, removeOtherTag, removeTag } from '~/store/tags-bar.store';
 
 const TagsBarAction: FC = () => {
-  const { activeTagId } = useSelector(state => state.tags);
+  const { activeTagPath } = useSelector(state => state.tags);
   const dispatch = useDispatch();
 
   return (
     <Dropdown
       overlay={
         <Menu>
-          <Menu.Item key="0" onClick={() => dispatch(removeTag(activeTagId))}>
+          <Menu.Item key="0" onClick={() => dispatch(removeTag(activeTagPath))}>
             关闭当前
           </Menu.Item>
           <Menu.Item key="1" onClick={() => dispatch(removeOtherTag())}>

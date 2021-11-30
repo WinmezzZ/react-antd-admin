@@ -5,14 +5,12 @@ import { MenuList } from '~/interface/common/menu.interface';
 
 interface State {
   CSRFToken?: string;
-  navMenuList: MenuList;
-  sideMenuList: MenuList;
+  menuList: MenuList;
 }
 
 const initialState: State = {
   CSRFToken: JSCookie.get('CSRFToken'),
-  navMenuList: [],
-  sideMenuList: [],
+  menuList: [],
 };
 
 const userSlice = createSlice({
