@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { MyResponse } from '~/api/request';
+import { axiosCancel, MyResponse } from '~/api/request';
 import { Pagination } from '~/interface/common/pagination.interface';
 
 interface ApiMethod<K = any, V = any> {
@@ -49,6 +49,12 @@ export function useTable<T extends ApiMethod>(options: UseTableOptions<T>) {
   useEffect(() => {
     getData();
   }, [pageSize, pageNum]);
+
+  useEffect(() => {
+    return () => {
+      axiosCancel && axiosCancel();
+    };
+  }, []);
 
   return {
     onTableChange,

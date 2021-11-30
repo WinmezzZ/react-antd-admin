@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, Canceler } from 'axios';
 import Cookies from 'js-cookie';
 import qs from 'query-string';
 
@@ -11,6 +11,10 @@ const axiosInstance = axios.create({
   withCredentials: true,
   timeout: 2000,
 });
+
+const CancelToken = axios.CancelToken;
+
+export let axiosCancel: Canceler | null = null;
 
 axiosInstance.interceptors.request.use(
   config => {
@@ -113,11 +117,24 @@ export const request = <T = any>(
   const params = Object.assign(data, { api_action: url });
 
   if (method === 'post') {
-    return axiosInstance.post('api', qs.stringify(params), config);
+    return axiosInstance.post('api', qs.stringify(params), {
+      ...config,
+      cancelToken: new CancelToken(function executor(cancel) {
+        setTimeout(() => {
+          axiosCancel = cancel;
+        }, 20);
+      }),
+    });
   } else {
     return axiosInstance.get('/api', {
       params,
-      ...config,
+      ...Object.assign({}, config, {
+        cancelToken: new CancelToken(function executor(cancel) {
+          setTimeout(() => {
+            axiosCancel = cancel;
+          }, 20);
+        }),
+      }),
     });
   }
 };
