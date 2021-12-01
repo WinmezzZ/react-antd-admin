@@ -1,9 +1,4 @@
-import { request } from '../request';
-
-/** 桌面菜单接口 */
-export const apiDesktopInit = () => request<DeskTopResult>('get', 'Desktop.Init', { api_ccenter_app: 'core' });
-
-interface Panel {
+export interface Panel {
   PanelCode: string;
   PanelIsUpgradable: string;
   PanelLastestVersion: string;
@@ -15,6 +10,6 @@ interface Panel {
   SoftwareId: number;
 }
 
-interface DeskTopResult {
+export interface DeskTopResult {
   PanelList: Panel[];
 }
