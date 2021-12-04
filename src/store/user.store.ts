@@ -4,11 +4,13 @@ import JSCookie from 'js-cookie';
 import { MenuList } from '~/interface/common/menu.interface';
 
 interface State {
+  isLogin: boolean;
   CSRFToken?: string;
   menuList: MenuList;
 }
 
 const initialState: State = {
+  isLogin: false,
   CSRFToken: JSCookie.get('CSRFToken'),
   menuList: [],
 };

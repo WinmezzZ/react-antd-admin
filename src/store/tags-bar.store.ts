@@ -5,8 +5,6 @@ import { TagsBarItem, TagsBarState } from '~/interface/layout/tags-bar.interface
 
 const homeMenu = panelData.find(item => item.ShowIndex === 1)!.Menus[0];
 
-console.log(homeMenu);
-
 const initialState: TagsBarState = {
   activeTagPath: homeMenu.path,
   tags: [

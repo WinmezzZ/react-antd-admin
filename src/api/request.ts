@@ -6,6 +6,7 @@ import qs from 'query-string';
 import { history } from '~/route/history';
 import store from '~/store';
 import { setGlobalState } from '~/store/global.store';
+import { setUserState } from '~/store/user.store';
 
 const axiosInstance = axios.create({
   withCredentials: true,
@@ -18,16 +19,22 @@ export let axiosCancel: Canceler | null = null;
 
 axiosInstance.interceptors.request.use(
   config => {
-    store.dispatch(
-      setGlobalState({
-        loading: true,
-      }),
-    );
+    // store.dispatch(
+    //   setGlobalState({
+    //     loading: true,
+    //   }),
+    // );
+
     if (history.location.pathname !== '/login') {
       //
       config.headers = {
         'X-CSRF-TOKEN': store.getState().user.CSRFToken || '',
       };
+
+      // cookie 失效后的请求全部取消
+      if (!store.getState().user.isLogin) {
+        axiosCancel && axiosCancel();
+      }
     }
 
     return config;
@@ -54,9 +61,16 @@ axiosInstance.interceptors.response.use(
 
       if (config.data?.CODE === 'SessionNotAuthed') {
         Cookies.remove('CSRFToken');
-        history.replace('/login', {
-          from: history.location.pathname,
-        });
+        store.dispatch(
+          setUserState({
+            isLogin: false,
+          }),
+        );
+        setTimeout(() => {
+          history.replace('/login', {
+            from: history.location.pathname,
+          });
+        }, 0);
       }
     }
 
@@ -122,7 +136,7 @@ export const request = <T = any>(
       cancelToken: new CancelToken(function executor(cancel) {
         setTimeout(() => {
           axiosCancel = cancel;
-        }, 20);
+        }, 0);
       }),
     });
   } else {
@@ -132,7 +146,7 @@ export const request = <T = any>(
         cancelToken: new CancelToken(function executor(cancel) {
           setTimeout(() => {
             axiosCancel = cancel;
-          }, 20);
+          }, 0);
         }),
       }),
     });

@@ -27,6 +27,7 @@ const LoginForm: FC = () => {
       JSCookie.set('CSRFToken', res.DATA.CSRFToken);
       dispatch(
         setUserState({
+          isLogin: true,
           CSRFToken: res.DATA.CSRFToken,
         }),
       );

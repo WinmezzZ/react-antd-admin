@@ -13,7 +13,6 @@ export type Level = keyof typeof NotificationLevelEnum;
 const HeaderNotice: FC = () => {
   const [tab, setTab] = useState<Level | undefined>(undefined);
 
-  console.log(tab);
   const { panination, tableData, reload } = usePagination({
     apiMethod: apiNotificationList,
     apiParams: {

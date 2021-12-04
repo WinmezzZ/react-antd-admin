@@ -53,7 +53,6 @@ const TagsBar: FC = () => {
     if (menuList.length) {
       const menu = menuList.find(m => m.path === location.pathname);
 
-      console.log(menuList, menu);
       if (menu) {
         dispatch(
           addTag({

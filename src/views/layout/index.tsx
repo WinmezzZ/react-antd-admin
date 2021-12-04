@@ -65,8 +65,6 @@ const LayoutPage: FC = () => {
       );
     }
 
-    console.log(key);
-
     jump && navigate(key);
   };
 
