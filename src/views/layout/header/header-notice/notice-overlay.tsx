@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import { Avatar, Button, List, Tabs, TabsProps } from 'antd';
 import moment from 'moment';
 import { FC } from 'react';
+import { useNavigate } from 'react-router';
 
 import { NotificationLevelEnum } from '~/config/enum/notification-level.enum';
 import { Notification } from '~/interface/app-notification/notification.interface';
@@ -27,6 +28,8 @@ interface NoticeListProps {
 const NoticeList: FC<NoticeListProps> = props => {
   const { list, onChangeTab, active } = props;
 
+  const navigate = useNavigate();
+
   const onTabClick: TabsProps['onTabClick'] = item => {
     onChangeTab((item === 'null' ? undefined : item) as any);
   };
@@ -39,7 +42,7 @@ const NoticeList: FC<NoticeListProps> = props => {
   };
 
   const onViewMore = () => {
-    //
+    navigate('/notification');
   };
 
   return (

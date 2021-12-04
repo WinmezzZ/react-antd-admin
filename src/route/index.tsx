@@ -8,10 +8,12 @@ const LayoutPage = lazy(() => import('~/views/layout/index'));
 const NodeMgrPage = lazy(() => import('~/views/nodemgr/index'));
 const NodeMgrNodeListPage = lazy(() => import('~/views/nodemgr/node-list'));
 const NodeMgrNodeGroupListPage = lazy(() => import('~/views/nodemgr/node-group'));
+const NotificationPage = lazy(() => import('~/views/notification'));
 
 const routeList: RouteObject[] = [
   {
     path: 'login',
+    caseSensitive: true,
     element: <LoginPage />,
   },
   {
@@ -49,6 +51,12 @@ const routeList: RouteObject[] = [
             element: <NotFoundPage />,
           },
         ],
+      },
+
+      {
+        path: 'notification',
+        caseSensitive: true,
+        element: <NotificationPage />,
       },
 
       {
