@@ -38,7 +38,7 @@ const HeaderNotice: FC = () => {
       placement="bottomRight"
       overlay={<NoticeList list={tableData} onChangeTab={onChangeTab} />}
     >
-      <Badge count={panination.total}>
+      <Badge offset={[15, 0]} count={panination.total}>
         <Remind />
       </Badge>
     </Dropdown>

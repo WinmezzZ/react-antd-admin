@@ -5,7 +5,7 @@ import { FC } from 'react';
 
 import { NotificationLevelEnum } from '~/config/enum/notification-level.enum';
 import { Notification } from '~/interface/app-notification/notification.interface';
-import styleMap from '~/style/style';
+import themMap from '~/style/theme';
 
 import { Level } from '.';
 
@@ -105,8 +105,8 @@ const styles = css`
     height: 46px;
     line-height: 46px;
     text-align: center;
-    border-top: 1px solid ${styleMap.borderColorSplit};
-    border-radius: 0 0 ${styleMap.borderRadiusBase} ${styleMap.borderRadiusBase};
+    border-top: 1px solid ${themMap.borderColor.primary};
+    border-radius: 0 0 ${themMap.borderRadiusBase} ${themMap.borderRadiusBase};
     transition: all 0.3s;
     div {
       display: inline-block;
@@ -119,7 +119,7 @@ const styles = css`
         width: 100%;
       }
       &:not(:only-child):last-child {
-        border-left: 1px solid ${styleMap.borderColorSplit};
+        border-left: 1px solid ${themMap.borderColor.primary};
       }
     }
   }

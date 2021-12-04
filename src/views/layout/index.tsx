@@ -142,7 +142,8 @@ const styles = css`
       display: flex;
     }
     .header-icon {
-      margin-right: 30px;
+      display: flex;
+      margin-right: 40px;
       cursor: pointer;
       .i-icon {
         display: flex;
