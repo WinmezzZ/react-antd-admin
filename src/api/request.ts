@@ -19,11 +19,11 @@ export let axiosCancel: Canceler | null = null;
 
 axiosInstance.interceptors.request.use(
   config => {
-    // store.dispatch(
-    //   setGlobalState({
-    //     loading: true,
-    //   }),
-    // );
+    store.dispatch(
+      setGlobalState({
+        loading: true,
+      }),
+    );
 
     if (history.location.pathname !== '/login') {
       //
