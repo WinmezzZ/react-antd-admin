@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { FileQuestion, Logout, Moon, Remind, SettingTwo, Sun, User } from '@icon-park/react';
+import { FileQuestion, Logout, Moon, SettingTwo, Sun, User } from '@icon-park/react';
 import { Dropdown, Layout, Menu, Tooltip } from 'antd';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +11,8 @@ import { MenuList } from '~/interface/common/menu.interface';
 import { setGlobalState } from '~/store/global.store';
 import { setUserState } from '~/store/user.store';
 import { getPanelCode } from '~/utils/getStrTimesIndex';
+
+import NoticeIconView from './header/header-notice';
 
 const { Header } = Layout;
 
@@ -93,11 +95,9 @@ const LayoutPage: FC = () => {
               {theme === 'light' ? <Moon /> : <Sun />}
             </span>
           </Tooltip>
-          <Tooltip title="消息通知">
-            <span className="header-icon">
-              <Remind />
-            </span>
-          </Tooltip>
+          <span className="header-icon">
+            <NoticeIconView />
+          </span>
 
           <Dropdown
             overlay={

@@ -1,12 +1,12 @@
 import { NotificationLevelEnum } from '~/config/enum/notification-level.enum';
 
-import { Pagination } from '../common/pagination.interface';
+import { PageParams, Pagination } from '../common/pagination.interface';
 
-export interface NotificationListParams {
+export interface NotificationListParams extends PageParams {
   /** 是否已读 */
-  IsRead: YN;
+  IsRead?: YN;
   /** 应用代号 */
-  AppCode: string;
+  AppCode?: string;
   /** 	通知标题 */
   Title?: string;
   /** 通知等级 */
@@ -33,4 +33,8 @@ export interface Notification {
 
 export type NotificationList = Notification[];
 
-export type NotificationListResult = Pagination<'NodeGroupList', NotificationList>;
+export type NotificationListResult = Pagination<'Notification', NotificationList>;
+
+export interface NotificationSetReadParams {
+  Id: number;
+}

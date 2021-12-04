@@ -26,6 +26,14 @@ export default defineConfig({
       },
     },
   },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+      // ....
+    },
+  },
   plugins: [
     react({
       jsxImportSource: '@emotion/react',
@@ -33,13 +41,21 @@ export default defineConfig({
         plugins: ['@emotion/babel-plugin'],
       },
     }),
-    // vitePluginImp({
-    //   libList: [
-    //     {
-    //       libName: 'antd',
-    //       style: name => `antd/es/${name}/style/index.css`,
-    //     },
-    //   ],
-    // }),
+    vitePluginImp({
+      libList: [
+        // {
+        //   libName: 'antd',
+        //   style: name => `antd/es/${name}/style/index.css`,
+        // },
+        {
+          libName: 'lodash',
+          libDirectory: '',
+          camel2DashComponentName: false,
+          style: () => {
+            return false;
+          },
+        },
+      ],
+    }),
   ],
 });

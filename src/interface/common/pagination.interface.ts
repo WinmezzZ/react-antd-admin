@@ -15,7 +15,7 @@ export type Pagination<K, V> = DataKeyValue<K, V> & {
 
 export interface PageParams {
   /** 页数 */
-  _pageNumber: number;
+  _pageNumber?: number;
   /** 每页条数 */
-  _pageSize: number;
+  _pageSize?: number;
 }

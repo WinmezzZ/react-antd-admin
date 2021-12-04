@@ -50,7 +50,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <ConfigProvider componentSize="small" iconPrefixCls="appnode" locale={zh_CN}>
+    <ConfigProvider componentSize="middle" iconPrefixCls="appnode" locale={zh_CN}>
       <ThemeSwitcherProvider defaultTheme={theme} themeMap={themes}>
         <HistoryRouter history={history}>
           <Suspense fallback={<h1>Loading...</h1>}>

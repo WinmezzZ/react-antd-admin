@@ -17,20 +17,34 @@ interface UseTableOptions<T extends ApiMethod> {
   pageNum?: number;
 }
 
-export function useTable<T extends ApiMethod>(options: UseTableOptions<T>) {
-  const { apiMethod, apiParams = {}, resultListKeyPath } = options;
+interface GetDataOptions<T extends ApiMethod> {
+  currentPage?: number;
+  currentSize?: number;
+  params?: Parameters<T>[0];
+}
+
+export function usePagination<T extends ApiMethod>(options: UseTableOptions<T>) {
+  const { apiMethod, apiParams, resultListKeyPath } = options;
   const [pageSize, setPageSize] = useState(options.pageSize || 20);
   const [pageNum, setPageNum] = useState(options.pageNum || 1);
   const [total, setTotal] = useState(0);
   const [tableData, setTableData] = useState<TableDataItem<ReturnType<T>>[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const getData = async (currentPage = pageNum, currentSize = pageSize) => {
+  const getData = async (options?: GetDataOptions<T>) => {
+    const defaultOptions: GetDataOptions<T> = {
+      currentPage: pageNum,
+      currentSize: pageSize,
+      params: apiParams,
+    };
+    const { currentPage, currentSize, params } = options || defaultOptions;
+
     setLoading(true);
     const res = await apiMethod({
-      _pageNumber: currentPage,
-      _pageSize: currentSize,
+      _pageNumber: currentPage || pageNum,
+      _pageSize: currentSize || pageSize,
       ...apiParams,
+      ...params,
     });
 
     setLoading(false);
@@ -43,8 +57,12 @@ export function useTable<T extends ApiMethod>(options: UseTableOptions<T>) {
   const onTableChange = (currentPage: number, pageSize: number) => {
     setPageNum(currentPage);
     setPageSize(pageSize);
-    getData(currentPage);
+    getData({
+      currentPage,
+    });
   };
+
+  const reload = getData;
 
   useEffect(() => {
     getData();
@@ -61,6 +79,7 @@ export function useTable<T extends ApiMethod>(options: UseTableOptions<T>) {
     loading,
     tableData,
     setTableData,
+    reload,
     panination: {
       currentPage: pageNum,
       pageSize: pageSize,
