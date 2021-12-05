@@ -31,13 +31,15 @@ export function usePagination<T extends ApiMethod>(options: UseTableOptions<T>) 
   const [tableData, setTableData] = useState<TableDataItem<ReturnType<T>>[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const getData = async (options?: GetDataOptions<T>) => {
+  const getData = async (dataOptions?: GetDataOptions<T>) => {
     const defaultOptions: GetDataOptions<T> = {
       currentPage: pageNum,
       currentSize: pageSize,
       params: apiParams,
     };
-    const { currentPage, currentSize, params } = options || defaultOptions;
+
+    const assignedOptions = Object.assign({}, dataOptions || defaultOptions, options.apiParams);
+    const { currentPage, currentSize, params } = assignedOptions;
 
     setLoading(true);
     const res = await apiMethod({
@@ -62,7 +64,13 @@ export function usePagination<T extends ApiMethod>(options: UseTableOptions<T>) 
     });
   };
 
-  const reload = getData;
+  const reload = (params?: Parameters<T>[0]) => {
+    setPageNum(1);
+    getData({
+      params,
+      ...params,
+    });
+  };
 
   useEffect(() => {
     getData();
@@ -81,7 +89,7 @@ export function usePagination<T extends ApiMethod>(options: UseTableOptions<T>) 
     setTableData,
     reload,
     panination: {
-      currentPage: pageNum,
+      current: pageNum,
       pageSize: pageSize,
       total,
       onChange: onTableChange,
