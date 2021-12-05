@@ -1,5 +1,6 @@
 import { Layout, Menu, MenuItemProps, Skeleton } from 'antd';
 import { FC, Suspense } from 'react';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
 import { MenuList } from '~/interface/common/menu.interface';
@@ -15,12 +16,13 @@ interface LayoutMainPageProps {
 
 export const LayoutMainPage: FC<LayoutMainPageProps> = props => {
   const { menu, onClickMenu, selectNavSideMenuKey } = props;
+  const { menuCollaped } = useSelector(state => state.global);
 
   return (
     <Layout>
       {menu && (
-        <Sider>
-          <Menu onClick={onClickMenu} style={{ maxWidth: 190, height: '100%' }} selectedKeys={[selectNavSideMenuKey]}>
+        <Sider trigger={null} collapsible collapsedWidth={0} collapsed={menuCollaped}>
+          <Menu onClick={onClickMenu} style={{ height: '100%' }} selectedKeys={[selectNavSideMenuKey]}>
             {menu.map(item => (
               <Menu.Item key={item.path}>{item.title}</Menu.Item>
             ))}

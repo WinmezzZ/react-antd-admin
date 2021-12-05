@@ -1,15 +1,17 @@
 import { css } from '@emotion/react';
-import { FileQuestion, Logout, Moon, SettingTwo, Sun, User } from '@icon-park/react';
+import { FileQuestion, Logout, MenuFoldOne, MenuUnfoldOne, Moon, SettingTwo, Sun, User } from '@icon-park/react';
 import { Dropdown, Layout, Menu, Tooltip } from 'antd';
-import { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { LayoutMainPage } from '~/components/layout-main-page';
 import { panelData } from '~/config/data/panel';
 import { MenuList } from '~/interface/common/menu.interface';
 import { setGlobalState } from '~/store/global.store';
 import { setUserState } from '~/store/user.store';
+import themeMap from '~/style/theme';
 import { getPanelCode } from '~/utils/getStrTimesIndex';
 
 import NoticeIconView from './header/header-notice';
@@ -17,7 +19,7 @@ import NoticeIconView from './header/header-notice';
 const { Header } = Layout;
 
 const LayoutPage: FC = () => {
-  const { theme } = useSelector(state => state.global);
+  const { theme, menuCollaped } = useSelector(state => state.global);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -64,14 +66,34 @@ const LayoutPage: FC = () => {
     );
   };
 
+  const onSetSiderCollapsed = () => {
+    dispatch(
+      setGlobalState({
+        menuCollaped: !menuCollaped,
+      }),
+    );
+  };
+
   return (
     <Layout css={styles}>
       <Header className="appnode-header bg-1">
-        <Menu mode="horizontal" selectedKeys={[selectNavKey]} onClick={d => onClickNav(d.key)}>
-          {visivleNavitems.map(item => (
-            <Menu.Item key={item.code}>{item.title}</Menu.Item>
-          ))}
-        </Menu>
+        <div className="fcc">
+          <Link to="/" className="logo-img">
+            <img src={`/src/assets/images/app/logo-header.png`} />
+          </Link>
+          {React.createElement(menuCollaped ? MenuFoldOne : MenuUnfoldOne, {
+            theme: 'outline',
+            size: '24',
+            fill: '#333',
+            className: 'trigger',
+            onClick: onSetSiderCollapsed,
+          })}
+          <Menu mode="horizontal" selectedKeys={[selectNavKey]} onClick={d => onClickNav(d.key)}>
+            {visivleNavitems.map(item => (
+              <Menu.Item key={item.code}>{item.title}</Menu.Item>
+            ))}
+          </Menu>
+        </div>
         <div className="header-icon-wrapper">
           <Tooltip title={`切换到${theme === 'dark' ? '浅色' : '深色'}主题`}>
             <span className="header-icon" onClick={onSwitchTheme}>
@@ -122,13 +144,25 @@ const styles = css`
     align-items: center;
     background-color: transparent;
     box-shadow: 0 2px 8px #f0f1f2;
-    padding: 0;
+    padding: 0 20px;
     .header-icon-wrapper {
       display: flex;
+      justify-content: flex-end;
+    }
+    .logo-img {
+      text-align: center;
+      width: 200px;
+      margin-left: -20px;
+      background-color: ${themeMap.primaryColor};
+    }
+    .trigger {
+      line-height: 1;
+      cursor: pointer;
+      margin-left: 8px;
     }
     .header-icon {
       display: flex;
-      margin-right: 40px;
+      margin-left: 40px;
       cursor: pointer;
       .i-icon {
         display: flex;
