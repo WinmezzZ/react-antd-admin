@@ -40,7 +40,7 @@ const NodeManageNodeListPage: FC = () => {
           const item = Object.keys(res.d).find(i => +i === node.NodeId);
 
           if (!item) return node;
-
+          if (!res.d[item]) return node;
           const data = res.d[item].Performance;
 
           return {
