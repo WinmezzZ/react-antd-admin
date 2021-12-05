@@ -4,15 +4,19 @@ interface State {
   theme: 'light' | 'dark';
   loading: boolean;
   menuCollaped: boolean;
+  isMobile: boolean;
 }
 
 const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 const userTheme = localStorage.getItem('theme') as State['theme'];
 
+const isMobile = window.innerWidth <= 500;
+
 const initialState: State = {
   theme: userTheme || systemTheme,
   loading: false,
-  menuCollaped: false,
+  menuCollaped: isMobile,
+  isMobile: isMobile,
 };
 
 const globalSlice = createSlice({

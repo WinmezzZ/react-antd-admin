@@ -78,7 +78,7 @@ const LayoutPage: FC = () => {
     <Layout css={styles}>
       <Header className="appnode-header bg-1">
         <div className="fcc">
-          <Link to="/" className="logo-img">
+          <Link to="/" className="logo-img" style={menuCollaped ? { display: 'none' } : {}}>
             <img src={`/src/assets/images/app/logo-header.png`} />
           </Link>
           {React.createElement(menuCollaped ? MenuFoldOne : MenuUnfoldOne, {
