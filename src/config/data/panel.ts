@@ -19,7 +19,7 @@ export const panelData = [
     Menus: [
       {
         title: '节点列表',
-        path: '/nodemgr/list',
+        path: '/nodemgr',
         code: 'list',
       },
       {
@@ -54,7 +54,7 @@ export const panelData = [
     Menus: [
       {
         title: '用户列表',
-        path: '/usermgr/list',
+        path: '/usermgr',
         code: 'list',
       },
       {
@@ -89,7 +89,7 @@ export const panelData = [
     Menus: [
       {
         title: '受控端',
-        path: '/licensemgr/agent',
+        path: '/licensemgr',
         code: 'agent',
       },
       {
@@ -119,7 +119,7 @@ export const panelData = [
     Menus: [
       {
         title: '所有软件',
-        path: '/appmgr/list-all',
+        path: '/appmgr',
         code: 'list-all',
       },
       {
@@ -159,7 +159,7 @@ export const panelData = [
     Menus: [
       {
         title: '文件对传',
-        path: '/dftransfer/file',
+        path: '/dftransfer',
         code: 'file',
       },
       {
@@ -181,7 +181,7 @@ export const panelData = [
     Menus: [
       {
         title: '系统通知',
-        path: '/notification/list',
+        path: '/notification',
         code: 'notification',
       },
       {

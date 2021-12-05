@@ -34,11 +34,6 @@ const routeList: RouteObject[] = [
           {
             path: '',
             caseSensitive: true,
-            element: <Navigate to="list" />,
-          },
-          {
-            path: 'list',
-            caseSensitive: true,
             element: <NodeMgrNodeListPage />,
           },
           {

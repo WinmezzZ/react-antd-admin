@@ -20,11 +20,7 @@ export const LayoutMainPage: FC<LayoutMainPageProps> = props => {
     <Layout>
       {menu && (
         <Sider>
-          <Menu
-            onClick={onClickMenu}
-            style={{ maxWidth: 190, height: '100%' }}
-            defaultSelectedKeys={[selectNavSideMenuKey]}
-          >
+          <Menu onClick={onClickMenu} style={{ maxWidth: 190, height: '100%' }} selectedKeys={[selectNavSideMenuKey]}>
             {menu.map(item => (
               <Menu.Item key={item.path}>{item.title}</Menu.Item>
             ))}

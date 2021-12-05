@@ -40,14 +40,11 @@ const LayoutPage: FC = () => {
   };
 
   useEffect(() => {
-    console.log(selectNavKey);
     const panel = panelData.find(item => item.PanelCode === selectNavKey);
-
-    console.log(panelData);
 
     if (panel) {
       setNavSideMenu(panel.Menus);
-      setSelectNavSideMenuKey(panel.Menus[0].code);
+      setSelectNavSideMenuKey(panel.Menus[0].path);
       dispatch(
         setUserState({
           menuList: panel.Menus,
