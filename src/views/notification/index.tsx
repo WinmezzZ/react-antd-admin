@@ -1,7 +1,8 @@
 import { Table } from 'antd';
 import { ColumnProps } from 'antd/lib/table';
+import { Key } from 'antd/lib/table/interface';
 import moment from 'moment';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import { apiNotificationList } from '~/api/app-notification/notification.api';
 import { NotificationLevelEnum } from '~/config/enum/notification-level.enum';
@@ -15,18 +16,23 @@ const NotificationPage: FC = () => {
     apiMethod: apiNotificationList,
     resultListKeyPath: 'NotificationList',
   });
+  const [selectKeys, setSelectKeys] = useState<Key[]>([]);
 
   return (
     <div>
       <NotificationSearch />
       <Table
-        rowKey="CreateTime"
+        rowKey="Id"
         bordered
         columns={columns}
         dataSource={tableData}
         pagination={false}
         loading={loading}
-        scroll={{ x: 1200, y: 500 }}
+        rowSelection={{
+          selectedRowKeys: selectKeys,
+          onChange: keys => setSelectKeys(keys),
+        }}
+        scroll={{ x: 800, y: 500 }}
       />
     </div>
   );

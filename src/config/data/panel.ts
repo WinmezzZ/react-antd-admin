@@ -169,4 +169,36 @@ export const panelData = [
       },
     ],
   },
+  {
+    PanelCode: 'notification',
+    PanelName: '通知中心',
+    PanelVersion: '',
+    PanelLastestVersion: '',
+    PanelIsUpgradable: 'N',
+    PanelUIVersion: '2017122701',
+    SoftwareId: 14,
+    ShowInMenu: 'N',
+    Menus: [
+      {
+        title: '系统通知',
+        path: '/notification/list',
+        code: 'notification',
+      },
+      {
+        title: '官网公告',
+        path: '/notification/announcement',
+        code: 'announcement',
+      },
+      {
+        title: '邮件发送设置',
+        path: '/notification/setting',
+        code: 'setting',
+      },
+      {
+        title: '通知回调设置',
+        path: '/notification/callback',
+        code: 'callback',
+      },
+    ],
+  },
 ];

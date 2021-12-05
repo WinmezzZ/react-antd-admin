@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { FileQuestion, Logout, Moon, SettingTwo, Sun, User } from '@icon-park/react';
 import { Dropdown, Layout, Menu, Tooltip } from 'antd';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -21,52 +21,40 @@ const LayoutPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const navItems = panelData.map(item => ({
-    title: item.PanelName,
-    code: item.PanelCode,
-  }));
-  const [selectNavKey, setSelectNavKey] = useState(() => getPanelCode(location.pathname));
+  const visivleNavitems = panelData
+    .filter(item => item.ShowInMenu === 'Y')
+    .map(item => ({
+      title: item.PanelName,
+      code: item.PanelCode,
+    }));
+  const selectNavKey = useMemo(() => {
+    return getPanelCode(location.pathname);
+  }, [location.pathname]);
+
   const [navSideMenu, setNavSideMenu] = useState<MenuList>([]);
 
   const [selectNavSideMenuKey, setSelectNavSideMenuKey] = useState<string>(location.pathname);
 
+  const onClickNav = (key: string) => {
+    navigate(key);
+  };
+
   useEffect(() => {
-    onClickNav(selectNavKey, 0, false);
-  }, []);
+    console.log(selectNavKey);
+    const panel = panelData.find(item => item.PanelCode === selectNavKey);
 
-  const onClickNav = (key: string, level: number, jump = true) => {
-    const panel = panelData.find(item => item.PanelCode === (level === 0 ? key : selectNavKey));
+    console.log(panelData);
 
-    if (!panel) return;
-
-    const menu = panel.Menus;
-
-    // dispatch(
-    //   setUserState({
-    //     navMenuList: menu.map(item => ({
-    //       key: item.eventKey,
-    //       title: item.title,
-    //       path: item.eventKey,
-    //     })),
-    //   }),
-    // );
-
-    setSelectNavKey(getPanelCode(key));
-    setNavSideMenu(menu);
-    setSelectNavSideMenuKey(menu[0].code);
-
-    const activePanel = panelData.find(item => item.PanelCode === key);
-
-    if (activePanel) {
+    if (panel) {
+      setNavSideMenu(panel.Menus);
+      setSelectNavSideMenuKey(panel.Menus[0].code);
       dispatch(
         setUserState({
-          menuList: activePanel.Menus,
+          menuList: panel.Menus,
         }),
       );
     }
-
-    jump && navigate(key);
-  };
+  }, [selectNavKey]);
 
   const onSwitchTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -82,8 +70,8 @@ const LayoutPage: FC = () => {
   return (
     <Layout css={styles}>
       <Header className="appnode-header bg-1">
-        <Menu mode="horizontal" selectedKeys={[selectNavKey]} onClick={d => onClickNav(d.key, 0)}>
-          {navItems.map(item => (
+        <Menu mode="horizontal" selectedKeys={[selectNavKey]} onClick={d => onClickNav(d.key)}>
+          {visivleNavitems.map(item => (
             <Menu.Item key={item.code}>{item.title}</Menu.Item>
           ))}
         </Menu>
@@ -122,7 +110,7 @@ const LayoutPage: FC = () => {
       <LayoutMainPage
         menu={navSideMenu}
         selectNavSideMenuKey={selectNavSideMenuKey}
-        onClickMenu={e => onClickNav(e.key, 1)}
+        onClickMenu={e => onClickNav(e.key)}
       />
     </Layout>
   );

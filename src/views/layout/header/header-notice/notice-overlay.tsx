@@ -23,10 +23,11 @@ interface NoticeListProps {
   list: Notification[];
   active?: Level;
   onChangeTab: (tab: Level) => void;
+  onVisibleChange: (visible: boolean) => void;
 }
 
 const NoticeList: FC<NoticeListProps> = props => {
-  const { list, onChangeTab, active } = props;
+  const { list, onChangeTab, onVisibleChange, active } = props;
 
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ const NoticeList: FC<NoticeListProps> = props => {
   };
 
   const onViewMore = () => {
+    onVisibleChange(false);
     navigate('/notification');
   };
 

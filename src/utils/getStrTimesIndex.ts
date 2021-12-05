@@ -12,7 +12,6 @@ export function getStrTimesIndex(str: string, cha: string, num: number) {
 }
 
 export function getPanelCode(path: string) {
-  console.log(path);
   const index0 = getStrTimesIndex(path, '/', 0);
   const index1 = getStrTimesIndex(path, '/', 1);
 

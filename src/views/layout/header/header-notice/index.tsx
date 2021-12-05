@@ -12,6 +12,7 @@ export type Level = keyof typeof NotificationLevelEnum;
 
 const HeaderNotice: FC = () => {
   const [tab, setTab] = useState<Level | undefined>(undefined);
+  const [visible, setVisible] = useState(false);
 
   const { panination, tableData, reload } = usePagination({
     apiMethod: apiNotificationList,
@@ -31,12 +32,18 @@ const HeaderNotice: FC = () => {
     });
   };
 
+  const onVisibleChange = (visible: boolean) => {
+    setVisible(visible);
+  };
+
   return (
     <Dropdown
+      visible={visible}
+      onVisibleChange={onVisibleChange}
       overlayClassName="bg-2"
       trigger={['click']}
       placement="bottomRight"
-      overlay={<NoticeList list={tableData} onChangeTab={onChangeTab} />}
+      overlay={<NoticeList list={tableData} onChangeTab={onChangeTab} onVisibleChange={onVisibleChange} />}
     >
       <Badge offset={[15, 0]} count={panination.total}>
         <Remind />
