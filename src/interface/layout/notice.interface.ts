@@ -2,7 +2,7 @@ export enum EventStatus {
   todo = 'rgba(255,255,255,0.65)',
   urgent = '#f5222d',
   doing = '#faad14',
-  processing = '#1890ff'
+  processing = '#1890ff',
 }
 
 interface Base {
@@ -35,6 +35,7 @@ export interface Event extends Base {
 }
 
 type Notices = Notification | Message | Event;
+
 export type Notice<T extends Notices['type'] | 'all' = 'all'> = T extends 'all'
   ? Notices
   : Extract<Notices, { type: T }>;

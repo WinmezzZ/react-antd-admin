@@ -4,7 +4,7 @@ import { getTableData } from 'utils/get-table-page-data';
 import { Response } from '../api/request';
 
 Mock.setup({
-  timeout: 300
+  timeout: 300,
 });
 
 export type ArrayElementType<T> = T extends (infer U)[] ? U : any; // Mock the real back-end api structure.
@@ -24,13 +24,13 @@ export function intercepter(data: any, page?: PageParams) {
     return {
       status: true,
       message: '成功',
-      result
+      result,
     };
   } else {
     return {
       status: true,
       message: '成功',
-      result: data
+      result: data,
     };
   }
 }

@@ -3,7 +3,7 @@ enum DeviceList {
   /** telephone */
   MOBILE = 'MOBILE',
   /** computer */
-  DESKTOP = 'DESKTOP'
+  DESKTOP = 'DESKTOP',
 }
 
 export type Device = keyof typeof DeviceList;

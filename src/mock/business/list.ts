@@ -9,7 +9,7 @@ const data: BuniesssUser[] = [
     lastName: 'Brown',
     age: 32,
     address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer']
+    tags: ['nice', 'developer'],
   },
   {
     key: '2',
@@ -17,7 +17,7 @@ const data: BuniesssUser[] = [
     lastName: 'Green',
     age: 42,
     address: 'London No. 1 Lake Park',
-    tags: ['loser']
+    tags: ['loser'],
   },
   {
     key: '3',
@@ -25,8 +25,8 @@ const data: BuniesssUser[] = [
     lastName: 'Black',
     age: 32,
     address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher']
-  }
+    tags: ['cool', 'teacher'],
+  },
 ];
 
 new Array(30).fill(undefined).forEach((item, index) => {
@@ -36,7 +36,7 @@ new Array(30).fill(undefined).forEach((item, index) => {
     lastName: 'Black' + index,
     age: 32 + index,
     address: 'Sidney No. 1 Lake Park' + index,
-    tags: ['cool', 'teacher']
+    tags: ['cool', 'teacher'],
   });
 });
 
