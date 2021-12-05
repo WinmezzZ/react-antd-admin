@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 
 import { NotificationLevelEnum } from '~/config/enum/notification-level.enum';
 import { Notification } from '~/interface/app-notification/notification.interface';
-import themMap from '~/style/theme';
+import themeMap from '~/style/theme';
 
 import { Level } from '.';
 
@@ -95,8 +95,14 @@ export default NoticeList;
 
 const styles = css`
   width: 336px;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px -8px rgb(0 0 0 / 8%), 0 9px 28px 0 rgb(0 0 0 / 5%), 0 12px 48px 16px rgb(0 0 0 / 3%);
   .ant-tabs-nav-list {
     margin: auto;
+  }
+
+  .ant-list-item-meta-title {
+    font-weight: 400;
   }
 
   .ant-tabs-tab {
@@ -110,8 +116,8 @@ const styles = css`
     height: 46px;
     line-height: 46px;
     text-align: center;
-    border-top: 1px solid ${themMap.borderColor.primary};
-    border-radius: 0 0 ${themMap.borderRadiusBase} ${themMap.borderRadiusBase};
+    border-top: 1px solid ${themeMap.borderColor.primary};
+    border-radius: 0 0 ${themeMap.borderRadiusBase} ${themeMap.borderRadiusBase};
     transition: all 0.3s;
     div {
       display: inline-block;
@@ -124,7 +130,7 @@ const styles = css`
         width: 100%;
       }
       &:not(:only-child):last-child {
-        border-left: 1px solid ${themMap.borderColor.primary};
+        border-left: 1px solid ${themeMap.borderColor.primary};
       }
     }
   }

@@ -26,9 +26,7 @@ const HeaderNotice: FC = () => {
   const onChangeTab = (tab: Level) => {
     setTab(tab);
     reload({
-      params: {
-        Level: tab,
-      },
+      Level: tab,
     });
   };
 

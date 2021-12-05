@@ -2,7 +2,11 @@ import { css } from '@emotion/react';
 import { Button, DatePicker, Tabs } from 'antd';
 import { FC, useState } from 'react';
 
-interface NotificationSearchProps {}
+import { NotificationListParams } from '~/interface/app-notification/notification.interface';
+
+interface NotificationSearchProps {
+  onChange: (params: NotificationListParams) => void;
+}
 
 const tabMap = {
   '0': '未读通知',
@@ -11,11 +15,14 @@ const tabMap = {
 
 type TabKeys = keyof typeof tabMap;
 
-const NotificationSearch: FC<NotificationSearchProps> = () => {
+const NotificationSearch: FC<NotificationSearchProps> = ({ onChange }) => {
   const [tab, setTab] = useState<TabKeys>('0');
 
   const onTabClick = (value: string) => {
     setTab(value as TabKeys);
+    onChange({
+      IsRead: value === '0' ? 'N' : 'Y',
+    });
   };
 
   return (
@@ -27,7 +34,7 @@ const NotificationSearch: FC<NotificationSearchProps> = () => {
       </Tabs>
 
       <div className="search">
-        <DatePicker.RangePicker />
+        <DatePicker.RangePicker onChange={value => onChange({ CreateTime: value })} />
         <Button type="primary">搜索</Button>
       </div>
       {tab === '0' && (

@@ -12,7 +12,7 @@ import { Notification } from '~/interface/app-notification/notification.interfac
 import NotificationSearch from './components/notification-search';
 
 const NotificationPage: FC = () => {
-  const { tableData, loading } = usePagination({
+  const { tableData, panination, loading, reload } = usePagination({
     apiMethod: apiNotificationList,
     resultListKeyPath: 'NotificationList',
   });
@@ -20,19 +20,19 @@ const NotificationPage: FC = () => {
 
   return (
     <div>
-      <NotificationSearch />
+      <NotificationSearch onChange={reload} />
       <Table
         rowKey="Id"
         bordered
         columns={columns}
         dataSource={tableData}
-        pagination={false}
+        pagination={panination}
         loading={loading}
         rowSelection={{
           selectedRowKeys: selectKeys,
           onChange: keys => setSelectKeys(keys),
         }}
-        scroll={{ x: 800, y: 500 }}
+        scroll={{ x: 800, y: 450 }}
       />
     </div>
   );
