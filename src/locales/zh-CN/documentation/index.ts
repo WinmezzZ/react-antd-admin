@@ -16,5 +16,5 @@ export const zhCN_documentation = {
   'app.documentation.catalogue.list.request': '网络请求',
   'app.documentation.catalogue.list.theme': '主题',
   'app.documentation.catalogue.list.typescript': 'Typescript',
-  'app.documentation.catalogue.list.international': '国际化'
+  'app.documentation.catalogue.list.international': '国际化',
 };

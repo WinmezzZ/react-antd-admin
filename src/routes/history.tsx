@@ -11,7 +11,7 @@ interface HistoryRouterProps {
 export const HistoryRouter: React.FC<HistoryRouterProps> = ({ history, children }) => {
   const [state, setState] = React.useState({
     action: history.action,
-    location: history.location
+    location: history.location,
   });
 
   React.useLayoutEffect(() => {

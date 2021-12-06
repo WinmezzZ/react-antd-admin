@@ -1,13 +1,14 @@
+import path from 'path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import vitePluginImp from 'vite-plugin-imp';
+import svgrPlugin from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: 'src',
   resolve: {
     alias: {
-      // '~': path.join(__dirname, 'src'),
+      '@': path.join(__dirname, 'src'),
     },
   },
   server: {
@@ -24,6 +25,7 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         javascriptEnabled: true,
+        modifyVars: { '@primary-color': '#13c2c2' },
       },
       // ....
     },
@@ -50,6 +52,12 @@ export default defineConfig({
           },
         },
       ],
+    }),
+    svgrPlugin({
+      svgrOptions: {
+        icon: true,
+        // ...svgr options (https://react-svgr.com/docs/options/)
+      },
     }),
   ],
 });

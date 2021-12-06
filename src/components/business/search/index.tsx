@@ -1,5 +1,5 @@
-import MyForm, { MyFormProps } from 'components/core/form';
-import MyButton from 'components/basic/button';
+import MyForm, { MyFormProps } from '@/components/core/form';
+import MyButton from '@/components/basic/button';
 import { css } from '@emotion/react';
 
 interface SearchProps<T> extends MyFormProps<T> {
@@ -12,6 +12,7 @@ const BaseSearch = <T extends object>(props: SearchProps<T>) => {
 
   const onSubmit = async () => {
     const values = await form.validateFields();
+
     if (values) {
       onSearch(values);
     }
@@ -34,7 +35,7 @@ const BaseSearch = <T extends object>(props: SearchProps<T>) => {
 };
 
 const MySearch = Object.assign(BaseSearch, {
-  Item: MyForm.Item
+  Item: MyForm.Item,
 });
 
 export default MySearch;

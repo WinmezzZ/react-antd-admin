@@ -12,10 +12,12 @@ const DashBoardPage: FC = () => {
     const timer = setTimeout(() => {
       setLoading(undefined as any);
     }, 2000);
+
     return () => {
       clearTimeout(timer);
     };
   }, []);
+
   return (
     <div>
       <Overview loading={loading} />

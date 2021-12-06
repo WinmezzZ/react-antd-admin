@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { LocaleFormatter } from 'locales';
+import { LocaleFormatter } from '@/locales';
 import './index.less';
 
 const RoutePermissionPage: FC = () => {

@@ -17,7 +17,7 @@ const en_US = {
   ...enUS_permissionRole,
   ...enUS_dashboard,
   ...enUS_guide,
-  ...en_US_documentation
+  ...en_US_documentation,
 };
 
 export default en_US;

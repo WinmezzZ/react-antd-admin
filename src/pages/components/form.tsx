@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import MyButton from 'components/basic/button';
-import MyForm from 'components/core/form';
+import MyButton from '@/components/basic/button';
+import MyForm from '@/components/core/form';
 
 const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 }
+  wrapperCol: { offset: 8, span: 16 },
 };
 
 interface Data {

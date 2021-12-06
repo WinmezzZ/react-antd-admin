@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { Card, Row, Col, List, Radio, Badge } from 'antd';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
 import { ColProps } from 'antd/lib/col';
-import { useLocale } from 'locales';
+import { useLocale } from '@/locales';
 import { useSelector } from 'react-redux';
 
 type DataType = 'all' | 'online' | 'offline';
@@ -28,7 +28,7 @@ const data: Data = {
     { name: { zh_CN: '个护健康', en_US: 'health' }, value: 3113 },
     { name: { zh_CN: '服饰箱包', en_US: 'clothing' }, value: 2341 },
     { name: { zh_CN: '母婴产品', en_US: 'baby' }, value: 1231 },
-    { name: { zh_CN: '其他', en_US: 'others' }, value: 132 }
+    { name: { zh_CN: '其他', en_US: 'others' }, value: 132 },
   ],
   online: [
     { name: { zh_CN: '家用电器', en_US: 'appliances' }, value: 244 },
@@ -36,15 +36,15 @@ const data: Data = {
     { name: { zh_CN: '个护健康', en_US: 'health' }, value: 311 },
     { name: { zh_CN: '服饰箱包', en_US: 'clothing' }, value: 41 },
     { name: { zh_CN: '母婴产品', en_US: 'baby' }, value: 121 },
-    { name: { zh_CN: '其他', en_US: 'others' }, value: 111 }
+    { name: { zh_CN: '其他', en_US: 'others' }, value: 111 },
   ],
   offline: [
     { name: { zh_CN: '家用电器', en_US: 'appliances' }, value: 99 },
     { name: { zh_CN: '食用酒水', en_US: 'drinks' }, value: 188 },
     { name: { zh_CN: '个护健康', en_US: 'health' }, value: 344 },
     { name: { zh_CN: '服饰箱包', en_US: 'clothing' }, value: 255 },
-    { name: { zh_CN: '其他', en_US: 'others' }, value: 65 }
-  ]
+    { name: { zh_CN: '其他', en_US: 'others' }, value: 65 },
+  ],
 };
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#E36E7E', '#8F66DE'];
@@ -55,7 +55,7 @@ const wrapperCol: ColProps = {
   md: 12,
   lg: 12,
   xl: 12,
-  xxl: 12
+  xxl: 12,
 };
 
 const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
@@ -86,12 +86,14 @@ const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
                     const { name, value } = payload[0];
                     const total = data[dataType].map(d => d.value).reduce((a, b) => a + b);
                     const percent = ((value / total) * 100).toFixed(2) + '%';
+
                     return (
                       <span className="customTooltip">
                         {name[locale]} : {percent}
                       </span>
                     );
                   }
+
                   return null;
                 }}
               />
@@ -117,6 +119,7 @@ const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
             renderItem={(item, index) => {
               const total = data[dataType].map(d => d.value).reduce((a, b) => a + b);
               const percent = ((item.value / total) * 100).toFixed(2) + '%';
+
               return (
                 <List.Item>
                   <Badge color={COLORS[index]} />

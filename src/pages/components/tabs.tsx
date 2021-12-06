@@ -1,15 +1,15 @@
 import { FC } from 'react';
-import MyTabs, { MyTabsOption } from 'components/business/tabs';
+import MyTabs, { MyTabsOption } from '@/components/business/tabs';
 
 const options: MyTabsOption[] = [
   {
     label: 'Tab-1',
-    value: 1
+    value: 1,
   },
   {
     label: 'Tab-2',
-    value: 2
-  }
+    value: 2,
+  },
 ];
 
 const TabsPage: FC = () => {

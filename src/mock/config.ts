@@ -1,6 +1,6 @@
-import { PageData } from 'interface';
+import { PageData } from '@/interface';
 import Mock from 'mockjs';
-import { getTableData } from 'utils/get-table-page-data';
+import { getTableData } from '@/utils/get-table-page-data';
 import { Response } from '../api/request';
 
 Mock.setup({

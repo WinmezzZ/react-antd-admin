@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
-import { apiLogin, apiLogout } from 'api/user.api';
-import { LoginParams, Role } from 'interface/user/login';
-import { Locale, UserState } from 'interface/user/user';
+import { apiLogin, apiLogout } from '@/api/user.api';
+import { LoginParams, Role } from '@/interface/user/login';
+import { Locale, UserState } from '@/interface/user/user';
 import { createAsyncAction } from './utils';
-import { getGlobalState } from 'utils/getGloabal';
+import { getGlobalState } from '@/utils/getGloabal';
 
 const initialState: UserState = {
   ...getGlobalState(),
@@ -13,7 +13,7 @@ const initialState: UserState = {
   logged: localStorage.getItem('t') ? true : false,
   menuList: [],
   username: localStorage.getItem('username') || '',
-  role: (localStorage.getItem('username') || '') as Role
+  role: (localStorage.getItem('username') || '') as Role,
 };
 
 const userSlice = createSlice({
@@ -28,8 +28,8 @@ const userSlice = createSlice({
       }
 
       Object.assign(state, action.payload);
-    }
-  }
+    },
+  },
 });
 
 export const { setUserItem } = userSlice.actions;
@@ -57,19 +57,22 @@ export default userSlice.reducer;
 
 // typed wrapper async thunk function demo, no extra feature, just for powerful typings
 export const loginAsync = createAsyncAction<LoginParams, boolean>(payload => {
-  return async (dispatch, getState) => {
+  return async dispatch => {
     const { result, status } = await apiLogin(payload);
+
     if (status) {
       localStorage.setItem('t', result.token);
       localStorage.setItem('username', result.username);
       dispatch(
         setUserItem({
           logged: true,
-          username: result.username
-        })
+          username: result.username,
+        }),
       );
+
       return true;
     }
+
     return false;
   };
 });
@@ -77,15 +80,18 @@ export const loginAsync = createAsyncAction<LoginParams, boolean>(payload => {
 export const logoutAsync = () => {
   return async (dispatch: Dispatch) => {
     const { status } = await apiLogout({ token: localStorage.getItem('t')! });
+
     if (status) {
       localStorage.clear();
       dispatch(
         setUserItem({
-          logged: false
-        })
+          logged: false,
+        }),
       );
+
       return true;
     }
+
     return false;
   };
 };

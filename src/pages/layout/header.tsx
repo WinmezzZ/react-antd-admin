@@ -3,14 +3,14 @@ import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } fr
 import { Layout, Dropdown, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import HeaderNoticeComponent from './notice';
-import Avator from 'assets/header/avator.jpeg';
-import { ReactComponent as LanguageSvg } from 'assets/header/language.svg';
-import { ReactComponent as ZhCnSvg } from 'assets/header/zh_CN.svg';
-import { ReactComponent as EnUsSvg } from 'assets/header/en_US.svg';
-import { LocaleFormatter, useLocale } from 'locales';
-import ReactSvg from 'assets/logo/react.svg';
-import AntdSvg from 'assets/logo/antd.svg';
-import { logoutAsync, setUserItem } from 'stores/user.store';
+import Avator from '@/assets/header/avator.jpeg';
+import { ReactComponent as LanguageSvg } from '@/assets/header/language.svg';
+import { ReactComponent as ZhCnSvg } from '@/assets/header/zh_CN.svg';
+import { ReactComponent as EnUsSvg } from '@/assets/header/en_US.svg';
+import { LocaleFormatter, useLocale } from '@/locales';
+import ReactSvg from '@/assets/logo/react.svg';
+import AntdSvg from '@/assets/logo/antd.svg';
+import { logoutAsync, setUserItem } from '@/stores/user.store';
 import { useDispatch, useSelector } from 'react-redux';
 
 const { Header } = Layout;
@@ -36,7 +36,9 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
         return;
       case 'logout':
         const res = Boolean(await dispatch(logoutAsync()));
+
         res && navigate('/login');
+
         return;
     }
   };
@@ -70,6 +72,7 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
       </Menu.Item>
     </Menu>
   );
+
   return (
     <Header className="layout-page-header">
       {device !== 'MOBILE' && (

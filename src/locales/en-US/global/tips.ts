@@ -14,5 +14,5 @@ export const enUS_globalTips = {
   'gloabal.tips.modify': 'Modify',
   'gloabal.tips.search': 'Search',
   'gloabal.tips.reset': 'Reset',
-  'gloabal.tips.deleteConfirm': 'Do you Want to delete these items?'
+  'gloabal.tips.deleteConfirm': 'Do you Want to delete these items?',
 };

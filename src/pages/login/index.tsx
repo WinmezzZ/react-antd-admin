@@ -2,15 +2,15 @@ import { FC } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import './index.less';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { LoginParams } from 'interface/user/login';
-import { loginAsync } from 'stores/user.store';
+import { LoginParams } from '@/interface/user/login';
+import { loginAsync } from '@/stores/user.store';
 import { useDispatch } from 'react-redux';
 import { Location } from 'history';
-import { formatSearch } from 'utils/formatSearch';
+import { formatSearch } from '@/utils/formatSearch';
 
 const initialValues: LoginParams = {
   username: 'guest',
-  password: 'guest'
+  password: 'guest',
   // remember: true
 };
 
@@ -21,9 +21,11 @@ const LoginForm: FC = () => {
 
   const onFinished = async (form: LoginParams) => {
     const res = dispatch(await loginAsync(form));
+
     if (!!res) {
       const search = formatSearch(location.search);
       const from = search.from || { pathname: '/' };
+
       navigate(from);
     }
   };

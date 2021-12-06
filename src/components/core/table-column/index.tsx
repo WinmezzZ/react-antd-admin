@@ -6,7 +6,7 @@ import { getPathValue } from 'rc-table/lib/utils/valueUtil';
 const MyTableColumn = <RecordType extends object = object>(props: MyTableColumnProps<RecordType>) => {
   const { options, date, time, datetime, render, ...rest } = props;
 
-  const renderContent = (value: any, record: RecordType, index: number) => {
+  const renderContent = (value: any, record: RecordType) => {
     if (!value) return '-';
 
     if ('datetime' in props) {

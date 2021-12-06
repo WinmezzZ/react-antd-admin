@@ -2,8 +2,8 @@ import { useRef } from 'react';
 import Driver from 'driver.js';
 import 'driver.js/dist/driver.min.css';
 import './index.less';
-import { useLocale } from 'locales';
-import { setUserItem } from 'stores/user.store';
+import { useLocale } from '@/locales';
+import { setUserItem } from '@/stores/user.store';
 import { useDispatch } from 'react-redux';
 
 export const useGuide = () => {
@@ -18,8 +18,8 @@ export const useGuide = () => {
       closeBtnText: formatMessage({ id: 'app.guide.driverjs.closeBtnText' }),
       prevBtnText: formatMessage({ id: 'app.guide.driverjs.prevBtnText' }),
       nextBtnText: formatMessage({ id: 'app.guide.driverjs.nextBtnText' }),
-      doneBtnText: formatMessage({ id: 'app.guide.driverjs.doneBtnText' })
-    })
+      doneBtnText: formatMessage({ id: 'app.guide.driverjs.doneBtnText' }),
+    }),
   );
 
   const driverStart = () => {
@@ -32,8 +32,8 @@ export const useGuide = () => {
             description: formatMessage({ id: 'app.guide.driverStep.sidebarTrigger.description' }),
             position: 'bottom',
             offset: 10,
-            isFirst: true
-          }
+            isFirst: true,
+          },
         },
         {
           element: '#notice-center',
@@ -41,8 +41,8 @@ export const useGuide = () => {
             title: formatMessage({ id: 'app.guide.driverStep.notices.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.notices.description' }),
             position: 'bottom',
-            offset: -160
-          }
+            offset: -160,
+          },
         },
         {
           element: '#language-change',
@@ -50,8 +50,8 @@ export const useGuide = () => {
             title: formatMessage({ id: 'app.guide.driverStep.switchLanguages.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.switchLanguages.description' }),
             position: 'bottom',
-            offset: -170
-          }
+            offset: -170,
+          },
         },
         {
           element: '#pageTabs .ant-tabs-nav.ant-tabs-nav-animated',
@@ -59,16 +59,16 @@ export const useGuide = () => {
             title: formatMessage({ id: 'app.guide.driverStep.pageTabs.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.pageTabs.description' }),
             position: 'bottom',
-            offset: 30
-          }
+            offset: 30,
+          },
         },
         {
           element: '#pageTabs-actions svg',
           popover: {
             title: formatMessage({ id: 'app.guide.driverStep.pageTabsActions.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.pageTabsActions.description' }),
-            position: 'left'
-          }
+            position: 'left',
+          },
         },
         {
           element: '#switchTheme span',
@@ -76,16 +76,16 @@ export const useGuide = () => {
             title: formatMessage({ id: 'app.guide.driverStep.switchTheme.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.switchTheme.description' }),
             position: 'left',
-            isLast: true
-          }
-        }
+            isLast: true,
+          },
+        },
       ]);
 
       localStorage.setItem('newUser', 'false');
       dispatch(
         setUserItem({
-          newUser: false
-        })
+          newUser: false,
+        }),
       );
       driver.current.start();
       console.log('guide started');
@@ -93,7 +93,7 @@ export const useGuide = () => {
   };
 
   return {
-    driverStart
+    driverStart,
   };
 };
 

@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 import { ColumnsType } from 'antd/lib/table/interface';
-import { MyResponse } from 'api/request';
-import MyTable from 'components/core/table';
-import { PageData } from 'interface';
+import { MyResponse } from '@/api/request';
+import MyTable from '@/components/core/table';
+import { PageData } from '@/interface';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
-import { useStates } from 'utils/use-states';
+import { useStates } from '@/utils/use-states';
 import MyAside, { MyAsideProps } from '../aside';
 import MyRadioCards, { MyRadioCardssOption } from '../radio-cards';
 import MySearch from '../search';
@@ -20,7 +20,7 @@ export type MyPageTableOptions<S> = ColumnsType<S>;
 export interface PageProps<S> {
   searchRender?: React.ReactNode;
   pageApi?: S;
-  pageParams?: Object;
+  pageParams?: object;
   tableOptions?: MyPageTableOptions<ParseDataType<S>>;
   tableRender?: (data: MyPageTableOptions<ParseDataType<S>>[]) => React.ReactNode;
   asideData?: MyAsideProps['options'];
@@ -52,13 +52,13 @@ const BasePage = <S extends SearchApi>(props: PageProps<S>, ref: React.Ref<RefPa
     radioCardsData,
     radioCardsValue,
     tabsData,
-    tabsValue
+    tabsValue,
   } = props;
   const [pageData, setPageData] = useStates<PageData<ParseDataType<S>>>({
     pageSize: 20,
     pageNum: 1,
     total: 0,
-    data: []
+    data: [],
   });
 
   const [asideCheckedKey, setAsideCheckedKey] = useState(asideValue);
@@ -79,16 +79,16 @@ const BasePage = <S extends SearchApi>(props: PageProps<S>, ref: React.Ref<RefPa
           ...pageParams,
           pageSize: pageData.pageSize,
           pageNum: pageData.pageNum,
-          [asideKey!]: asideCheckedKey
+          [asideKey!]: asideCheckedKey,
         };
         const res = await pageApi(obj);
+
         if (res.status) {
           setPageData({ total: res.result.total, data: res.result.data });
         }
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [pageApi, pageParams, pageData.pageSize, pageData.pageNum, asideKey, asideCheckedKey]
+    [pageApi, pageParams, pageData.pageSize, pageData.pageNum, asideKey, asideCheckedKey],
   );
 
   useEffect(() => {
@@ -112,7 +112,7 @@ const BasePage = <S extends SearchApi>(props: PageProps<S>, ref: React.Ref<RefPa
 
   useImperativeHandle(ref, () => ({
     setAsideCheckedKey,
-    load: (data?: object) => getPageData(data)
+    load: (data?: object) => getPageData(data),
   }));
 
   return (
@@ -146,7 +146,7 @@ const BasePage = <S extends SearchApi>(props: PageProps<S>, ref: React.Ref<RefPa
                   current: pageData.pageNum,
                   pageSize: pageData.pageSize,
                   total: pageData.total,
-                  onChange: onPageChange
+                  onChange: onPageChange,
                 }}
               >
                 {tableRender?.(pageData.data)}
@@ -160,7 +160,7 @@ const BasePage = <S extends SearchApi>(props: PageProps<S>, ref: React.Ref<RefPa
 };
 
 const BasePageRef = forwardRef(BasePage) as <S extends SearchApi>(
-  props: PageProps<S> & { ref?: React.Ref<RefPageProps> }
+  props: PageProps<S> & { ref?: React.Ref<RefPageProps> },
 ) => React.ReactElement;
 
 type BasePageType = typeof BasePageRef;

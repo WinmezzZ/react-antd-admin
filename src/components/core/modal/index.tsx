@@ -20,6 +20,7 @@ const BaseModal = <FormValues extends object>(props: MyModalProps<FormValues>) =
   const onOk = async () => {
     if (form) {
       const data = await formInstance.validateFields();
+
       onClose && onClose(data);
     } else {
       onClose && onClose();
@@ -40,7 +41,7 @@ const BaseModal = <FormValues extends object>(props: MyModalProps<FormValues>) =
 };
 
 BaseModal.defaultProps = {
-  width: '1000px'
+  width: '1000px',
 };
 
 const MyModal = Object.assign(BaseModal, Modal);

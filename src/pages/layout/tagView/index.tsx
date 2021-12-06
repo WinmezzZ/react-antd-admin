@@ -3,7 +3,7 @@ import { Tabs } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import TagsViewAction from './tagViewAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTag, removeTag, setActiveTag } from 'stores/tags-view.store';
+import { addTag, removeTag, setActiveTag } from '@/stores/tags-view.store';
 
 const { TabPane } = Tabs;
 
@@ -17,6 +17,7 @@ const TagsView: FC = () => {
   // onClick tag
   const onChange = (key: string) => {
     const tag = tags.find(tag => tag.id === key);
+
     if (tag) {
       setCurrentTag(tag.id);
       navigate(tag.path);
@@ -42,22 +43,24 @@ const TagsView: FC = () => {
         dispatch(setActiveTag(tag.id));
       }
     },
-    [dispatch, location.pathname, tags]
+    [dispatch, location.pathname, tags],
   );
 
   useEffect(() => {
     if (menuList.length) {
       const menu = menuList.find(m => m.path === location.pathname);
+
       if (menu) {
         // Initializes dashboard page.
         const dashboard = menuList[0];
+
         dispatch(
           addTag({
             path: dashboard.path,
             label: dashboard.label,
             id: dashboard.key,
-            closable: false
-          })
+            closable: false,
+          }),
         );
         // Initializes the tag generated for the current page
         // Duplicate tag will be ignored in redux.
@@ -66,8 +69,8 @@ const TagsView: FC = () => {
             path: menu.path,
             label: menu.label,
             id: menu.key,
-            closable: true
-          })
+            closable: true,
+          }),
         );
       }
     }
@@ -77,6 +80,7 @@ const TagsView: FC = () => {
   useEffect(() => {
     if (tags && activeTagId) {
       const target = tags.filter(e => e.id === activeTagId);
+
       navigate(target[0].path);
     }
   }, [tags, activeTagId, navigate]);

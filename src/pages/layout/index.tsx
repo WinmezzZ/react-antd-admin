@@ -3,14 +3,14 @@ import { Layout, Drawer } from 'antd';
 import './index.less';
 import MenuComponent from './menu';
 import HeaderComponent from './header';
-import { getGlobalState } from 'utils/getGloabal';
+import { getGlobalState } from '@/utils/getGloabal';
 import TagsView from './tagView';
 import SuspendFallbackLoading from './suspendFallbackLoading';
-import { getMenuList } from 'api/layout.api';
-import { MenuList, MenuChild } from 'interface/layout/menu.interface';
+import { getMenuList } from '@/api/layout.api';
+import { MenuList, MenuChild } from '@/interface/layout/menu.interface';
 import { useGuide } from '../guide/useGuide';
 import { Outlet, useLocation, useNavigate } from 'react-router';
-import { setUserItem } from 'stores/user.store';
+import { setUserItem } from '@/stores/user.store';
 import { useDispatch, useSelector } from 'react-redux';
 
 const { Sider, Content } = Layout;
@@ -34,13 +34,14 @@ const LayoutPage: FC = () => {
   const toggle = () => {
     dispatch(
       setUserItem({
-        collapsed: !collapsed
-      })
+        collapsed: !collapsed,
+      }),
     );
   };
 
   const initMenuListAll = (menu: MenuList) => {
     const MenuListAll: MenuChild[] = [];
+
     menu.forEach(m => {
       if (!m?.children?.length) {
         MenuListAll.push(m);
@@ -50,17 +51,19 @@ const LayoutPage: FC = () => {
         });
       }
     });
+
     return MenuListAll;
   };
 
   const fetchMenuList = useCallback(async () => {
     const { status, result } = await getMenuList();
+
     if (status) {
       setMenuList(result);
       dispatch(
         setUserItem({
-          menuList: initMenuListAll(result)
-        })
+          menuList: initMenuListAll(result),
+        }),
       );
     }
   }, [dispatch]);
@@ -74,18 +77,18 @@ const LayoutPage: FC = () => {
       const { device } = getGlobalState();
       const rect = document.body.getBoundingClientRect();
       const needCollapse = rect.width < WIDTH;
+
       dispatch(
         setUserItem({
           device,
-          collapsed: needCollapse
-        })
+          collapsed: needCollapse,
+        }),
       );
     };
   }, [dispatch]);
 
   useEffect(() => {
     newUser && driverStart();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newUser]);
 
   return (

@@ -13,6 +13,7 @@ export interface MyAsideProps extends Omit<TreeProps, 'treeData'> {
 
 const MyAside: FC<MyAsideProps> = props => {
   const { options, header, footer, ...rest } = props;
+
   return (
     <div css={styles}>
       {header && (

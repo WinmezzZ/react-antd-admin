@@ -1,4 +1,4 @@
-import { MenuList } from 'interface/layout/menu.interface';
+import { MenuList } from '@/interface/layout/menu.interface';
 import { mock, intercepter } from '../config';
 
 const mockMenuList: MenuList = [
@@ -6,37 +6,37 @@ const mockMenuList: MenuList = [
     name: 'dashboard',
     label: {
       zh_CN: '首页',
-      en_US: 'Dashboard'
+      en_US: 'Dashboard',
     },
     icon: 'dashboard',
     key: '0',
-    path: '/dashboard'
+    path: '/dashboard',
   },
   {
     name: 'documentation',
     label: {
       zh_CN: '文档',
-      en_US: 'Documentation'
+      en_US: 'Documentation',
     },
     icon: 'documentation',
     key: '1',
-    path: '/documentation'
+    path: '/documentation',
   },
   {
     name: 'guide',
     label: {
       zh_CN: '引导',
-      en_US: 'Guide'
+      en_US: 'Guide',
     },
     icon: 'guide',
     key: '2',
-    path: '/guide'
+    path: '/guide',
   },
   {
     name: 'permission',
     label: {
       zh_CN: '权限',
-      en_US: 'Permission'
+      en_US: 'Permission',
     },
     icon: 'permission',
     key: '3',
@@ -46,27 +46,27 @@ const mockMenuList: MenuList = [
         name: 'routePermission',
         label: {
           zh_CN: '路由权限',
-          en_US: 'Route Permission'
+          en_US: 'Route Permission',
         },
         key: '2-0',
-        path: '/permission/route'
+        path: '/permission/route',
       },
       {
         name: 'notFound',
         label: {
           zh_CN: '404',
-          en_US: '404'
+          en_US: '404',
         },
         key: '2-3',
-        path: '/permission/404'
-      }
-    ]
+        path: '/permission/404',
+      },
+    ],
   },
   {
     name: 'component',
     label: {
       zh_CN: '组件',
-      en_US: 'Component'
+      en_US: 'Component',
     },
     icon: 'permission',
     key: '5',
@@ -76,64 +76,64 @@ const mockMenuList: MenuList = [
         name: 'componentForm',
         label: {
           zh_CN: '表单',
-          en_US: 'Form'
+          en_US: 'Form',
         },
         key: '5-0',
-        path: '/component/form'
+        path: '/component/form',
       },
       {
         name: 'componentTable',
         label: {
           zh_CN: '表格',
-          en_US: 'Table'
+          en_US: 'Table',
         },
         key: '5-1',
-        path: '/component/table'
+        path: '/component/table',
       },
       {
         name: 'componentSearch',
         label: {
           zh_CN: '查询',
-          en_US: 'Search'
+          en_US: 'Search',
         },
         key: '5-2',
-        path: '/component/search'
+        path: '/component/search',
       },
       {
         name: 'componentAside',
         label: {
           zh_CN: '侧边栏',
-          en_US: 'Aside'
+          en_US: 'Aside',
         },
         key: '5-3',
-        path: '/component/aside'
+        path: '/component/aside',
       },
       {
         name: 'componentTabs',
         label: {
           zh_CN: '选项卡',
-          en_US: 'Tabs'
+          en_US: 'Tabs',
         },
         key: '5-4',
-        path: '/component/tabs'
+        path: '/component/tabs',
       },
       {
         name: 'componentRadioCards',
         label: {
           zh_CN: '单选卡片',
-          en_US: 'Radio Cards'
+          en_US: 'Radio Cards',
         },
         key: '5-5',
-        path: '/component/radio-cards'
-      }
-    ]
+        path: '/component/radio-cards',
+      },
+    ],
   },
 
   {
     name: 'business',
     label: {
       zh_CN: '业务',
-      en_US: 'Business'
+      en_US: 'Business',
     },
     icon: 'permission',
     key: '6',
@@ -143,49 +143,49 @@ const mockMenuList: MenuList = [
         name: 'basic',
         label: {
           zh_CN: '基本',
-          en_US: 'Basic'
+          en_US: 'Basic',
         },
         key: '6-0',
-        path: '/business/basic'
+        path: '/business/basic',
       },
       {
         name: 'withSearch',
         label: {
           zh_CN: '带查询',
-          en_US: 'WithSearch'
+          en_US: 'WithSearch',
         },
         key: '6-1',
-        path: '/business/with-search'
+        path: '/business/with-search',
       },
       {
         name: 'withAside',
         label: {
           zh_CN: '带侧边栏',
-          en_US: 'WithAside'
+          en_US: 'WithAside',
         },
         key: '6-2',
-        path: '/business/with-aside'
+        path: '/business/with-aside',
       },
       {
         name: 'withRadioCard',
         label: {
           zh_CN: '带单选卡片',
-          en_US: 'With Nav Tabs'
+          en_US: 'With Nav Tabs',
         },
         key: '6-3',
-        path: '/business/with-radio-cards'
+        path: '/business/with-radio-cards',
       },
       {
         name: 'withTabs',
         label: {
           zh_CN: '带选项卡',
-          en_US: 'With Tabs'
+          en_US: 'With Tabs',
         },
         key: '6-4',
-        path: '/business/with-tabs'
-      }
-    ]
-  }
+        path: '/business/with-tabs',
+      },
+    ],
+  },
 ];
 
 mock.mock('/user/menu', 'get', intercepter(mockMenuList));

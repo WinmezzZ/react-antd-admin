@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TagItem, TagState } from 'interface/layout/tagsView.interface';
+import { TagItem, TagState } from '@/interface/layout/tagsView.interface';
 
 const initialState: TagState = {
   activeTagId: '',
-  tags: []
+  tags: [],
 };
 
 const tagsViewSlice = createSlice({
@@ -23,11 +23,12 @@ const tagsViewSlice = createSlice({
     removeTag(state, action: PayloadAction<string>) {
       const targetKey = action.payload;
       // dashboard cloud't be closed
+
       if (targetKey === state.tags[0].id) {
         return;
       }
 
-      let activeTagId = state.activeTagId;
+      const activeTagId = state.activeTagId;
       let lastIndex = 0;
 
       state.tags.forEach((tag, i) => {
@@ -37,6 +38,7 @@ const tagsViewSlice = createSlice({
         }
       });
       const tagList = state.tags.filter(tag => tag.id !== targetKey);
+
       if (tagList.length && activeTagId === targetKey) {
         if (lastIndex >= 0) {
           state.activeTagId = tagList[lastIndex].id;
@@ -54,8 +56,8 @@ const tagsViewSlice = createSlice({
       const activeIsDashboard = activeTag!.id === state.tags[0].id;
 
       state.tags = activeIsDashboard ? [state.tags[0]] : [state.tags[0], activeTag!];
-    }
-  }
+    },
+  },
 });
 
 export const { setActiveTag, addTag, removeTag, removeAllTag, removeOtherTag } = tagsViewSlice.actions;

@@ -16,7 +16,7 @@ type DatetimeFormatMap = {
 export const datetimeFormatMap: DatetimeFormatMap = {
   hour: 'YYYY-MM-DD HH',
   minute: 'YYYY-MM-DD HH:mm',
-  second: 'YYYY-MM-DD HH:mm:ss'
+  second: 'YYYY-MM-DD HH:mm:ss',
 };
 
 type DateFormatMap = {
@@ -26,7 +26,7 @@ type DateFormatMap = {
 export const dateFormatMap: DateFormatMap = {
   year: 'YYYY',
   month: 'YYYY-MM',
-  day: 'YYYY-MM-DD'
+  day: 'YYYY-MM-DD',
 };
 
 type TimeFormatMap = {
@@ -36,7 +36,7 @@ type TimeFormatMap = {
 export const timeFormatMap: TimeFormatMap = {
   hour: 'HH',
   minute: 'HH:mm',
-  second: 'HH:mm:ss'
+  second: 'HH:mm:ss',
 };
 
 export interface MyTableColumnProps<T> extends ColumnProps<T> {

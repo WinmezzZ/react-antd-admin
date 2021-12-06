@@ -8,7 +8,7 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import RenderRouter from './routes';
 import { useSelector } from 'react-redux';
-import { history, HistoryRouter } from 'routes/history';
+import { history, HistoryRouter } from '@/routes/history';
 
 const App: React.FC = () => {
   const { locale } = useSelector(state => state.user);

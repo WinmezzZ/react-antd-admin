@@ -17,7 +17,7 @@ const zh_CN = {
   ...zhCN_permissionRole,
   ...zhCN_dashboard,
   ...zhCN_guide,
-  ...zhCN_documentation
+  ...zhCN_documentation,
 };
 
 export default zh_CN;

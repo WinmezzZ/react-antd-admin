@@ -7,5 +7,5 @@ export const enUS_title = {
   'title.permission.button': 'Button Permission',
   'title.permission.config': 'Permission Config',
   'title.account': 'Account',
-  'title.notFount': '404'
+  'title.notFount': '404',
 };

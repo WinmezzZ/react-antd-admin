@@ -7,5 +7,5 @@ export const enUS_permissionRole = {
   'app.permission.role.status.disabled': 'Disabled',
   'app.permission.role.nameRequired': 'Please input the role name',
   'app.permission.role.codeRequired': 'Please input the role code',
-  'app.permission.role.statusRequired': 'Please select the enabled status'
+  'app.permission.role.statusRequired': 'Please select the enabled status',
 };

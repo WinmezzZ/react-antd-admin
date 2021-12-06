@@ -4,6 +4,6 @@ export function getGlobalState() {
 
   return {
     device,
-    collapsed
+    collapsed,
   } as const;
 }

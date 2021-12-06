@@ -54,5 +54,5 @@ export const enUS_account = {
   'app.settings.notification.todo-description':
     'The to-do list will be notified in the form of a letter from the station',
   'app.settings.open': 'Open',
-  'app.settings.close': 'Close'
+  'app.settings.close': 'Close',
 };

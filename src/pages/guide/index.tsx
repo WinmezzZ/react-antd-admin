@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import 'driver.js/dist/driver.min.css';
 import { Button } from 'antd';
-import { useLocale } from 'locales';
+import { useLocale } from '@/locales';
 import useGuide from './useGuide';
 
 const GuidePage: FC = () => {

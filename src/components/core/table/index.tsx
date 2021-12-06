@@ -6,7 +6,7 @@ interface MyTableProps<T extends object> extends TableProps<T> {
   height?: string;
 }
 
-const MyTable = <T extends object = {}>(props: MyTableProps<T>) => {
+const MyTable = <T extends object = object>(props: MyTableProps<T>) => {
   const { height, pagination, ...rest } = props;
 
   const defaultPagination = {
@@ -14,7 +14,7 @@ const MyTable = <T extends object = {}>(props: MyTableProps<T>) => {
     showQuickJumper: true,
     showSizeChanger: true,
     pageSizeOptions: ['10', '20', '50', '100', '200'],
-    defaultPageSize: 20
+    defaultPageSize: 20,
   };
 
   const combinedPagination = typeof pagination === 'object' ? { ...defaultPagination, ...pagination } : {};
@@ -28,7 +28,7 @@ const MyTable = <T extends object = {}>(props: MyTableProps<T>) => {
 
 MyTable.defaultProps = {
   size: 'small',
-  height: 'auto'
+  height: 'auto',
 } as MyTableProps<any>;
 
 MyTable.Column = TableColumn;
@@ -63,6 +63,9 @@ const styles = css`
         flex-direction: column;
         .ant-table-body {
           flex: 1;
+          table {
+            height: 100%;
+          }
         }
       }
     }

@@ -1,6 +1,6 @@
-import { BuniesssUser } from 'interface/business';
+import { BuniesssUser } from '@/interface/business';
 import { mock, intercepter } from '../config';
-import qs from 'querystring';
+import qs from 'query-string';
 
 const data: BuniesssUser[] = [
   {
@@ -42,7 +42,7 @@ new Array(30).fill(undefined).forEach((item, index) => {
 
 mock.mock(/\/business\/list*/, 'get', (config: any) => {
   const jsonParams = config.url.split('?')[1];
-  const params = qs.decode(jsonParams);
+  const params = qs.parse(jsonParams);
 
   return intercepter(data, params);
 });

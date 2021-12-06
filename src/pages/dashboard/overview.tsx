@@ -6,11 +6,11 @@ import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg';
 import { ReactComponent as CaretDownIcon } from './assets/caret-down.svg';
 import { ResponsiveContainer, AreaChart, Tooltip as RTooltip, Area, XAxis, BarChart, Bar } from 'recharts';
 import moment from 'moment';
-import { useLocale } from 'locales';
+import { useLocale } from '@/locales';
 
 const data = new Array(14).fill(null).map((_, index) => ({
   name: moment().add(index, 'day').format('YYYY-MM-DD'),
-  number: Math.floor(Math.random() * 8 + 1)
+  number: Math.floor(Math.random() * 8 + 1),
 }));
 
 const wrapperCol: ColProps = {
@@ -19,7 +19,7 @@ const wrapperCol: ColProps = {
   md: 12,
   lg: 12,
   xl: 12,
-  xxl: 6
+  xxl: 6,
 };
 
 interface ColCardProps {
@@ -56,6 +56,7 @@ interface TrendProps {
 
 const Trend: FC<TrendProps> = ({ wow, dod, style = {} }) => {
   const { formatMessage } = useLocale();
+
   return (
     <div className="trend" style={style}>
       <div className="trend-item">

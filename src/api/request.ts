@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { message as $message } from 'antd';
-// import { history } from 'routes/history';
+// import { history } from '@/routes/history';
 
 const axiosInstance = axios.create({
-  timeout: 6000
+  timeout: 6000,
 });
 
 axiosInstance.interceptors.request.use(
@@ -12,7 +12,7 @@ axiosInstance.interceptors.request.use(
   },
   error => {
     Promise.reject(error);
-  }
+  },
 );
 
 axiosInstance.interceptors.response.use(
@@ -20,12 +20,14 @@ axiosInstance.interceptors.response.use(
     if (config?.data?.message) {
       // $message.success(config.data.message)
     }
+
     return config?.data;
   },
   error => {
     // if needs to navigate to login page when request exception
     // history.replace('/login');
     let errorMessage = '系统异常';
+
     if (error?.message?.includes('Network Error')) {
       errorMessage = '网络错误，请检查您的网络';
     } else {
@@ -33,12 +35,13 @@ axiosInstance.interceptors.response.use(
     }
     console.dir(error);
     error.message && $message.error(errorMessage);
+
     return {
       status: false,
       message: errorMessage,
-      result: null
+      result: null,
     };
-  }
+  },
 );
 
 export type Response<T = any> = {
@@ -61,17 +64,18 @@ export const request = <T = any>(
   method: Method,
   url: string,
   data?: any,
-  config?: AxiosRequestConfig
+  config?: AxiosRequestConfig,
 ): MyResponse<T> => {
   // const prefix = '/api'
   const prefix = '';
+
   url = prefix + url;
   if (method === 'post') {
     return axiosInstance.post(url, data, config);
   } else {
     return axiosInstance.get(url, {
       params: data,
-      ...config
+      ...config,
     });
   }
 };

@@ -1,9 +1,9 @@
 import { FC, useState, useEffect } from 'react';
 import { Tabs, Dropdown, Badge, Spin, List, Avatar, Tag } from 'antd';
-import { ReactComponent as NoticeSvg } from 'assets/header/notice.svg';
+import { ReactComponent as NoticeSvg } from '@/assets/header/notice.svg';
 import { LoadingOutlined } from '@ant-design/icons';
-import { getNoticeList } from 'api/layout.api';
-import { Notice, EventStatus } from 'interface/layout/notice.interface';
+import { getNoticeList } from '@/api/layout.api';
+import { Notice, EventStatus } from '@/interface/layout/notice.interface';
 import { useSelector } from 'react-redux';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -25,6 +25,7 @@ const HeaderNoticeComponent: FC = () => {
   const getNotice = async () => {
     setLoading(true);
     const { status, result } = await getNoticeList();
+
     setLoading(false);
     status && setNoticeList(result);
   };
@@ -93,6 +94,7 @@ const HeaderNoticeComponent: FC = () => {
       </Spin>
     </div>
   );
+
   return (
     <Dropdown
       overlay={tabs}
@@ -105,7 +107,7 @@ const HeaderNoticeComponent: FC = () => {
         backgroundColor: '#ffffff',
         boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
         padding: 8,
-        borderRadius: 4
+        borderRadius: 4,
       }}
     >
       <Badge count={noticeCount} overflowCount={999}>

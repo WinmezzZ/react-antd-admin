@@ -13,11 +13,13 @@ export interface WrapperRouteProps extends RouteProps {
 
 const WrapperRouteComponent: FC<WrapperRouteProps> = ({ titleId, auth, ...props }) => {
   const { formatMessage } = useIntl();
+
   if (titleId) {
     document.title = formatMessage({
-      id: titleId
+      id: titleId,
     });
   }
+
   return auth ? <PrivateRoute {...props} /> : (props.element as ReactElement);
 };
 

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Result, Button } from 'antd';
-import { useLocale } from 'locales';
+import { useLocale } from '@/locales';
 import { RouteProps, useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
 

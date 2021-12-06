@@ -4,8 +4,8 @@ import { MenuList } from '../../interface/layout/menu.interface';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { CustomIcon } from './customIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserItem } from 'stores/user.store';
-import { addTag } from 'stores/tags-view.store';
+import { setUserItem } from '@/stores/user.store';
+import { addTag } from '@/stores/tags-view.store';
 
 const { SubMenu, Item } = Menu;
 
@@ -33,6 +33,7 @@ const MenuComponent: FC<MenuProps> = ({ menuList }) => {
   const onMenuClick = (menu: MenuList[0]) => {
     if (menu.path === pathname) return;
     const { key, label, path } = menu;
+
     setSelectedKeys([key]);
     if (device !== 'DESKTOP') {
       dispatch(setUserItem({ collapsed: true }));
@@ -42,8 +43,8 @@ const MenuComponent: FC<MenuProps> = ({ menuList }) => {
         id: key,
         label,
         path,
-        closable: true
-      })
+        closable: true,
+      }),
     );
     navigate(path);
   };
@@ -81,7 +82,7 @@ const MenuComponent: FC<MenuProps> = ({ menuList }) => {
           <Item key={menu.path} onClick={() => onMenuClick(menu)}>
             {getTitie(menu)}
           </Item>
-        )
+        ),
       )}
     </Menu>
   );

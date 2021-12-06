@@ -18,5 +18,5 @@ export const en_US_documentation = {
   'app.documentation.catalogue.list.request': 'HTTP Request',
   'app.documentation.catalogue.list.theme': 'Theme',
   'app.documentation.catalogue.list.typescript': 'Typescript',
-  'app.documentation.catalogue.list.international': 'International'
+  'app.documentation.catalogue.list.international': 'International',
 };
