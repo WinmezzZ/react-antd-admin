@@ -5,7 +5,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { LoginParams } from '@/interface/user/login';
 import { loginAsync } from '@/stores/user.store';
 import { useDispatch } from 'react-redux';
-import { Location } from 'history';
 import { formatSearch } from '@/utils/formatSearch';
 
 const initialValues: LoginParams = {
@@ -16,7 +15,7 @@ const initialValues: LoginParams = {
 
 const LoginForm: FC = () => {
   const navigate = useNavigate();
-  const location = useLocation() as Location<{ from: string }>;
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const onFinished = async (form: LoginParams) => {
