@@ -53,7 +53,7 @@ const MenuComponent: FC<MenuProps> = props => {
       openKeys={openKey ? [openKey] : []}
       onOpenChange={onOpenChange}
       onSelect={k => onMenuClick(k.key)}
-      className="layout-page-sider-menu"
+      className="layout-page-sider-menu text-2"
     >
       {menuList.map(menu =>
         menu.children ? (

@@ -1,17 +1,20 @@
-import { FC } from 'react';
+import { createElement, FC } from 'react';
 import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Dropdown, Menu } from 'antd';
+import { Layout, Dropdown, Menu, Tooltip } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import HeaderNoticeComponent from './notice';
 import Avator from '@/assets/header/avator.jpeg';
 import { ReactComponent as LanguageSvg } from '@/assets/header/language.svg';
 import { ReactComponent as ZhCnSvg } from '@/assets/header/zh_CN.svg';
 import { ReactComponent as EnUsSvg } from '@/assets/header/en_US.svg';
+import { ReactComponent as MoonSvg } from '@/assets/header/moon.svg';
+import { ReactComponent as SunSvg } from '@/assets/header/sun.svg';
 import { LocaleFormatter, useLocale } from '@/locales';
 import ReactSvg from '@/assets/logo/react.svg';
 import AntdSvg from '@/assets/logo/antd.svg';
 import { logoutAsync, setUserItem } from '@/stores/user.store';
 import { useDispatch, useSelector } from 'react-redux';
+import { setGlobalState } from '@/stores/global.store';
 
 const { Header } = Layout;
 
@@ -24,6 +27,7 @@ type Action = 'userInfo' | 'userSetting' | 'logout';
 
 const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
   const { logged, locale, device } = useSelector(state => state.user);
+  const { theme } = useSelector(state => state.global);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { formatMessage } = useLocale();
@@ -51,6 +55,17 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
     dispatch(setUserItem({ locale: key }));
     localStorage.setItem('locale', key);
   };
+
+  const onChangeTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+
+    localStorage.setItem('theme', newTheme);
+    dispatch(
+      setGlobalState({
+        theme: newTheme,
+      }),
+    );
+  };
   const menu = (
     <Menu>
       <Menu.Item key="1">
@@ -74,7 +89,7 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
   );
 
   return (
-    <Header className="layout-page-header">
+    <Header className="layout-page-header bg-2">
       {device !== 'MOBILE' && (
         <div className="logo" style={{ width: collapsed ? 80 : 200 }}>
           <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }} />
@@ -86,9 +101,19 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
           <span id="sidebar-trigger">{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</span>
         </div>
         <div className="actions">
+          <Tooltip
+            title={formatMessage({
+              id: theme === 'dark' ? 'gloabal.tips.theme.lightTooltip' : 'gloabal.tips.theme.darkTooltip',
+            })}
+          >
+            <span>
+              {createElement(theme === 'dark' ? SunSvg : MoonSvg, {
+                onClick: onChangeTheme,
+              })}
+            </span>
+          </Tooltip>
           <HeaderNoticeComponent />
           <Dropdown
-            trigger={['click']}
             overlay={
               <Menu onClick={selectLocale}>
                 <Menu.Item style={{ textAlign: 'left' }} disabled={locale === 'zh_CN'} key="zh_CN">
@@ -105,7 +130,7 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
             </span>
           </Dropdown>
           {logged ? (
-            <Dropdown overlay={menu} trigger={['click']}>
+            <Dropdown overlay={menu}>
               <span className="user-action">
                 <img src={Avator} className="user-avator" alt="avator" />
               </span>

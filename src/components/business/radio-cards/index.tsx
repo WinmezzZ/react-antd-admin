@@ -32,7 +32,6 @@ export default MyRadioCards;
 
 const styles = css`
   padding: 8px;
-  background-color: #ffffff;
   .ant-radio-group {
     width: 100%;
     display: flex;

@@ -1,13 +1,19 @@
 .layout-page {
   height: 100%;
   &-header {
-    padding: 0;
+    padding: 0 !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 9;
-    background-color: #fff !important;
     box-shadow: 0 4px 10px #dddddd;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    
     &-main {
       padding: 0 15px;
       flex: 1;
@@ -30,9 +36,7 @@
     }
   }
   &-sider {
-    background-color: #fff !important;
     box-sizing: border-box;
-    border-right: 1px solid #f0f0f0;
     margin-bottom: 10px;
   }
   &-content {
@@ -41,7 +45,6 @@
     flex: 1;
     > :nth-child(1) .ant-tabs-bar {
       padding: 6px 0 0;
-      background: #fff;
     }
 
     > :nth-child(2) {
@@ -50,7 +53,6 @@
       padding: 6px;
       box-sizing: border-box;
       .innerText {
-        background-color: #fff;
         padding: 24px;
         border-radius: 2px;
         display: block;
@@ -60,7 +62,6 @@
     }
   }
   &-footer {
-    background-color: #ffffff !important;
     text-align: center;
     padding: 14px 20px;
     font-size: 12px;
@@ -70,6 +71,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     > * {
       margin-left: 30px;
       height: 100%;
@@ -93,6 +95,12 @@
     margin-right: 8px;
     width: 40px;
     height: 40px;
+  }
+}
+
+body[data-theme="dark"] {
+  .layout-page-header {
+    box-shadow: none;
   }
 }
 

@@ -13,8 +13,8 @@ import { history, HistoryRouter } from '@/routes/history';
 import { setGlobalState } from './stores/global.store';
 
 const themes = {
-  light: '../node_modules/antd/dist/antd.css',
-  dark: '../node_modules/antd/dist/antd.dark.css',
+  light: '../node_modules/antd/dist/antd.less',
+  dark: '../node_modules/antd/dist/antd.dark.less',
 };
 
 const App: React.FC = () => {

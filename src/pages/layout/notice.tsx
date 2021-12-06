@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react';
-import { Tabs, Dropdown, Badge, Spin, List, Avatar, Tag } from 'antd';
+import { Tabs, Dropdown, Badge, Spin, List, Avatar, Tag, Tooltip } from 'antd';
 import { ReactComponent as NoticeSvg } from '@/assets/header/notice.svg';
 import { LoadingOutlined } from '@ant-design/icons';
 import { getNoticeList } from '@/api/layout.api';
@@ -98,23 +98,26 @@ const HeaderNoticeComponent: FC = () => {
   return (
     <Dropdown
       overlay={tabs}
+      overlayClassName="bg-2"
       placement="bottomRight"
       trigger={['click']}
       visible={visible}
       onVisibleChange={v => setVisible(v)}
       overlayStyle={{
         width: 336,
-        backgroundColor: '#ffffff',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+        boxShadow:
+          'box-shadow: 0 6px 16px -8px rgb(0 0 0 / 8%), 0 9px 28px 0 rgb(0 0 0 / 5%), 0 12px 48px 16px rgb(0 0 0 / 3%)',
         padding: 8,
         borderRadius: 4,
       }}
     >
-      <Badge count={noticeCount} overflowCount={999}>
-        <span className="notice" id="notice-center">
-          <NoticeSvg className="anticon" />
-        </span>
-      </Badge>
+      <Tooltip title="通知">
+        <Badge count={noticeCount} overflowCount={999}>
+          <span className="notice" id="notice-center">
+            <NoticeSvg className="anticon" />
+          </span>
+        </Badge>
+      </Tooltip>
     </Dropdown>
   );
 };

@@ -1,0 +1,39 @@
+@light-1: #fff !important;
+@dark-1: #000 !important;
+@dark-2: #1f1f1f !important;
+
+[data-theme="light"] {
+  background-color: @light-1;
+
+  .bg-1, .bg-2 {
+    background-color: @light-1;
+  }
+  .ant-layout-sider {
+    background-color: @light-1;
+  }
+
+  .text-1 {
+    color: #000;
+  }
+
+  .text-2 {
+    color: rgba(0,0,0,.85);
+  }
+}
+
+[data-theme="dark"] {
+  .bg-1 {
+    background-color: @dark-1;
+  }
+  .bg-2 {
+    background-color: @dark-2;
+  }
+
+  .text-1 {
+    color: #fff;
+  }
+
+  .text-2 {
+    color: rgba(255,255,255,.65);
+  }
+}

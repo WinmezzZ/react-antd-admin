@@ -16,4 +16,6 @@ export const enUS_globalTips = {
   'gloabal.tips.reset': 'Reset',
   'gloabal.tips.deleteConfirm': 'Do you Want to delete these items?',
   'gloabal.tips.loading': 'Loading...',
+  'gloabal.tips.theme.darkTooltip': 'Switch to dark theme',
+  'gloabal.tips.theme.lightTooltip': 'Switch to light theme',
 };

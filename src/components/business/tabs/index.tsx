@@ -28,7 +28,6 @@ const MyTabs = Object.assign(BaseTabs, Tabs);
 export default MyTabs;
 
 const styles = css`
-  background-color: #fff;
   padding: 0 20px;
   box-shadow: 0 10px 10px -10px rgb(0 0 0 / 10%);
   height: 62px;

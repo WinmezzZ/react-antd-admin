@@ -40,7 +40,6 @@ const styles = css`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: #ffffff;
 
   .ant-table-wrapper,
   .ant-spin-nested-loading,

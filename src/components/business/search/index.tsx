@@ -42,7 +42,6 @@ export default MySearch;
 
 const styles = css`
   padding: 20px;
-  background-color: #ffffff;
   .ant-form-item {
     margin-bottom: 20px;
   }
