@@ -1,17 +1,49 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
-import { localeConfig } from './locales';
-import { ConfigProvider } from 'antd';
+import { localeConfig, LocaleFormatter } from './locales';
+import { ConfigProvider, Spin } from 'antd';
+import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import RenderRouter from './routes';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { history, HistoryRouter } from '@/routes/history';
+import { setGlobalState } from './stores/global.store';
+
+const themes = {
+  light: '../node_modules/antd/dist/antd.css',
+  dark: '../node_modules/antd/dist/antd.dark.css',
+};
 
 const App: React.FC = () => {
   const { locale } = useSelector(state => state.user);
+  const { theme, loading } = useSelector(state => state.global);
+  const dispatch = useDispatch();
+
+  const setTheme = (dark = true) => {
+    dispatch(
+      setGlobalState({
+        theme: dark ? 'dark' : 'light',
+      }),
+    );
+  };
+
+  /** initial theme */
+  useEffect(() => {
+    setTheme(theme === 'dark');
+    // watch system theme change
+    if (!localStorage.getItem('theme')) {
+      const mql = window.matchMedia('(prefers-color-scheme: dark)');
+
+      function matchMode(e: MediaQueryListEvent) {
+        setTheme(e.matches);
+      }
+
+      mql.addEventListener('change', matchMode);
+    }
+  }, []);
 
   // set the locale for the user
   // more languages options can be added here
@@ -38,11 +70,20 @@ const App: React.FC = () => {
 
   return (
     <ConfigProvider locale={getAntdLocale()} componentSize="middle">
-      <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
-        <HistoryRouter history={history}>
-          <RenderRouter />
-        </HistoryRouter>
-      </IntlProvider>
+      <ThemeSwitcherProvider defaultTheme={theme} themeMap={themes}>
+        <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
+          <HistoryRouter history={history}>
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <Spin
+                spinning={loading}
+                className="app-loading-wrapper"
+                tip={<LocaleFormatter id="gloabal.tips.loading" />}
+              ></Spin>
+              <RenderRouter />
+            </Suspense>
+          </HistoryRouter>
+        </IntlProvider>
+      </ThemeSwitcherProvider>
     </ConfigProvider>
   );
 };

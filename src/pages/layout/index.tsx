@@ -1,11 +1,10 @@
-import { FC, useEffect, Suspense, useCallback, useState } from 'react';
+import { FC, useEffect, useCallback, useState } from 'react';
 import { Layout, Drawer } from 'antd';
 import './index.less';
 import MenuComponent from './menu';
 import HeaderComponent from './header';
 import { getGlobalState } from '@/utils/getGloabal';
 import TagsView from './tagView';
-import SuspendFallbackLoading from './suspendFallbackLoading';
 import { getMenuList } from '@/api/layout.api';
 import { MenuList, MenuChild } from '@/interface/layout/menu.interface';
 import { useGuide } from '../guide/useGuide';
@@ -145,16 +144,7 @@ const LayoutPage: FC = () => {
         )}
         <Content className="layout-page-content">
           <TagsView />
-          <Suspense
-            fallback={
-              <SuspendFallbackLoading
-                message="Alert message title"
-                description="Further details about the context of this alert."
-              />
-            }
-          >
-            <Outlet />
-          </Suspense>
+          <Outlet />
         </Content>
       </Layout>
     </Layout>

@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { message as $message } from 'antd';
+import { setGlobalState } from '@/stores/global.store';
+import store from '@/stores';
 // import { history } from '@/routes/history';
 
 const axiosInstance = axios.create({
@@ -8,15 +10,31 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   config => {
+    store.dispatch(
+      setGlobalState({
+        loading: true,
+      }),
+    );
+
     return config;
   },
   error => {
+    store.dispatch(
+      setGlobalState({
+        loading: false,
+      }),
+    );
     Promise.reject(error);
   },
 );
 
 axiosInstance.interceptors.response.use(
   config => {
+    store.dispatch(
+      setGlobalState({
+        loading: false,
+      }),
+    );
     if (config?.data?.message) {
       // $message.success(config.data.message)
     }
@@ -24,6 +42,11 @@ axiosInstance.interceptors.response.use(
     return config?.data;
   },
   error => {
+    store.dispatch(
+      setGlobalState({
+        loading: false,
+      }),
+    );
     // if needs to navigate to login page when request exception
     // history.replace('/login');
     let errorMessage = '系统异常';
