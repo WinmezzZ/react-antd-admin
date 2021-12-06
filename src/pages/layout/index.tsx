@@ -109,7 +109,14 @@ const LayoutPage: FC = () => {
       <HeaderComponent collapsed={collapsed} toggle={toggle} />
       <Layout>
         {!isMobile ? (
-          <Sider className="layout-page-sider" trigger={null} collapsible collapsed={collapsed} breakpoint="md">
+          <Sider
+            className="layout-page-sider"
+            trigger={null}
+            collapsible
+            collapsedWidth={isMobile ? 0 : 80}
+            collapsed={collapsed}
+            breakpoint="md"
+          >
             <MenuComponent
               menuList={menuList}
               openKey={openKey}
