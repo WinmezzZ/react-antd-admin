@@ -92,17 +92,6 @@ const LayoutPage: FC = () => {
     newUser && driverStart();
   }, [newUser]);
 
-  useEffect(() => {
-    if (!openKey) return;
-    const panel = menuList.find(item => item.code === openKey);
-
-    if (panel) {
-      if (panel.children) {
-        setSelectedKey(panel.children[0].path);
-      }
-    }
-  }, [openKey]);
-
   return (
     <Layout className="layout-page">
       <HeaderComponent collapsed={collapsed} toggle={toggle} />
