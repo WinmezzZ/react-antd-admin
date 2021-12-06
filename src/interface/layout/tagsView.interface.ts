@@ -1,5 +1,5 @@
 export type TagItem = {
-  id: string;
+  code: string;
 
   label: {
     zh_CN: string;
@@ -18,5 +18,5 @@ export interface TagState {
   tags: TagItem[];
 
   /**current tagView id */
-  activeTagId: TagItem['id'];
+  activeTagId: TagItem['path'];
 }

@@ -9,27 +9,29 @@ import SuspendFallbackLoading from './suspendFallbackLoading';
 import { getMenuList } from '@/api/layout.api';
 import { MenuList, MenuChild } from '@/interface/layout/menu.interface';
 import { useGuide } from '../guide/useGuide';
-import { Outlet, useLocation, useNavigate } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import { setUserItem } from '@/stores/user.store';
 import { useDispatch, useSelector } from 'react-redux';
+import { getFirstPathCode } from '@/utils/getFirstPathCode';
 
 const { Sider, Content } = Layout;
 const WIDTH = 992;
 
 const LayoutPage: FC = () => {
+  const location = useLocation();
+  const [openKey, setOpenkey] = useState<string>();
+  const [selectedKey, setSelectedKey] = useState<string>(location.pathname);
   const [menuList, setMenuList] = useState<MenuList>([]);
   const { device, collapsed, newUser } = useSelector(state => state.user);
   const isMobile = device === 'MOBILE';
   const dispatch = useDispatch();
   const { driverStart } = useGuide();
-  const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname === '/') {
-      navigate('/dashboard');
-    }
-  }, [navigate, location]);
+    const code = getFirstPathCode(location.pathname);
+
+    setOpenkey(code);
+  }, [location.pathname]);
 
   const toggle = () => {
     dispatch(
@@ -91,13 +93,30 @@ const LayoutPage: FC = () => {
     newUser && driverStart();
   }, [newUser]);
 
+  useEffect(() => {
+    if (!openKey) return;
+    const panel = menuList.find(item => item.code === openKey);
+
+    if (panel) {
+      if (panel.children) {
+        setSelectedKey(panel.children[0].path);
+      }
+    }
+  }, [openKey]);
+
   return (
     <Layout className="layout-page">
       <HeaderComponent collapsed={collapsed} toggle={toggle} />
       <Layout>
         {!isMobile ? (
           <Sider className="layout-page-sider" trigger={null} collapsible collapsed={collapsed} breakpoint="md">
-            <MenuComponent menuList={menuList} />
+            <MenuComponent
+              menuList={menuList}
+              openKey={openKey}
+              onChangeOpenKey={k => setOpenkey(k)}
+              selectedKey={selectedKey}
+              onChangeSelectedKey={k => setSelectedKey(k)}
+            />
           </Sider>
         ) : (
           <Drawer
@@ -108,7 +127,13 @@ const LayoutPage: FC = () => {
             onClose={toggle}
             visible={!collapsed}
           >
-            <MenuComponent menuList={menuList} />
+            <MenuComponent
+              menuList={menuList}
+              openKey={openKey}
+              onChangeOpenKey={k => setOpenkey(k)}
+              selectedKey={selectedKey}
+              onChangeSelectedKey={k => setSelectedKey(k)}
+            />
           </Drawer>
         )}
         <Content className="layout-page-content">

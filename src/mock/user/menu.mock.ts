@@ -3,185 +3,166 @@ import { mock, intercepter } from '../config';
 
 const mockMenuList: MenuList = [
   {
-    name: 'dashboard',
+    code: 'dashboard',
     label: {
       zh_CN: '首页',
       en_US: 'Dashboard',
     },
     icon: 'dashboard',
-    key: '0',
     path: '/dashboard',
   },
   {
-    name: 'documentation',
+    code: 'documentation',
     label: {
       zh_CN: '文档',
       en_US: 'Documentation',
     },
     icon: 'documentation',
-    key: '1',
     path: '/documentation',
   },
   {
-    name: 'guide',
+    code: 'guide',
     label: {
       zh_CN: '引导',
       en_US: 'Guide',
     },
     icon: 'guide',
-    key: '2',
     path: '/guide',
   },
   {
-    name: 'permission',
+    code: 'permission',
     label: {
       zh_CN: '权限',
       en_US: 'Permission',
     },
     icon: 'permission',
-    key: '3',
     path: '/permission',
     children: [
       {
-        name: 'routePermission',
+        code: 'routePermission',
         label: {
           zh_CN: '路由权限',
           en_US: 'Route Permission',
         },
-        key: '2-0',
         path: '/permission/route',
       },
       {
-        name: 'notFound',
+        code: 'notFound',
         label: {
           zh_CN: '404',
           en_US: '404',
         },
-        key: '2-3',
         path: '/permission/404',
       },
     ],
   },
   {
-    name: 'component',
+    code: 'component',
     label: {
       zh_CN: '组件',
       en_US: 'Component',
     },
     icon: 'permission',
-    key: '5',
     path: '/component',
     children: [
       {
-        name: 'componentForm',
+        code: 'componentForm',
         label: {
           zh_CN: '表单',
           en_US: 'Form',
         },
-        key: '5-0',
         path: '/component/form',
       },
       {
-        name: 'componentTable',
+        code: 'componentTable',
         label: {
           zh_CN: '表格',
           en_US: 'Table',
         },
-        key: '5-1',
         path: '/component/table',
       },
       {
-        name: 'componentSearch',
+        code: 'componentSearch',
         label: {
           zh_CN: '查询',
           en_US: 'Search',
         },
-        key: '5-2',
         path: '/component/search',
       },
       {
-        name: 'componentAside',
+        code: 'componentAside',
         label: {
           zh_CN: '侧边栏',
           en_US: 'Aside',
         },
-        key: '5-3',
         path: '/component/aside',
       },
       {
-        name: 'componentTabs',
+        code: 'componentTabs',
         label: {
           zh_CN: '选项卡',
           en_US: 'Tabs',
         },
-        key: '5-4',
         path: '/component/tabs',
       },
       {
-        name: 'componentRadioCards',
+        code: 'componentRadioCards',
         label: {
           zh_CN: '单选卡片',
           en_US: 'Radio Cards',
         },
-        key: '5-5',
         path: '/component/radio-cards',
       },
     ],
   },
 
   {
-    name: 'business',
+    code: 'business',
     label: {
       zh_CN: '业务',
       en_US: 'Business',
     },
     icon: 'permission',
-    key: '6',
     path: '/business',
     children: [
       {
-        name: 'basic',
+        code: 'basic',
         label: {
           zh_CN: '基本',
           en_US: 'Basic',
         },
-        key: '6-0',
         path: '/business/basic',
       },
       {
-        name: 'withSearch',
+        code: 'withSearch',
         label: {
           zh_CN: '带查询',
           en_US: 'WithSearch',
         },
-        key: '6-1',
         path: '/business/with-search',
       },
       {
-        name: 'withAside',
+        code: 'withAside',
         label: {
           zh_CN: '带侧边栏',
           en_US: 'WithAside',
         },
-        key: '6-2',
         path: '/business/with-aside',
       },
       {
-        name: 'withRadioCard',
+        code: 'withRadioCard',
         label: {
           zh_CN: '带单选卡片',
           en_US: 'With Nav Tabs',
         },
-        key: '6-3',
         path: '/business/with-radio-cards',
       },
       {
-        name: 'withTabs',
+        code: 'withTabs',
         label: {
           zh_CN: '带选项卡',
           en_US: 'With Tabs',
         },
-        key: '6-4',
         path: '/business/with-tabs',
       },
     ],

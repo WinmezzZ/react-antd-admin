@@ -1,6 +1,6 @@
 interface MenuItem {
-  /** menu item name */
-  name: string;
+  /** menu item code */
+  code: string;
   /** menu labels */
   label: {
     zh_CN: string;
@@ -11,8 +11,6 @@ interface MenuItem {
    * 子子菜单不需要图标
    */
   icon?: string;
-  /** 菜单id */
-  key: string;
   /** 菜单路由 */
   path: string;
   /** 子菜单 */

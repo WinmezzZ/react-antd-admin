@@ -2,7 +2,7 @@ import { lazy, FC } from 'react';
 import Dashboard from '@/pages/dashboard';
 import LoginPage from '@/pages/login';
 import LayoutPage from '@/pages/layout';
-import { RouteObject } from 'react-router';
+import { Navigate, RouteObject } from 'react-router';
 import WrapperRouteComponent from './config';
 import { useRoutes } from 'react-router-dom';
 
@@ -33,6 +33,10 @@ const routeList: RouteObject[] = [
     path: '/',
     element: <WrapperRouteComponent element={<LayoutPage />} titleId="" />,
     children: [
+      {
+        path: '',
+        element: <Navigate to="dashboard" />,
+      },
       {
         path: 'dashboard',
         element: <WrapperRouteComponent element={<Dashboard />} titleId="title.dashboard" />,
