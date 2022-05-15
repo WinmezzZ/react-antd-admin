@@ -77,7 +77,7 @@ const App: React.FC = () => {
       <ThemeSwitcherProvider defaultTheme={theme} themeMap={themes}>
         <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
           <HistoryRouter history={history}>
-            <Suspense fallback={<h1>Loading...</h1>}>
+            <Suspense fallback={null}>
               <Spin
                 spinning={loading}
                 className="app-loading-wrapper"

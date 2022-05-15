@@ -1,4 +1,4 @@
-import { lazy, FC } from 'react';
+import { FC, lazy } from 'react';
 import Dashboard from '@/pages/dashboard';
 import LoginPage from '@/pages/login';
 import LayoutPage from '@/pages/layout';

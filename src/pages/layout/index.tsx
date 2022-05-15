@@ -1,4 +1,4 @@
-import { FC, useEffect, useCallback, useState } from 'react';
+import { FC, useEffect, useCallback, useState, Suspense } from 'react';
 import { Layout, Drawer } from 'antd';
 import './index.less';
 import MenuComponent from './menu';
@@ -133,7 +133,9 @@ const LayoutPage: FC = () => {
         )}
         <Content className="layout-page-content">
           <TagsView />
-          <Outlet />
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
         </Content>
       </Layout>
     </Layout>
