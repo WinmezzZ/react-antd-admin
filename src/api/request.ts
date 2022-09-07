@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, Method } from 'axios';
 import { message as $message } from 'antd';
 import { setGlobalState } from '@/stores/global.store';
 import store from '@/stores';
@@ -73,8 +73,6 @@ export type Response<T = any> = {
   result: T;
 };
 
-type Method = 'get' | 'post';
-
 export type MyResponse<T = any> = Promise<Response<T>>;
 
 /**
@@ -84,7 +82,7 @@ export type MyResponse<T = any> = Promise<Response<T>>;
  * @param data - request data or params
  */
 export const request = <T = any>(
-  method: Method,
+  method: Lowercase<Method>,
   url: string,
   data?: any,
   config?: AxiosRequestConfig,
