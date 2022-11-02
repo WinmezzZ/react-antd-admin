@@ -24,8 +24,8 @@ React Hooks + Typescript 最佳实践。
 
 </div>
 
-- 预览: https://react-admin.hyyar.com/
-- 文档: https://react-admin.hyyar.com/documentation
+- 预览: https://react-admin.winme.dev
+- 文档: https://react-admin.winme.dev/documentation
 
 ## ✨ 特性
 
