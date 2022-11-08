@@ -12,13 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { history, HistoryRouter } from '@/routes/history';
 import { setGlobalState } from './stores/global.store';
 
-const isDev = import.meta.env.MODE === 'development';
-
 const themes = {
-  light: isDev ? '../node_modules/antd/dist/antd.less' : 'https://cdn.jsdelivr.net/npm/antd@4.17.2/dist/antd.css',
-  dark: isDev
-    ? '../node_modules/antd/dist/antd.dark.less'
-    : 'https://cdn.jsdelivr.net/npm/antd@4.17.2/dist/antd.dark.css',
+  dark: `dark-theme.css`,
+  light: `light-theme.css`,
 };
 
 const App: React.FC = () => {
