@@ -30,6 +30,7 @@ const LayoutPage: FC = () => {
     const code = getFirstPathCode(location.pathname);
 
     setOpenkey(code);
+    setSelectedKey(location.pathname);
   }, [location.pathname]);
 
   const toggle = () => {
