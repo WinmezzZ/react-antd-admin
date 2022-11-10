@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { Card, Row, Col, List, Radio, Badge } from 'antd';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
-import { ColProps } from 'antd/lib/col';
+import { ColProps } from 'antd/es/col';
 import { useLocale } from '@/locales';
 import { useSelector } from 'react-redux';
 

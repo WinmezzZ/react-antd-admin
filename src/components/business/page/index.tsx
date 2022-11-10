@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { ColumnsType } from 'antd/lib/table/interface';
+import { ColumnsType } from 'antd/es/table/interface';
 import { MyResponse } from '@/api/request';
 import MyTable from '@/components/core/table';
 import { PageData } from '@/interface';

@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { FormItemProps } from 'antd/lib/form';
+import { FormItemProps } from 'antd/es/form';
 import { Form, Input, InputNumber, Switch, DatePicker, Checkbox, Radio, Select } from 'antd';
 
 export type ControlTypes = 'input' | 'input-number' | 'switch' | 'date-picker' | 'checkbox' | 'radio' | 'select';

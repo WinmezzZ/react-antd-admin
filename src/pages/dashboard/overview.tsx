@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Row, Col, Card, Tooltip, Progress, Badge } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { ColProps } from 'antd/lib/col';
+import { ColProps } from 'antd/es/col';
 import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg';
 import { ReactComponent as CaretDownIcon } from './assets/caret-down.svg';
 import { ResponsiveContainer, AreaChart, Tooltip as RTooltip, Area, XAxis, BarChart, Bar } from 'recharts';

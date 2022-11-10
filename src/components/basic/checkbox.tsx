@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Checkbox } from 'antd';
-import { CheckboxProps } from 'antd/lib/checkbox';
+import { CheckboxProps } from 'antd/es/checkbox';
 
 interface MyButtonProps extends CheckboxProps {}
 
