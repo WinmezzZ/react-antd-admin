@@ -101,21 +101,13 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
                   key: 'zh_CN',
                   icon: <ZhCnSvg />,
                   disabled: locale === 'zh_CN',
-                  label: (
-                    <span onClick={() => navigate('/dashboard')}>
-                      <LocaleFormatter id="header.avator.account" />
-                    </span>
-                  ),
+                  label: '简体中文',
                 },
                 {
                   key: 'en_US',
                   icon: <EnUsSvg />,
                   disabled: locale === 'en_US',
-                  label: (
-                    <span onClick={() => onActionClick('logout')}>
-                      <LocaleFormatter id="header.avator.logout" />
-                    </span>
-                  ),
+                  label: 'English',
                 },
               ],
             }}
