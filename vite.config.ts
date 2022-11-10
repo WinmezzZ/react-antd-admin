@@ -21,15 +21,6 @@ export default defineConfig({
       },
     },
   },
-  css: {
-    preprocessorOptions: {
-      less: {
-        javascriptEnabled: true,
-        modifyVars: { '@primary-color': '#13c2c2' },
-      },
-      // ....
-    },
-  },
   plugins: [
     react({
       jsxImportSource: '@emotion/react',

@@ -1,8 +1,7 @@
 import { Suspense, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { localeConfig, LocaleFormatter } from './locales';
-import { ConfigProvider, Spin } from 'antd';
-import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
+import { ConfigProvider, Spin, theme as a } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
 import moment from 'moment';
@@ -11,11 +10,6 @@ import RenderRouter from './routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { history, HistoryRouter } from '@/routes/history';
 import { setGlobalState } from './stores/global.store';
-
-const themes = {
-  dark: `dark-theme.css`,
-  light: `light-theme.css`,
-};
 
 const App: React.FC = () => {
   const { locale } = useSelector(state => state.user);
@@ -69,21 +63,23 @@ const App: React.FC = () => {
   };
 
   return (
-    <ConfigProvider locale={getAntdLocale()} componentSize="middle">
-      <ThemeSwitcherProvider defaultTheme={theme} themeMap={themes}>
-        <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
-          <HistoryRouter history={history}>
-            <Suspense fallback={null}>
-              <Spin
-                spinning={loading}
-                className="app-loading-wrapper"
-                tip={<LocaleFormatter id="gloabal.tips.loading" />}
-              ></Spin>
-              <RenderRouter />
-            </Suspense>
-          </HistoryRouter>
-        </IntlProvider>
-      </ThemeSwitcherProvider>
+    <ConfigProvider
+      locale={getAntdLocale()}
+      componentSize="middle"
+      theme={{ token: { colorPrimary: '#13c2c2' }, algorithm: theme === 'dark' ? a.darkAlgorithm : a.defaultAlgorithm }}
+    >
+      <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
+        <HistoryRouter history={history}>
+          <Suspense fallback={null}>
+            <Spin
+              spinning={loading}
+              className="app-loading-wrapper"
+              tip={<LocaleFormatter id="gloabal.tips.loading" />}
+            ></Spin>
+            <RenderRouter />
+          </Suspense>
+        </HistoryRouter>
+      </IntlProvider>
     </ConfigProvider>
   );
 };

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import 'driver.js/dist/driver.min.css';
-import { Button } from 'antd';
+import { Button, Typography } from 'antd';
 import { useLocale } from '@/locales';
 import useGuide from './useGuide';
 
@@ -11,18 +11,19 @@ const GuidePage: FC = () => {
   return (
     <div className="guide-page ">
       <div className="innerText">
-        <p className="guide-intro">
+        <Typography className="guide-intro">
           {formatMessage({ id: 'app.guide.guideIntro' })}
-          <a
+          <Button
+            type="link"
             className="driverjs-link"
             href="https://github.com/kamranahmedse/driver.js"
             rel="noopener noreferrer"
             target="_blank"
           >
             driver.js
-          </a>
+          </Button>
           .
-        </p>
+        </Typography>
         <Button type="primary" onClick={driverStart}>
           {formatMessage({ id: 'app.guide.showGuide' })}
         </Button>

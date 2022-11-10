@@ -27,6 +27,8 @@ The best practices for React Hooks and Typescript.
 - Preview: https://react-admin.winme.dev
 - Documentation: https://react-admin.winme.dev/documentation
 
+**We using an unstable version of Ant Design(5.0.0-beta) for newest experience, if you want use stable version, see the branch [antd-v4](https://github.com/WinmezzZ/react-antd-admin/tree/antd-v4)**
+
 ## ✨ Features
 
 - 💡 **TypeScript**: A language for application-scale JavaScript

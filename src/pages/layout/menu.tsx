@@ -6,8 +6,6 @@ import { CustomIcon } from './customIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserItem } from '@/stores/user.store';
 
-const { SubMenu, Item } = Menu;
-
 interface MenuProps {
   menuList: MenuList;
   openKey?: string;
@@ -22,7 +20,7 @@ const MenuComponent: FC<MenuProps> = props => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const getTitie = (menu: MenuList[0]) => {
+  const getTitle = (menu: MenuList[0]) => {
     return (
       <span style={{ display: 'flex', alignItems: 'center' }}>
         <CustomIcon type={menu.icon!} />
@@ -48,25 +46,27 @@ const MenuComponent: FC<MenuProps> = props => {
   return (
     <Menu
       mode="inline"
-      theme="light"
       selectedKeys={[selectedKey]}
       openKeys={openKey ? [openKey] : []}
       onOpenChange={onOpenChange}
       onSelect={k => onMenuClick(k.key)}
       className="layout-page-sider-menu text-2"
-    >
-      {menuList.map(menu =>
-        menu.children ? (
-          <SubMenu key={menu.code} title={getTitie(menu)}>
-            {menu.children.map(child => (
-              <Item key={child.path}>{child.label[locale]}</Item>
-            ))}
-          </SubMenu>
-        ) : (
-          <Item key={menu.path}>{getTitie(menu)}</Item>
-        ),
-      )}
-    </Menu>
+      items={menuList.map(menu => {
+        return menu.children
+          ? {
+              key: menu.code,
+              label: getTitle(menu),
+              children: menu.children.map(child => ({
+                key: child.path,
+                label: child.label[locale],
+              })),
+            }
+          : {
+              key: menu.path,
+              label: getTitle(menu),
+            };
+      })}
+    ></Menu>
   );
 };
 

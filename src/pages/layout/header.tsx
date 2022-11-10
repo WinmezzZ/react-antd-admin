@@ -1,6 +1,6 @@
 import { createElement, FC } from 'react';
 import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Dropdown, Menu, Tooltip } from 'antd';
+import { Layout, Dropdown, Tooltip, theme as antTheme } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import HeaderNoticeComponent from './notice';
 import Avator from '@/assets/header/avator.jpeg';
@@ -29,6 +29,7 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
   const { logged, locale, device } = useSelector(state => state.user);
   const { theme } = useSelector(state => state.global);
   const navigate = useNavigate();
+  const token = antTheme.useToken();
   const dispatch = useDispatch();
   const { formatMessage } = useLocale();
 
@@ -66,30 +67,9 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
       }),
     );
   };
-  const menu = (
-    <Menu>
-      <Menu.Item key="1">
-        <span>
-          <UserOutlined />
-          <span onClick={() => navigate('/dashboard')}>
-            <LocaleFormatter id="header.avator.account" />
-          </span>
-        </span>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="2">
-        <span>
-          <LogoutOutlined />
-          <span onClick={() => onActionClick('logout')}>
-            <LocaleFormatter id="header.avator.logout" />
-          </span>
-        </span>
-      </Menu.Item>
-    </Menu>
-  );
 
   return (
-    <Header className="layout-page-header bg-2">
+    <Header className="layout-page-header bg-2" style={{ backgroundColor: token.token.colorBgContainer }}>
       {device !== 'MOBILE' && (
         <div className="logo" style={{ width: collapsed ? 80 : 200 }}>
           <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }} />
@@ -114,23 +94,62 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
           </Tooltip>
           <HeaderNoticeComponent />
           <Dropdown
-            overlay={
-              <Menu onClick={selectLocale}>
-                <Menu.Item style={{ textAlign: 'left' }} disabled={locale === 'zh_CN'} key="zh_CN">
-                  <ZhCnSvg /> 简体中文
-                </Menu.Item>
-                <Menu.Item style={{ textAlign: 'left' }} disabled={locale === 'en_US'} key="en_US">
-                  <EnUsSvg /> English
-                </Menu.Item>
-              </Menu>
-            }
+            menu={{
+              onClick: info => selectLocale(info),
+              items: [
+                {
+                  key: 'zh_CN',
+                  icon: <ZhCnSvg />,
+                  disabled: locale === 'zh_CN',
+                  label: (
+                    <span onClick={() => navigate('/dashboard')}>
+                      <LocaleFormatter id="header.avator.account" />
+                    </span>
+                  ),
+                },
+                {
+                  key: 'en_US',
+                  icon: <EnUsSvg />,
+                  disabled: locale === 'en_US',
+                  label: (
+                    <span onClick={() => onActionClick('logout')}>
+                      <LocaleFormatter id="header.avator.logout" />
+                    </span>
+                  ),
+                },
+              ],
+            }}
           >
             <span>
               <LanguageSvg id="language-change" />
             </span>
           </Dropdown>
+
           {logged ? (
-            <Dropdown overlay={menu}>
+            <Dropdown
+              menu={{
+                items: [
+                  {
+                    key: '1',
+                    icon: <UserOutlined />,
+                    label: (
+                      <span onClick={() => navigate('/dashboard')}>
+                        <LocaleFormatter id="header.avator.account" />
+                      </span>
+                    ),
+                  },
+                  {
+                    key: '2',
+                    icon: <LogoutOutlined />,
+                    label: (
+                      <span onClick={() => onActionClick('logout')}>
+                        <LocaleFormatter id="header.avator.logout" />
+                      </span>
+                    ),
+                  },
+                ],
+              }}
+            >
               <span className="user-action">
                 <img src={Avator} className="user-avator" alt="avator" />
               </span>

@@ -1,13 +1,14 @@
 import { FC } from 'react';
 import { LocaleFormatter } from '@/locales';
 import './index.less';
+import { Typography } from 'antd';
 
 const RoutePermissionPage: FC = () => {
   return (
     <div className="permission-page">
-      <p className="permission-intro">
+      <Typography className="permission-intro">
         <LocaleFormatter id="gloabal.tips.loginResult" />
-      </p>
+      </Typography>
     </div>
   );
 };

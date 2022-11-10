@@ -27,6 +27,8 @@ React Hooks + Typescript 最佳实践。
 - 预览: https://react-admin.winme.dev
 - 文档: https://react-admin.winme.dev/documentation
 
+**为了最新体验，我们使用了不稳定的 Ant Design 版本(5.0.0-beta), 如果你想要使用稳定的版本，可以切换到 [antd-v4](https://github.com/WinmezzZ/react-antd-admin/tree/antd-v4) 分支**
+
 ## ✨ 特性
 
 - 💡 **TypeScript**: 应用程序级 JavaScript 的语言

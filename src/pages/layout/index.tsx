@@ -1,5 +1,5 @@
 import { FC, useEffect, useCallback, useState, Suspense } from 'react';
-import { Layout, Drawer } from 'antd';
+import { Layout, Drawer, theme as antTheme } from 'antd';
 import './index.less';
 import MenuComponent from './menu';
 import HeaderComponent from './header';
@@ -22,6 +22,8 @@ const LayoutPage: FC = () => {
   const [selectedKey, setSelectedKey] = useState<string>(location.pathname);
   const [menuList, setMenuList] = useState<MenuList>([]);
   const { device, collapsed, newUser } = useSelector(state => state.user);
+  const token = antTheme.useToken();
+
   const isMobile = device === 'MOBILE';
   const dispatch = useDispatch();
   const { driverStart } = useGuide();
@@ -102,6 +104,7 @@ const LayoutPage: FC = () => {
             className="layout-page-sider"
             trigger={null}
             collapsible
+            style={{ backgroundColor: token.token.colorBgContainer }}
             collapsedWidth={isMobile ? 0 : 80}
             collapsed={collapsed}
             breakpoint="md"
@@ -121,7 +124,7 @@ const LayoutPage: FC = () => {
             bodyStyle={{ padding: 0, height: '100%' }}
             closable={false}
             onClose={toggle}
-            visible={!collapsed}
+            open={!collapsed}
           >
             <MenuComponent
               menuList={menuList}
