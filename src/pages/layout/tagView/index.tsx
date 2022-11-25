@@ -5,8 +5,6 @@ import TagsViewAction from './tagViewAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTag, removeTag, setActiveTag } from '@/stores/tags-view.store';
 
-const { TabPane } = Tabs;
-
 const TagsView: FC = () => {
   const { tags, activeTagId } = useSelector(state => state.tagsView);
   const { menuList, locale } = useSelector(state => state.user);
@@ -20,7 +18,6 @@ const TagsView: FC = () => {
 
     if (tag) {
       setCurrentTag(tag.path);
-      navigate(tag.path);
     }
   };
 
@@ -47,6 +44,10 @@ const TagsView: FC = () => {
   );
 
   useEffect(() => {
+    navigate(activeTagId);
+  }, [activeTagId]);
+
+  useEffect(() => {
     if (menuList.length) {
       const menu = menuList.find(m => m.path === location.pathname);
 
@@ -71,11 +72,14 @@ const TagsView: FC = () => {
         hideAdd
         onEdit={(targetKey, action) => action === 'remove' && onClose(targetKey as string)}
         tabBarExtraContent={<TagsViewAction />}
-      >
-        {tags.map(tag => (
-          <TabPane tab={tag.label[locale]} key={tag.path} closable={tag.closable} />
-        ))}
-      </Tabs>
+        items={tags.map(tag => {
+          return {
+            key: tag.path,
+            closable: tag.closable,
+            label: tag.label[locale],
+          };
+        })}
+      />
     </div>
   );
 };
