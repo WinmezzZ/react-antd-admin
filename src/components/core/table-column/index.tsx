@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 import { MyTableColumnProps, dateFormatMap, datetimeFormatMap, timeFormatMap } from './type';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { getPathValue } from 'rc-table/lib/utils/valueUtil';
 
 const MyTableColumn = <RecordType extends object = object>(props: MyTableColumnProps<RecordType>) => {
@@ -10,11 +10,11 @@ const MyTableColumn = <RecordType extends object = object>(props: MyTableColumnP
     if (!value) return '-';
 
     if ('datetime' in props) {
-      return moment(value, datetimeFormatMap[typeof datetime === 'string' ? datetime : 'second']);
+      return dayjs(value, datetimeFormatMap[typeof datetime === 'string' ? datetime : 'second']);
     } else if ('date' in props) {
-      return moment(value, dateFormatMap[typeof date === 'string' ? date : 'day']);
+      return dayjs(value, dateFormatMap[typeof date === 'string' ? date : 'day']);
     } else if ('time' in props) {
-      return moment(value, timeFormatMap[typeof time === 'string' ? time : 'second']);
+      return dayjs(value, timeFormatMap[typeof time === 'string' ? time : 'second']);
     }
 
     const dataIndex = props.dataIndex;

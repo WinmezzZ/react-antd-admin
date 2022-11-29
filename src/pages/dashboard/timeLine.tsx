@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { Card, Badge } from 'antd';
 import { ResponsiveContainer, LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid, Brush, Legend } from 'recharts';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { LocaleFormatter } from '@/locales';
 
 const data = new Array(20).fill(null).map((_, index) => ({
-  name: moment()
+  name: dayjs()
     .add(index * 30, 'minute')
     .format('HH:mm'),
   traffic: Math.floor(Math.random() * 120 + 1),

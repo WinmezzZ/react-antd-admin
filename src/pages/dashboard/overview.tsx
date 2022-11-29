@@ -5,11 +5,11 @@ import { ColProps } from 'antd/es/col';
 import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg';
 import { ReactComponent as CaretDownIcon } from './assets/caret-down.svg';
 import { ResponsiveContainer, AreaChart, Tooltip as RTooltip, Area, XAxis, BarChart, Bar } from 'recharts';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { useLocale } from '@/locales';
 
 const data = new Array(14).fill(null).map((_, index) => ({
-  name: moment().add(index, 'day').format('YYYY-MM-DD'),
+  name: dayjs().add(index, 'day').format('YYYY-MM-DD'),
   number: Math.floor(Math.random() * 8 + 1),
 }));
 

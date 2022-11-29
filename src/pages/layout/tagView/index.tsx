@@ -55,7 +55,7 @@ const TagsView: FC = () => {
         dispatch(
           addTag({
             ...menu,
-            closable: true,
+            closable: menu.code !== 'dashboard',
           }),
         );
       }

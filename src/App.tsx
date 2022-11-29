@@ -4,8 +4,8 @@ import { localeConfig, LocaleFormatter } from './locales';
 import { ConfigProvider, Spin, theme as a } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import RenderRouter from './routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { history, HistoryRouter } from '@/routes/history';
@@ -43,9 +43,9 @@ const App: React.FC = () => {
   // more languages options can be added here
   useEffect(() => {
     if (locale === 'en_US') {
-      moment.locale('en');
+      dayjs.locale('en');
     } else if (locale === 'zh_CN') {
-      moment.locale('zh-cn');
+      dayjs.locale('zh-cn');
     }
   }, [locale]);
 
