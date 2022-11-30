@@ -7,16 +7,16 @@
 React Hooks + Typescript 最佳实践。
 
 <a href="https://github.com/facebook/react">
-  <img src="https://img.shields.io/badge/react-16.12.0-brightgreen" alt="React">
+  <img src="https://img.shields.io/badge/react-17.0.0-brightgreen" alt="React">
 </a>
 <a href="https://github.com/ant-design/ant-design">
-  <img src="https://img.shields.io/badge/ant--design-4.0.0-brightgreen" alt="ant-design">
+  <img src="https://img.shields.io/badge/ant--design-5.2.0-brightgreen" alt="ant-design">
 </a>
 <a href="https://github.com/microsoft/TypeScript" rel="nofollow">
-  <img src="https://img.shields.io/badge/typescript-3.7.5-brightgreen" alt="Typescript">
+  <img src="https://img.shields.io/badge/typescript-4.3.2-brightgreen" alt="Typescript">
 </a>
 <a href="https://github.com/reduxjs/redux" rel="nofollow">
-  <img src="https://img.shields.io/badge/redux-4.0.5-brightgreen" alt="Redux">
+  <img src="https://img.shields.io/badge/@reduxjs/toolkit-1.4.0-brightgreen" alt="Redux">
 </a>
 <a href="https://github.com/WinmezzZ/react-antd-admin/blob/master/LICENSE">
   <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
@@ -26,8 +26,6 @@ React Hooks + Typescript 最佳实践。
 
 - 预览: https://react-admin.winme.dev
 - 文档: https://react-admin.winme.dev/documentation
-
-**为了最新体验，我们使用了不稳定的 Ant Design 版本(5.0.0-beta), 如果你想要使用稳定的版本，可以切换到 [antd-v4](https://github.com/WinmezzZ/react-antd-admin/tree/antd-v4) 分支**
 
 ## ✨ 特性
 
