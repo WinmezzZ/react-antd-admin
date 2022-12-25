@@ -1,20 +1,16 @@
-import { createElement, FC } from 'react';
-import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Dropdown, Tooltip, theme as antTheme } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import HeaderNoticeComponent from './notice';
 import Avator from '@/assets/header/avator.jpeg';
+import { ReactComponent as EnUsSvg } from '@/assets/header/en_US.svg';
 import { ReactComponent as LanguageSvg } from '@/assets/header/language.svg';
 import { ReactComponent as ZhCnSvg } from '@/assets/header/zh_CN.svg';
-import { ReactComponent as EnUsSvg } from '@/assets/header/en_US.svg';
-import { ReactComponent as MoonSvg } from '@/assets/header/moon.svg';
-import { ReactComponent as SunSvg } from '@/assets/header/sun.svg';
+import ReactSvg from '@/assets/logo/logo-opt.png';
 import { LocaleFormatter, useLocale } from '@/locales';
-import ReactSvg from '@/assets/logo/react.svg';
-import AntdSvg from '@/assets/logo/antd.svg';
-import { logoutAsync, setUserItem } from '@/stores/user.store';
-import { useDispatch, useSelector } from 'react-redux';
 import { setGlobalState } from '@/stores/global.store';
+import { logoutAsync, setUserItem } from '@/stores/user.store';
+import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
+import { Dropdown, Layout, theme as antTheme } from 'antd';
+import { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const { Header } = Layout;
 
@@ -71,9 +67,8 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
   return (
     <Header className="layout-page-header bg-2" style={{ backgroundColor: token.token.colorBgContainer }}>
       {device !== 'MOBILE' && (
-        <div className="logo" style={{ width: collapsed ? 80 : 200 }}>
-          <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }} />
-          <img src={AntdSvg} alt="" />
+        <div className="logo" style={{ width: collapsed ? 20 : 200 }}>
+          <img src={ReactSvg} alt="" style={{ display: collapsed ? 'none' : 'block' }} />
         </div>
       )}
       <div className="layout-page-header-main">
@@ -81,7 +76,7 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
           <span id="sidebar-trigger">{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</span>
         </div>
         <div className="actions">
-          <Tooltip
+          {/* <Tooltip
             title={formatMessage({
               id: theme === 'dark' ? 'gloabal.tips.theme.lightTooltip' : 'gloabal.tips.theme.darkTooltip',
             })}
@@ -92,7 +87,7 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
               })}
             </span>
           </Tooltip>
-          <HeaderNoticeComponent />
+          <HeaderNoticeComponent /> */}
           <Dropdown
             menu={{
               onClick: info => selectLocale(info),
