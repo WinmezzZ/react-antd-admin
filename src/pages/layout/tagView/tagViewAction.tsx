@@ -14,7 +14,7 @@ const TagsViewAction: FC = () => {
       menu={{
         items: [
           {
-            key: '1',
+            key: '0',
             onClick: () => dispatch(removeTag(activeTagId)),
             label: <LocaleFormatter id="tagsView.operation.closeCurrent" />,
           },
