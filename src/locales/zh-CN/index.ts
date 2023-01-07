@@ -7,6 +7,7 @@ import { zhCN_permissionRole } from './permission/role';
 import { zhCN_dashboard } from './dashboard';
 import { zhCN_guide } from './guide';
 import { zhCN_documentation } from './documentation';
+import { zhCN_notice } from './notice';
 
 const zh_CN = {
   ...zhCN_account,
@@ -18,6 +19,7 @@ const zh_CN = {
   ...zhCN_dashboard,
   ...zhCN_guide,
   ...zhCN_documentation,
+  ...zhCN_notice,
 };
 
 export default zh_CN;

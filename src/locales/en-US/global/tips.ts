@@ -4,7 +4,10 @@ export const enUS_globalTips = {
   'gloabal.tips.loginResult': 'When you see this page, it means you are logged in.',
   'gloabal.tips.goToLogin': 'Go To Login',
   'gloabal.tips.username': 'Username',
+  'gloabal.tips.enterUsernameMessage': 'Please enter your Username!',
   'gloabal.tips.password': 'Password',
+  'gloabal.tips.enterPasswordMessage': 'Please enter your Password!',
+  'gloabal.tips.rememberUser': 'Remember user',
   'gloabal.tips.login': 'Login',
   'gloabal.tips.backHome': 'Back Home',
   'gloabal.tips.operation': 'Operation',
@@ -18,4 +21,5 @@ export const enUS_globalTips = {
   'gloabal.tips.loading': 'Loading...',
   'gloabal.tips.theme.darkTooltip': 'Switch to dark theme',
   'gloabal.tips.theme.lightTooltip': 'Switch to light theme',
+  'gloabal.tips.theme.noticeTooltip': 'Notifications',
 };

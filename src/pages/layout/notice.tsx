@@ -5,6 +5,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { getNoticeList } from '@/api/layout.api';
 import { Notice, EventStatus } from '@/interface/layout/notice.interface';
 import { useSelector } from 'react-redux';
+import { useLocale } from '@/locales';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -15,6 +16,7 @@ const HeaderNoticeComponent: FC = () => {
   const [noticeList, setNoticeList] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(false);
   const { noticeCount } = useSelector(state => state.user);
+  const { formatMessage } = useLocale();
 
   const noticeListFilter = <T extends Notice['type']>(type: T) => {
     return noticeList.filter(notice => notice.type === type) as Notice<T>[];
@@ -38,7 +40,12 @@ const HeaderNoticeComponent: FC = () => {
     <div>
       <Spin tip="Loading..." indicator={antIcon} spinning={loading}>
         <Tabs defaultActiveKey="1">
-          <TabPane tab={`通知(${noticeListFilter('notification').length})`} key="1">
+          <TabPane
+            tab={`${formatMessage({
+              id: 'app.notice.messages',
+            })}(${noticeListFilter('notification').length})`}
+            key="1"
+          >
             <List
               dataSource={noticeListFilter('notification')}
               renderItem={item => (
@@ -53,7 +60,12 @@ const HeaderNoticeComponent: FC = () => {
             />
           </TabPane>
 
-          <TabPane tab={`消息(${noticeListFilter('message').length})`} key="2">
+          <TabPane
+            tab={`${formatMessage({
+              id: 'app.notice.news',
+            })}(${noticeListFilter('message').length})`}
+            key="2"
+          >
             <List
               dataSource={noticeListFilter('message')}
               renderItem={item => (
@@ -72,7 +84,12 @@ const HeaderNoticeComponent: FC = () => {
               )}
             />
           </TabPane>
-          <TabPane tab={`待办(${noticeListFilter('event').length})`} key="3">
+          <TabPane
+            tab={`${formatMessage({
+              id: 'app.notice.tasks',
+            })}(${noticeListFilter('event').length})`}
+            key="3"
+          >
             <List
               dataSource={noticeListFilter('event')}
               renderItem={item => (
@@ -107,7 +124,11 @@ const HeaderNoticeComponent: FC = () => {
         width: 336,
       }}
     >
-      <Tooltip title="通知">
+      <Tooltip
+        title={formatMessage({
+          id: 'gloabal.tips.theme.noticeTooltip',
+        })}
+      >
         <Badge count={noticeCount} overflowCount={999}>
           <span className="notice" id="notice-center">
             <NoticeSvg className="anticon" />
