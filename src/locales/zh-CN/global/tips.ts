@@ -5,7 +5,9 @@ export const zhCN_globalTips = {
   'gloabal.tips.goToLogin': '去登录',
   'gloabal.tips.login': '登录',
   'gloabal.tips.username': '用户名',
+  'gloabal.tips.enterUsernameMessage': '请输入用户名！',
   'gloabal.tips.password': '密码',
+  'gloabal.tips.enterPasswordMessage': '请输入密码！',
   'gloabal.tips.rememberUser': '记住用户',
   'gloabal.tips.backHome': '返回首页',
   'gloabal.tips.operation': '操作',
@@ -19,4 +21,5 @@ export const zhCN_globalTips = {
   'gloabal.tips.loading': '加载中...',
   'gloabal.tips.theme.darkTooltip': '切换至深色主题',
   'gloabal.tips.theme.lightTooltip': '切换至浅色主题',
+  'gloabal.tips.theme.noticeTooltip': '通知',
 };

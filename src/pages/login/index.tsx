@@ -6,6 +6,7 @@ import { LoginParams } from '@/interface/user/login';
 import { loginAsync } from '@/stores/user.store';
 import { useDispatch } from 'react-redux';
 import { formatSearch } from '@/utils/formatSearch';
+import { LocaleFormatter, useLocale } from '@/locales';
 
 const initialValues: LoginParams = {
   username: 'guest',
@@ -17,6 +18,7 @@ const LoginForm: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+  const { formatMessage } = useLocale();
 
   const onFinished = async (form: LoginParams) => {
     const res = dispatch(await loginAsync(form));
@@ -33,18 +35,49 @@ const LoginForm: FC = () => {
     <div className="login-page">
       <Form<LoginParams> onFinish={onFinished} className="login-page-form" initialValues={initialValues}>
         <h2>REACT ANTD ADMIN</h2>
-        <Form.Item name="username" rules={[{ required: true, message: '请输入用户名！' }]}>
-          <Input placeholder="用户名" />
+        <Form.Item
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: formatMessage({
+                id: 'gloabal.tips.enterUsernameMessage',
+              }),
+            },
+          ]}
+        >
+          <Input
+            placeholder={formatMessage({
+              id: 'gloabal.tips.username',
+            })}
+          />
         </Form.Item>
-        <Form.Item name="password" rules={[{ required: true, message: '请输入密码！' }]}>
-          <Input type="password" placeholder="密码" />
+        <Form.Item
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: formatMessage({
+                id: 'gloabal.tips.enterPasswordMessage',
+              }),
+            },
+          ]}
+        >
+          <Input
+            type="password"
+            placeholder={formatMessage({
+              id: 'gloabal.tips.password',
+            })}
+          />
         </Form.Item>
         <Form.Item name="remember" valuePropName="checked">
-          <Checkbox>记住用户</Checkbox>
+          <Checkbox>
+            <LocaleFormatter id="gloabal.tips.rememberUser" />
+          </Checkbox>
         </Form.Item>
         <Form.Item>
           <Button htmlType="submit" type="primary" className="login-page-form_button">
-            登录
+            <LocaleFormatter id="gloabal.tips.login" />
           </Button>
         </Form.Item>
       </Form>
