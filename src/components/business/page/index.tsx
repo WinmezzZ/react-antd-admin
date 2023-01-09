@@ -196,10 +196,17 @@ const styles = css`
     flex: 1;
     overflow: hidden;
     flex-direction: column;
+    @media screen and (max-height: 800px) {
+      overflow: auto;
+    }
   }
 
   .table {
     flex: 1;
     overflow: hidden;
+    @media screen and (max-height: 800px) {
+      overflow: auto;
+      min-height: 500px;
+    }
   }
 `;
