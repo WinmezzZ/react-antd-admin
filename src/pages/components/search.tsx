@@ -1,28 +1,35 @@
 import { FC } from 'react';
 import MySearch from '@/components/business/search';
 import MyFormItem from '@/components/core/form-item';
+import { useLocale } from '@/locales';
 
 const SearchPage: FC = () => {
+  const { formatMessage } = useLocale();
   const onSearch = (values: any) => {
     console.log(values);
   };
 
+  const nameLabel = formatMessage({ id: 'component.search.name' });
+  const sexLabel = formatMessage({ id: 'component.search.sex' });
+  const maleLabel = formatMessage({ id: 'component.search.male' });
+  const femaleLabel = formatMessage({ id: 'component.search.female' });
+
   return (
     <MySearch onSearch={onSearch}>
-      <MyFormItem label="姓名" type="input" name="name" />
-      <MyFormItem label="姓名1" type="input" name="name1" />
-      <MyFormItem label="姓名2" type="input" name="name2" />
-      <MyFormItem label="姓名3" type="input" name="name3" />
-      <MyFormItem label="姓名4" type="input" name="name4" />
-      <MyFormItem label="姓名5" type="input" name="name5" />
+      <MyFormItem label={nameLabel} type="input" name="name" />
+      <MyFormItem label={nameLabel + '1'} type="input" name="name1" />
+      <MyFormItem label={nameLabel + '2'} type="input" name="name2" />
+      <MyFormItem label={nameLabel + '3'} type="input" name="name3" />
+      <MyFormItem label={nameLabel + '4'} type="input" name="name4" />
+      <MyFormItem label={nameLabel + '5'} type="input" name="name5" />
       <MyFormItem
         name="sex"
-        label="性别"
+        label={sexLabel}
         type="radio"
         initialValue={1}
         options={[
-          { label: '男', value: 1 },
-          { label: '女', value: 2 },
+          { label: maleLabel, value: 1 },
+          { label: femaleLabel, value: 2 },
         ]}
       />
     </MySearch>
