@@ -8,6 +8,7 @@ import { zhCN_dashboard } from './dashboard';
 import { zhCN_guide } from './guide';
 import { zhCN_documentation } from './documentation';
 import { zhCN_notice } from './notice';
+import { zhCN_component } from './component';
 
 const zh_CN = {
   ...zhCN_account,
@@ -20,6 +21,7 @@ const zh_CN = {
   ...zhCN_guide,
   ...zhCN_documentation,
   ...zhCN_notice,
+  ...zhCN_component,
 };
 
 export default zh_CN;

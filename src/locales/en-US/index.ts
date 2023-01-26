@@ -8,6 +8,7 @@ import { enUS_dashboard } from './dashboard';
 import { enUS_guide } from './guide';
 import { en_US_documentation } from './documentation';
 import { enUS_notice } from './notice';
+import { en_US_component } from './component';
 
 const en_US = {
   ...enUS_account,
@@ -20,6 +21,7 @@ const en_US = {
   ...enUS_guide,
   ...en_US_documentation,
   ...enUS_notice,
+  ...en_US_component,
 };
 
 export default en_US;
