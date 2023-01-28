@@ -1,6 +1,7 @@
 import MyForm, { MyFormProps } from '@/components/core/form';
 import MyButton from '@/components/basic/button';
 import { css } from '@emotion/react';
+import { useLocale } from '@/locales';
 
 interface SearchProps<T> extends MyFormProps<T> {
   onSearch: (values: T) => void;
@@ -9,6 +10,7 @@ interface SearchProps<T> extends MyFormProps<T> {
 const BaseSearch = <T extends object>(props: SearchProps<T>) => {
   const { children, onSearch, ...rest } = props;
   const [form] = MyForm.useForm<T>();
+  const { formatMessage } = useLocale();
 
   const onSubmit = async () => {
     const values = await form.validateFields();
@@ -24,10 +26,10 @@ const BaseSearch = <T extends object>(props: SearchProps<T>) => {
         {children}
         <MyForm.Item>
           <MyButton type="primary" onClick={onSubmit}>
-            查询
+          {formatMessage({ id: 'component.search.request' })}
           </MyButton>
 
-          <MyButton onClick={() => form.resetFields()}>重置</MyButton>
+          <MyButton onClick={() => form.resetFields()}>{formatMessage({ id: 'component.search.reset' })}</MyButton>
         </MyForm.Item>
       </MyForm>
     </div>
