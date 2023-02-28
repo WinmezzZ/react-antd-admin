@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Select } from 'antd';
+import type { FC } from 'react';
 
 // import { SelectProps, SelectValue } from 'antd/es/select';
 // const MySelect = <T extends SelectValue = SelectValue>({ children, ...props }: SelectProps<T>) => {

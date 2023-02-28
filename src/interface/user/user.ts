@@ -1,6 +1,6 @@
-import { Device } from '@/interface/layout/index.interface';
-import { MenuChild } from '@/interface/layout/menu.interface';
-import { Role } from './login';
+import type { Role } from './login';
+import type { Device } from '@/interface/layout/index.interface';
+import type { MenuChild } from '@/interface/layout/menu.interface';
 
 export type Locale = 'zh_CN' | 'en_US';
 

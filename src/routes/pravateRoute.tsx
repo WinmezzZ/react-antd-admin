@@ -1,9 +1,10 @@
-import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Result, Button } from 'antd';
 import { useLocale } from '@/locales';
-import { RouteProps, useLocation } from 'react-router';
+import { Button, Result } from 'antd';
+import type { FC } from 'react';
 import { useSelector } from 'react-redux';
+import type { RouteProps } from 'react-router';
+import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const PrivateRoute: FC<RouteProps> = props => {
   const { logged } = useSelector(state => state.user);

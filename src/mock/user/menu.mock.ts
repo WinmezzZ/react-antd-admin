@@ -1,5 +1,5 @@
-import { MenuList } from '@/interface/layout/menu.interface';
-import { mock, intercepter } from '../config';
+import { intercepter, mock } from '../config';
+import type { MenuList } from '@/interface/layout/menu.interface';
 
 const mockMenuList: MenuList = [
   {

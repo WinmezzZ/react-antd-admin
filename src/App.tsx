@@ -1,15 +1,15 @@
-import { Suspense, useEffect } from 'react';
-import { IntlProvider } from 'react-intl';
+import 'dayjs/locale/zh-cn';
 import { localeConfig, LocaleFormatter } from './locales';
+import RenderRouter from './routes';
+import { setGlobalState } from './stores/global.store';
+import { history, HistoryRouter } from '@/routes/history';
 import { ConfigProvider, Spin, theme as a } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
-import 'dayjs/locale/zh-cn';
-import RenderRouter from './routes';
+import { Suspense, useEffect } from 'react';
+import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-import { history, HistoryRouter } from '@/routes/history';
-import { setGlobalState } from './stores/global.store';
 
 const App: React.FC = () => {
   const { locale } = useSelector(state => state.user);
@@ -27,6 +27,7 @@ const App: React.FC = () => {
   /** initial theme */
   useEffect(() => {
     setTheme(theme === 'dark');
+
     // watch system theme change
     if (!localStorage.getItem('theme')) {
       const mql = window.matchMedia('(prefers-color-scheme: dark)');

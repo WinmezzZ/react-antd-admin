@@ -1,4 +1,4 @@
-import { PageData } from '@/interface';
+import type { PageData } from '@/interface';
 
 export const getTableData = <T extends any[]>(pageNum = 1, pageSize = 10, totalData: T) => {
   const total: number = totalData.length;

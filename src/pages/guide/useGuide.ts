@@ -1,9 +1,9 @@
-import { useRef } from 'react';
-import Driver from 'driver.js';
 import 'driver.js/dist/driver.min.css';
 import './index.less';
 import { useLocale } from '@/locales';
 import { setUserItem } from '@/stores/user.store';
+import Driver from 'driver.js';
+import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 export const useGuide = () => {

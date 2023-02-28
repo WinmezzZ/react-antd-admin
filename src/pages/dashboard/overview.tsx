@@ -1,12 +1,12 @@
-import { FC } from 'react';
-import { Row, Col, Card, Tooltip, Progress, Badge } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { ColProps } from 'antd/es/col';
-import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg';
 import { ReactComponent as CaretDownIcon } from './assets/caret-down.svg';
-import { ResponsiveContainer, AreaChart, Tooltip as RTooltip, Area, XAxis, BarChart, Bar } from 'recharts';
-import dayjs from 'dayjs';
+import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg';
 import { useLocale } from '@/locales';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { Badge, Card, Col, Progress, Row, Tooltip } from 'antd';
+import type { ColProps } from 'antd/es/col';
+import dayjs from 'dayjs';
+import type { FC } from 'react';
+import { Area, AreaChart, Bar, BarChart, ResponsiveContainer, Tooltip as RTooltip, XAxis } from 'recharts';
 
 const data = new Array(14).fill(null).map((_, index) => ({
   name: dayjs().add(index, 'day').format('YYYY-MM-DD'),

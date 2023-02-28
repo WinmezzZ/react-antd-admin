@@ -1,9 +1,10 @@
-import { Space, Tag } from 'antd';
 import { getBusinessUserList } from '@/api/business';
 import MyButton from '@/components/basic/button';
-import MyPage, { MyPageTableOptions } from '@/components/business/page';
-import { BuniesssUser } from '@/interface/business';
-import { FC } from 'react';
+import type { MyPageTableOptions } from '@/components/business/page';
+import MyPage from '@/components/business/page';
+import type { BuniesssUser } from '@/interface/business';
+import { Space, Tag } from 'antd';
+import type { FC } from 'react';
 
 const tableColums: MyPageTableOptions<BuniesssUser> = [
   {

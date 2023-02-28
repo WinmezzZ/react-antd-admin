@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { ReactComponent as AccountSvg } from '@/assets/menu/account.svg';
+import { ReactComponent as DashboardSvg } from '@/assets/menu/dashboard.svg';
+import { ReactComponent as DocumentationSvg } from '@/assets/menu/documentation.svg';
 import { ReactComponent as GuideSvg } from '@/assets/menu/guide.svg';
 import { ReactComponent as PermissionSvg } from '@/assets/menu/permission.svg';
-import { ReactComponent as DashboardSvg } from '@/assets/menu/dashboard.svg';
-import { ReactComponent as AccountSvg } from '@/assets/menu/account.svg';
-import { ReactComponent as DocumentationSvg } from '@/assets/menu/documentation.svg';
+import type { FC } from 'react';
 
 interface CustomIconProps {
   type: string;

@@ -1,8 +1,8 @@
-import { Modal } from 'antd';
-import { ModalProps } from 'antd/es/modal';
 import MyForm from '../form';
-import { FormProps } from 'antd/es/form';
+import { Modal } from 'antd';
+import type { FormProps } from 'antd/es/form';
 import { useForm } from 'antd/es/form/Form';
+import type { ModalProps } from 'antd/es/modal';
 
 interface FilteredModalProps extends Omit<ModalProps, 'onOk' | 'onCancel'> {}
 

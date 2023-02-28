@@ -1,11 +1,12 @@
-import { Space, Tag } from 'antd';
 import { getBusinessUserList } from '@/api/business';
 import MyButton from '@/components/basic/button';
-import { MySideOption } from '@/components/business/aside';
-import MyPage, { MyPageTableOptions } from '@/components/business/page';
-import { MyRadioCardssOption } from '@/components/business/radio-cards';
-import { BuniesssUser } from '@/interface/business';
-import { FC } from 'react';
+import type { MySideOption } from '@/components/business/aside';
+import type { MyPageTableOptions } from '@/components/business/page';
+import MyPage from '@/components/business/page';
+import type { MyRadioCardssOption } from '@/components/business/radio-cards';
+import type { BuniesssUser } from '@/interface/business';
+import { Space, Tag } from 'antd';
+import type { FC } from 'react';
 
 const { Item: SearchItem } = MyPage.MySearch;
 

@@ -1,7 +1,7 @@
-import { Space, Tag } from 'antd';
 import MyButton from '@/components/basic/button';
 import MyTable from '@/components/core/table';
-import { FC } from 'react';
+import { Space, Tag } from 'antd';
+import type { FC } from 'react';
 
 const { Column, ColumnGroup } = MyTable;
 

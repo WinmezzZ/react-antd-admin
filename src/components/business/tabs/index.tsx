@@ -1,6 +1,7 @@
-import { FC } from 'react';
-import { TabPaneProps, Tabs, TabsProps } from 'antd';
 import { css } from '@emotion/react';
+import type { TabPaneProps, TabsProps } from 'antd';
+import { Tabs } from 'antd';
+import type { FC } from 'react';
 
 const { TabPane } = Tabs;
 

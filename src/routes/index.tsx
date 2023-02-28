@@ -1,9 +1,11 @@
-import { FC, lazy } from 'react';
-import Dashboard from '@/pages/dashboard';
-import LoginPage from '@/pages/login';
-import LayoutPage from '@/pages/layout';
-import { Navigate, RouteObject } from 'react-router';
 import WrapperRouteComponent from './config';
+import Dashboard from '@/pages/dashboard';
+import LayoutPage from '@/pages/layout';
+import LoginPage from '@/pages/login';
+import type { FC } from 'react';
+import { lazy } from 'react';
+import type { RouteObject } from 'react-router';
+import { Navigate } from 'react-router';
 import { useRoutes } from 'react-router-dom';
 
 const NotFound = lazy(() => import(/* webpackChunkName: "404'"*/ '@/pages/404'));

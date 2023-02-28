@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { LocaleFormatter } from '@/locales';
 import './index.less';
+import { LocaleFormatter } from '@/locales';
 import { Typography } from 'antd';
+import type { FC } from 'react';
 
 const RoutePermissionPage: FC = () => {
   return (

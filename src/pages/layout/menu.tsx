@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { Menu } from 'antd';
-import { MenuList } from '../../interface/layout/menu.interface';
-import { useNavigate } from 'react-router-dom';
+import type { MenuList } from '../../interface/layout/menu.interface';
 import { CustomIcon } from './customIcon';
-import { useDispatch, useSelector } from 'react-redux';
 import { setUserItem } from '@/stores/user.store';
+import { Menu } from 'antd';
+import type { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 interface MenuProps {
   menuList: MenuList;
@@ -32,6 +32,7 @@ const MenuComponent: FC<MenuProps> = props => {
   const onMenuClick = (path: string) => {
     onChangeSelectedKey(path);
     navigate(path);
+
     if (device !== 'DESKTOP') {
       dispatch(setUserItem({ collapsed: true }));
     }

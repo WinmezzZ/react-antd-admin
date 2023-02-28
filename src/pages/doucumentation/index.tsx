@@ -1,6 +1,6 @@
-import { FC } from 'react';
-import { Typography } from 'antd';
 import { LocaleFormatter } from '@/locales';
+import { Typography } from 'antd';
+import type { FC } from 'react';
 
 const { Title, Paragraph } = Typography;
 

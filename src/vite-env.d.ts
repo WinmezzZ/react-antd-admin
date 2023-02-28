@@ -2,7 +2,7 @@
 /// <reference types="vite-plugin-svgr/client" />
 /// <reference types="@emotion/react/types/css-prop" />
 
-import { AppState } from './stores';
+import type { AppState } from './stores';
 
 declare module 'react-redux' {
   export interface DefaultRootState extends AppState {}

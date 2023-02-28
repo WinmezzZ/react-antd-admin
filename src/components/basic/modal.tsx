@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Modal } from 'antd';
+import type { FC } from 'react';
 
 const BaseModal: FC = props => {
   return <Modal {...props} />;

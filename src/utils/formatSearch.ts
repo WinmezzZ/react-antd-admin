@@ -10,6 +10,7 @@ export function formatSearch(se: string) {
     console.log(v);
     console.log(i);
     newarr = v.split('=');
+
     if (typeof obj[newarr[0]] === 'undefined') {
       obj[newarr[0]] = newarr[1];
     }

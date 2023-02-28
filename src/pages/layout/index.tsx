@@ -1,17 +1,18 @@
-import { FC, useEffect, useCallback, useState, Suspense } from 'react';
-import { Layout, Drawer, theme as antTheme } from 'antd';
 import './index.less';
-import MenuComponent from './menu';
+import { useGuide } from '../guide/useGuide';
 import HeaderComponent from './header';
-import { getGlobalState } from '@/utils/getGloabal';
+import MenuComponent from './menu';
 import TagsView from './tagView';
 import { getMenuList } from '@/api/layout.api';
-import { MenuList, MenuChild } from '@/interface/layout/menu.interface';
-import { useGuide } from '../guide/useGuide';
-import { Outlet, useLocation } from 'react-router';
+import type { MenuChild, MenuList } from '@/interface/layout/menu.interface';
 import { setUserItem } from '@/stores/user.store';
-import { useDispatch, useSelector } from 'react-redux';
 import { getFirstPathCode } from '@/utils/getFirstPathCode';
+import { getGlobalState } from '@/utils/getGloabal';
+import { Drawer, Layout, theme as antTheme } from 'antd';
+import type { FC } from 'react';
+import { Suspense, useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Outlet, useLocation } from 'react-router';
 
 const { Sider, Content } = Layout;
 const WIDTH = 992;

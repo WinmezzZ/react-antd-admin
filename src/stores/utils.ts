@@ -1,5 +1,5 @@
-import { Dispatch } from '@reduxjs/toolkit';
-import { AppStore } from '@/stores';
+import type { AppStore } from '@/stores';
+import type { Dispatch } from '@reduxjs/toolkit';
 
 type ThunkAction<T = any> = (dispatch: Dispatch, state: AppStore['getState']) => Promise<T>;
 

@@ -1,14 +1,17 @@
-import { css } from '@emotion/react';
-import { ColumnsType } from 'antd/es/table/interface';
-import { MyResponse } from '@/api/request';
-import MyTable from '@/components/core/table';
-import { PageData } from '@/interface';
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
-import { useStates } from '@/utils/use-states';
-import MyAside, { MyAsideProps } from '../aside';
-import MyRadioCards, { MyRadioCardssOption } from '../radio-cards';
+import type { MyAsideProps } from '../aside';
+import MyAside from '../aside';
+import type { MyRadioCardssOption } from '../radio-cards';
+import MyRadioCards from '../radio-cards';
 import MySearch from '../search';
-import MyTabs, { MyTabsOption } from '../tabs';
+import type { MyTabsOption } from '../tabs';
+import MyTabs from '../tabs';
+import type { MyResponse } from '@/api/request';
+import MyTable from '@/components/core/table';
+import type { PageData } from '@/interface';
+import { useStates } from '@/utils/use-states';
+import { css } from '@emotion/react';
+import type { ColumnsType } from 'antd/es/table/interface';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 
 interface SearchApi {
   (params?: any): MyResponse<PageData<any>>;
@@ -105,6 +108,7 @@ const BasePage = <S extends SearchApi>(props: PageProps<S>, ref: React.Ref<RefPa
 
   const onPageChange = (pageNum: number, pageSize?: number) => {
     setPageData({ pageNum });
+
     if (pageSize) {
       setPageData({ pageSize });
     }

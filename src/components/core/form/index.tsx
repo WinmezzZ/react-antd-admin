@@ -1,6 +1,7 @@
+import type { ControlTypes, MyFormItemProps } from '../form-item';
+import MyFormItem from '../form-item';
 import { Form } from 'antd';
-import { FormProps } from 'antd/es/form/Form';
-import MyFormItem, { ControlTypes, MyFormItemProps } from '../form-item';
+import type { FormProps } from 'antd/es/form/Form';
 
 export interface MyFormOptions extends Array<MyFormItemProps<ControlTypes>> {}
 

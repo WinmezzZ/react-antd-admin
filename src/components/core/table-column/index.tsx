@@ -1,5 +1,6 @@
+import type { MyTableColumnProps } from './type';
+import { dateFormatMap, datetimeFormatMap, timeFormatMap } from './type';
 import { Table } from 'antd';
-import { MyTableColumnProps, dateFormatMap, datetimeFormatMap, timeFormatMap } from './type';
 import dayjs from 'dayjs';
 import { getPathValue } from 'rc-table/lib/utils/valueUtil';
 

@@ -1,10 +1,11 @@
-import { FC } from 'react';
 import MySearch from '@/components/business/search';
 import MyFormItem from '@/components/core/form-item';
 import { useLocale } from '@/locales';
+import type { FC } from 'react';
 
 const SearchPage: FC = () => {
   const { formatMessage } = useLocale();
+
   const onSearch = (values: any) => {
     console.log(values);
   };

@@ -1,7 +1,8 @@
-import axios, { AxiosRequestConfig, Method } from 'axios';
-import { message as $message } from 'antd';
-import { setGlobalState } from '@/stores/global.store';
 import store from '@/stores';
+import { setGlobalState } from '@/stores/global.store';
+import { message as $message } from 'antd';
+import type { AxiosRequestConfig, Method } from 'axios';
+import axios from 'axios';
 // import { history } from '@/routes/history';
 
 const axiosInstance = axios.create({
@@ -35,6 +36,7 @@ axiosInstance.interceptors.response.use(
         loading: false,
       }),
     );
+
     if (config?.data?.message) {
       // $message.success(config.data.message)
     }
@@ -56,6 +58,7 @@ axiosInstance.interceptors.response.use(
     } else {
       errorMessage = error?.message;
     }
+
     console.dir(error);
     error.message && $message.error(errorMessage);
 
@@ -91,6 +94,7 @@ export const request = <T = any>(
   const prefix = '';
 
   url = prefix + url;
+
   if (method === 'post') {
     return axiosInstance.post(url, data, config);
   } else {

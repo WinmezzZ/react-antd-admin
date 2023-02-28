@@ -1,9 +1,10 @@
-import { FC, useCallback, useEffect } from 'react';
-import { Tabs } from 'antd';
-import { useNavigate, useLocation } from 'react-router-dom';
 import TagsViewAction from './tagViewAction';
-import { useDispatch, useSelector } from 'react-redux';
 import { addTag, removeTag, setActiveTag } from '@/stores/tags-view.store';
+import { Tabs } from 'antd';
+import type { FC } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const TagsView: FC = () => {
   const { tags, activeTagId } = useSelector(state => state.tagsView);

@@ -1,7 +1,8 @@
-import MyForm, { MyFormProps } from '@/components/core/form';
 import MyButton from '@/components/basic/button';
-import { css } from '@emotion/react';
+import type { MyFormProps } from '@/components/core/form';
+import MyForm from '@/components/core/form';
 import { useLocale } from '@/locales';
+import { css } from '@emotion/react';
 
 interface SearchProps<T> extends MyFormProps<T> {
   onSearch: (values: T) => void;
@@ -26,7 +27,7 @@ const BaseSearch = <T extends object>(props: SearchProps<T>) => {
         {children}
         <MyForm.Item>
           <MyButton type="primary" onClick={onSubmit}>
-          {formatMessage({ id: 'component.search.request' })}
+            {formatMessage({ id: 'component.search.request' })}
           </MyButton>
 
           <MyButton onClick={() => form.resetFields()}>{formatMessage({ id: 'component.search.reset' })}</MyButton>

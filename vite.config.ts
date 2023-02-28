@@ -1,5 +1,5 @@
-import path from 'path';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 import { defineConfig } from 'vite';
 import vitePluginImp from 'vite-plugin-imp';
 import svgrPlugin from 'vite-plugin-svgr';

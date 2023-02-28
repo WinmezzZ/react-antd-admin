@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { Dropdown } from 'antd';
-import { SettingOutlined } from '@ant-design/icons';
 import { LocaleFormatter } from '@/locales';
+import { removeAllTag, removeOtherTag, removeTag } from '@/stores/tags-view.store';
+import { SettingOutlined } from '@ant-design/icons';
+import { Dropdown } from 'antd';
+import type { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeTag, removeOtherTag, removeAllTag } from '@/stores/tags-view.store';
 
 const TagsViewAction: FC = () => {
   const { activeTagId } = useSelector(state => state.tagsView);

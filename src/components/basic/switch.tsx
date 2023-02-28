@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Switch } from 'antd';
+import type { FC } from 'react';
 
 const BaseSwitch: FC = ({ children: _, ...props }) => {
   return <Switch {...props} />;

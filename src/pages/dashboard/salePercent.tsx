@@ -1,9 +1,10 @@
-import { FC, useState } from 'react';
-import { Card, Row, Col, List, Radio, Badge } from 'antd';
-import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
-import { ColProps } from 'antd/es/col';
 import { useLocale } from '@/locales';
+import { Badge, Card, Col, List, Radio, Row } from 'antd';
+import type { ColProps } from 'antd/es/col';
+import type { FC } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
 type DataType = 'all' | 'online' | 'offline';
 

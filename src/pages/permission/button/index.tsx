@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 
 const ButtonPermissionPage: FC = () => <span>button</span>;
 
