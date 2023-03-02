@@ -1,9 +1,7 @@
-import { createAsyncAction } from './utils';
-import { apiLogin, apiLogout } from '@/api/user.api';
-import type { LoginParams, Role } from '@/interface/user/login';
+import type { Role } from '@/interface/user/login';
 import type { Locale, UserState } from '@/interface/user/user';
 import { getGlobalState } from '@/utils/getGloabal';
-import type { Dispatch, PayloadAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: UserState = {
@@ -36,63 +34,3 @@ const userSlice = createSlice({
 export const { setUserItem } = userSlice.actions;
 
 export default userSlice.reducer;
-
-// source async thunk
-// export const loginAsync = (payload: LoginParams) => {
-//   return async (dispatch: Dispatch) => {
-//     const { result, status } = await apiLogin(payload);
-//     if (status) {
-//       localStorage.setItem('t', result.token);
-//       localStorage.setItem('username', result.username);
-//       dispatch(
-//         setUserItem({
-//           logged: true,
-//           username: result.username
-//         })
-//       );
-//       return true;
-//     }
-//     return false;
-//   };
-// };
-
-// typed wrapper async thunk function demo, no extra feature, just for powerful typings
-export const loginAsync = createAsyncAction<LoginParams, boolean>(payload => {
-  return async dispatch => {
-    const { result, status } = await apiLogin(payload);
-
-    if (status) {
-      localStorage.setItem('t', result.token);
-      localStorage.setItem('username', result.username);
-      dispatch(
-        setUserItem({
-          logged: true,
-          username: result.username,
-        }),
-      );
-
-      return true;
-    }
-
-    return false;
-  };
-});
-
-export const logoutAsync = () => {
-  return async (dispatch: Dispatch) => {
-    const { status } = await apiLogout({ token: localStorage.getItem('t')! });
-
-    if (status) {
-      localStorage.clear();
-      dispatch(
-        setUserItem({
-          logged: false,
-        }),
-      );
-
-      return true;
-    }
-
-    return false;
-  };
-};

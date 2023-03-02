@@ -1,7 +1,7 @@
 import './index.less';
+import { loginAsync } from '../../stores/user.action';
 import type { LoginParams } from '@/interface/user/login';
 import { LocaleFormatter, useLocale } from '@/locales';
-import { loginAsync } from '@/stores/user.store';
 import { formatSearch } from '@/utils/formatSearch';
 import { Button, Checkbox, Form, Input } from 'antd';
 import type { FC } from 'react';
