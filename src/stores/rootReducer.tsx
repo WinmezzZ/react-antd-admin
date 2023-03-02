@@ -4,8 +4,8 @@ import userReducer from './user.store';
 import { combineReducers } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
-  tagsView: tagsViewReducer,
   user: userReducer,
+  tagsView: tagsViewReducer,
   global: globalReducer,
 });
 

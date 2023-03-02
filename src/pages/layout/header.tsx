@@ -1,3 +1,4 @@
+import { logoutAsync } from '../../stores/user.action';
 import HeaderNoticeComponent from './notice';
 import Avator from '@/assets/header/avator.jpeg';
 import { ReactComponent as EnUsSvg } from '@/assets/header/en_US.svg';
@@ -9,7 +10,7 @@ import AntdSvg from '@/assets/logo/antd.svg';
 import ReactSvg from '@/assets/logo/react.svg';
 import { LocaleFormatter, useLocale } from '@/locales';
 import { setGlobalState } from '@/stores/global.store';
-import { logoutAsync, setUserItem } from '@/stores/user.store';
+import { setUserItem } from '@/stores/user.store';
 import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
 import { Dropdown, Layout, theme as antTheme, Tooltip } from 'antd';
 import type { FC } from 'react';
