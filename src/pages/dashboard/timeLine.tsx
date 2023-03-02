@@ -1,8 +1,10 @@
-import { LocaleFormatter } from '@/locales';
+import type { FC } from 'react';
+
 import { Badge, Card } from 'antd';
 import dayjs from 'dayjs';
-import type { FC } from 'react';
 import { Brush, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+
+import { LocaleFormatter } from '@/locales';
 
 const data = new Array(20).fill(null).map((_, index) => ({
   name: dayjs()

@@ -1,5 +1,11 @@
-import { logoutAsync } from '../../stores/user.action';
-import HeaderNoticeComponent from './notice';
+import type { FC } from 'react';
+
+import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
+import { Dropdown, Layout, theme as antTheme, Tooltip } from 'antd';
+import { createElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import Avator from '@/assets/header/avator.jpeg';
 import { ReactComponent as EnUsSvg } from '@/assets/header/en_US.svg';
 import { ReactComponent as LanguageSvg } from '@/assets/header/language.svg';
@@ -11,12 +17,9 @@ import ReactSvg from '@/assets/logo/react.svg';
 import { LocaleFormatter, useLocale } from '@/locales';
 import { setGlobalState } from '@/stores/global.store';
 import { setUserItem } from '@/stores/user.store';
-import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
-import { Dropdown, Layout, theme as antTheme, Tooltip } from 'antd';
-import type { FC } from 'react';
-import { createElement } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
+import { logoutAsync } from '../../stores/user.action';
+import HeaderNoticeComponent from './notice';
 
 const { Header } = Layout;
 

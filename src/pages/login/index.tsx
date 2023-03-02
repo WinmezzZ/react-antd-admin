@@ -1,12 +1,16 @@
-import './index.less';
-import { loginAsync } from '../../stores/user.action';
 import type { LoginParams } from '@/interface/user/login';
-import { LocaleFormatter, useLocale } from '@/locales';
-import { formatSearch } from '@/utils/formatSearch';
-import { Button, Checkbox, Form, Input } from 'antd';
 import type { FC } from 'react';
+
+import './index.less';
+
+import { Button, Checkbox, Form, Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { LocaleFormatter, useLocale } from '@/locales';
+import { formatSearch } from '@/utils/formatSearch';
+
+import { loginAsync } from '../../stores/user.action';
 
 const initialValues: LoginParams = {
   username: 'guest',

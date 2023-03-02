@@ -1,5 +1,6 @@
-import { InputNumber } from 'antd';
 import type { FC } from 'react';
+
+import { InputNumber } from 'antd';
 
 const BaseInputNumber: FC = props => {
   return <InputNumber {...props} />;

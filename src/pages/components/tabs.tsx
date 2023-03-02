@@ -1,6 +1,7 @@
 import type { MyTabsOption } from '@/components/business/tabs';
-import MyTabs from '@/components/business/tabs';
 import type { FC } from 'react';
+
+import MyTabs from '@/components/business/tabs';
 
 const options: MyTabsOption[] = [
   {

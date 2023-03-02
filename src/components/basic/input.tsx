@@ -1,5 +1,6 @@
-import { Input } from 'antd';
 import type { FC } from 'react';
+
+import { Input } from 'antd';
 
 const BaseInput: FC = props => {
   return <Input {...props} />;

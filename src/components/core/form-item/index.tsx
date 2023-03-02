@@ -1,6 +1,7 @@
-import { Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select, Switch } from 'antd';
 import type { FormItemProps } from 'antd/es/form';
 import type { FC } from 'react';
+
+import { Checkbox, DatePicker, Form, Input, InputNumber, Radio, Select, Switch } from 'antd';
 import React, { useMemo } from 'react';
 
 export type ControlTypes = 'input' | 'input-number' | 'switch' | 'date-picker' | 'checkbox' | 'radio' | 'select';

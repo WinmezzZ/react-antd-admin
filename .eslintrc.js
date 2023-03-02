@@ -35,7 +35,7 @@ module.exports = {
     'simple-import-sort/imports': [
       'warn',
       {
-        groups: [['^.*\\\\u0000$'], ['^\\\\u0000'], ['^@?\\\\w'], ['^'], ['^\\\\.']],
+        groups: [['^.*\\u0000$'], ['^\\u0000'], ['^@?\\w'], ['^'], ['^\\.']],
       },
     ],
     'simple-import-sort/exports': 'warn',

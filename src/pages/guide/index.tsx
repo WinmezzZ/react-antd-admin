@@ -1,8 +1,12 @@
-import 'driver.js/dist/driver.min.css';
-import useGuide from './useGuide';
-import { useLocale } from '@/locales';
-import { Button, Typography } from 'antd';
 import type { FC } from 'react';
+
+import 'driver.js/dist/driver.min.css';
+
+import { Button, Typography } from 'antd';
+
+import { useLocale } from '@/locales';
+
+import useGuide from './useGuide';
 
 const GuidePage: FC = () => {
   const { formatMessage } = useLocale();

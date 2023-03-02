@@ -1,5 +1,6 @@
-import { DatePicker } from 'antd';
 import type { FC } from 'react';
+
+import { DatePicker } from 'antd';
 
 const BasePicker: FC = props => {
   return <MyDatePicker {...props} />;

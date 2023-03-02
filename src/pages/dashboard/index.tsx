@@ -1,9 +1,12 @@
+import type { FC } from 'react';
+
 import './index.less';
+
+import { useEffect, useState } from 'react';
+
 import Overview from './overview';
 import SalePercent from './salePercent';
 import TimeLine from './timeLine';
-import type { FC } from 'react';
-import { useEffect, useState } from 'react';
 
 const DashBoardPage: FC = () => {
   const [loading, setLoading] = useState(true);

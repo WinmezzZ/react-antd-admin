@@ -1,6 +1,7 @@
+import type { FC } from 'react';
+
 import MyButton from '@/components/basic/button';
 import MyForm from '@/components/core/form';
-import type { FC } from 'react';
 
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },

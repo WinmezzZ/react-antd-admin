@@ -1,8 +1,10 @@
 import type { Role } from '@/interface/user/login';
 import type { Locale, UserState } from '@/interface/user/user';
-import { getGlobalState } from '@/utils/getGloabal';
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import { createSlice } from '@reduxjs/toolkit';
+
+import { getGlobalState } from '@/utils/getGloabal';
 
 const initialState: UserState = {
   ...getGlobalState(),

@@ -1,13 +1,15 @@
-import { getNoticeList } from '@/api/layout.api';
-import { ReactComponent as NoticeSvg } from '@/assets/header/notice.svg';
 import type { Notice } from '@/interface/layout/notice.interface';
-import { EventStatus } from '@/interface/layout/notice.interface';
-import { useLocale } from '@/locales';
+import type { FC } from 'react';
+
 import { LoadingOutlined } from '@ant-design/icons';
 import { Avatar, Badge, List, Popover, Spin, Tabs, Tag, Tooltip } from 'antd';
-import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
+import { getNoticeList } from '@/api/layout.api';
+import { ReactComponent as NoticeSvg } from '@/assets/header/notice.svg';
+import { EventStatus } from '@/interface/layout/notice.interface';
+import { useLocale } from '@/locales';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 

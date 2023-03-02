@@ -1,18 +1,22 @@
+import type { MenuChild, MenuList } from '@/interface/layout/menu.interface';
+import type { FC } from 'react';
+
 import './index.less';
+
+import { Drawer, Layout, theme as antTheme } from 'antd';
+import { Suspense, useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Outlet, useLocation } from 'react-router';
+
+import { getMenuList } from '@/api/layout.api';
+import { setUserItem } from '@/stores/user.store';
+import { getFirstPathCode } from '@/utils/getFirstPathCode';
+import { getGlobalState } from '@/utils/getGloabal';
+
 import { useGuide } from '../guide/useGuide';
 import HeaderComponent from './header';
 import MenuComponent from './menu';
 import TagsView from './tagView';
-import { getMenuList } from '@/api/layout.api';
-import type { MenuChild, MenuList } from '@/interface/layout/menu.interface';
-import { setUserItem } from '@/stores/user.store';
-import { getFirstPathCode } from '@/utils/getFirstPathCode';
-import { getGlobalState } from '@/utils/getGloabal';
-import { Drawer, Layout, theme as antTheme } from 'antd';
-import type { FC } from 'react';
-import { Suspense, useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, useLocation } from 'react-router';
 
 const { Sider, Content } = Layout;
 const WIDTH = 992;

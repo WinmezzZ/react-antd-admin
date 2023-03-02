@@ -1,8 +1,10 @@
 import type { MyTableColumnProps } from './type';
-import { dateFormatMap, datetimeFormatMap, timeFormatMap } from './type';
+
 import { Table } from 'antd';
 import dayjs from 'dayjs';
 import { getPathValue } from 'rc-table/lib/utils/valueUtil';
+
+import { dateFormatMap, datetimeFormatMap, timeFormatMap } from './type';
 
 const MyTableColumn = <RecordType extends object = object>(props: MyTableColumnProps<RecordType>) => {
   const { options, date, time, datetime, render, ...rest } = props;

@@ -1,8 +1,9 @@
-import { apiLogin, apiLogout } from '../api/user.api';
 import type { LoginParams } from '../interface/user/login';
+import type { Dispatch } from '@reduxjs/toolkit';
+
+import { apiLogin, apiLogout } from '../api/user.api';
 import { setUserItem } from './user.store';
 import { createAsyncAction } from './utils';
-import type { Dispatch } from '@reduxjs/toolkit';
 // typed wrapper async thunk function demo, no extra feature, just for powerful typings
 export const loginAsync = createAsyncAction<LoginParams, boolean>(payload => {
   return async dispatch => {

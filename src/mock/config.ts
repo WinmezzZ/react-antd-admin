@@ -1,7 +1,9 @@
 import type { Response } from '../api/request';
 import type { PageData } from '@/interface';
-import { getTableData } from '@/utils/get-table-page-data';
+
 import Mock from 'mockjs';
+
+import { getTableData } from '@/utils/get-table-page-data';
 
 Mock.setup({
   timeout: 300,

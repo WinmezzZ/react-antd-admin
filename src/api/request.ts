@@ -1,8 +1,10 @@
+import type { AxiosRequestConfig, Method } from 'axios';
+
+import { message as $message } from 'antd';
+import axios from 'axios';
+
 import store from '@/stores';
 import { setGlobalState } from '@/stores/global.store';
-import { message as $message } from 'antd';
-import type { AxiosRequestConfig, Method } from 'axios';
-import axios from 'axios';
 // import { history } from '@/routes/history';
 
 const axiosInstance = axios.create({

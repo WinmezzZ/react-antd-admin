@@ -1,7 +1,9 @@
-import TableColumn from '../table-column';
-import { css } from '@emotion/react';
 import type { TableProps } from 'antd';
+
+import { css } from '@emotion/react';
 import { Table } from 'antd';
+
+import TableColumn from '../table-column';
 
 interface MyTableProps<T extends object> extends TableProps<T> {
   height?: string;

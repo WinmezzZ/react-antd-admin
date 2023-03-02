@@ -1,5 +1,6 @@
-import { intercepter, mock } from '../config';
 import type { Notice } from '@/interface/layout/notice.interface';
+
+import { intercepter, mock } from '../config';
 
 const mockNoticeList: Notice<'all'>[] = [
   {

@@ -1,10 +1,13 @@
 import type { MenuList } from '../../interface/layout/menu.interface';
-import { CustomIcon } from './customIcon';
-import { setUserItem } from '@/stores/user.store';
-import { Menu } from 'antd';
 import type { FC } from 'react';
+
+import { Menu } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { setUserItem } from '@/stores/user.store';
+
+import { CustomIcon } from './customIcon';
 
 interface MenuProps {
   menuList: MenuList;
