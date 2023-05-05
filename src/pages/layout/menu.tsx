@@ -2,6 +2,7 @@ import type { MenuList } from '../../interface/layout/menu.interface';
 import type { FC } from 'react';
 
 import { Menu } from 'antd';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,17 +12,21 @@ import { CustomIcon } from './customIcon';
 
 interface MenuProps {
   menuList: MenuList;
-  openKey?: string;
-  onChangeOpenKey: (key?: string) => void;
-  selectedKey: string;
-  onChangeSelectedKey: (key: string) => void;
 }
 
 const MenuComponent: FC<MenuProps> = props => {
-  const { menuList, openKey, onChangeOpenKey, selectedKey, onChangeSelectedKey } = props;
+  const { menuList } = props;
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
   const { device, locale } = useSelector(state => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (location.pathname === selectedKeys[0]) return;
+    setSelectedKeys([location.pathname]);
+    setOpenKeys([location.pathname.split('/')[1]]);
+  }, [location.pathname, selectedKeys]);
 
   const getTitle = (menu: MenuList[0]) => {
     return (
@@ -33,7 +38,7 @@ const MenuComponent: FC<MenuProps> = props => {
   };
 
   const onMenuClick = (path: string) => {
-    onChangeSelectedKey(path);
+    if (location.pathname === path) return;
     navigate(path);
 
     if (device !== 'DESKTOP') {
@@ -41,19 +46,14 @@ const MenuComponent: FC<MenuProps> = props => {
     }
   };
 
-  const onOpenChange = (keys: string[]) => {
-    const key = keys.pop();
-
-    onChangeOpenKey(key);
-  };
-
   return (
     <Menu
       mode="inline"
-      selectedKeys={[selectedKey]}
-      openKeys={openKey ? [openKey] : []}
-      onOpenChange={onOpenChange}
-      onSelect={k => onMenuClick(k.key)}
+      selectedKeys={selectedKeys}
+      openKeys={openKeys}
+      onSelect={e => setSelectedKeys([e.key])}
+      onOpenChange={setOpenKeys}
+      onClick={e => onMenuClick(e.key)}
       className="layout-page-sider-menu text-2"
       items={menuList.map(menu => {
         return menu.children

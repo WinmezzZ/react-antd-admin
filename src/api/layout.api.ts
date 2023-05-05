@@ -6,7 +6,7 @@ import { request } from './request';
 
 /** 获取菜单列表接口 */
 /** Provides the mock menu list to be shown in the navigation sidebar */
-export const getMenuList = (config: AxiosRequestConfig = {}) => request<MenuList>('get', '/user/menu', {}, config);
+export const getMenuList = (config: AxiosRequestConfig = {}) => request<MenuList>('get', '/api/user/menu', {}, config);
 
 /** 获取通知列表接口 */
 /** Provides the mock notification list to be shown

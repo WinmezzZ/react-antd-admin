@@ -1,5 +1,5 @@
 import type { TreeProps } from 'antd';
-import type { DataNode } from 'rc-tree/lib/interface';
+import type { DataNode } from 'antd/es/tree';
 import type { FC } from 'react';
 
 import { css } from '@emotion/react';

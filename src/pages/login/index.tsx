@@ -1,16 +1,12 @@
 import type { LoginParams } from '@/interface/user/login';
 import type { FC } from 'react';
 
-import './index.less';
-
-import { Button, Checkbox, Form, Input } from 'antd';
-import { useDispatch } from 'react-redux';
+import { App, Button, Checkbox, Form, Input } from 'antd';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { LocaleFormatter, useLocale } from '@/locales';
-import { formatSearch } from '@/utils/formatSearch';
-
-import { loginAsync } from '../../stores/user.action';
+import { useUserStore } from '@/stores/userStore';
 
 const initialValues: LoginParams = {
   username: 'guest',
@@ -21,24 +17,39 @@ const initialValues: LoginParams = {
 const LoginForm: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const dispatch = useDispatch();
   const { formatMessage } = useLocale();
+  const userStore = useUserStore();
+  const [loading, setLoading] = useState(false);
+  const { message: $message } = App.useApp();
 
-  const onFinished = async (form: LoginParams) => {
-    const res = dispatch(await loginAsync(form));
+  const onFinished = async (data: LoginParams) => {
+    setLoading(true);
+    const res = await userStore.login(data);
 
-    if (!!res) {
-      const search = formatSearch(location.search);
-      const from = search.from || { pathname: '/' };
+    setLoading(false);
 
-      navigate(from);
+    if (!res.status) {
+      return $message.error(res.message || '服务器异常');
     }
+
+    // 清空所有 swr 缓存
+    // mutate(() => true, undefined, false);
+
+    const formUrlPath = new URLSearchParams(location.search).get('from');
+    const from = decodeURIComponent(formUrlPath || '');
+    const isSameUser = userStore.username === data.username; // 同一个账号重新登录才返回原页面
+
+    isSameUser && from ? navigate(from) : navigate('/');
   };
 
   return (
-    <div className="login-page">
-      <Form<LoginParams> onFinish={onFinished} className="login-page-form" initialValues={initialValues}>
-        <h2>REACT ANTD ADMIN</h2>
+    <div className="flex-center bg-gradient-to-r from-cyan-500 to-primary">
+      <Form<LoginParams>
+        onFinish={onFinished}
+        className="w300 pt50 px40 rounded-10 bg-white"
+        initialValues={initialValues}
+      >
+        <h2 className="text-center">REACT ANTD ADMIN</h2>
         <Form.Item
           name="username"
           rules={[
@@ -80,7 +91,7 @@ const LoginForm: FC = () => {
           </Checkbox>
         </Form.Item>
         <Form.Item>
-          <Button htmlType="submit" type="primary" className="login-page-form_button">
+          <Button htmlType="submit" type="primary" className="w-full" loading={loading}>
             <LocaleFormatter id="gloabal.tips.login" />
           </Button>
         </Form.Item>

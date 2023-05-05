@@ -48,10 +48,6 @@ const TagsView: FC = () => {
   );
 
   useEffect(() => {
-    navigate(activeTagId);
-  }, [activeTagId]);
-
-  useEffect(() => {
     if (menuList.length) {
       const menu = menuList.find(m => m.path === location.pathname);
 
@@ -71,6 +67,7 @@ const TagsView: FC = () => {
       <Tabs
         tabBarStyle={{ margin: 0 }}
         onChange={onChange}
+        onTabClick={tab => navigate(tab)}
         activeKey={activeTagId}
         type="editable-card"
         hideAdd

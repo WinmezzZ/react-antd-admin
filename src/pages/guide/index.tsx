@@ -4,6 +4,7 @@ import 'driver.js/dist/driver.min.css';
 
 import { Button, Typography } from 'antd';
 
+import Page from '@/components/Page';
 import { useLocale } from '@/locales';
 
 import useGuide from './useGuide';
@@ -13,7 +14,7 @@ const GuidePage: FC = () => {
   const { driverStart } = useGuide();
 
   return (
-    <div className="guide-page ">
+    <Page className="guide-page ">
       <div className="innerText">
         <Typography className="guide-intro">
           {formatMessage({ id: 'app.guide.guideIntro' })}
@@ -32,7 +33,7 @@ const GuidePage: FC = () => {
           {formatMessage({ id: 'app.guide.showGuide' })}
         </Button>
       </div>
-    </div>
+    </Page>
   );
 };
 

@@ -4,6 +4,8 @@ import './index.less';
 
 import { useEffect, useState } from 'react';
 
+import Page from '@/components/Page';
+
 import Overview from './overview';
 import SalePercent from './salePercent';
 import TimeLine from './timeLine';
@@ -23,11 +25,11 @@ const DashBoardPage: FC = () => {
   }, []);
 
   return (
-    <div>
+    <Page>
       <Overview loading={loading} />
       <SalePercent loading={loading} />
       <TimeLine loading={loading} />
-    </div>
+    </Page>
   );
 };
 

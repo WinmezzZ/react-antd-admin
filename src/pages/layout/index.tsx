@@ -1,16 +1,17 @@
 import type { MenuChild, MenuList } from '@/interface/layout/menu.interface';
 import type { FC } from 'react';
+import type { LoadingBarRef } from 'react-top-loading-bar';
 
 import './index.less';
 
 import { Drawer, Layout, theme as antTheme } from 'antd';
-import { Suspense, useCallback, useEffect, useState } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, useLocation } from 'react-router';
+import { Outlet, useNavigation } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar';
 
 import { getMenuList } from '@/api/layout.api';
 import { setUserItem } from '@/stores/user.store';
-import { getFirstPathCode } from '@/utils/getFirstPathCode';
 import { getGlobalState } from '@/utils/getGloabal';
 
 import { useGuide } from '../guide/useGuide';
@@ -22,23 +23,20 @@ const { Sider, Content } = Layout;
 const WIDTH = 992;
 
 const LayoutPage: FC = () => {
-  const location = useLocation();
-  const [openKey, setOpenkey] = useState<string>();
-  const [selectedKey, setSelectedKey] = useState<string>(location.pathname);
   const [menuList, setMenuList] = useState<MenuList>([]);
   const { device, collapsed, newUser } = useSelector(state => state.user);
   const token = antTheme.useToken();
+  const loadingBarRef = useRef<LoadingBarRef>(null);
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    if (!loadingBarRef.current) return;
+    navigation.state === 'loading' ? loadingBarRef.current.continuousStart() : loadingBarRef.current.complete();
+  }, [navigation.state]);
 
   const isMobile = device === 'MOBILE';
   const dispatch = useDispatch();
   const { driverStart } = useGuide();
-
-  useEffect(() => {
-    const code = getFirstPathCode(location.pathname);
-
-    setOpenkey(code);
-    setSelectedKey(location.pathname);
-  }, [location.pathname]);
 
   const toggle = () => {
     dispatch(
@@ -66,6 +64,8 @@ const LayoutPage: FC = () => {
 
   const fetchMenuList = useCallback(async () => {
     const { status, result } = await getMenuList();
+
+    console.log(result);
 
     if (status) {
       setMenuList(result);
@@ -114,13 +114,7 @@ const LayoutPage: FC = () => {
             collapsed={collapsed}
             breakpoint="md"
           >
-            <MenuComponent
-              menuList={menuList}
-              openKey={openKey}
-              onChangeOpenKey={k => setOpenkey(k)}
-              selectedKey={selectedKey}
-              onChangeSelectedKey={k => setSelectedKey(k)}
-            />
+            <MenuComponent menuList={menuList} />
           </Sider>
         ) : (
           <Drawer
@@ -131,13 +125,7 @@ const LayoutPage: FC = () => {
             onClose={toggle}
             open={!collapsed}
           >
-            <MenuComponent
-              menuList={menuList}
-              openKey={openKey}
-              onChangeOpenKey={k => setOpenkey(k)}
-              selectedKey={selectedKey}
-              onChangeSelectedKey={k => setSelectedKey(k)}
-            />
+            <MenuComponent menuList={menuList} />
           </Drawer>
         )}
         <Content className="layout-page-content">
@@ -147,6 +135,7 @@ const LayoutPage: FC = () => {
           </Suspense>
         </Content>
       </Layout>
+      <LoadingBar color="#f11946" ref={loadingBarRef} />
     </Layout>
   );
 };

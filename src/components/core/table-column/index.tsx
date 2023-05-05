@@ -2,7 +2,6 @@ import type { MyTableColumnProps } from './type';
 
 import { Table } from 'antd';
 import dayjs from 'dayjs';
-import { getPathValue } from 'rc-table/lib/utils/valueUtil';
 
 import { dateFormatMap, datetimeFormatMap, timeFormatMap } from './type';
 
@@ -23,9 +22,7 @@ const MyTableColumn = <RecordType extends object = object>(props: MyTableColumnP
     const dataIndex = props.dataIndex;
 
     if (dataIndex && options) {
-      const data = options.find(item => item.value === getPathValue(record, dataIndex));
-
-      if (data) return data.label || '-';
+      return '';
     }
   };
 

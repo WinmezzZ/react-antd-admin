@@ -3,3 +3,80 @@
 @import './antd.reset.less';
 
 @import './theme.less';
+
+.spin-wheel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.wheel-container {
+  position: relative;
+}
+
+.wheel {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid #000;
+  transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.wheel .prize {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.pointer {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.pointer:hover {
+  transform: scale(1.2);
+}
+
+.spinning {
+  animation: spin 5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(3600deg);
+  }
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -1,22 +1,21 @@
 import 'dayjs/locale/zh-cn';
 
-import { ConfigProvider, Spin, theme as a } from 'antd';
+import { App as AntdApp, ConfigProvider, Spin, theme as a } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
 import { Suspense, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { history, HistoryRouter } from '@/routes/history';
+import { RouterProvider } from 'react-router-dom';
 
 import { localeConfig, LocaleFormatter } from './locales';
-import RenderRouter from './routes';
+import rootRouter from './routes';
 import { setGlobalState } from './stores/global.store';
 
 const App: React.FC = () => {
   const { locale } = useSelector(state => state.user);
-  const { theme, loading } = useSelector(state => state.global);
+  const { theme } = useSelector(state => state.global);
   const dispatch = useDispatch();
 
   const setTheme = (dark = true) => {
@@ -67,24 +66,31 @@ const App: React.FC = () => {
   };
 
   return (
-    <ConfigProvider
-      locale={getAntdLocale()}
-      componentSize="middle"
-      theme={{ token: { colorPrimary: '#13c2c2' }, algorithm: theme === 'dark' ? a.darkAlgorithm : a.defaultAlgorithm }}
-    >
-      <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
-        <HistoryRouter history={history}>
+    <AntdApp rootClassName="app" className="h-full">
+      <ConfigProvider
+        locale={getAntdLocale()}
+        componentSize="middle"
+        theme={{
+          token: { colorPrimary: '#13c2c2' },
+          algorithm: theme === 'dark' ? a.darkAlgorithm : a.defaultAlgorithm,
+        }}
+      >
+        <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
           <Suspense fallback={null}>
-            <Spin
-              spinning={loading}
-              className="app-loading-wrapper"
-              tip={<LocaleFormatter id="gloabal.tips.loading" />}
-            ></Spin>
-            <RenderRouter />
+            <RouterProvider
+              router={rootRouter}
+              fallbackElement={
+                <Spin
+                  tip={<LocaleFormatter id="gloabal.tips.loading" />}
+                  size="large"
+                  className="app-loading-wrapper"
+                ></Spin>
+              }
+            ></RouterProvider>
           </Suspense>
-        </HistoryRouter>
-      </IntlProvider>
-    </ConfigProvider>
+        </IntlProvider>
+      </ConfigProvider>
+    </AntdApp>
   );
 };
 

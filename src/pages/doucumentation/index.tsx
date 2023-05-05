@@ -2,6 +2,7 @@ import type { FC } from 'react';
 
 import { Typography } from 'antd';
 
+import Page from '@/components/Page';
 import { LocaleFormatter } from '@/locales';
 
 const { Title, Paragraph } = Typography;
@@ -10,7 +11,7 @@ const div = <div style={{ height: 200 }}>2333</div>;
 
 const DocumentationPage: FC = () => {
   return (
-    <div>
+    <Page>
       <Typography className="innerText">
         <Title>
           <LocaleFormatter id="app.documentation.introduction.title" />
@@ -83,7 +84,7 @@ const DocumentationPage: FC = () => {
         </Title>
         <Paragraph>{div}</Paragraph>
       </Typography>
-    </div>
+    </Page>
   );
 };
 

@@ -6,7 +6,6 @@ import { createElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import Avator from '@/assets/header/avator.jpeg';
 import { ReactComponent as EnUsSvg } from '@/assets/header/en_US.svg';
 import { ReactComponent as LanguageSvg } from '@/assets/header/language.svg';
 import { ReactComponent as MoonSvg } from '@/assets/header/moon.svg';
@@ -17,8 +16,8 @@ import ReactSvg from '@/assets/logo/react.svg';
 import { LocaleFormatter, useLocale } from '@/locales';
 import { setGlobalState } from '@/stores/global.store';
 import { setUserItem } from '@/stores/user.store';
+import { useUserStore } from '@/stores/userStore';
 
-import { logoutAsync } from '../../stores/user.action';
 import HeaderNoticeComponent from './notice';
 
 const { Header } = Layout;
@@ -33,6 +32,7 @@ type Action = 'userInfo' | 'userSetting' | 'logout';
 const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
   const { logged, locale, device } = useSelector(state => state.user);
   const { theme } = useSelector(state => state.global);
+  const { username, isLogin, logout } = useUserStore();
   const navigate = useNavigate();
   const token = antTheme.useToken();
   const dispatch = useDispatch();
@@ -45,11 +45,15 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
       case 'userSetting':
         return;
       case 'logout':
-        const res = Boolean(await dispatch(logoutAsync()));
+        logout();
 
-        res && navigate('/login');
-
-        return;
+        return navigate(
+          {
+            pathname: '/login',
+            search: `from=${encodeURIComponent(location.pathname + location.search)}`,
+          },
+          { replace: true },
+        );
     }
   };
 
@@ -122,7 +126,7 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
             </span>
           </Dropdown>
 
-          {logged ? (
+          {isLogin ? (
             <Dropdown
               menu={{
                 items: [
@@ -147,9 +151,7 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
                 ],
               }}
             >
-              <span className="user-action">
-                <img src={Avator} className="user-avator" alt="avator" />
-              </span>
+              <span className="user-action">{username}</span>
             </Dropdown>
           ) : (
             <span style={{ cursor: 'pointer' }} onClick={toLogin}>
