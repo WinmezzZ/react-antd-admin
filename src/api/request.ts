@@ -8,6 +8,7 @@ import { useUserStore } from '@/stores/userStore';
 
 const axiosInstance = axios.create({
   timeout: 6000,
+  withCredentials: false,
 });
 
 axiosInstance.interceptors.request.use(

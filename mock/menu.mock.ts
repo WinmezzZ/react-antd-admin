@@ -85,13 +85,14 @@ export default defineMock([
     method: 'GET',
     delay: 10,
     body({ getCookie }) {
-      const uid = getCookie('uid');
-      const role = (uid ? uid.split('-')[0] : RoleEnum.Guest) as RoleEnum;
+      return true;
+      // const uid = getCookie('uid');
+      // const role = (uid ? uid.split('-')[0] : RoleEnum.Guest) as RoleEnum;
 
-      return {
-        code: 200,
-        result: getMenuListByRole(role),
-      };
+      // return {
+      //   code: 200,
+      //   result: getMenuListByRole(role),
+      // };
     },
   },
 ]);

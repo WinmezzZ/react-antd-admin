@@ -47,24 +47,9 @@ export default defineMock([
     url: '/api/user/login',
     method: 'POST',
     delay: 1000,
-    cookies({ body }) {
-      const user = defaultUserList.find(item => item.username === body.username && item.password === body.password);
 
-      if (user) {
-        return {
-          uid: user.id,
-        };
-      }
-
-      return {} as any;
-    },
     body({ body }) {
-      const user = defaultUserList.find(item => item.username === body.username && item.password === body.password);
-
-      return {
-        code: user ? 200 : 0,
-        message: user ? undefined : '请输入正确的账号和密码',
-      };
+      return true;
     },
   },
 ]);

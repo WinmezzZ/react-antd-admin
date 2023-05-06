@@ -17,10 +17,11 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      port: 8889,
+      port: 8888,
+      host: '0.0.0.0',
       proxy: {
-        '/api': {
-          target: `http://localhost:8889/api`,
+        '^/api': {
+          target: '',
           // changeOrigin: true,
           // rewrite: path => path.replace(/^\/api/, ''),
         },
@@ -31,9 +32,9 @@ export default defineConfig(({ mode }) => {
         jsxImportSource: '@emotion/react',
       }),
       mockDevServerPlugin({
-        include: ['{mock,src}/**/*.mock.{js,ts,cjs,mjs,json,json5}'],
-        prefix: '^/api/',
-        reload: true,
+        include: ['{mock}/**/*.mock.{js,ts,cjs,mjs,json,json5}'],
+        prefix: '^/api-dev/',
+        build: true,
       }),
       UnoCSS(),
       svgrPlugin({
