@@ -21,6 +21,7 @@ const TagsView: FC = () => {
     const tag = tags.find(tag => tag.path === key);
 
     if (tag) {
+      navigate(tag.path);
       setCurrentTag(tag.path);
     }
   };
@@ -46,10 +47,6 @@ const TagsView: FC = () => {
     },
     [dispatch, location.pathname, tags],
   );
-
-  useEffect(() => {
-    navigate(activeTagId);
-  }, [activeTagId]);
 
   useEffect(() => {
     if (menuList.length) {
