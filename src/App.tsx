@@ -1,6 +1,6 @@
 import 'dayjs/locale/zh-cn';
 
-import { ConfigProvider, Spin, theme as a } from 'antd';
+import { ConfigProvider, Spin, theme as antdTheme } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
@@ -8,9 +8,9 @@ import { Suspense, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { history, HistoryRouter } from '@/routes/history';
+import { HistoryRouter, history } from '@/routes/history';
 
-import { localeConfig, LocaleFormatter } from './locales';
+import { LocaleFormatter, localeConfig } from './locales';
 import RenderRouter from './routes';
 import { setGlobalState } from './stores/global.store';
 
@@ -70,7 +70,10 @@ const App: React.FC = () => {
     <ConfigProvider
       locale={getAntdLocale()}
       componentSize="middle"
-      theme={{ token: { colorPrimary: '#13c2c2' }, algorithm: theme === 'dark' ? a.darkAlgorithm : a.defaultAlgorithm }}
+      theme={{
+        token: { colorPrimary: '#13c2c2' },
+        algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
+      }}
     >
       <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
         <HistoryRouter history={history}>
@@ -78,6 +81,9 @@ const App: React.FC = () => {
             <Spin
               spinning={loading}
               className="app-loading-wrapper"
+              style={{
+                backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.44)' : 'rgba(255, 255, 255, 0.44)',
+              }}
               tip={<LocaleFormatter id="gloabal.tips.loading" />}
             ></Spin>
             <RenderRouter />
