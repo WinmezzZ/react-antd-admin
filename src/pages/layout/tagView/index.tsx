@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Tabs } from 'antd';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation,  } from 'react-router-dom';
 
 import { addTag, removeTag, setActiveTag } from '@/stores/tags-view.store';
 
@@ -13,7 +13,6 @@ const TagsView: FC = () => {
   const { tags, activeTagId } = useSelector(state => state.tagsView);
   const { menuList, locale } = useSelector(state => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
 
   // onClick tag
@@ -21,7 +20,6 @@ const TagsView: FC = () => {
     const tag = tags.find(tag => tag.path === key);
 
     if (tag) {
-      navigate(tag.path);
       setCurrentTag(tag.path);
     }
   };
