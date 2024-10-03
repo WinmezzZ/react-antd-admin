@@ -3,7 +3,7 @@ import type { FC } from 'react';
 
 import './index.less';
 
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, theme as antTheme } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -23,6 +23,7 @@ const LoginForm: FC = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { formatMessage } = useLocale();
+  const { token } = antTheme.useToken();
 
   const onFinished = async (form: LoginParams) => {
     const res = dispatch(await loginAsync(form));
@@ -36,7 +37,7 @@ const LoginForm: FC = () => {
   };
 
   return (
-    <div className="login-page">
+    <div className="login-page" style={{ backgroundColor: token.colorBgContainer }}>
       <Form<LoginParams> onFinish={onFinished} className="login-page-form" initialValues={initialValues}>
         <h2>REACT ANTD ADMIN</h2>
         <Form.Item
