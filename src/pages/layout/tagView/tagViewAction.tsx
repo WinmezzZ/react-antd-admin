@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { SettingOutlined } from '@ant-design/icons';
 import { Dropdown } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { LocaleFormatter } from '@/locales';
 import { removeAllTag, removeOtherTag, removeTag } from '@/stores/tags-view.store';
@@ -36,8 +37,7 @@ const TagsViewAction: FC = () => {
           },
           {
             key: '4',
-            onClick: () => dispatch(removeOtherTag()),
-            label: <LocaleFormatter id="tagsView.operation.dashboard" />,
+            label: <Link to="/"><LocaleFormatter id="tagsView.operation.dashboard" /></Link>,
           },
         ],
       }}
