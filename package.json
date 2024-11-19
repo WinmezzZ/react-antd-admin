@@ -8,6 +8,7 @@
     "@reduxjs/toolkit": "^1.4.0",
     "antd": "^5.0.2",
     "axios": "^0.24.0",
+    "concurrently": "^9.1.0",
     "driver.js": "^0.9.8",
     "history": "^5.0.1",
     "lodash": "^4.17.21",
@@ -21,11 +22,13 @@
     "recharts": "^2.1.13"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm run vite-dev\" \"npm run fastapi-dev\"",
+    "vite-dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint . --ext js,ts,tsx",
-    "format": "prettier --write **/*.{js,ts,tsx} && eslint . --ext js,ts,tsx --fix"
+    "format": "prettier --write **/*.{js,ts,tsx} && eslint . --ext js,ts,tsx --fix",
+    "fastapi-dev": "pip3 install -r requirements.txt && python -m uvicorn api.index:app --reload"
   },
   "browserslist": {
     "production": [
