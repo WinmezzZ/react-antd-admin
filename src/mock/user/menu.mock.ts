@@ -151,6 +151,22 @@ const mockMenuList: MenuList = [
         path: '/business/with-aside',
       },
       {
+        code: 'theOffice',
+        label: {
+          zh_CN: 'The Office',
+          en_US: 'The Office',
+        },
+        path: '/business/the-office',
+      },
+      {
+        code: 'theOfficeTable',
+        label: {
+          zh_CN: 'The Office Table',
+          en_US: 'The Office Table',
+        },
+        path: '/business/the-office-lines-table',
+      },
+      {
         code: 'withRadioCard',
         label: {
           zh_CN: '带单选卡片',

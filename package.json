@@ -22,13 +22,11 @@
     "recharts": "^2.1.13"
   },
   "scripts": {
-    "dev": "concurrently \"npm run vite-dev\" \"npm run fastapi-dev\"",
-    "vite-dev": "vite",
+    "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint . --ext js,ts,tsx",
-    "format": "prettier --write **/*.{js,ts,tsx} && eslint . --ext js,ts,tsx --fix",
-    "fastapi-dev": "pip3 install -r requirements.txt && python -m uvicorn api.index:app --reload"
+    "format": "prettier --write **/*.{js,ts,tsx} && eslint . --ext js,ts,tsx --fix"
   },
   "browserslist": {
     "production": [
