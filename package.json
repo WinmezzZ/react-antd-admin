@@ -15,7 +15,7 @@
     "query-string": "^7.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-intl": "^5.23.0",
+    "react-intl": "^7.1.11",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.0",
     "recharts": "^2.1.13"
