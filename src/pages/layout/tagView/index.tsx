@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Tabs } from 'antd';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation,  } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { addTag, removeTag, setActiveTag } from '@/stores/tags-view.store';
 

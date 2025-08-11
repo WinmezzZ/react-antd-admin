@@ -8,9 +8,9 @@ import { Suspense, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { HistoryRouter, history } from '@/routes/history';
+import { history, HistoryRouter } from '@/routes/history';
 
-import { LocaleFormatter, localeConfig } from './locales';
+import { localeConfig, LocaleFormatter } from './locales';
 import RenderRouter from './routes';
 import { setGlobalState } from './stores/global.store';
 
