@@ -1,10 +1,10 @@
 import type { AxiosRequestConfig, Method } from 'axios';
 
-import { message as $message } from 'antd';
 import axios from 'axios';
 
 import store from '@/stores';
 import { setGlobalState } from '@/stores/global.store';
+import { showErrorMessage } from '@/utils/antd-message';
 // import { history } from '@/routes/history';
 
 export const axiosInstance = axios.create({
@@ -63,7 +63,7 @@ axiosInstance.interceptors.response.use(
 
     console.dir(error);
     if (error.message) {
-      $message.error(errorMessage);
+      showErrorMessage(errorMessage);
     }
 
     return {

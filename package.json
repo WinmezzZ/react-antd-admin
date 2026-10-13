@@ -26,6 +26,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint . --ext js,ts,tsx",
+    "lint:antd": "antd --version 6.6.6 --lang en lint .",
     "format": "prettier --write **/*.{js,ts,tsx} && eslint . --ext js,ts,tsx --fix"
   },
   "browserslist": {

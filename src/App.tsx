@@ -1,6 +1,6 @@
 import 'dayjs/locale/zh-cn';
 
-import { ConfigProvider, Spin, theme as antdTheme } from 'antd';
+import { App as AntdApp, ConfigProvider, Spin, theme as antdTheme } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
@@ -9,10 +9,23 @@ import { IntlProvider } from 'react-intl';
 
 import { history, HistoryRouter } from '@/routes/history';
 import { useAppDispatch, useAppSelector } from '@/stores/hooks';
+import { setMessageApi } from '@/utils/antd-message';
 
 import { localeConfig, LocaleFormatter } from './locales';
 import RenderRouter from './routes';
 import { setGlobalState } from './stores/global.store';
+
+const AntdMessageBridge: React.FC = () => {
+  const { message } = AntdApp.useApp();
+
+  useEffect(() => {
+    setMessageApi(message);
+
+    return () => setMessageApi();
+  }, [message]);
+
+  return null;
+};
 
 const App: React.FC = () => {
   const { locale } = useAppSelector(state => state.user);
@@ -75,24 +88,27 @@ const App: React.FC = () => {
         algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
       }}
     >
-      <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
-        <HistoryRouter history={history}>
-          <Suspense fallback={null}>
-            {loading && (
-              <Spin
-                fullscreen
-                spinning
-                className="app-loading-wrapper"
-                style={{
-                  backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.44)' : 'rgba(255, 255, 255, 0.44)',
-                }}
-                description={<LocaleFormatter id="gloabal.tips.loading" />}
-              />
-            )}
-            <RenderRouter />
-          </Suspense>
-        </HistoryRouter>
-      </IntlProvider>
+      <AntdApp>
+        <AntdMessageBridge />
+        <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
+          <HistoryRouter history={history}>
+            <Suspense fallback={null}>
+              {loading && (
+                <Spin
+                  fullscreen
+                  spinning
+                  className="app-loading-wrapper"
+                  style={{
+                    backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.44)' : 'rgba(255, 255, 255, 0.44)',
+                  }}
+                  description={<LocaleFormatter id="gloabal.tips.loading" />}
+                />
+              )}
+              <RenderRouter />
+            </Suspense>
+          </HistoryRouter>
+        </IntlProvider>
+      </AntdApp>
     </ConfigProvider>
   );
 };

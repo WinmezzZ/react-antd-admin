@@ -1,7 +1,7 @@
 import type { ColProps } from 'antd/es/col';
 import type { FC } from 'react';
 
-import { Badge, Card, Col, List, Radio, Row } from 'antd';
+import { Badge, Card, Col, Listy, Radio, Row } from 'antd';
 import { useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
@@ -118,18 +118,18 @@ const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
           </ResponsiveContainer>
         </Col>
         <Col {...wrapperCol}>
-          <List<Values>
-            bordered
-            dataSource={data[dataType]}
-            renderItem={(item, index) => {
+          <Listy<Values>
+            items={data[dataType]}
+            rowKey={item => item.name.en_US}
+            itemRender={(item, index) => {
               const total = data[dataType].map(d => d.value).reduce((a, b) => a + b);
               const percent = ((item.value / total) * 100).toFixed(2) + '%';
 
               return (
-                <List.Item>
+                <div className="sale-percent-list-item">
                   <Badge color={COLORS[index]} />
                   <span>{item.name[locale]}</span> | <span>{item.value}</span> <span>¥ {percent}</span>
-                </List.Item>
+                </div>
               );
             }}
           />

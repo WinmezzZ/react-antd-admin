@@ -126,9 +126,9 @@ const LayoutPage: FC = () => {
           </Sider>
         ) : (
           <Drawer
-            width="200"
+            size={200}
             placement="left"
-            bodyStyle={{ padding: 0, height: '100%' }}
+            styles={{ body: { padding: 0, height: '100%' } }}
             closable={false}
             onClose={toggle}
             open={!collapsed}

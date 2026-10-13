@@ -36,7 +36,7 @@ interface ColCardProps {
 const ColCard: FC<ColCardProps> = ({ metaName, metaCount, body, footer, loading }) => {
   return (
     <Col {...wrapperCol}>
-      <Card loading={loading} className="overview" bordered={false}>
+      <Card loading={loading} className="overview" variant="borderless">
         <div className="overview-header">
           <div className="overview-header-meta">{metaName}</div>
           <div className="overview-header-count">{metaCount}</div>
