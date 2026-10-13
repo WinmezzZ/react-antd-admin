@@ -31,7 +31,7 @@ export interface PageProps<S> {
   tableRender?: (data: MyPageTableOptions<ParseDataType<S>>[]) => React.ReactNode;
   asideData?: MyAsideProps['options'];
   asideKey?: string;
-  asideValue?: string | number;
+  asideValue?: React.Key;
   radioCardsData?: MyRadioCardssOption[];
   radioCardsValue?: string | number;
   asideTreeItemRender?: MyAsideProps['titleRender'];
@@ -40,7 +40,7 @@ export interface PageProps<S> {
 }
 
 export interface RefPageProps {
-  setAsideCheckedKey: (key?: string) => void;
+  setAsideCheckedKey: (key?: React.Key) => void;
   load: (data?: object) => Promise<void>;
 }
 

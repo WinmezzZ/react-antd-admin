@@ -8,8 +8,8 @@ import { Area, AreaChart, Bar, BarChart, ResponsiveContainer, Tooltip as RToolti
 
 import { useLocale } from '@/locales';
 
-import { ReactComponent as CaretDownIcon } from './assets/caret-down.svg';
-import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg';
+import CaretDownIcon from './assets/caret-down.svg?react';
+import CaretUpIcon from './assets/caret-up.svg?react';
 
 const data = new Array(14).fill(null).map((_, index) => ({
   name: dayjs().add(index, 'day').format('YYYY-MM-DD'),
@@ -36,7 +36,7 @@ interface ColCardProps {
 const ColCard: FC<ColCardProps> = ({ metaName, metaCount, body, footer, loading }) => {
   return (
     <Col {...wrapperCol}>
-      <Card loading={loading} className="overview" bordered={false}>
+      <Card loading={loading} className="overview" variant="borderless">
         <div className="overview-header">
           <div className="overview-header-meta">{metaName}</div>
           <div className="overview-header-count">{metaCount}</div>

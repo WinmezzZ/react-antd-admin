@@ -23,9 +23,9 @@ const BaseModal = <FormValues extends object>(props: MyModalProps<FormValues>) =
     if (form) {
       const data = await formInstance.validateFields();
 
-      onClose && onClose(data);
+      onClose?.(data);
     } else {
-      onClose && onClose();
+      onClose?.();
     }
   };
 

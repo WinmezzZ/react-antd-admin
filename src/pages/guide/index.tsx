@@ -1,7 +1,5 @@
 import type { FC } from 'react';
 
-import 'driver.js/dist/driver.min.css';
-
 import { Button, Typography } from 'antd';
 
 import { useLocale } from '@/locales';

@@ -5,10 +5,10 @@ import './index.less';
 
 import { Drawer, Layout, theme as antTheme } from 'antd';
 import { Suspense, useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router';
 
 import { getMenuList } from '@/api/layout.api';
+import { useAppDispatch, useAppSelector } from '@/stores/hooks';
 import { setUserItem } from '@/stores/user.store';
 import { getFirstPathCode } from '@/utils/getFirstPathCode';
 import { getGlobalState } from '@/utils/getGloabal';
@@ -26,11 +26,11 @@ const LayoutPage: FC = () => {
   const [openKey, setOpenkey] = useState<string>();
   const [selectedKey, setSelectedKey] = useState<string>(location.pathname);
   const [menuList, setMenuList] = useState<MenuList>([]);
-  const { device, collapsed, newUser } = useSelector(state => state.user);
+  const { device, collapsed, newUser } = useAppSelector(state => state.user);
   const token = antTheme.useToken();
 
   const isMobile = device === 'MOBILE';
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { driverStart } = useGuide();
 
   useEffect(() => {
@@ -97,7 +97,9 @@ const LayoutPage: FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    newUser && driverStart();
+    if (newUser) {
+      driverStart();
+    }
   }, [newUser]);
 
   return (
@@ -124,9 +126,9 @@ const LayoutPage: FC = () => {
           </Sider>
         ) : (
           <Drawer
-            width="200"
+            size={200}
             placement="left"
-            bodyStyle={{ padding: 0, height: '100%' }}
+            styles={{ body: { padding: 0, height: '100%' } }}
             closable={false}
             onClose={toggle}
             open={!collapsed}

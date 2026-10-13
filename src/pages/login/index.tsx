@@ -4,10 +4,10 @@ import type { FC } from 'react';
 import './index.less';
 
 import { Button, Checkbox, Form, Input, theme as antTheme } from 'antd';
-import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { LocaleFormatter, useLocale } from '@/locales';
+import { useAppDispatch } from '@/stores/hooks';
 import { formatSearch } from '@/utils/formatSearch';
 
 import { loginAsync } from '../../stores/user.action';
@@ -21,7 +21,7 @@ const initialValues: LoginParams = {
 const LoginForm: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { formatMessage } = useLocale();
   const { token } = antTheme.useToken();
 

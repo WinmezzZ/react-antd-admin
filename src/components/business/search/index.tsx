@@ -26,7 +26,7 @@ const BaseSearch = <T extends object>(props: SearchProps<T>) => {
   return (
     <div css={styles}>
       <MyForm {...rest} form={form} layout="inline">
-        {children}
+        {children as React.ReactNode}
         <MyForm.Item>
           <MyButton type="primary" onClick={onSubmit}>
             {formatMessage({ id: 'component.search.request' })}

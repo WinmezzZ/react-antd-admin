@@ -2,24 +2,22 @@ import type { Notice } from '@/interface/layout/notice.interface';
 import type { FC } from 'react';
 
 import { LoadingOutlined } from '@ant-design/icons';
-import { Avatar, Badge, List, Popover, Spin, Tabs, Tag, Tooltip } from 'antd';
+import { Avatar, Badge, Listy, Popover, Spin, Tabs, Tag, Tooltip } from 'antd';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { getNoticeList } from '@/api/layout.api';
-import { ReactComponent as NoticeSvg } from '@/assets/header/notice.svg';
+import NoticeSvg from '@/assets/header/notice.svg?react';
 import { EventStatus } from '@/interface/layout/notice.interface';
 import { useLocale } from '@/locales';
+import { useAppSelector } from '@/stores/hooks';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-
-const { TabPane } = Tabs;
 
 const HeaderNoticeComponent: FC = () => {
   const [visible, setVisible] = useState(false);
   const [noticeList, setNoticeList] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(false);
-  const { noticeCount } = useSelector(state => state.user);
+  const { noticeCount } = useAppSelector(state => state.user);
   const { formatMessage } = useLocale();
 
   const noticeListFilter = <T extends Notice['type']>(type: T) => {
@@ -33,7 +31,9 @@ const HeaderNoticeComponent: FC = () => {
     const { status, result } = await getNoticeList();
 
     setLoading(false);
-    status && setNoticeList(result);
+    if (status) {
+      setNoticeList(result);
+    }
   };
 
   useEffect(() => {
@@ -42,76 +42,74 @@ const HeaderNoticeComponent: FC = () => {
 
   const tabs = (
     <div>
-      <Spin tip="Loading..." indicator={antIcon} spinning={loading}>
-        <Tabs defaultActiveKey="1">
-          <TabPane
-            tab={`${formatMessage({
-              id: 'app.notice.messages',
-            })}(${noticeListFilter('notification').length})`}
-            key="1"
-          >
-            <List
-              dataSource={noticeListFilter('notification')}
-              renderItem={item => (
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={<Avatar src={item.avatar} />}
-                    title={<a href={item.title}>{item.title}</a>}
-                    description={item.datetime}
-                  />
-                </List.Item>
-              )}
-            />
-          </TabPane>
-
-          <TabPane
-            tab={`${formatMessage({
-              id: 'app.notice.news',
-            })}(${noticeListFilter('message').length})`}
-            key="2"
-          >
-            <List
-              dataSource={noticeListFilter('message')}
-              renderItem={item => (
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={<Avatar src={item.avatar} />}
-                    title={<a href={item.title}>{item.title}</a>}
-                    description={
-                      <div className="notice-description">
-                        <div className="notice-description-content">{item.description}</div>
-                        <div className="notice-description-datetime">{item.datetime}</div>
+      <Spin description="Loading..." indicator={antIcon} spinning={loading}>
+        <Tabs
+          defaultActiveKey="1"
+          items={[
+            {
+              key: '1',
+              label: `${formatMessage({ id: 'app.notice.messages' })}(${noticeListFilter('notification').length})`,
+              children: (
+                <Listy
+                  items={noticeListFilter('notification')}
+                  rowKey="id"
+                  itemRender={item => (
+                    <div className="notice-list-item">
+                      <Avatar src={item.avatar} />
+                      <div className="notice-list-content">
+                        <a href={item.title}>{item.title}</a>
+                        <div>{item.datetime}</div>
                       </div>
-                    }
-                  />
-                </List.Item>
-              )}
-            />
-          </TabPane>
-          <TabPane
-            tab={`${formatMessage({
-              id: 'app.notice.tasks',
-            })}(${noticeListFilter('event').length})`}
-            key="3"
-          >
-            <List
-              dataSource={noticeListFilter('event')}
-              renderItem={item => (
-                <List.Item>
-                  <List.Item.Meta
-                    title={
-                      <div className="notice-title">
-                        <div className="notice-title-content">{item.title}</div>
-                        <Tag color={EventStatus[item.status]}>{item.extra}</Tag>
+                    </div>
+                  )}
+                />
+              ),
+            },
+            {
+              key: '2',
+              label: `${formatMessage({ id: 'app.notice.news' })}(${noticeListFilter('message').length})`,
+              children: (
+                <Listy
+                  items={noticeListFilter('message')}
+                  rowKey="id"
+                  itemRender={item => (
+                    <div className="notice-list-item">
+                      <Avatar src={item.avatar} />
+                      <div className="notice-list-content">
+                        <a href={item.title}>{item.title}</a>
+                        <div className="notice-description">
+                          <div className="notice-description-content">{item.description}</div>
+                          <div className="notice-description-datetime">{item.datetime}</div>
+                        </div>
                       </div>
-                    }
-                    description={item.description}
-                  />
-                </List.Item>
-              )}
-            />
-          </TabPane>
-        </Tabs>
+                    </div>
+                  )}
+                />
+              ),
+            },
+            {
+              key: '3',
+              label: `${formatMessage({ id: 'app.notice.tasks' })}(${noticeListFilter('event').length})`,
+              children: (
+                <Listy
+                  items={noticeListFilter('event')}
+                  rowKey="id"
+                  itemRender={item => (
+                    <div className="notice-list-item">
+                      <div className="notice-list-content">
+                        <div className="notice-title">
+                          <div className="notice-title-content">{item.title}</div>
+                          <Tag color={EventStatus[item.status]}>{item.extra}</Tag>
+                        </div>
+                        <div>{item.description}</div>
+                      </div>
+                    </div>
+                  )}
+                />
+              ),
+            },
+          ]}
+        />
       </Spin>
     </div>
   );
@@ -119,14 +117,12 @@ const HeaderNoticeComponent: FC = () => {
   return (
     <Popover
       content={tabs}
-      overlayClassName="bg-2"
+      classNames={{ root: 'bg-2' }}
       placement="bottomRight"
       trigger={['click']}
       open={visible}
       onOpenChange={v => setVisible(v)}
-      overlayStyle={{
-        width: 336,
-      }}
+      styles={{ root: { width: 336 } }}
     >
       <Tooltip
         title={formatMessage({

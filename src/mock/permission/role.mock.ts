@@ -23,4 +23,4 @@ const roles: Role[] = [
   },
 ];
 
-mock.mock('/permission/role', 'get', intercepter(roles));
+mock.onGet('/permission/role').reply(200, intercepter(roles));

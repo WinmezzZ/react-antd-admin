@@ -1,23 +1,21 @@
-import 'driver.js/dist/driver.min.css';
+import 'driver.js/dist/driver.css';
 import './index.less';
 
-import Driver from 'driver.js';
+import { driver } from 'driver.js';
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { useLocale } from '@/locales';
+import { useAppDispatch } from '@/stores/hooks';
 import { setUserItem } from '@/stores/user.store';
 
 export const useGuide = () => {
   const { formatMessage } = useLocale();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const driver = useRef(
-    new Driver({
-      keyboardControl: false,
+  const driverInstance = useRef(
+    driver({
+      allowKeyboardControl: false,
       allowClose: false,
-      overlayClickNext: true,
-      closeBtnText: formatMessage({ id: 'app.guide.driverjs.closeBtnText' }),
       prevBtnText: formatMessage({ id: 'app.guide.driverjs.prevBtnText' }),
       nextBtnText: formatMessage({ id: 'app.guide.driverjs.nextBtnText' }),
       doneBtnText: formatMessage({ id: 'app.guide.driverjs.doneBtnText' }),
@@ -26,15 +24,13 @@ export const useGuide = () => {
 
   const driverStart = () => {
     setTimeout(() => {
-      driver.current.defineSteps([
+      driverInstance.current.setSteps([
         {
           element: '#sidebar-trigger',
           popover: {
             title: formatMessage({ id: 'app.guide.driverStep.sidebarTrigger.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.sidebarTrigger.description' }),
-            position: 'bottom',
-            offset: 10,
-            isFirst: true,
+            side: 'bottom',
           },
         },
         {
@@ -42,8 +38,7 @@ export const useGuide = () => {
           popover: {
             title: formatMessage({ id: 'app.guide.driverStep.notices.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.notices.description' }),
-            position: 'bottom',
-            offset: -160,
+            side: 'bottom',
           },
         },
         {
@@ -51,8 +46,7 @@ export const useGuide = () => {
           popover: {
             title: formatMessage({ id: 'app.guide.driverStep.switchLanguages.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.switchLanguages.description' }),
-            position: 'bottom',
-            offset: -170,
+            side: 'bottom',
           },
         },
         {
@@ -60,8 +54,7 @@ export const useGuide = () => {
           popover: {
             title: formatMessage({ id: 'app.guide.driverStep.pageTabs.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.pageTabs.description' }),
-            position: 'bottom',
-            offset: 30,
+            side: 'bottom',
           },
         },
         {
@@ -69,7 +62,7 @@ export const useGuide = () => {
           popover: {
             title: formatMessage({ id: 'app.guide.driverStep.pageTabsActions.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.pageTabsActions.description' }),
-            position: 'left',
+            side: 'left',
           },
         },
         {
@@ -77,8 +70,7 @@ export const useGuide = () => {
           popover: {
             title: formatMessage({ id: 'app.guide.driverStep.switchTheme.title' }),
             description: formatMessage({ id: 'app.guide.driverStep.switchTheme.description' }),
-            position: 'left',
-            isLast: true,
+            side: 'left',
           },
         },
       ]);
@@ -89,7 +81,7 @@ export const useGuide = () => {
           newUser: false,
         }),
       );
-      driver.current.start();
+      driverInstance.current.drive();
       console.log('guide started');
     }, 1000);
   };

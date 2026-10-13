@@ -1,3 +1,3 @@
 import { intercepter, mock } from '../config';
 
-mock.mock('/user/logout', 'post', intercepter(null));
+mock.onPost('/user/logout').reply(200, intercepter(null));

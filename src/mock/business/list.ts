@@ -1,7 +1,5 @@
 import type { BuniesssUser } from '@/interface/business';
 
-import qs from 'query-string';
-
 import { intercepter, mock } from '../config';
 
 const data: BuniesssUser[] = [
@@ -42,9 +40,8 @@ new Array(30).fill(undefined).forEach((item, index) => {
   });
 });
 
-mock.mock(/\/business\/list*/, 'get', (config: any) => {
-  const jsonParams = config.url.split('?')[1];
-  const params = qs.parse(jsonParams);
+mock.onGet(/\/business\/list*/).reply(config => {
+  const params = config.params ?? Object.fromEntries(new URL(config.url ?? '', window.location.origin).searchParams);
 
-  return intercepter(data, params);
+  return [200, intercepter(data, params)];
 });

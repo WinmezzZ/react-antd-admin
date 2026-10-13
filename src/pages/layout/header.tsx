@@ -3,19 +3,19 @@ import type { FC } from 'react';
 import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
 import { Dropdown, Layout, theme as antTheme, Tooltip } from 'antd';
 import { createElement } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Avator from '@/assets/header/avator.jpeg';
-import { ReactComponent as EnUsSvg } from '@/assets/header/en_US.svg';
-import { ReactComponent as LanguageSvg } from '@/assets/header/language.svg';
-import { ReactComponent as MoonSvg } from '@/assets/header/moon.svg';
-import { ReactComponent as SunSvg } from '@/assets/header/sun.svg';
-import { ReactComponent as ZhCnSvg } from '@/assets/header/zh_CN.svg';
+import EnUsSvg from '@/assets/header/en_US.svg?react';
+import LanguageSvg from '@/assets/header/language.svg?react';
+import MoonSvg from '@/assets/header/moon.svg?react';
+import SunSvg from '@/assets/header/sun.svg?react';
+import ZhCnSvg from '@/assets/header/zh_CN.svg?react';
 import AntdSvg from '@/assets/logo/antd.svg';
 import ReactSvg from '@/assets/logo/react.svg';
 import { LocaleFormatter, useLocale } from '@/locales';
 import { setGlobalState } from '@/stores/global.store';
+import { useAppDispatch, useAppSelector } from '@/stores/hooks';
 import { setUserItem } from '@/stores/user.store';
 
 import { logoutAsync } from '../../stores/user.action';
@@ -31,11 +31,11 @@ interface HeaderProps {
 type Action = 'userInfo' | 'userSetting' | 'logout';
 
 const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
-  const { logged, locale, device } = useSelector(state => state.user);
-  const { theme } = useSelector(state => state.global);
+  const { logged, locale, device } = useAppSelector(state => state.user);
+  const { theme } = useAppSelector(state => state.global);
   const navigate = useNavigate();
   const token = antTheme.useToken();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { formatMessage } = useLocale();
 
   const onActionClick = async (action: Action) => {
@@ -47,7 +47,9 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
       case 'logout':
         const res = Boolean(await dispatch(logoutAsync()));
 
-        res && navigate('/login');
+        if (res) {
+          navigate('/login');
+        }
 
         return;
     }
