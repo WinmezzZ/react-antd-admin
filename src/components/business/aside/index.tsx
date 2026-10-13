@@ -1,11 +1,10 @@
-import type { TreeProps } from 'antd';
-import type { DataNode } from 'rc-tree/lib/interface';
+import type { TreeDataNode, TreeProps } from 'antd';
 import type { FC } from 'react';
 
 import { css } from '@emotion/react';
 import { Divider, Tree } from 'antd';
 
-export interface MySideOption extends DataNode {}
+export type MySideOption = TreeDataNode;
 
 export interface MyAsideProps extends Omit<TreeProps, 'treeData'> {
   options?: MySideOption[];

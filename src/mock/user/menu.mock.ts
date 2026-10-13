@@ -170,4 +170,4 @@ const mockMenuList: MenuList = [
   },
 ];
 
-mock.mock('/user/menu', 'get', intercepter(mockMenuList));
+mock.onGet('/user/menu').reply(200, intercepter(mockMenuList));

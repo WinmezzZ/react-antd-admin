@@ -7,7 +7,7 @@ import store from '@/stores';
 import { setGlobalState } from '@/stores/global.store';
 // import { history } from '@/routes/history';
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   timeout: 6000,
 });
 
@@ -62,7 +62,9 @@ axiosInstance.interceptors.response.use(
     }
 
     console.dir(error);
-    error.message && $message.error(errorMessage);
+    if (error.message) {
+      $message.error(errorMessage);
+    }
 
     return {
       status: false,

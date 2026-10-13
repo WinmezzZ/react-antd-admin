@@ -4,12 +4,12 @@ import type { FC } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Avatar, Badge, List, Popover, Spin, Tabs, Tag, Tooltip } from 'antd';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { getNoticeList } from '@/api/layout.api';
-import { ReactComponent as NoticeSvg } from '@/assets/header/notice.svg';
+import NoticeSvg from '@/assets/header/notice.svg?react';
 import { EventStatus } from '@/interface/layout/notice.interface';
 import { useLocale } from '@/locales';
+import { useAppSelector } from '@/stores/hooks';
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -19,7 +19,7 @@ const HeaderNoticeComponent: FC = () => {
   const [visible, setVisible] = useState(false);
   const [noticeList, setNoticeList] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(false);
-  const { noticeCount } = useSelector(state => state.user);
+  const { noticeCount } = useAppSelector(state => state.user);
   const { formatMessage } = useLocale();
 
   const noticeListFilter = <T extends Notice['type']>(type: T) => {
@@ -33,7 +33,9 @@ const HeaderNoticeComponent: FC = () => {
     const { status, result } = await getNoticeList();
 
     setLoading(false);
-    status && setNoticeList(result);
+    if (status) {
+      setNoticeList(result);
+    }
   };
 
   useEffect(() => {

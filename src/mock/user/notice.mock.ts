@@ -100,4 +100,4 @@ const mockNoticeList: Notice<'all'>[] = [
   },
 ];
 
-mock.mock('/user/notice', 'get', intercepter(mockNoticeList));
+mock.onGet('/user/notice').reply(200, intercepter(mockNoticeList));

@@ -2,15 +2,15 @@ import type { FC } from 'react';
 
 import { SettingOutlined } from '@ant-design/icons';
 import { Dropdown } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { LocaleFormatter } from '@/locales';
+import { useAppDispatch, useAppSelector } from '@/stores/hooks';
 import { removeAllTag, removeOtherTag, removeTag } from '@/stores/tags-view.store';
 
 const TagsViewAction: FC = () => {
-  const { activeTagId } = useSelector(state => state.tagsView);
-  const dispatch = useDispatch();
+  const { activeTagId } = useAppSelector(state => state.tagsView);
+  const dispatch = useAppDispatch();
 
   return (
     <Dropdown
@@ -37,7 +37,11 @@ const TagsViewAction: FC = () => {
           },
           {
             key: '4',
-            label: <Link to="/"><LocaleFormatter id="tagsView.operation.dashboard" /></Link>,
+            label: (
+              <Link to="/">
+                <LocaleFormatter id="tagsView.operation.dashboard" />
+              </Link>
+            ),
           },
         ],
       }}

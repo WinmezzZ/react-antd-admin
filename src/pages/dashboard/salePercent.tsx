@@ -3,10 +3,10 @@ import type { FC } from 'react';
 
 import { Badge, Card, Col, List, Radio, Row } from 'antd';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
 import { useLocale } from '@/locales';
+import { useAppSelector } from '@/stores/hooks';
 
 type DataType = 'all' | 'online' | 'offline';
 
@@ -63,7 +63,7 @@ const wrapperCol: ColProps = {
 
 const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
   const [dataType, setDataType] = useState<DataType>('all');
-  const { locale } = useSelector(state => state.user);
+  const { locale } = useAppSelector(state => state.user);
   const { formatMessage } = useLocale();
 
   return (
@@ -85,8 +85,10 @@ const SalePercent: FC<{ loading: boolean }> = ({ loading }) => {
             <PieChart>
               <Tooltip
                 content={({ active, payload }: any) => {
-                  if (active) {
-                    const { name, value } = payload[0];
+                  const tooltipItem = payload?.[0];
+
+                  if (active && tooltipItem?.payload) {
+                    const { name, value } = tooltipItem.payload as Values;
                     const total = data[dataType].map(d => d.value).reduce((a, b) => a + b);
                     const percent = ((value / total) * 100).toFixed(2) + '%';
 

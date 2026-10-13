@@ -2,9 +2,14 @@ import type { MyTableColumnProps } from './type';
 
 import { Table } from 'antd';
 import dayjs from 'dayjs';
-import { getPathValue } from 'rc-table/lib/utils/valueUtil';
 
 import { dateFormatMap, datetimeFormatMap, timeFormatMap } from './type';
+
+const getPathValue = (record: object, path: string | number | readonly (string | number)[]) => {
+  const keys = Array.isArray(path) ? path : [path];
+
+  return keys.reduce<any>((value, key) => value?.[key], record);
+};
 
 const MyTableColumn = <RecordType extends object = object>(props: MyTableColumnProps<RecordType>) => {
   const { options, date, time, datetime, render, ...rest } = props;
@@ -13,17 +18,19 @@ const MyTableColumn = <RecordType extends object = object>(props: MyTableColumnP
     if (!value) return '-';
 
     if ('datetime' in props) {
-      return dayjs(value, datetimeFormatMap[typeof datetime === 'string' ? datetime : 'second']);
+      return dayjs(value).format(datetimeFormatMap[typeof datetime === 'string' ? datetime : 'second']);
     } else if ('date' in props) {
-      return dayjs(value, dateFormatMap[typeof date === 'string' ? date : 'day']);
+      return dayjs(value).format(dateFormatMap[typeof date === 'string' ? date : 'day']);
     } else if ('time' in props) {
-      return dayjs(value, timeFormatMap[typeof time === 'string' ? time : 'second']);
+      return dayjs(value).format(timeFormatMap[typeof time === 'string' ? time : 'second']);
     }
 
     const dataIndex = props.dataIndex;
 
     if (dataIndex && options) {
-      const data = options.find(item => item.value === getPathValue(record, dataIndex));
+      const data = options.find(
+        item => item.value === getPathValue(record, dataIndex as string | number | readonly (string | number)[]),
+      );
 
       if (data) return data.label || '-';
     }

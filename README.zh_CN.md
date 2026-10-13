@@ -4,19 +4,22 @@
 
 <div align="center">
 
-React Hooks + Typescript 最佳实践。
+基于 React Hooks 与 TypeScript 构建的现代中后台管理系统。
 
 <a href="https://github.com/facebook/react">
-  <img src="https://img.shields.io/badge/react-17.0.0-brightgreen" alt="React">
+  <img src="https://img.shields.io/badge/react-19.3.0-brightgreen" alt="React">
 </a>
 <a href="https://github.com/ant-design/ant-design">
-  <img src="https://img.shields.io/badge/ant--design-5.2.0-brightgreen" alt="ant-design">
+  <img src="https://img.shields.io/badge/ant--design-6.6.6-brightgreen" alt="ant-design">
 </a>
 <a href="https://github.com/microsoft/TypeScript" rel="nofollow">
-  <img src="https://img.shields.io/badge/typescript-4.3.2-brightgreen" alt="Typescript">
+  <img src="https://img.shields.io/badge/typescript-6.0.3-brightgreen" alt="TypeScript">
 </a>
 <a href="https://github.com/reduxjs/redux" rel="nofollow">
-  <img src="https://img.shields.io/badge/@reduxjs/toolkit-1.4.0-brightgreen" alt="Redux">
+  <img src="https://img.shields.io/badge/@reduxjs/toolkit-2.13.0-brightgreen" alt="Redux Toolkit">
+</a>
+<a href="https://github.com/vitejs/vite" rel="nofollow">
+  <img src="https://img.shields.io/badge/vite-8.3.4-brightgreen" alt="Vite">
 </a>
 <a href="https://github.com/WinmezzZ/react-antd-admin/blob/master/LICENSE">
   <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
@@ -33,7 +36,7 @@ React Hooks + Typescript 最佳实践。
 - 📜 **区块**: 通过区块模板快速构建页面
 - 💎 **Hooks**: 使用最新的 react hooks API 代替传统的 class API
 - 📐 **常见设计模式**: 提炼自中后台应用的典型页面和场景
-- 🚀 **最新技术栈**: 使用 React/hooks/Redux/antd/typescript 等前端前沿技术开发
+- 🚀 **最新技术栈**: 使用 React、Hooks、Redux Toolkit、Ant Design、TypeScript 和 Vite 开发
 - 📱 **响应式**: 针对不同屏幕大小设计
 - 🎨 **主题**: 动态切换主题色
 - 🌐 **国际化**: 内建业界通用的国际化方案
@@ -43,11 +46,17 @@ React Hooks + Typescript 最佳实践。
 
 ## 📦 下载
 
+环境要求：Node.js `^20.19.0` 或 `>=22.12.0`，推荐使用 Yarn 1.x。
+
 ```bash
 $ git clone https://github.com/WinmezzZ/react-antd-admin.git
 $ cd react-antd-admin
 $ npm install
-$ npm start
+$ npm run dev
+
+# 或使用 Yarn
+$ yarn install
+$ yarn dev
 ```
 
 ## 🔨 构建
@@ -55,17 +64,17 @@ $ npm start
 ```bash
 npm install
 npm run build
+
+# 或使用 Yarn
+yarn install
+yarn build
 ```
 
-此项目默认部署在根站点上，如果要部署在子站点上，则需要设置公共路径，在本项目根目录下的 `.env` 文件中添加 `PUBLIC_URL=YOUR_CHILD_PATH`。
+生产文件会输出到 `dist`。如果部署在子路径下，请在 `vite.config.ts` 中配置 Vite 的 `base` 选项。
 
 ## 🖥 浏览器支持
 
-现代浏览器和 Internet Explorer 10+
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Electron |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IE11, Edge                                                                                                                                                                                                      | last 2 versions                                                                                                                                                                                                   | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                           | last 2 versions                                                                                                                                                                                                       |
+项目按照 `package.json` 中的 `browserslist` 配置支持现代浏览器，不再支持 Internet Explorer。
 
 ## 🤝 贡献
 

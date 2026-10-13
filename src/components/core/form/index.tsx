@@ -19,7 +19,7 @@ const BaseForm = <Values extends object>(props: MyFormProps<Values>) => {
       {options?.map(option => {
         return <MyFormItem {...option} />;
       })}
-      {children}
+      {children as React.ReactNode}
     </Form>
   );
 };

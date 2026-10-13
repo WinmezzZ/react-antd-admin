@@ -60,17 +60,29 @@ export class ControlMap {
 
   checkbox() {
     // highlight-next-line
-    return <Checkbox.Group children={this.props.children} options={this.props.options} {...this.innerProps} />;
+    return (
+      <Checkbox.Group options={this.props.options} {...this.innerProps}>
+        {this.props.children as React.ReactNode}
+      </Checkbox.Group>
+    );
   }
 
   radio() {
     // highlight-next-line
-    return <Radio.Group children={this.props.children} options={this.props.options} {...this.innerProps} />;
+    return (
+      <Radio.Group options={this.props.options} {...this.innerProps}>
+        {this.props.children as React.ReactNode}
+      </Radio.Group>
+    );
   }
 
   select() {
     // highlight-next-line
-    return <Select children={this.props.children} options={this.props.options} {...this.innerProps} />;
+    return (
+      <Select options={this.props.options} {...this.innerProps}>
+        {this.props.children as React.ReactNode}
+      </Select>
+    );
   }
 }
 

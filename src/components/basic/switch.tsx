@@ -1,8 +1,9 @@
+import type { SwitchProps } from 'antd';
 import type { FC } from 'react';
 
 import { Switch } from 'antd';
 
-const BaseSwitch: FC = ({ children: _, ...props }) => {
+const BaseSwitch: FC<React.PropsWithChildren<SwitchProps>> = ({ children: _, ...props }) => {
   return <Switch {...props} />;
 };
 

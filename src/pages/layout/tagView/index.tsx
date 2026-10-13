@@ -2,17 +2,17 @@ import type { FC } from 'react';
 
 import { Tabs } from 'antd';
 import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation,  } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from '@/stores/hooks';
 import { addTag, removeTag, setActiveTag } from '@/stores/tags-view.store';
 
 import TagsViewAction from './tagViewAction';
 
 const TagsView: FC = () => {
-  const { tags, activeTagId } = useSelector(state => state.tagsView);
-  const { menuList, locale } = useSelector(state => state.user);
-  const dispatch = useDispatch();
+  const { tags, activeTagId } = useAppSelector(state => state.tagsView);
+  const { menuList, locale } = useAppSelector(state => state.user);
+  const dispatch = useAppDispatch();
   const location = useLocation();
 
   // onClick tag

@@ -6,18 +6,18 @@ import zhCN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
 import { Suspense, useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { HistoryRouter, history } from '@/routes/history';
+import { history, HistoryRouter } from '@/routes/history';
+import { useAppDispatch, useAppSelector } from '@/stores/hooks';
 
-import { LocaleFormatter, localeConfig } from './locales';
+import { localeConfig, LocaleFormatter } from './locales';
 import RenderRouter from './routes';
 import { setGlobalState } from './stores/global.store';
 
 const App: React.FC = () => {
-  const { locale } = useSelector(state => state.user);
-  const { theme, loading } = useSelector(state => state.global);
-  const dispatch = useDispatch();
+  const { locale } = useAppSelector(state => state.user);
+  const { theme, loading } = useAppSelector(state => state.global);
+  const dispatch = useAppDispatch();
 
   const setTheme = (dark = true) => {
     dispatch(
@@ -78,14 +78,17 @@ const App: React.FC = () => {
       <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
         <HistoryRouter history={history}>
           <Suspense fallback={null}>
-            <Spin
-              spinning={loading}
-              className="app-loading-wrapper"
-              style={{
-                backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.44)' : 'rgba(255, 255, 255, 0.44)',
-              }}
-              tip={<LocaleFormatter id="gloabal.tips.loading" />}
-            ></Spin>
+            {loading && (
+              <Spin
+                fullscreen
+                spinning
+                className="app-loading-wrapper"
+                style={{
+                  backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.44)' : 'rgba(255, 255, 255, 0.44)',
+                }}
+                description={<LocaleFormatter id="gloabal.tips.loading" />}
+              />
+            )}
             <RenderRouter />
           </Suspense>
         </HistoryRouter>
