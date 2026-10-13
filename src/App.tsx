@@ -88,7 +88,7 @@ const App: React.FC = () => {
         algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
       }}
     >
-      <AntdApp>
+      <AntdApp className="app-container">
         <AntdMessageBridge />
         <IntlProvider locale={locale.split('_')[0]} messages={localeConfig[locale]}>
           <HistoryRouter history={history}>
